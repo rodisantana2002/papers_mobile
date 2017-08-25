@@ -5,4 +5,12 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Seja Bem-Vindo</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="title_activity_principal">Seja Bem-vindo</string>
+    <string name="login_email">Login (Email)</string>
+    <string name="senha">Senha</string>
 </resources>
