@@ -13,4 +13,8 @@
     <string name="title_activity_principal">Seja Bem-vindo</string>
     <string name="login_email">Login (Email)</string>
     <string name="senha">Senha</string>
+    <string name="entrar">Entrar</string>
+    <string name="cadastrar_se">Cadastrar-se</string>
+    <string name="esqueci_minha_senha">Esqueci minha senha</string>
+    <string name="title_activity_recuperar_senha">Recuperar Senha</string>
 </resources>
