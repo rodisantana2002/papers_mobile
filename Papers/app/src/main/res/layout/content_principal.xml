@@ -59,12 +59,12 @@
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:layout_weight="0.04"
-            android:background="@android:color/holo_blue_light"
+            android:background="@color/colorPrimary"
             android:text="@string/entrar"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            tools:ignore="InefficientWeight"/>
+            tools:ignore="InefficientWeight" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,9 +99,6 @@
                 tools:ignore="ButtonStyle,InefficientWeight"/>
 
         </LinearLayout>
-
-
-
 
     </LinearLayout>
 </RelativeLayout>
