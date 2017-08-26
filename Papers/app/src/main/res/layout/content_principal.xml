@@ -12,55 +12,52 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?android:attr/windowBackground"
         android:orientation="vertical"
-        android:paddingTop="10dp"
         android:paddingBottom="20dp"
+        android:focusableInTouchMode="true"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        tools:ignore="UselessParent"
-        android:weightSum="1">
+        android:paddingTop="20dp"
+        android:weightSum="1"
+        tools:ignore="UselessParent">
 
-        <TextView
-            android:id="@+id/lblLogin"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/login_email"
-            android:textColor="@color/cardview_dark_background"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/txtLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            tools:ignore="LabelFor"/>
+            <EditText
+                android:id="@+id/txtLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/lblEmail"
+                android:inputType="textEmailAddress"
+                tools:ignore="LabelFor" />
+        </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:id="@+id/lblSenha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            android:text="@string/senha"
-            android:textColor="@color/cardview_dark_background"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
 
-        <EditText
-            android:id="@+id/txtSenha"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            tools:ignore="LabelFor"/>
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/txtSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/txtsenha"
+                android:inputType="textPassword"
+                tools:ignore="LabelFor" />
+        </android.support.design.widget.TextInputLayout>
+
 
         <Button
             android:id="@+id/btnEntrar"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_marginTop="10dp"
             android:layout_weight="0.04"
             android:background="@color/colorPrimary"
-            android:text="@string/entrar"
+            android:text="@string/btnentrar"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="18sp"
@@ -73,17 +70,17 @@
             android:paddingTop="10dp">
 
             <Button
-                android:id="@+id/btnCadastrar"
+                android:id="@+id/btnCadastrarNovoUsuario"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_weight="0.04"
                 android:background="@android:color/transparent"
-                android:text="@string/cadastrar_se"
+                android:text="@string/btncadastrar_se"
                 android:textAlignment="center"
                 android:textColor="?attr/colorControlNormal"
                 android:textSize="16sp"
-                tools:ignore="ButtonStyle,InefficientWeight"/>
+                tools:ignore="ButtonStyle,InefficientWeight" />
 
             <Button
                 android:id="@+id/btnEsqueciMinhaSenha"
@@ -92,11 +89,11 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="0.04"
                 android:background="@android:color/transparent"
-                android:text="@string/esqueci_minha_senha"
+                android:text="@string/btnesqueci_minha_senha"
                 android:textAlignment="center"
                 android:textColor="?attr/colorControlNormal"
                 android:textSize="16sp"
-                tools:ignore="ButtonStyle,InefficientWeight"/>
+                tools:ignore="ButtonStyle,InefficientWeight" />
 
         </LinearLayout>
 

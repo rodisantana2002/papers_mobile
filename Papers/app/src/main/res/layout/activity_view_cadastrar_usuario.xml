@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rhcloud.papers.view.viewRecuperarSenha">
+    tools:context="com.rhcloud.papers.view.viewCadastrarUsuario">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -13,16 +12,17 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar1"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
             android:elevation="0dp"
             app:popupTheme="@style/Base.TextAppearance.AppCompat.Small.Inverse"
-            app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Body1"
-            app:title="@string/title_activity_recuperar_senha" />
+            app:title="@string/title_activity_view_cadastrar_usuario"
+            app:titleTextColor="@android:color/white" />
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_recuperar_senha"/>
+    <include layout="@layout/content_view_cadastrar_usuario" />
 
 </android.support.design.widget.CoordinatorLayout>

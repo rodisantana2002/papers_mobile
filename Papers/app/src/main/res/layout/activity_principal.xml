@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.rhcloud.papers.Principal">
 
-    <include layout="@layout/content_principal"/>
-
     <android.support.design.widget.AppBarLayout
         android:layout_width="wrap_content"
         android:layout_height="56dp"
@@ -22,7 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="20dp"
+            android:elevation="0dp"
             android:orientation="vertical"
             android:padding="03dp"
             android:scrollbars="vertical"
@@ -43,7 +41,7 @@
                     <ImageView
                         android:id="@+id/imgapp"
                         style="@android:style/Widget.DeviceDefault.ImageButton"
-                        android:layout_width="50dp"
+                        android:layout_width="105dp"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
                         android:contentDescription="@string/logotipo"
@@ -56,8 +54,8 @@
                         android:background="@android:color/transparent"
                         android:gravity="center_vertical"
                         android:text="@string/title_activity_principal"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/holo_blue_dark"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/colorPrimary"
                         android:textColorHint="@color/cardview_dark_background"
                         android:textSize="24sp"
                         android:textStyle="bold" />
@@ -69,4 +67,6 @@
         </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_principal" />
 </android.support.design.widget.CoordinatorLayout>
