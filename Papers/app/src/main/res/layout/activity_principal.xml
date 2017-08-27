@@ -53,12 +53,13 @@
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
                         android:gravity="center_vertical"
-                        android:text="@string/title_activity_principal"
+                        android:text="Seja Bem-vindo"
                         android:textAlignment="textStart"
                         android:textColor="@color/colorPrimary"
                         android:textColorHint="@color/cardview_dark_background"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
 
                 </TableRow>
 

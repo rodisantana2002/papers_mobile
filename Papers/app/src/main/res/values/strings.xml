@@ -6,29 +6,10 @@
 
     <string name="logotipo">logotipo</string>
 
-
-    <string name="txtlogin_email">Login (Email)</string>
-    <string name="txtsenha">Senha</string>
-
-    <string name="btnesqueci_minha_senha">Esqueci minha senha</string>
-    <string name="btnentrar">Entrar</string>
-    <string name="btncadastrar_se">Cadastrar-se</string>
-    <string name="btlEnviar">Enviar</string>
-
-    <string name="lblEmail">Email</string>
     <string name="lblLembreteRecuperacaoSenha">Para recuperar a sua senha, preencha a informação abaixo e acione a opção Enviar.</string>
 
     <string name="title_activity_principal">Seja Bem-vindo</string>
     <string name="title_activity_recuperar_senha">Recuperar Senha</string>
     <string name="title_activity_view_cadastrar_usuario">Cadastrar Usuário</string>
-    <string name="lblemailrecuperasenha">Email</string>
-    <string name="lblCadUserEmail">Email</string>
-    <string name="lblCadUsercrie_uma_senha">Crie uma senha</string>
-    <string name="lblCadUserdados_pessoais">Dados Pessoais:</string>
-    <string name="lblCadUserdados_de_acesso">Dados de Acesso:</string>
-    <string name="lblCadUserprimeiro_nome">Primeiro Nome</string>
-    <string name="lblCadUserrepita_s_senha_criada">Repita s senha criada</string>
-    <string name="lblCadUsersegundo_nome">Segundo Nome</string>
-    <string name="login_email">Login (Email)</string>
-    <string name="senha">Senha</string>
+    <string name="title_activity_view_destino">Destinos</string>
 </resources>

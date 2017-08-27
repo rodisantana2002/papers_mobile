@@ -40,11 +40,11 @@
                 android:id="@+id/txtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/lblEmail"
+                android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:paddingBottom="25dp"
                 android:paddingTop="15dp"
-                tools:ignore="LabelFor" />
+                tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
@@ -54,12 +54,13 @@
             android:layout_marginTop="10dp"
             android:layout_weight="0.04"
             android:background="@color/colorPrimary"
-            android:text="@string/btlEnviar"
+            android:text="Enviar"
             android:textAlignment="center"
+            android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:visibility="visible"
-            tools:ignore="InefficientWeight" />
+            tools:ignore="HardcodedText,InefficientWeight" />
     </LinearLayout>
 
 </RelativeLayout>

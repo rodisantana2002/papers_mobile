@@ -18,18 +18,21 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:weightSum="1"
-        tools:ignore="UselessParent">
+        tools:ignore="UselessParent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:id="@+id/lblDadosPessoais"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="5dp"
-            android:text="@string/lblCadUserdados_pessoais"
+            android:text="Dados Pessoais"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
 
         <android.support.design.widget.TextInputLayout
@@ -40,36 +43,38 @@
                 android:id="@+id/txtPrimeiroNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/lblCadUserprimeiro_nome"
+                android:hint="Primeiro Nome"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
-                tools:ignore="LabelFor" />
+                tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <EditText
                 android:id="@+id/txtSegundoNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Segundo Nome"
                 android:inputType="textPersonName"
-                android:hint="@string/lblCadUsersegundo_nome"
                 android:textSize="16sp"
-                tools:ignore="LabelFor" />
+                tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <EditText
                 android:id="@+id/txtEmailUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:hint="@string/lblCadUserEmail"
                 android:textSize="16sp"
-                tools:ignore="LabelFor" />
+                tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
 
         <TextView
@@ -77,37 +82,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
-            android:text="@string/lblCadUserdados_de_acesso"
+            android:text="Dados de Acesso"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <EditText
                 android:id="@+id/txtCrieSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Crie uma senha"
                 android:inputType="text|textPassword"
-                android:hint="@string/lblCadUsercrie_uma_senha"
                 android:textSize="16sp"
-                tools:ignore="LabelFor" />
+                tools:ignore="HardcodedText,LabelFor" />
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <EditText
                 android:id="@+id/txtRepitaSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Repita a senha criada"
                 android:inputType="text|textPassword"
-                android:hint="@string/lblCadUserrepita_s_senha_criada"
                 android:textSize="16sp"
-                tools:ignore="LabelFor" />
+                tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
@@ -117,11 +125,12 @@
             android:layout_marginTop="10dp"
             android:layout_weight="0.04"
             android:background="@color/colorPrimary"
-            android:text="@string/btlEnviar"
+            android:text="Enviar"
             android:textAlignment="center"
+            android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            tools:ignore="InefficientWeight" />
+            tools:ignore="HardcodedText,InefficientWeight" />
     </LinearLayout>
 
 </RelativeLayout>

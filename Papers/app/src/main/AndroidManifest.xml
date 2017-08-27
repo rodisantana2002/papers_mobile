@@ -25,7 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".view.viewRecuperarSenha"
             android:label="@string/title_activity_recuperar_senha"
@@ -35,10 +34,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rhcloud.papers.Principal" />
         </activity>
-
         <activity
             android:name=".view.viewCadastrarUsuario"
             android:label="@string/title_activity_view_cadastrar_usuario"
+            android:parentActivityName=".Principal"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rhcloud.papers.Principal" />
+        </activity>
+        <activity
+            android:name=".view.viewDestino"
+            android:label="@string/title_activity_view_destino"
             android:parentActivityName=".Principal"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
