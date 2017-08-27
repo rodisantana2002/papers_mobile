@@ -12,11 +12,12 @@ import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpConstants;
 import com.rhcloud.papers.helpers.generic.hlpDialog;
+import com.rhcloud.papers.helpers.generic.hlpValidaDados;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.view.viewCadastrarUsuario;
 import com.rhcloud.papers.view.viewRecuperarSenha;
 
-public class Principal extends Activity implements View.OnClickListener{
+public class Principal extends Activity implements View.OnClickListener {
     private Button btnEsqueciSenha, btnCadastrarNovoUsuario, btnEntrar;
     private EditText txtLogin, txtSenha;
     private ctrlLogin ctrlLogin;
@@ -28,6 +29,11 @@ public class Principal extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_principal);
 
         prepararComponentes();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
     }
 
     @Override
@@ -46,7 +52,7 @@ public class Principal extends Activity implements View.OnClickListener{
             if (validarDados()) {
                 atualizarObjeto();
                 if (validarAcesso()){
-                    
+                    //carrega tela do Home
                 };
             }
         }
@@ -69,8 +75,20 @@ public class Principal extends Activity implements View.OnClickListener{
             return false;
         }
 
+        if (!hlpValidaDados.isValidEmail(txtLogin.getText().toString())){
+            hlpDialog.getAlertDialog(this, "Alerta", "Email com formato inválido", "Ok", new itfDialogGeneric() {
+
+                @Override
+                public void onButtonAction(boolean value) throws excPassaErro {
+                    txtLogin.requestFocus();
+                }
+            });
+            return false;
+        }
+
         if(txtSenha.getText().toString().isEmpty()){
             hlpDialog.getAlertDialog(this, "Alerta", "A Senha deve ser informada", "Ok", new itfDialogGeneric() {
+
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
                     txtSenha.requestFocus();
@@ -78,6 +96,7 @@ public class Principal extends Activity implements View.OnClickListener{
             });
             return false;
         }
+
         return true;
     }
 
@@ -106,14 +125,9 @@ public class Principal extends Activity implements View.OnClickListener{
                 });
                 return false;
             }
-            registrarUsuario();
         } catch (excPassaErro excPassaErro) {
             excPassaErro.printStackTrace();
         }
         return true;
-    }
-
-    private void registrarUsuario() {
-
     }
 }

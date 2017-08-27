@@ -33,6 +33,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
+                android:maxLength="200"
+                android:visibility="visible"
                 tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
 
@@ -48,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Senha"
                 android:inputType="textPassword"
+                android:maxLength="30"
                 tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
 

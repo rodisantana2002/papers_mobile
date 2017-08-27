@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
+                android:maxLength="200"
                 android:paddingBottom="25dp"
                 android:paddingTop="15dp"
                 tools:ignore="HardcodedText,LabelFor" />

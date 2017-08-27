@@ -45,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Primeiro Nome"
                 android:inputType="textPersonName"
+                android:maxLength="30"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
@@ -59,6 +60,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Segundo Nome"
                 android:inputType="textPersonName"
+                android:maxLength="50"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
@@ -73,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
+                android:maxLength="200"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
@@ -89,6 +92,15 @@
             android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
+        <TextView
+            android:id="@+id/lblDetalhesSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:text="A senha deve ter 8 caracteres e conter letras (maiúsculas e minúscula) e números"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_dark_background" />
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -99,6 +111,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Crie uma senha"
                 android:inputType="text|textPassword"
+                android:maxLength="30"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
 
@@ -114,6 +127,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Repita a senha criada"
                 android:inputType="text|textPassword"
+                android:maxLength="30"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
