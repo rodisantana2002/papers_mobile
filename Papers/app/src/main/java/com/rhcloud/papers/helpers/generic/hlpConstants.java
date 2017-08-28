@@ -39,6 +39,13 @@ public class hlpConstants {
     public static final String MSG_NENHUM_HISTORICO = "Nenhum Histórico registrado";
     public static final String MSG_NENHUM_SUBMISSAO = "Nenhuma Submissão registrada";
 
+    public static final String MYPREFERENCES = "MyPrefs";
+    public static final String PREF_EMAIL = "emailKey";
+    public static final String PREF_SENHA = "senhaKey";
+    public static final String PREF_TOKEN = "tokenKey";
+    public static final String PREF_ID = "idKey";
+    public static final String PREF_NAME = "nameKey";
+
     public static final String MSG_CONFIRMA_OPERACAO = "Confirma a Operação?";
 
     public static final String BTN_OK = "OK";
