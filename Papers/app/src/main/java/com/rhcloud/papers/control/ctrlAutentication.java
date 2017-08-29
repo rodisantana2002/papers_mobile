@@ -8,11 +8,11 @@ import com.rhcloud.papers.model.entity.Usuario;
  * Created by Rodolfo on 28/12/16.
  */
 
-public class ctrlLogin {
+public class ctrlAutentication {
     private Usuario usuario;
     private bsAutentication autentication;
 
-    public ctrlLogin(Usuario usuario){
+    public ctrlAutentication(Usuario usuario){
         autentication = new bsAutentication();
         this.usuario = usuario;
     }

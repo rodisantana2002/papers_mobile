@@ -32,7 +32,7 @@ public class bsPessoa implements itfGeneric<Pessoa> {
 
     @Override
     public String create(Pessoa entity) throws excPassaErro {
-        return connRest.put(hlpConstants.URL_BASE + hlpConstants.URL_PESSOA, gson.toJson(entity));
+        return connRest.put(hlpConstants.URL_BASE + hlpConstants.URL_PESSOA + "add/", gson.toJson(entity));
     }
 
     @Override

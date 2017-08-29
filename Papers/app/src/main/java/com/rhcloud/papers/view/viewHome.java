@@ -1,7 +1,6 @@
 package com.rhcloud.papers.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -9,17 +8,14 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.rhcloud.papers.R;
-import com.rhcloud.papers.control.ctrlLogin;
-import com.rhcloud.papers.excecoes.excPassaErro;
+import com.rhcloud.papers.control.ctrlAutentication;
 import com.rhcloud.papers.helpers.generic.hlpConstants;
 import com.rhcloud.papers.model.entity.Usuario;
 
 public class viewHome extends AppCompatActivity {
-    private ctrlLogin ctrlLogin;
+    private ctrlAutentication ctrlAutentication;
     private Usuario usuario;
     private SharedPreferences sharedPreferences;
 
@@ -60,9 +56,9 @@ public class viewHome extends AppCompatActivity {
     };
 
     private void efetuarLogout() {
-        ctrlLogin = new ctrlLogin(usuario);
+        ctrlAutentication = new ctrlAutentication(usuario);
         try {
-            ctrlLogin.efetuarLogin();
+            ctrlAutentication.efetuarLogin();
             sharedPreferences = getSharedPreferences(hlpConstants.MYPREFERENCES, Context.MODE_PRIVATE);
             Editor editor = sharedPreferences.edit();
             editor.clear();

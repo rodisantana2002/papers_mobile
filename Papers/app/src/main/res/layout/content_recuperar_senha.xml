@@ -34,7 +34,8 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp">
 
             <EditText
                 android:id="@+id/txtEmail"
@@ -44,7 +45,7 @@
                 android:inputType="textEmailAddress"
                 android:maxLength="200"
                 android:paddingBottom="25dp"
-                android:paddingTop="15dp"
+                android:paddingTop="10dp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
 

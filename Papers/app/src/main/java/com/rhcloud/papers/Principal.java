@@ -1,7 +1,5 @@
 package com.rhcloud.papers;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.rhcloud.papers.control.ctrlLogin;
+import com.rhcloud.papers.control.ctrlAutentication;
 import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpConstants;
@@ -87,7 +85,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
 
     private boolean validarDados() {
         if (txtLogin.getText().toString().isEmpty()) {
-            hlpDialog.getAlertDialog(this, "Alerta", "O Email deve ser informado", "Ok", new itfDialogGeneric() {
+            hlpDialog.getAlertDialog(this, "Atenção", "O Email deve ser informado", "Ok", new itfDialogGeneric() {
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
                     txtLogin.requestFocus();
@@ -97,7 +95,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         }
 
         if (!hlpValidaDados.isValidEmail(txtLogin.getText().toString())) {
-            hlpDialog.getAlertDialog(this, "Alerta", "Email com formato inválido", "Ok", new itfDialogGeneric() {
+            hlpDialog.getAlertDialog(this, "Atenção", "Email com formato inválido", "Ok", new itfDialogGeneric() {
 
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
@@ -108,7 +106,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         }
 
         if (txtSenha.getText().toString().isEmpty()) {
-            hlpDialog.getAlertDialog(this, "Alerta", "A Senha deve ser informada", "Ok", new itfDialogGeneric() {
+            hlpDialog.getAlertDialog(this, "Atenção", "A Senha deve ser informada", "Ok", new itfDialogGeneric() {
 
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
@@ -139,7 +137,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
             usuario = mUserLogin.execute(txtLogin.getText().toString(), txtSenha.getText().toString()).get();
 
             if (usuario.getToken() == null) {
-                hlpDialog.getAlertDialog(this, "Alerta", hlpConstants.MSG_401, "Ok", new itfDialogGeneric() {
+                hlpDialog.getAlertDialog(this, "Atenção", hlpConstants.MSG_401, "Ok", new itfDialogGeneric() {
                     @Override
                     public void onButtonAction(boolean value) throws excPassaErro {
                         txtLogin.requestFocus();
@@ -163,8 +161,8 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
                 Usuario user = new Usuario();
                 user.setSenha(params[1]);
                 user.getPessoa().setEmail(params[0]);
-                ctrlLogin ctrlLogin = new ctrlLogin(user);
-                user = (Usuario) ctrlLogin.efetuarLogin();
+                ctrlAutentication ctrlAutentication = new ctrlAutentication(user);
+                user = (Usuario) ctrlAutentication.efetuarLogin();
                 return user;
 
             }
