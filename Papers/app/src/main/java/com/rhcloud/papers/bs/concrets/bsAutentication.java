@@ -34,6 +34,10 @@ public class bsAutentication {
 
     public void efetuarLogout(Usuario entity) throws excPassaErro{
         usuario = new Usuario();
-        String response = connRest.post(hlpConstants.URL_BASE + hlpConstants.URL_AUTENTICATION + "logout/", gson.toJson(entity));
+        connRest.post(hlpConstants.URL_BASE + hlpConstants.URL_AUTENTICATION + "logout/", gson.toJson(entity));
+    }
+
+    public String recuperarAcesso(Usuario entity) throws excPassaErro {
+        return connRest.post(hlpConstants.URL_BASE + hlpConstants.URL_AUTENTICATION + "esquecisenha/", gson.toJson(entity));
     }
 }

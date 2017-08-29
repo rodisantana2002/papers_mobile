@@ -21,8 +21,12 @@ public class ctrlLogin {
         return autentication.efetuarLogin(usuario);
     }
 
-    public void efetuarLogout(){
+    public void efetuarLogout() throws excPassaErro {
+        autentication.efetuarLogout(usuario);
+    }
 
+    public String recuperarAcesso() throws excPassaErro {
+        return autentication.recuperarAcesso(usuario);
     }
 }
 

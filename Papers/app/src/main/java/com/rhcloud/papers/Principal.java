@@ -67,7 +67,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
                 if (validarAcesso()) {
                     Editor editor= sharedPreferences.edit();
                     editor.putString(hlpConstants.PREF_ID, String.valueOf(usuario.getId()));
-                    editor.putString(hlpConstants.PREF_NAME, usuario.getPessoa().getPrimeiroNome() + " " + usuario.getPessoa().getSegundoNome());
+                    editor.putString(hlpConstants.PREF_PRIMEIRO_NAME, usuario.getPessoa().getPrimeiroNome() + " " + usuario.getPessoa().getSegundoNome());
                     editor.putString(hlpConstants.PREF_EMAIL, usuario.getPessoa().getEmail());
                     editor.putString(hlpConstants.PREF_SENHA, txtSenha.getText().toString());
                     editor.putString(hlpConstants.PREF_TOKEN, usuario.getToken());

@@ -13,11 +13,26 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.rhcloud.papers.R;
+import com.rhcloud.papers.control.ctrlLogin;
+import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.generic.hlpConstants;
+import com.rhcloud.papers.model.entity.Usuario;
 
 public class viewHome extends AppCompatActivity {
+    private ctrlLogin ctrlLogin;
+    private Usuario usuario;
+    private SharedPreferences sharedPreferences;
 
-    private TextView mTextMessage;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_home);
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        prepararControles();
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -26,40 +41,47 @@ public class viewHome extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_documentos:
-                    mTextMessage.setText(R.string.title_dashboard);
                     popularTela();
                     return true;
                 case R.id.navigation_autores:
-                    mTextMessage.setText(R.string.title_notifications);
                     return true;
                 case R.id.navigation_configuracoes:
-                    mTextMessage.setText(R.string.title_configuracoes);
                     return true;
             }
             return false;
         }
 
         private void popularTela() {
-            SharedPreferences sharedPreferences = getSharedPreferences(hlpConstants.MYPREFERENCES, Context.MODE_PRIVATE);
-            Editor editor = sharedPreferences.edit();
-            editor.clear();
-            editor.commit();
-            moveTaskToBack(true);
+            efetuarLogout();
         }
 
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_home);
+    private void efetuarLogout() {
+        ctrlLogin = new ctrlLogin(usuario);
+        try {
+            ctrlLogin.efetuarLogin();
+            sharedPreferences = getSharedPreferences(hlpConstants.MYPREFERENCES, Context.MODE_PRIVATE);
+            Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.commit();
+            moveTaskToBack(true);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
+            excPassaErro.printStackTrace();
+        }
     }
 
+    private void prepararControles() {
+        //populaobjeto Usuario
+        sharedPreferences = getSharedPreferences(hlpConstants.MYPREFERENCES, Context.MODE_PRIVATE);
+        usuario = new Usuario();
+        usuario.setId(Integer.valueOf(sharedPreferences.getString(hlpConstants.PREF_ID, "0")));
+        usuario.setToken(sharedPreferences.getString(hlpConstants.PREF_TOKEN, ""));
+        usuario.getPessoa().setEmail(sharedPreferences.getString(hlpConstants.PREF_EMAIL, ""));
+        usuario.getPessoa().setPrimeiroNome(sharedPreferences.getString(hlpConstants.PREF_PRIMEIRO_NAME, ""));
+        usuario.getPessoa().setSegundoNome(sharedPreferences.getString(hlpConstants.PREF_SEGUNDO_NAME, ""));
+    }
 }

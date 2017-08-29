@@ -106,7 +106,8 @@ public class hlpConnectionURL {
             } else if (conn.getResponseCode() == 503) {
                 throw new excPassaErro(hlpConstants.MSG_503);
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new excPassaErro(hlpConstants.MSG_IOE);
         } finally {
             conn.disconnect();
