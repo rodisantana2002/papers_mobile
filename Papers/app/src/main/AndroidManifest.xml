@@ -15,14 +15,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/papers"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.AppBarOverlay">
         <activity
             android:name=".Principal"
             android:theme="@style/AppTheme.NoActionBar"
             android:title="@string/title_activity_principal">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -60,6 +59,7 @@
 
         <activity
             android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/title_activity_view_perfil"
             android:name=".view.viewPerfil">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

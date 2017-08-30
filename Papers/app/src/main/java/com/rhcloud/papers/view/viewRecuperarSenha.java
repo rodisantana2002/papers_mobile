@@ -13,8 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.rhcloud.papers.Principal;
 import com.rhcloud.papers.R;
+import com.rhcloud.papers.Principal;
+import com.rhcloud.papers.view.viewRecuperarSenha;
 import com.rhcloud.papers.control.ctrlAutentication;
 import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;

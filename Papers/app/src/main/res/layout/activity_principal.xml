@@ -7,68 +7,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/content_principal" />
+
     <android.support.design.widget.AppBarLayout
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay"
         android:visibility="visible"
+        app:elevation="0dp"
         app:expanded="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="0dp"
-            android:orientation="vertical"
+            android:gravity="left"
+            android:orientation="horizontal"
             android:padding="03dp"
-            android:scrollbars="vertical"
             android:weightSum="1">
 
-            <TableLayout
+            <TextView
+                android:id="@+id/titleapp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                android:orientation="horizontal"
-                android:stretchColumns="1"
-                tools:ignore="UselessParent">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/imgapp"
-                        style="@android:style/Widget.DeviceDefault.ImageButton"
-                        android:layout_width="105dp"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="@string/logotipo"
-                        android:src="@mipmap/papers" />
-
-                    <TextView
-                        android:id="@+id/titleapp"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:gravity="center_vertical"
-                        android:text="Seja Bem-vindo"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/colorPrimary"
-                        android:textColorHint="@color/cardview_dark_background"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        tools:ignore="HardcodedText" />
-
-                </TableRow>
-
-            </TableLayout>
+                android:gravity="center_vertical"
+                android:text="Seja Bem Vindo! "
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/cardview_dark_background"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_principal" />
 
 
 </android.support.design.widget.CoordinatorLayout>

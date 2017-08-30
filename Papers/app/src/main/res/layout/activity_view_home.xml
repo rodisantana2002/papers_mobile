@@ -68,6 +68,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
                             android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
 
                     </LinearLayout>

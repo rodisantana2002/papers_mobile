@@ -13,6 +13,7 @@
     <string name="title_activity_view_cadastrar_usuario">Cadastrar Usuário</string>
     <string name="title_activity_view_destino">Destinos</string>
     <string name="title_activity_view_home">Home</string>
+    <string name="title_activity_view_perfil">Perfil</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Documentos</string>
     <string name="title_notifications">Autores</string>

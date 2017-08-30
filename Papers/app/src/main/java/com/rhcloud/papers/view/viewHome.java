@@ -50,31 +50,31 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                     return true;
                 case R.id.navigation_autores:
                     return true;
-                case R.id.navigation_configuracoes:
+                case R.id.navigation_servicos:
+                    return true;
+                case R.id.navigation_sair:
+                    efetuarLogout();
                     return true;
             }
             return false;
         }
-
-        private void popularTela() {
-            efetuarLogout();
-        }
-
     };
+
+    private void popularTela() {
+
+    }
 
     private void efetuarLogout() {
         ctrlAutentication = new ctrlAutentication(usuario);
+        sharedPreferences = getSharedPreferences(hlpConstants.MYPREFERENCES, Context.MODE_PRIVATE);
         try {
             ctrlAutentication.efetuarLogin();
-            sharedPreferences = getSharedPreferences(hlpConstants.MYPREFERENCES, Context.MODE_PRIVATE);
-            Editor editor = sharedPreferences.edit();
-            editor.clear();
-            editor.commit();
-            moveTaskToBack(true);
+        } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {}
 
-        } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-            excPassaErro.printStackTrace();
-        }
+        Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
+        finish();
     }
 
     private void prepararControles() {

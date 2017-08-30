@@ -22,7 +22,7 @@ import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.view.viewCadastrarUsuario;
 import com.rhcloud.papers.view.viewHome;
 import com.rhcloud.papers.view.viewRecuperarSenha;
-import java.util.concurrent.ExecutionException;
+
 
 public class Principal extends AppCompatActivity implements View.OnClickListener{
     private Button btnEsqueciSenha, btnCadastrarNovoUsuario, btnEntrar;

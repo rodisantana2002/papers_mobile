@@ -17,8 +17,13 @@
         android:title="@string/title_notifications" />
 
     <item
-        android:id="@+id/navigation_configuracoes"
+        android:id="@+id/navigation_servicos"
         android:icon="@drawable/ic_settings_black_24dp"
-        android:title="@string/title_configuracoes" />
+        android:title="Serviços" />
+
+    <item
+        android:id="@+id/navigation_sair"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        android:title="Sair" />
 
 </menu>
