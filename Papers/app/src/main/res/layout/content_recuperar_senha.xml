@@ -30,7 +30,8 @@
             android:text="@string/lblLembreteRecuperacaoSenha"
             android:textAlignment="textStart"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_weight="0.02" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -44,8 +45,6 @@
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:maxLength="200"
-                android:paddingBottom="25dp"
-                android:paddingTop="10dp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
 

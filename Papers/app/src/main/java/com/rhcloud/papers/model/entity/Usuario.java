@@ -15,7 +15,8 @@ public class Usuario implements Serializable{
     private Integer id;
     private String senha;
     private String token;
-    private Pessoa pessoa;    
+    private Pessoa pessoa;
+    private String dtUltAcesso;
 
     public Usuario(){
         pessoa = new Pessoa();
@@ -51,5 +52,13 @@ public class Usuario implements Serializable{
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public String getDtUltAcesso() {
+        return dtUltAcesso;
+    }
+
+    public void setDtUltAcesso(String dtUltAcesso) {
+        this.dtUltAcesso = dtUltAcesso;
     }
 }

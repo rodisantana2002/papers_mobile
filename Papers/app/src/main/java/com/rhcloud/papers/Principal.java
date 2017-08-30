@@ -1,5 +1,6 @@
 package com.rhcloud.papers;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,8 +28,9 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
     private Button btnEsqueciSenha, btnCadastrarNovoUsuario, btnEntrar;
     private EditText txtLogin, txtSenha;
     private Usuario usuario;
-    private UserLogin mUserLogin =null;
+    private procLogin procLogin =null;
     private SharedPreferences sharedPreferences;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,17 +64,8 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         if (view.getId() == btnEntrar.getId()) {
             if (validarDados()) {
                 atualizarObjeto();
-                if (validarAcesso()) {
-                    Editor editor= sharedPreferences.edit();
-                    editor.putString(hlpConstants.PREF_ID, String.valueOf(usuario.getId()));
-                    editor.putString(hlpConstants.PREF_PRIMEIRO_NAME, usuario.getPessoa().getPrimeiroNome() + " " + usuario.getPessoa().getSegundoNome());
-                    editor.putString(hlpConstants.PREF_EMAIL, usuario.getPessoa().getEmail());
-                    editor.putString(hlpConstants.PREF_SENHA, txtSenha.getText().toString());
-                    editor.putString(hlpConstants.PREF_TOKEN, usuario.getToken());
-                    editor.commit();
-                    intent = new Intent(this, viewHome.class);
-                    startActivity(intent);
-                }
+                procLogin = new procLogin(usuario);
+                procLogin.execute();
             }
         }
     }
@@ -131,39 +124,19 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         txtSenha = (EditText) findViewById(R.id.txtSenha);
     }
 
-    private Boolean validarAcesso() {
-         try{
-            mUserLogin = new UserLogin();
-            usuario = mUserLogin.execute(txtLogin.getText().toString(), txtSenha.getText().toString()).get();
+    public class procLogin extends AsyncTask<String, Void, Usuario>{
+        private Usuario usuario;
 
-            if (usuario.getToken() == null) {
-                hlpDialog.getAlertDialog(this, "Atenção", hlpConstants.MSG_401, "Ok", new itfDialogGeneric() {
-                    @Override
-                    public void onButtonAction(boolean value) throws excPassaErro {
-                        txtLogin.requestFocus();
-                    }
-                });
-                return false;
-            }
+        public procLogin(Usuario usuario){
+            this.usuario = usuario;
         }
-        catch (InterruptedException e) {e.printStackTrace(); return false;}
-        catch (ExecutionException e) {e.printStackTrace(); return false;}
-
-        return true;
-    }
-
-
-    public class UserLogin extends AsyncTask<String, Void, Usuario>{
 
         @Override
         protected Usuario doInBackground(String... params) {
             try {
-                Usuario user = new Usuario();
-                user.setSenha(params[1]);
-                user.getPessoa().setEmail(params[0]);
-                ctrlAutentication ctrlAutentication = new ctrlAutentication(user);
-                user = (Usuario) ctrlAutentication.efetuarLogin();
-                return user;
+                ctrlAutentication ctrlAutentication = new ctrlAutentication(usuario);
+                usuario = (Usuario) ctrlAutentication.efetuarLogin();
+                return usuario;
 
             }
             catch (excPassaErro excPassaErro) {
@@ -173,11 +146,38 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
 
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
+            progressDialog = ProgressDialog.show(Principal.this, "Aguarde", "Enviando solicitação...");
         }
 
         @Override
         protected void onPostExecute(Usuario usuario) {
+            Intent intent;
+
+            if (usuario.getToken() == null) {
+                progressDialog.dismiss();
+                hlpDialog.getAlertDialog(Principal.this, "Atenção", hlpConstants.MSG_401, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws excPassaErro {
+                        txtLogin.requestFocus();
+                    }
+                });
+            }
+            else{
+                Editor editor= sharedPreferences.edit();
+                editor.putString(hlpConstants.PREF_ID, String.valueOf(usuario.getId()));
+                editor.putString(hlpConstants.PREF_PRIMEIRO_NAME, usuario.getPessoa().getPrimeiroNome());
+                editor.putString(hlpConstants.PREF_SEGUNDO_NAME, usuario.getPessoa().getSegundoNome());
+                editor.putString(hlpConstants.PREF_EMAIL, usuario.getPessoa().getEmail());
+                editor.putString(hlpConstants.PREF_SENHA, txtSenha.getText().toString());
+                editor.putString(hlpConstants.PREF_TOKEN, usuario.getToken());
+                editor.putString(hlpConstants.PREF_ULTACESSO, usuario.getDtUltAcesso());
+                editor.putString(hlpConstants.PREF_FOTO, usuario.getPessoa().getFoto());
+                editor.commit();
+                progressDialog.dismiss();
+                intent = new Intent(Principal.this, viewHome.class);
+                startActivity(intent);
+
+            }
         }
     }
 }

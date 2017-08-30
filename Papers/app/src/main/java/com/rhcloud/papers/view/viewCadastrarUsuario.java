@@ -213,6 +213,4 @@ public class viewCadastrarUsuario extends AppCompatActivity implements  View.OnC
 
         }
     }
-
-
 }

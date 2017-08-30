@@ -53,12 +53,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rhcloud.papers.Principal" />
         </activity>
-
         <activity
             android:name=".view.viewHome"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/title_activity_view_home"></activity>
+            android:label="@string/title_activity_view_home"
+            android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name=".view.viewPerfil">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rhcloud.papers.view.viewHome" />
+        </activity>
     </application>
 
 </manifest>

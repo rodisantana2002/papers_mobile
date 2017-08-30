@@ -1,6 +1,7 @@
 package com.rhcloud.papers.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -8,16 +9,22 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlAutentication;
 import com.rhcloud.papers.helpers.generic.hlpConstants;
 import com.rhcloud.papers.model.entity.Usuario;
 
-public class viewHome extends AppCompatActivity {
+public class viewHome extends AppCompatActivity implements View.OnClickListener{
     private ctrlAutentication ctrlAutentication;
     private Usuario usuario;
     private SharedPreferences sharedPreferences;
+    private TextView lblUsuario, lblDtUltAcesso;
+    private ImageButton btnPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +83,27 @@ public class viewHome extends AppCompatActivity {
         usuario = new Usuario();
         usuario.setId(Integer.valueOf(sharedPreferences.getString(hlpConstants.PREF_ID, "0")));
         usuario.setToken(sharedPreferences.getString(hlpConstants.PREF_TOKEN, ""));
+        usuario.setDtUltAcesso(sharedPreferences.getString(hlpConstants.PREF_ULTACESSO, ""));
         usuario.getPessoa().setEmail(sharedPreferences.getString(hlpConstants.PREF_EMAIL, ""));
         usuario.getPessoa().setPrimeiroNome(sharedPreferences.getString(hlpConstants.PREF_PRIMEIRO_NAME, ""));
         usuario.getPessoa().setSegundoNome(sharedPreferences.getString(hlpConstants.PREF_SEGUNDO_NAME, ""));
+        usuario.getPessoa().setFoto(sharedPreferences.getString(hlpConstants.PREF_FOTO, ""));
+
+        lblDtUltAcesso = (TextView) findViewById(R.id.lblUltAcesso);
+        lblUsuario = (TextView) findViewById(R.id.lblUsuario);
+        btnPerfil = (ImageButton) findViewById(R.id.btnPerfil);
+
+        lblUsuario.setText("olá, " + usuario.getPessoa().getPrimeiroNome() );
+        lblDtUltAcesso.setText("último acesso foi em " + usuario.getDtUltAcesso());
+
+        btnPerfil.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == btnPerfil.getId()){
+            Intent intent = new Intent(viewHome.this, viewPerfil.class);
+            startActivity(intent);
+        }
     }
 }

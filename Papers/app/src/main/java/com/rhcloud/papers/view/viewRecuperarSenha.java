@@ -1,9 +1,11 @@
 package com.rhcloud.papers.view;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -25,7 +27,8 @@ public class viewRecuperarSenha extends AppCompatActivity implements View.OnClic
     private Button btnEnviar;
     private EditText txtEmail;
     private String msg;
-    private Context context;
+    private ProgressDialog progressDialog;
+    private procDados procDados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,35 +52,12 @@ public class viewRecuperarSenha extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         if (view.getId() == btnEnviar.getId()) {
             if (validarDados()) {
-                msg = recuperarAcesso(txtEmail.getText().toString());
-                hlpDialog.getAlertDialog(this, "Atenção", msg, "Ok", new itfDialogGeneric() {
-                    @Override
-                    public void onButtonAction(boolean value) throws excPassaErro {
-                        if (msg.trim().equals("O email foi enviado com sucesso")){
-                            Intent intent = new Intent(viewRecuperarSenha.this, Principal.class);
-                            startActivity(intent);
-                        }
-                        else{
-                            txtEmail.requestFocus();
-                        }
-                    }
-                });
-
+                Usuario usuario = new Usuario();
+                usuario.getPessoa().setEmail(txtEmail.getText().toString());
+                procDados = new procDados(usuario);
+                procDados.execute();
             }
         }
-    }
-
-    private String recuperarAcesso(String email) {
-        Usuario user = new Usuario();
-        user.getPessoa().setEmail(email);
-        ctrlAutentication ctrlAutentication = new ctrlAutentication(user);
-
-        try {
-            return ctrlAutentication.recuperarAcesso();
-        } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-            excPassaErro.printStackTrace();
-        }
-        return "Deslculpe, a solicitação não poder ser processada";
     }
 
     private boolean checkInternetConenction() {
@@ -132,4 +112,49 @@ public class viewRecuperarSenha extends AppCompatActivity implements View.OnClic
 
         return true;
     }
+
+    private class procDados extends AsyncTask<Void, Void, String> {
+        private Usuario usuario;
+
+        public procDados(Usuario usuario){
+            this.usuario = usuario;
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            ctrlAutentication ctrlAutentication = new ctrlAutentication(usuario);
+            try {
+                return ctrlAutentication.recuperarAcesso();
+            } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
+                excPassaErro.printStackTrace();
+            }
+            return "";
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(viewRecuperarSenha.this, "Aguarde", "Enviando solicitação...");
+        }
+
+        @Override
+        protected void onPostExecute(final String result) {
+            progressDialog.dismiss();
+            hlpDialog.getAlertDialog(viewRecuperarSenha.this, "Atenção", result, "Ok", new itfDialogGeneric() {
+                @Override
+                public void onButtonAction(boolean value) throws excPassaErro {
+                    if (result.trim().equals("O email foi enviado com sucesso")){
+                        Intent intent = new Intent(viewRecuperarSenha.this, Principal.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        txtEmail.requestFocus();
+                    }
+                }
+            });
+
+        }
+    }
+
 }
+
