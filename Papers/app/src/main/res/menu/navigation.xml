@@ -1,29 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:title="@string/title_home"
+        app:showAsAction="always|withText" />
 
     <item
         android:id="@+id/navigation_documentos"
         android:icon="@drawable/ic_description_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:title="@string/title_dashboard"
+        app:showAsAction="always|withText"/>
 
     <item
         android:id="@+id/navigation_autores"
         android:icon="@drawable/ic_supervisor_account_black_24dp"
-        android:title="@string/title_notifications" />
+        android:title="@string/title_notifications"
+        app:showAsAction="always|withText"/>
 
     <item
         android:id="@+id/navigation_servicos"
         android:icon="@drawable/ic_settings_black_24dp"
-        android:title="Serviços" />
+        android:title="Serviços"
+        app:showAsAction="always|withText"/>
 
     <item
         android:id="@+id/navigation_sair"
         android:icon="@drawable/ic_exit_to_app_black_24dp"
-        android:title="Sair" />
+        android:title="Sair"
+        app:showAsAction="always|withText"/>
 
 </menu>

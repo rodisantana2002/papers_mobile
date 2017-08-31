@@ -17,14 +17,16 @@
         android:id="@+id/Layout0"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:visibility="visible">
 
         <ImageView
             android:id="@+id/imgAcao"
-            android:layout_width="60dp"
-            android:layout_height="fill_parent"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:paddingRight="@dimen/fab_margin"
+            android:src="@drawable/ic_camera_alt_black_18dp"
             android:visibility="visible" />
 
         <LinearLayout
@@ -42,8 +44,8 @@
                 android:gravity="left|center_vertical"
                 android:text="NomeAcao"
                 android:textAlignment="viewStart"
-                android:textColor="@color/colorPrimary"
-                android:textSize="22sp"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="18sp"
                 android:visibility="visible" />
 
             <TextView
@@ -52,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:text="comentário ação"
                 android:textAlignment="viewStart"
+                android:textColor="@android:color/darker_gray"
                 android:textSize="12sp" />
 
         </LinearLayout>

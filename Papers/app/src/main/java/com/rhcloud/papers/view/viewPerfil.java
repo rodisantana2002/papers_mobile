@@ -3,6 +3,7 @@ package com.rhcloud.papers.view;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -40,28 +41,28 @@ public class viewPerfil extends AppCompatActivity {
         acao.setId(1);
         acao.setNomeAcao("Minha Foto");
         acao.setComentarioAcao("permite que a foto do perfil seja alterada.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_camera_alt_black_24dp));
+        acao.setImgAcao(getDrawable(R.drawable.ic_camera_alt_black_18dp));
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(2);
         acao.setNomeAcao("Dados Pessoais");
-        acao.setComentarioAcao("atualizar os dados pessoais do seu perfil.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_keyboard_arrow_down_black_24dp));
+        acao.setComentarioAcao("atualize os dados pessoais do seu perfil.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_person_pin_black_18dp));
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(3);
         acao.setNomeAcao("Resumo Profissional");
-        acao.setComentarioAcao("registrar um breve resumo da sua experiência profissional.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_camera_alt_black_24dp));
+        acao.setComentarioAcao("registre um breve resumo da sua experiência profissional.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_chrome_reader_mode_black_18dp));
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(4);
         acao.setNomeAcao("Segurança");
-        acao.setComentarioAcao("alter a sua senha de acesso ao sistema.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_camera_alt_black_24dp));
+        acao.setComentarioAcao("modifique a sua senha de acesso ao sistema.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_https_black_18dp));
         lstAcoes.add(acao);
     }
 

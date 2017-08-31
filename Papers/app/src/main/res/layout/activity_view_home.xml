@@ -69,7 +69,7 @@
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
                             android:scaleType="centerInside"
-                            android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+                            android:src="@drawable/ic_chevron_right_black_18dp" />
 
                     </LinearLayout>
 
@@ -120,6 +120,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
+        android:defaultFocusHighlightEnabled="false"
+        android:visibility="visible"
+        app:itemTextColor="@color/colorPrimary"
         app:menu="@menu/navigation" />
 
 </LinearLayout>
