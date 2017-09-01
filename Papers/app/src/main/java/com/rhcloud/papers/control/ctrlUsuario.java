@@ -17,16 +17,15 @@ public class ctrlUsuario {
         bsUsuario = new bsUsuario();
     }
 
-    public String criarUsuario() throws excPassaErro {
+    public String criar() throws excPassaErro {
         return bsUsuario.create(usuario);
     }
 
-    public String removerUsuario() throws excPassaErro {
+    public String remover() throws excPassaErro {
         return bsUsuario.delete(usuario.getId());
     }
 
     public String alterarSenha() throws excPassaErro {
         return bsUsuario.alterarSenha(usuario);
     }
-
 }

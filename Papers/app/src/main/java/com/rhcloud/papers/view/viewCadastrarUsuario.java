@@ -12,15 +12,12 @@ import android.widget.EditText;
 
 import com.rhcloud.papers.Principal;
 import com.rhcloud.papers.R;
-import com.rhcloud.papers.control.ctrlAutentication;
 import com.rhcloud.papers.control.ctrlUsuario;
 import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.helpers.generic.hlpValidaDados;
 import com.rhcloud.papers.model.entity.Usuario;
-
-import java.util.concurrent.ExecutionException;
 
 public class viewCadastrarUsuario extends AppCompatActivity implements  View.OnClickListener {
     private Button btnEsqueciSenha, btnCadastrarNovoUsuario, btnEntrar;
@@ -183,7 +180,7 @@ public class viewCadastrarUsuario extends AppCompatActivity implements  View.OnC
         protected String doInBackground(Void... voids) {
             ctrlUsuario ctrlUsuario = new ctrlUsuario(usuario);
             try {
-                return ctrlUsuario.criarUsuario();
+                return ctrlUsuario.criar();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 excPassaErro.printStackTrace();
             }

@@ -171,7 +171,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
                 editor.putString(hlpConstants.PREF_SENHA, txtSenha.getText().toString());
                 editor.putString(hlpConstants.PREF_TOKEN, usuario.getToken());
                 editor.putString(hlpConstants.PREF_ULTACESSO, usuario.getDtUltAcesso());
-                editor.putString(hlpConstants.PREF_FOTO, usuario.getPessoa().getFoto());
+                editor.putString(hlpConstants.PREF_PESSOA_ID, String.valueOf(usuario.getPessoa().getId()));
                 editor.commit();
                 progressDialog.dismiss();
                 intent = new Intent(Principal.this, viewHome.class);

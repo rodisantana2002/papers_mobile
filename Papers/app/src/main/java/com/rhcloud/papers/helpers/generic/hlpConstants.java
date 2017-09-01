@@ -48,6 +48,7 @@ public class hlpConstants {
     public static final String PREF_SEGUNDO_NAME = "segundoNameKey";
     public static final String PREF_FOTO= "fotoKey";
     public static final String PREF_ULTACESSO= "ultAcessoKey";
+    public static final String PREF_PESSOA_ID= "idPessoaKey";
 
 
     public static final String MSG_CONFIRMA_OPERACAO = "Confirma a Operação?";

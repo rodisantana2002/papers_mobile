@@ -4,20 +4,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlAutentication;
+import com.rhcloud.papers.control.ctrlPessoa;
 import com.rhcloud.papers.helpers.generic.hlpConstants;
+import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class viewHome extends AppCompatActivity implements View.OnClickListener{
     private ctrlAutentication ctrlAutentication;
@@ -25,6 +35,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
     private SharedPreferences sharedPreferences;
     private TextView lblUsuario, lblDtUltAcesso;
     private ImageButton btnPerfil;
+    private ImageView imgUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +58,11 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                     return true;
                 case R.id.navigation_documentos:
                     popularTela();
+                    efetuarLogout();
                     return true;
                 case R.id.navigation_autores:
                     return true;
                 case R.id.navigation_servicos:
-                    return true;
-                case R.id.navigation_sair:
-                    efetuarLogout();
                     return true;
             }
             return false;
@@ -87,16 +96,36 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         usuario.getPessoa().setEmail(sharedPreferences.getString(hlpConstants.PREF_EMAIL, ""));
         usuario.getPessoa().setPrimeiroNome(sharedPreferences.getString(hlpConstants.PREF_PRIMEIRO_NAME, ""));
         usuario.getPessoa().setSegundoNome(sharedPreferences.getString(hlpConstants.PREF_SEGUNDO_NAME, ""));
-        usuario.getPessoa().setFoto(sharedPreferences.getString(hlpConstants.PREF_FOTO, ""));
+        usuario.getPessoa().setId(Integer.valueOf(sharedPreferences.getString(hlpConstants.PREF_PESSOA_ID, "")));
 
         lblDtUltAcesso = (TextView) findViewById(R.id.lblUltAcesso);
         lblUsuario = (TextView) findViewById(R.id.lblUsuario);
         btnPerfil = (ImageButton) findViewById(R.id.btnPerfil);
+        imgUsuario = (ImageView) findViewById(R.id.imgUsuario);
 
         lblUsuario.setText("olá, " + usuario.getPessoa().getPrimeiroNome() );
-        lblDtUltAcesso.setText("último acesso foi em " + usuario.getDtUltAcesso());
+        lblDtUltAcesso.setText("acessando o sistema desde " + usuario.getDtUltAcesso().substring(0,5) + " às " + usuario.getDtUltAcesso().substring(11,16));
 
         btnPerfil.setOnClickListener(this);
+
+        carregarFoto();
+    }
+
+    private void carregarFoto()  {
+         ctrlPessoa ctrlPessoa = new ctrlPessoa(usuario.getPessoa());
+         try {
+             usuario.setPessoa(ctrlPessoa.obterByID(usuario.getPessoa().getId()));
+         } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
+             excPassaErro.printStackTrace();
+         }
+
+        if (usuario.getPessoa().getFoto()==null){
+            imgUsuario.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
+        }
+        else {
+            Bitmap bmUser = BitmapFactory.decodeByteArray(usuario.getPessoa().getFoto(), 0, usuario.getPessoa().getFoto().length);
+            imgUsuario.setImageBitmap(bmUser);
+        }
     }
 
     @Override
@@ -106,4 +135,5 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
             startActivity(intent);
         }
     }
+
 }

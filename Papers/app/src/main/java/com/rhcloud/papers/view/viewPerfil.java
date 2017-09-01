@@ -7,6 +7,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+
 import com.rhcloud.papers.R;
 
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
@@ -17,7 +19,7 @@ import com.rhcloud.papers.view.decorator.dividerItemDecorator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class viewPerfil extends AppCompatActivity {
+public class viewPerfil extends AppCompatActivity implements View.OnClickListener{
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private List<Acao> lstAcoes;
@@ -27,9 +29,6 @@ public class viewPerfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_perfil);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarPerfil);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         popularListaAcoes();
         prepararComponenetes();
     }
@@ -40,29 +39,36 @@ public class viewPerfil extends AppCompatActivity {
         Acao acao = new Acao();
         acao.setId(1);
         acao.setNomeAcao("Minha Foto");
-        acao.setComentarioAcao("permite que a foto do perfil seja alterada.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_camera_alt_black_18dp));
+        acao.setComentarioAcao("mantenha sua foto do perfil atualizada.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_person_pin_black_18dp));
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(2);
         acao.setNomeAcao("Dados Pessoais");
-        acao.setComentarioAcao("atualize os dados pessoais do seu perfil.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_person_pin_black_18dp));
+        acao.setComentarioAcao("mantenha seus dados de contato atualizados em seu perfil.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_chrome_reader_mode_black_18dp));
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(3);
         acao.setNomeAcao("Resumo Profissional");
-        acao.setComentarioAcao("registre um breve resumo da sua experiência profissional.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_chrome_reader_mode_black_18dp));
+        acao.setComentarioAcao("conte-nos um pouco sobre sua experiência profissional.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_reorder_black_18dp));
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(4);
         acao.setNomeAcao("Segurança");
-        acao.setComentarioAcao("modifique a sua senha de acesso ao sistema.");
+        acao.setComentarioAcao("cuide de sua senha de acesso ao sistema.");
         acao.setImgAcao(getDrawable(R.drawable.ic_https_black_18dp));
+        lstAcoes.add(acao);
+
+        acao = new Acao();
+        acao.setId(5);
+        acao.setNomeAcao("Home");
+        acao.setComentarioAcao("para outras opções retorne a tela inicial.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_chevron_left_black_18dp));
         lstAcoes.add(acao);
     }
 
@@ -82,5 +88,10 @@ public class viewPerfil extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }

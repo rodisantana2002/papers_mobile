@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_principal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:background="@android:color/transparent">
+    android:layout_height="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,20 +14,56 @@
         android:layout_height="match_parent"
         android:elevation="0dp"
         android:orientation="vertical"
-        tools:context="com.rhcloud.papers.view.viewPerfil">
+        tools:context="com.rhcloud.papers.view.viewPerfil"
+        tools:ignore="UselessParent">
 
-        <android.support.design.widget.AppBarLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorControlHighlight"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:background="?android:attr/windowBackground"
+            android:elevation="0dp"
+            android:orientation="vertical"
+            android:padding="03dp"
+            android:scrollbars="none"
+            android:weightSum="1">
 
-        </android.support.design.widget.AppBarLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgUsuario"
+                    style="@android:style/Widget.DeviceDefault.ImageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_account_circle_black_48dp"
+                    android:contentDescription="@string/logotipo" />
+
+                <TextView
+                    android:id="@+id/lblUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3.01"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:text="Usuario Name"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/cardview_dark_background"
+                    android:textSize="20sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/lstAcoesPerfil"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:theme="@style/AlertDialog.AppCompat" />
 
     </LinearLayout>
 
