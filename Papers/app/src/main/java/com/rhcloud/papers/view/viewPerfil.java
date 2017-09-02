@@ -1,5 +1,11 @@
 package com.rhcloud.papers.view;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -8,6 +14,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rhcloud.papers.R;
 
@@ -19,11 +29,13 @@ import com.rhcloud.papers.view.decorator.dividerItemDecorator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class viewPerfil extends AppCompatActivity implements View.OnClickListener{
+public class viewPerfil extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private List<Acao> lstAcoes;
     private adpAcoes mAdapter;
+    private ImageView imgFoto;
+    private TextView lblNomeCompleto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +43,11 @@ public class viewPerfil extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_view_perfil);
         popularListaAcoes();
         prepararComponenetes();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     private void popularListaAcoes() {
@@ -73,25 +90,62 @@ public class viewPerfil extends AppCompatActivity implements View.OnClickListene
     }
 
     private void prepararComponenetes(){
+
         recyclerView = (RecyclerView) findViewById(R.id.lstAcoesPerfil);
 
-        mAdapter = new adpAcoes(lstAcoes);
+        imgFoto = (ImageView) findViewById(R.id.imgUsuarioPerfil);
+        lblNomeCompleto = (TextView) findViewById(R.id.lblUsuarioPerfil);
+
+        mAdapter = new adpAcoes(viewPerfil.this, lstAcoes);
         mAdapter.setOnItemClickListener(new itfOnItemClickListener<Acao>() {
             @Override
             public void onItemClick(Acao item) {
-                //colocar regras para as açõe;
+                if(item.getId()==1){
+                    carregarImagemDispositivo();
+                }
+                else  if(item.getId()==2){
+                    alterarDadosPessoais();
+                }
+                else if(item.getId()==3){
+                    alterarResumoProficcional();
+                }
+                else if(item.getId()==4){
+                    alterarSenha();
+                }
+                else if(item.getId()==5){
+                    retornarMenu();
+                }
             }
         });
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(mAdapter);
     }
 
-    @Override
-    public void onClick(View view) {
+    private void carregarImagemDispositivo() {
+        Intent intent = new Intent(this, viewAlterarFoto.class);
+        startActivity(intent);
+    }
 
+    private void alterarSenha(){
+        Intent intent = new Intent(this, viewAlterarSenha.class);
+        startActivity(intent);
+    }
+
+    private void alterarDadosPessoais(){
+        Intent intent = new Intent(this, viewAlterarDadosPessoais.class);
+        startActivity(intent);
+    }
+
+    private void alterarResumoProficcional(){
+        Intent intent = new Intent(this, viewAlterarResumoProfissional.class);
+        startActivity(intent);
+    }
+
+    private void retornarMenu(){
+        Intent intent = new Intent(this, viewHome.class);
+        startActivity(intent);
     }
 }

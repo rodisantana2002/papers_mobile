@@ -8,4 +8,9 @@
     tools:context="com.rhcloud.papers.view.viewDestino"
     tools:showIn="@layout/activity_view_destino">
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="344dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
 </android.support.constraint.ConstraintLayout>

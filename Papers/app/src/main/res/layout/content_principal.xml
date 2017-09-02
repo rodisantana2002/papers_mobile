@@ -21,7 +21,9 @@
         android:paddingRight="10dp"
         android:paddingTop="20dp"
         android:weightSum="1"
-        tools:ignore="UselessParent">
+        tools:ignore="UselessParent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/flot1"
@@ -59,9 +61,9 @@
         <Button
             android:id="@+id/btnEntrar"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_marginTop="10dp"
-            android:layout_weight="0.04"
+            android:layout_weight="0"
             android:background="@color/colorPrimary"
             android:text="Entrar"
             android:textAlignment="center"

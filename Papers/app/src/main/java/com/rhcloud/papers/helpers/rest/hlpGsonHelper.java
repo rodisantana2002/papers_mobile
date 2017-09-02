@@ -17,7 +17,7 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-public class GsonHelper {
+public class hlpGsonHelper {
     public static final Gson customGson = new GsonBuilder().registerTypeHierarchyAdapter(byte[].class, new ByteArrayToBase64TypeAdapter()).create();
 
     // Using Android's base64 libraries. This can be replaced with any base64 library.

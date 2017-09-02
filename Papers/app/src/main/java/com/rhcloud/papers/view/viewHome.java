@@ -45,7 +45,13 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        //prepararControles();
+    }
+
+    @Override
+    protected void onResume() {
         prepararControles();
+        super.onResume();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

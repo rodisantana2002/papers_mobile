@@ -2,68 +2,70 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_principal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:theme="@style/AlertDialog.AppCompat"
+    tools:context="com.rhcloud.papers.view.viewPerfil">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/container"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:elevation="0dp"
         android:orientation="vertical"
-        tools:context="com.rhcloud.papers.view.viewPerfil"
         tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground"
-            android:elevation="0dp"
+            android:background="#fafafa"
             android:orientation="vertical"
-            android:padding="03dp"
-            android:scrollbars="none"
-            android:weightSum="1">
+            tools:ignore="UseCompoundDrawables">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/imgUsuarioPerfil"
+                style="@android:style/Widget.DeviceDefault.ImageButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="90dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/logotipo"
+                android:src="@drawable/ic_account_circle_black_48dp" />
 
-                <ImageView
-                    android:id="@+id/imgUsuario"
-                    style="@android:style/Widget.DeviceDefault.ImageButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_account_circle_black_48dp"
-                    android:contentDescription="@string/logotipo" />
-
-                <TextView
-                    android:id="@+id/lblUsuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3.01"
-                    android:background="@android:color/transparent"
-                    android:gravity="center_vertical"
-                    android:text="Usuario Name"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"
-                    android:textColorHint="@color/cardview_dark_background"
-                    android:textSize="20sp"
-                    tools:ignore="HardcodedText" />
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/lblUsuarioPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3.01"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:text="Usuario Name"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fafafa"
+            android:paddingBottom="5dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="15dp"
+            android:text="Perfil do Usuário"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:background="@android:color/white"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/lstAcoesPerfil"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:theme="@style/AlertDialog.AppCompat" />
+            android:background="@android:color/white" />
 
     </LinearLayout>
 

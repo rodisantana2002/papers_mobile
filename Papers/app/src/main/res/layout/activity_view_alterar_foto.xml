@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:theme="@style/AppTheme.NoActionBar"
+    tools:context="com.rhcloud.papers.view.viewAlterarSenha">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/white"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp"
+        android:weightSum="1"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#fafafa"
+            android:elevation="0dp"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:padding="03dp"
+            android:weightSum="1">
+
+            <ImageButton
+                android:id="@+id/btnVoltarResumoProfissional"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_chevron_left_black_18dp" />
+
+            <TextView
+                android:id="@+id/titleapp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:text="Alterar Foto"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/cardview_dark_background"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:elevation="0dp"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:elevation="0dp"
+                android:gravity="right"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btnSelecionarFoto"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0"
+                    android:background="@color/colorPrimary"
+                    android:text="Selecione uma foto"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="13sp"
+                    tools:ignore="HardcodedText,InefficientWeight" />
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0" />
+
+                <Button
+                    android:id="@+id/btnLimpar"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0"
+                    android:background="@color/cardview_shadow_start_color"
+                    android:text="Limpar"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="13sp"
+                    tools:ignore="HardcodedText,InefficientWeight" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgFotoUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.04"
+                app:srcCompat="@drawable/ic_account_circle_black_48dp" />
+
+            <Button
+                android:id="@+id/btnEnviarFoto"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0"
+                android:background="@color/colorPrimary"
+                android:text="Enviar"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,InefficientWeight" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

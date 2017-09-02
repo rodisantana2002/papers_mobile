@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:theme="@style/AppTheme.NoActionBar"
+    tools:context="com.rhcloud.papers.view.viewAlterarSenha">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/white"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp"
+        android:weightSum="1"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#fafafa"
+            android:elevation="0dp"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:padding="03dp"
+            android:weightSum="1">
+
+            <ImageButton
+                android:id="@+id/btnVoltarResumoProfissional"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_chevron_left_black_18dp" />
+
+            <TextView
+                android:id="@+id/titleapp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:text="Resumo Profissional"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/cardview_dark_background"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:elevation="0dp"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:weightSum="1">
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/txtRepitaNovaSenha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:height="500dp"
+                    android:gravity="top|left"
+                    android:hint="Informe um breve resumo profissional"
+                    android:inputType="text|textMultiLine"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText,LabelFor" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnEnviarAlterarSenha"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0.04"
+                android:background="@color/colorPrimary"
+                android:text="Enviar"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,InefficientWeight" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

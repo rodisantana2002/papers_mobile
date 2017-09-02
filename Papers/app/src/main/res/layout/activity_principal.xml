@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fafafa"
+    android:theme="@style/AppTheme.NoActionBar">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:background="#fafafa"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay"
         android:visibility="visible"
@@ -20,18 +21,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/white"
             android:elevation="0dp"
             android:gravity="left"
             android:orientation="horizontal"
-            android:padding="03dp"
+            android:padding="0dp"
             android:weightSum="1">
 
             <TextView
                 android:id="@+id/titleapp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
+                android:layout_height="40dp"
+                android:background="#fafafa"
                 android:gravity="center_vertical"
+                android:paddingTop="10dp"
                 android:text="Seja Bem Vindo! "
                 android:textAlignment="center"
                 android:textColor="@android:color/black"

@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">Papers</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="logotipo">logotipo</string>
 
     <string name="lblLembreteRecuperacaoSenha">Para recuperar a sua senha, preencha o seu email no campo abaixo e acione a opção Enviar.</string>
@@ -17,5 +14,4 @@
     <string name="title_home">Home</string>
     <string name="title_documentos">Artigos</string>
     <string name="title_autores">Autores</string>
-    <string name="title_servicos">Serviçso</string>
 </resources>
