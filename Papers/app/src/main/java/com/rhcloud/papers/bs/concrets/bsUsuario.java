@@ -38,14 +38,12 @@ public class bsUsuario implements itfGeneric<Usuario>{
 
     @Override
     public String delete(Integer id) throws excPassaErro{
-        connRest.addHearders("email", usuario.getPessoa().getEmail());
-        connRest.addHearders("token", usuario.getToken());
         return connRest.delete(hlpConstants.URL_BASE + hlpConstants.URL_USUARIO + id);
     }
 
     public String alterarSenha(Usuario entity) throws excPassaErro {
-        connRest.addHearders("email", usuario.getPessoa().getEmail());
-        connRest.addHearders("token", usuario.getToken());
+        connRest.addHearders("email", entity.getPessoa().getEmail().toString());
+        connRest.addHearders("token", entity.getToken().toString());
         return connRest.post(hlpConstants.URL_BASE + hlpConstants.URL_USUARIO + "alterarsenha/", gson.toJson(entity));
     }
 

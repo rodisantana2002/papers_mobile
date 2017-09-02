@@ -45,7 +45,6 @@ public class viewRecuperarSenha extends AppCompatActivity implements View.OnClic
     private void prepararComponentes() {
         btnEnviar = (Button) findViewById(R.id.btnEnviarSenha);
         btnEnviar.setOnClickListener(this);
-
         txtEmail = (EditText) findViewById(R.id.txtEmail);
     }
 

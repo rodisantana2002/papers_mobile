@@ -20,7 +20,6 @@ import com.rhcloud.papers.helpers.generic.hlpValidaDados;
 import com.rhcloud.papers.model.entity.Usuario;
 
 public class viewCadastrarUsuario extends AppCompatActivity implements  View.OnClickListener {
-    private Button btnEsqueciSenha, btnCadastrarNovoUsuario, btnEntrar;
     private EditText txtPrimeiroNome, txtSegundoNome, txtEmailUsuario, txtCrieSenha, txtRepitaSenha;
     private Usuario usuario;
     private Button btnEnviar;

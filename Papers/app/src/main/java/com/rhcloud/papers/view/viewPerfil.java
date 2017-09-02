@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.rhcloud.papers.R;
 
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
+import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.transitorio.Acao;
 import com.rhcloud.papers.view.adapters.adpAcoes;
 import com.rhcloud.papers.view.decorator.dividerItemDecorator;
@@ -36,12 +37,15 @@ public class viewPerfil extends AppCompatActivity {
     private adpAcoes mAdapter;
     private ImageView imgFoto;
     private TextView lblNomeCompleto;
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_home);
+
         setContentView(R.layout.activity_view_perfil);
-        popularListaAcoes();
+        popularListaAcoes(getIntent().getExtras());
         prepararComponenetes();
     }
 
@@ -50,8 +54,11 @@ public class viewPerfil extends AppCompatActivity {
         super.onResume();
     }
 
-    private void popularListaAcoes() {
+    private void popularListaAcoes(Bundle bundle) {
         lstAcoes = new ArrayList<Acao>();
+        if (bundle!=null){
+            usuario = (Usuario) bundle.getSerializable("usuario");
+        }
 
         Acao acao = new Acao();
         acao.setId(1);
@@ -90,7 +97,6 @@ public class viewPerfil extends AppCompatActivity {
     }
 
     private void prepararComponenetes(){
-
         recyclerView = (RecyclerView) findViewById(R.id.lstAcoesPerfil);
 
         imgFoto = (ImageView) findViewById(R.id.imgUsuarioPerfil);
@@ -118,6 +124,11 @@ public class viewPerfil extends AppCompatActivity {
             }
         });
 
+        //carrega cabecalho
+        lblNomeCompleto.setText(usuario.getPessoa().getPrimeiroNome() + " " + usuario.getPessoa().getSegundoNome());
+        Bitmap bmUser = BitmapFactory.decodeByteArray(usuario.getPessoa().getFoto(), 0, usuario.getPessoa().getFoto().length);
+        imgFoto.setImageBitmap(bmUser);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL));
@@ -125,27 +136,52 @@ public class viewPerfil extends AppCompatActivity {
     }
 
     private void carregarImagemDispositivo() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", usuario);
+
         Intent intent = new Intent(this, viewAlterarFoto.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 
     private void alterarSenha(){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", usuario);
+
         Intent intent = new Intent(this, viewAlterarSenha.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 
     private void alterarDadosPessoais(){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", usuario);
+
         Intent intent = new Intent(this, viewAlterarDadosPessoais.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 
     private void alterarResumoProficcional(){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", usuario);
+
         Intent intent = new Intent(this, viewAlterarResumoProfissional.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 
     private void retornarMenu(){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", usuario);
+
         Intent intent = new Intent(this, viewHome.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 }

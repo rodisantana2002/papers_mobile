@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.rhcloud.papers.Principal;
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlAutentication;
 import com.rhcloud.papers.control.ctrlPessoa;
@@ -45,12 +46,11 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        //prepararControles();
+        prepararControles();
     }
 
     @Override
     protected void onResume() {
-        prepararControles();
         super.onResume();
     }
 
@@ -63,7 +63,6 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                 case R.id.navigation_home:
                     return true;
                 case R.id.navigation_documentos:
-                    popularTela();
                     efetuarLogout();
                     return true;
                 case R.id.navigation_autores:
@@ -75,10 +74,6 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         }
     };
 
-    private void popularTela() {
-
-    }
-
     private void efetuarLogout() {
         ctrlAutentication = new ctrlAutentication(usuario);
         sharedPreferences = getSharedPreferences(hlpConstants.MYPREFERENCES, Context.MODE_PRIVATE);
@@ -89,7 +84,9 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.commit();
-        finish();
+        finishAffinity();
+        Intent intent = new Intent(this, Principal.class);
+        startActivity(intent);
     }
 
     private void prepararControles() {
@@ -137,7 +134,12 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         if(view.getId() == btnPerfil.getId()){
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("usuario", usuario);
+
             Intent intent = new Intent(viewHome.this, viewPerfil.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtras(bundle);
             startActivity(intent);
         }
     }

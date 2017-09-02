@@ -1,9 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:theme="@style/AppTheme.NoActionBar"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.rhcloud.papers.view.viewAlterarDadosPessoais">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp"
+        android:weightSum="1"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#fafafa"
+            android:elevation="0dp"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:padding="03dp"
+            android:weightSum="1">
+
+            <ImageButton
+                android:id="@+id/btnVoltarDadosPessoais"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_chevron_left_black_18dp" />
+
+            <TextView
+                android:id="@+id/titleapp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:text="Dados Pessoais"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/cardview_dark_background"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:elevation="0dp"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:weightSum="1">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/txtPrimeiroNomeDP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Primeiro Nome"
+                    android:inputType="textPersonName"
+                    android:maxLength="30"
+                    android:textColor="?android:attr/colorControlNormal"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText,LabelFor" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/txtSegundoNomeDP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Segundo Nome"
+                    android:inputType="textPersonName"
+                    android:maxLength="50"
+                    android:textColor="?android:attr/colorControlNormal"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText,LabelFor" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/txtEmailUsuarioDP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="200"
+                    android:textColor="?android:attr/colorControlNormal"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText,LabelFor" />
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:elevation="0dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/txtDDDDP"
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:hint="ddd"
+                        android:inputType="text"
+                        android:maxLength="3"
+                        android:textColor="?android:attr/colorControlNormal"
+                        android:textSize="16sp"
+                        tools:ignore="HardcodedText,LabelFor" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/txtFoneCelularDP"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="fone celular"
+                        android:inputType="text|phone"
+                        android:maxLength="10"
+                        android:textColor="?android:attr/colorControlNormal"
+                        android:textSize="16sp"
+                        tools:ignore="HardcodedText,LabelFor" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/txtInstituicaoDP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Instituição"
+                    android:inputType="text"
+                    android:maxLength="50"
+                    android:textColor="?android:attr/colorControlNormal"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText,LabelFor" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/txtPaisDP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Pais"
+                    android:maxLength="50"
+                    android:textColor="?android:attr/colorControlNormal"
+                    android:textSize="16sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/txtEstadoDP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Estado"
+                    android:maxLength="50"
+                    android:textColor="?android:attr/colorControlNormal"
+                    android:textSize="16sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/txtCidadeDP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Cidade"
+                    android:maxLength="50"
+                    android:textColor="?android:attr/colorControlNormal"
+                    android:textSize="16sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnEnviarDP"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0"
+                android:background="@color/colorPrimary"
+                android:text="Enviar"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,InefficientWeight" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+
