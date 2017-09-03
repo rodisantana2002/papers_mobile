@@ -2,7 +2,13 @@ package com.rhcloud.papers.view;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,16 +21,21 @@ import com.rhcloud.papers.control.ctrlPessoa;
 import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpDialog;
+import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 public class viewAlterarFoto extends AppCompatActivity implements View.OnClickListener{
-    private Button btnSelecionarImg, btnLimparImg, btnEnviar;
+    private Button btnSelecionarImg, btnEnviar;
     private ImageButton btnVoltar;
     private ImageView imgFoto;
     private ProgressDialog progressDialog;
     private procDados procDados;
     private Usuario usuario;
-
+    private static int RESULT_LOAD_IMAGE=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +45,33 @@ public class viewAlterarFoto extends AppCompatActivity implements View.OnClickLi
         prepararComponentes(getIntent().getExtras());
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null){
+            Uri selectedImage = data.getData();
+            InputStream imageStream = null;
+            try {
+                imageStream = getContentResolver().openInputStream(selectedImage);
+                Bitmap imgF = BitmapFactory.decodeStream(imageStream);
+                imgFoto.setImageBitmap(imgF);
+                if(imgF!=null){
+                    btnEnviar.setVisibility(View.VISIBLE);
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void prepararComponentes(Bundle bundle) {
         btnEnviar = (Button) findViewById(R.id.btnEnviarFoto);
         btnSelecionarImg = (Button) findViewById(R.id.btnSelecionarFoto);
-        btnLimparImg = (Button) findViewById(R.id.btnLimpar);
         btnVoltar = (ImageButton)  findViewById(R.id.btnVoltarAlterarFoto);
 
         btnEnviar.setOnClickListener(this);
         btnSelecionarImg.setOnClickListener(this);
         btnVoltar.setOnClickListener(this);
-        btnLimparImg.setOnClickListener(this);
 
         imgFoto = (ImageView) findViewById(R.id.imgFotoUsuario);
         usuario = (Usuario) bundle.getSerializable("usuario");
@@ -69,20 +97,38 @@ public class viewAlterarFoto extends AppCompatActivity implements View.OnClickLi
             startActivity(intent);
         }
 
-        if(view.getId() ==btnLimparImg.getId()){}
-        if(view.getId() ==btnSelecionarImg.getId()){}
+        if(view.getId() ==btnSelecionarImg.getId()){
+            intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, RESULT_LOAD_IMAGE);
+
+            btnEnviar.setVisibility(View.VISIBLE);
+        }
+    }
+
+
+    private byte[] getFoto(){
+        Bitmap bitmap = ((BitmapDrawable) imgFoto.getDrawable()).getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        return byteArray;
     }
 
     private void atualizarObjeto() {
-        //usuario.getPessoa().setFoto();
-    }
-
-    private void carregarImagem(){
-
+         usuario.getPessoa().setFoto(getFoto());
     }
 
     private boolean validarDados() {
+        if (getFoto()==null) {
+           hlpDialog.getAlertDialog(this, "Atenção", "Uma Foto válida deve ser selecionada", "Ok", new itfDialogGeneric() {
 
+                @Override
+                public void onButtonAction(boolean value) throws excPassaErro {
+                    btnSelecionarImg.requestFocus();
+                }
+            });
+            return false;
+        }
         return true;
     }
 
@@ -126,7 +172,7 @@ public class viewAlterarFoto extends AppCompatActivity implements View.OnClickLi
                         intent.putExtras(bundle);
                         startActivity(intent);
                     } else {
-                        btnLimparImg.requestFocus();
+                        btnSelecionarImg.requestFocus();
                     }
                 }
             });

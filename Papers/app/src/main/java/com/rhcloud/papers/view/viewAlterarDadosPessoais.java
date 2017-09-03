@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,8 @@ import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.helpers.generic.hlpValidaDados;
 import com.rhcloud.papers.model.entity.Usuario;
+
+import java.sql.Array;
 
 public class viewAlterarDadosPessoais extends AppCompatActivity implements View.OnClickListener {
     private EditText txtPrimeiroNome, txtSegundoNome, txtEmailUsuario, txtDDD, txtFoneCelular, txtInstituicao;
@@ -37,6 +40,15 @@ public class viewAlterarDadosPessoais extends AppCompatActivity implements View.
     }
 
     private void prepararComponentes(Bundle bundle) {
+        usuario = (Usuario) bundle.getSerializable("usuario");
+        String[] lstPaises = getResources().getStringArray(R.array.listPiases);
+        String[] lstEstados = getResources().getStringArray(R.array.listEstados);
+        String[] lstCapitais = getResources().getStringArray(R.array.listCapitais);
+
+        ArrayAdapter adapterPais = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, lstPaises);
+        ArrayAdapter adapterEstados = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, lstEstados);
+        ArrayAdapter adapterCapitais = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, lstCapitais);
+
         btnEnviar = (Button) findViewById(R.id.btnEnviarDP);
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarDadosPessoais);
 
@@ -53,7 +65,6 @@ public class viewAlterarDadosPessoais extends AppCompatActivity implements View.
         btnEnviar.setOnClickListener(this);
         btnVoltar.setOnClickListener(this);
 
-        usuario = (Usuario) bundle.getSerializable("usuario");
         txtPrimeiroNome.setText(usuario.getPessoa().getPrimeiroNome());
         txtSegundoNome.setText(usuario.getPessoa().getSegundoNome());
         txtEmailUsuario.setText(usuario.getPessoa().getEmail());
@@ -63,6 +74,10 @@ public class viewAlterarDadosPessoais extends AppCompatActivity implements View.
         txtPais.setText(usuario.getPessoa().getPais());
         txtEstado.setText(usuario.getPessoa().getEstado());
         txtCidade.setText(usuario.getPessoa().getCidade());
+
+        txtPais.setAdapter(adapterPais);
+        txtEstado.setAdapter(adapterEstados);
+        txtCidade.setAdapter(adapterCapitais);
     }
 
     @Override

@@ -14,4 +14,89 @@
     <string name="title_home">Home</string>
     <string name="title_documentos">Artigos</string>
     <string name="title_autores">Autores</string>
+
+    <string-array name="listPiases">
+        <item>Alemanha</item>
+        <item>Argentina</item>
+        <item>Austrália</item>
+        <item>Bolivia</item>
+        <item>Brasil</item>
+        <item>Canada</item>
+        <item>Chile</item>
+        <item>Colombia</item>
+        <item>Espanha</item>
+        <item>Estados Unidos</item>
+        <item>França</item>
+        <item>Inglaterra</item>
+        <item>Itália</item>
+        <item>México</item>
+        <item>Paraguai</item>
+        <item>Peru</item>
+        <item>Portugal</item>
+        <item>Uruguai</item>
+        <item>Venezuela</item>
+    </string-array>
+
+    <string-array name="listEstados">
+        <item>Acre-AC</item>
+        <item>Alagoas-AL</item>
+        <item>Amapá-AP</item>
+        <item>Amazonas-AM</item>
+        <item>Bahia-BA</item>
+        <item>Ceará-CE</item>
+        <item>Distrito Federal-DF</item>
+        <item>Espírito Santo-ES</item>
+        <item>Goiás-GO</item>
+        <item>Maranhão-MA</item>
+        <item>Mato Grosso-MT</item>
+        <item>Mato Grosso do Sul-MS</item>
+        <item>Minas Gerais-MG</item>
+        <item>Pará-PA</item>
+        <item>Paraíba-PB</item>
+        <item>Paraná-PR</item>
+        <item>Pernambuco-PE</item>
+        <item>Piauí-PI</item>
+        <item>Rio de Janeiro-RJ</item>
+        <item>Rio Grande do Norte-RN</item>
+        <item>Rio Grande do Sul-RS</item>
+        <item>Rondônia-RO</item>
+        <item>Roraima-RR</item>
+        <item>Santa Catarina-SC</item>
+        <item>São Paulo-SP</item>
+        <item>Sergipe-SE</item>
+        <item>Tocantins-TO</item>
+    </string-array>
+
+    <string-array name="listCapitais">
+        <item>Rio Branco</item>
+        <item>Maceió</item>
+        <item>Macapá</item>
+        <item>Manaus</item>
+        <item>Salvador</item>
+        <item>Fortaleza</item>
+        <item>Brasília</item>
+        <item>Vitória</item>
+        <item>Goiânia</item>
+        <item>São Luís</item>
+        <item>Cuiabá</item>
+        <item>Campo Grande</item>
+        <item>Belo Horizonte</item>
+        <item>Belém</item>
+        <item>Pessoa</item>
+        <item>Curitiba</item>
+        <item>Recife</item>
+        <item>Teresina</item>
+        <item>Rio de Janeiro</item>
+        <item>Natal</item>
+        <item>Porto Alegre</item>
+        <item>Porto Velho</item>
+        <item>Boa Vista</item>
+        <item>Florianópolis</item>
+        <item>São Paulo</item>
+        <item>Aracaju</item>
+        <item>Palmas</item>
+    </string-array>
 </resources>
+
+
+

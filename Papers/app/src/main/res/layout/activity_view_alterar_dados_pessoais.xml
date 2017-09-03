@@ -185,8 +185,10 @@
                     android:id="@+id/txtPaisDP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:completionThreshold="1"
                     android:hint="Pais"
                     android:maxLength="50"
+                    android:singleLine="true"
                     android:textColor="?android:attr/colorControlNormal"
                     android:textSize="16sp" />
             </android.support.design.widget.TextInputLayout>
@@ -199,8 +201,10 @@
                     android:id="@+id/txtEstadoDP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:completionThreshold="1"
                     android:hint="Estado"
                     android:maxLength="50"
+                    android:singleLine="true"
                     android:textColor="?android:attr/colorControlNormal"
                     android:textSize="16sp" />
             </android.support.design.widget.TextInputLayout>
@@ -213,8 +217,10 @@
                     android:id="@+id/txtCidadeDP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:completionThreshold="1"
                     android:hint="Cidade"
                     android:maxLength="50"
+                    android:singleLine="true"
                     android:textColor="?android:attr/colorControlNormal"
                     android:textSize="16sp" />
             </android.support.design.widget.TextInputLayout>
