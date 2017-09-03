@@ -77,7 +77,7 @@
                 <EditText
                     android:id="@+id/txtResumoProfissional"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="242dp"
                     android:height="500dp"
                     android:gravity="top|left"
                     android:hint="Informe um breve resumo profissional"
