@@ -155,6 +155,5 @@ public class viewRecuperarSenha extends AppCompatActivity implements View.OnClic
 
         }
     }
-
 }
 

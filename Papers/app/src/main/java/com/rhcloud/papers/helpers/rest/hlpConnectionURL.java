@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 
 /**
  * Created by Rodolfo on 24/07/2017
@@ -19,10 +20,12 @@ public class hlpConnectionURL {
     private HttpURLConnection conn;
     private URL url;
     private Context ctx;
+    private HashMap<String, String> headers;
 
     public hlpConnectionURL() {
         conn = null;
         URL url = null;
+        headers = new HashMap<String, String>();
     }
 
     public String get(String path) throws excPassaErro {
@@ -42,7 +45,7 @@ public class hlpConnectionURL {
     }
 
     public void addHearders(String key, String value) {
-        conn.setRequestProperty(key, value);
+        headers.put(key, value);
     }
 
     private String simpleResponse(String type, String path) throws excPassaErro {
@@ -51,6 +54,12 @@ public class hlpConnectionURL {
             url = new URL(path);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod(type);
+            ///adiciona os parametors de segurananca para conexoes seguras
+            if (!headers.isEmpty()){
+                for (String key : headers.keySet()) {
+                    conn.setRequestProperty(key, headers.get(key));
+                }
+            }
 
             if (conn.getResponseCode() == 200) {
                 response = readStream(conn.getInputStream());
@@ -85,6 +94,12 @@ public class hlpConnectionURL {
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestMethod(type);
+            ///adiciona os parametors de segurananca para conexoes seguras
+            if (!headers.isEmpty()){
+                for (String key : headers.keySet()) {
+                    conn.setRequestProperty(key, headers.get(key));
+                }
+            }
             conn.setDoOutput(true);
 
             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());

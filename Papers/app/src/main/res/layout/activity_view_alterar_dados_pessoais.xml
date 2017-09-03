@@ -135,7 +135,7 @@
                         android:layout_width="35dp"
                         android:layout_height="wrap_content"
                         android:hint="ddd"
-                        android:inputType="text"
+                        android:inputType="text|phone"
                         android:maxLength="3"
                         android:textColor="?android:attr/colorControlNormal"
                         android:textSize="16sp"

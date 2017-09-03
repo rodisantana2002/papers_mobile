@@ -1,5 +1,6 @@
 package com.rhcloud.papers.view;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +8,7 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -21,14 +23,12 @@ import com.rhcloud.papers.Principal;
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlAutentication;
 import com.rhcloud.papers.control.ctrlPessoa;
+import com.rhcloud.papers.excecoes.excPassaErro;
+import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpConstants;
+import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
-
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 
 public class viewHome extends AppCompatActivity implements View.OnClickListener{
     private ctrlAutentication ctrlAutentication;
@@ -38,6 +38,9 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
     private ImageButton btnPerfil;
     private ImageView imgUsuario;
 
+    private ProgressDialog progressDialog;
+    private procDados procDados;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,12 +48,11 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        prepararControles();
     }
 
     @Override
     protected void onResume() {
+        prepararControles();
         super.onResume();
     }
 
@@ -107,28 +109,13 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         imgUsuario = (ImageView) findViewById(R.id.imgUsuario);
 
         lblUsuario.setText("olá, " + usuario.getPessoa().getPrimeiroNome() );
-        lblDtUltAcesso.setText("acessando o sistema desde " + usuario.getDtUltAcesso().substring(0,5) + " às " + usuario.getDtUltAcesso().substring(11,16));
+        lblDtUltAcesso.setText("conectado no sistema desde " + usuario.getDtUltAcesso().substring(0,5) + " às " + usuario.getDtUltAcesso().substring(11,16));
 
         btnPerfil.setOnClickListener(this);
 
-        carregarFoto();
-    }
-
-    private void carregarFoto()  {
-         ctrlPessoa ctrlPessoa = new ctrlPessoa(usuario.getPessoa());
-         try {
-             usuario.setPessoa(ctrlPessoa.obterByID(usuario.getPessoa().getId()));
-         } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-             excPassaErro.printStackTrace();
-         }
-
-        if (usuario.getPessoa().getFoto()==null){
-            imgUsuario.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
-        }
-        else {
-            Bitmap bmUser = BitmapFactory.decodeByteArray(usuario.getPessoa().getFoto(), 0, usuario.getPessoa().getFoto().length);
-            imgUsuario.setImageBitmap(bmUser);
-        }
+        //carregarFoto();
+        procDados = new procDados(usuario);
+        procDados.execute();
     }
 
     @Override
@@ -144,4 +131,40 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
+    private class procDados extends AsyncTask<Void, Void, String> {
+        private Usuario usuario;
+
+        public procDados(Usuario usuario){
+            this.usuario = usuario;
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            ctrlPessoa ctrlPessoa = new ctrlPessoa(usuario.getPessoa());
+            try {
+                usuario.setPessoa(ctrlPessoa.obterByID(usuario.getPessoa().getId()));
+            } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
+                excPassaErro.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(viewHome.this, "Aguarde", "Carregando configurações...");
+        }
+
+        @Override
+        protected void onPostExecute(final String result) {
+            if (usuario.getPessoa().getFoto()==null){
+                imgUsuario.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
+            }
+            else {
+                Bitmap bmUser = BitmapFactory.decodeByteArray(usuario.getPessoa().getFoto(), 0, usuario.getPessoa().getFoto().length);
+                imgUsuario.setImageBitmap(bmUser);
+            }
+            progressDialog.dismiss();
+
+        }
+    }
 }

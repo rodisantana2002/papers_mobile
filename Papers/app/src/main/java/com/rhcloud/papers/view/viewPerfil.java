@@ -126,8 +126,13 @@ public class viewPerfil extends AppCompatActivity {
 
         //carrega cabecalho
         lblNomeCompleto.setText(usuario.getPessoa().getPrimeiroNome() + " " + usuario.getPessoa().getSegundoNome());
-        Bitmap bmUser = BitmapFactory.decodeByteArray(usuario.getPessoa().getFoto(), 0, usuario.getPessoa().getFoto().length);
-        imgFoto.setImageBitmap(bmUser);
+        if (usuario.getPessoa().getFoto()==null){
+            imgFoto.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
+        }
+        else {
+            Bitmap bmUser = BitmapFactory.decodeByteArray(usuario.getPessoa().getFoto(), 0, usuario.getPessoa().getFoto().length);
+            imgFoto.setImageBitmap(bmUser);
+        }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());

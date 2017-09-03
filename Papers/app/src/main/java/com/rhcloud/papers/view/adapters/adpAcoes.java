@@ -68,6 +68,7 @@ public class adpAcoes extends RecyclerView.Adapter<adpAcoes.AcoesHolder>  {
         };
         holder.txtNomeAcao.setOnClickListener(listener);
         holder.txtComentarioAcao.setOnClickListener(listener);
+        holder.imgAcao.setOnClickListener(listener);
     }
 
     public class AcoesHolder extends RecyclerView.ViewHolder {
@@ -82,7 +83,6 @@ public class adpAcoes extends RecyclerView.Adapter<adpAcoes.AcoesHolder>  {
             this.imgAcao = (ImageView) itemView.findViewById(R.id.imgAcao);
         }
     }
-
 
     @Override
     public int getItemCount() {

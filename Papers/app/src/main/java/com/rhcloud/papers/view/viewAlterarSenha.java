@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlUsuario;
@@ -22,6 +23,7 @@ import com.rhcloud.papers.model.entity.Usuario;
 public class viewAlterarSenha extends AppCompatActivity implements  View.OnClickListener {
     private EditText txtSenhaAtual, txtNovaSenha, txtRepitaNovaSenha;
     private Button btnEnviar;
+    private ImageButton btnVoltar;
     private ProgressDialog progressDialog;
     private procDados procDados;
     private Usuario usuario;
@@ -37,7 +39,9 @@ public class viewAlterarSenha extends AppCompatActivity implements  View.OnClick
 
     private void prepararComponentes(Bundle bundle) {
         btnEnviar = (Button) findViewById(R.id.btnEnviarAlterarSenha);
+        btnVoltar = (ImageButton) findViewById(R.id.btnVoltarAlterarSenha);
         btnEnviar.setOnClickListener(this);
+        btnVoltar.setOnClickListener(this);
 
         txtSenhaAtual = (EditText) findViewById(R.id.txtSenhaAtual);
         txtNovaSenha = (EditText) findViewById(R.id.txtNovaSenha);
@@ -50,13 +54,20 @@ public class viewAlterarSenha extends AppCompatActivity implements  View.OnClick
     @Override
     public void onClick(View view) {
         Intent intent;
-
         if (view.getId() == btnEnviar.getId()) {
             if (validarDados()) {
                 atualizarObjeto();
                 procDados = new procDados(usuario);
                 procDados.execute();
             }
+        }
+
+        if (view.getId() == btnVoltar.getId()){
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("usuario", usuario);
+            intent = new Intent(viewAlterarSenha.this, viewPerfil.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }
     }
 
@@ -158,19 +169,22 @@ public class viewAlterarSenha extends AppCompatActivity implements  View.OnClick
         @Override
         protected void onPostExecute(final String result) {
             progressDialog.dismiss();
-            hlpDialog.getAlertDialog(viewAlterarSenha.this, "Atenção", result, "Ok", new itfDialogGeneric() {
-                @Override
-                public void onButtonAction(boolean value) throws excPassaErro {
-                    if (result.trim().equals("Usuário registrado com sucesso")){
-                        Intent intent = new Intent(viewAlterarSenha.this, viewPerfil.class);
-                        startActivity(intent);
+            if (result.trim().equals("Senha alterada com sucesso")) {
+                hlpDialog.getAlertDialog(viewAlterarSenha.this, "Atenção", result, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws excPassaErro {
+                        if (result.trim().equals("Senha alterada com sucesso")) {
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("usuario", usuario);
+                            Intent intent = new Intent(viewAlterarSenha.this, viewPerfil.class);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                        } else {
+                            txtSenhaAtual.requestFocus();
+                        }
                     }
-                    else{
-                        txtSenhaAtual.requestFocus();
-                    }
-                }
-            });
-
+                });
+            }
         }
     }
 
