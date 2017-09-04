@@ -81,15 +81,16 @@
                 <Button
                     android:id="@+id/btnSelecionarFoto"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="63dp"
                     android:layout_marginTop="0dp"
-                    android:background="@color/cardview_shadow_start_color"
-                    android:drawableBottom="@drawable/ic_perm_contact_calendar_black_18dp"
+                    android:layout_weight="0.10"
+                    android:background="@color/colorPrimary"
+                    android:drawableBottom="@android:drawable/ic_menu_camera"
                     android:text="Carregar Foto"
                     android:textAlignment="center"
                     android:textAllCaps="false"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="9sp"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
                     tools:ignore="HardcodedText,InefficientWeight" />
 
             </LinearLayout>
@@ -110,7 +111,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="0"
                 android:background="@color/colorPrimary"
-                android:text="Enviar"
+                android:text="Enviar Foto"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"

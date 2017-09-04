@@ -58,7 +58,6 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
@@ -70,11 +69,22 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                 case R.id.navigation_autores:
                     return true;
                 case R.id.navigation_servicos:
+                    carregarServicos();
                     return true;
             }
             return false;
         }
     };
+
+    private void carregarServicos() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", usuario);
+
+        Intent intent = new Intent(viewHome.this, viewRepositorio.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 
     private void efetuarLogout() {
         ctrlAutentication = new ctrlAutentication(usuario);
@@ -141,12 +151,13 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         @Override
         protected String doInBackground(Void... voids) {
             ctrlPessoa ctrlPessoa = new ctrlPessoa(usuario.getPessoa());
+            String msg = "";
             try {
                 usuario.setPessoa(ctrlPessoa.obterByID(usuario.getPessoa().getId()));
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.printStackTrace();
+                msg = excPassaErro.getMessage();
             }
-            return "";
+            return msg;
         }
 
         @Override
@@ -156,6 +167,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
 
         @Override
         protected void onPostExecute(final String result) {
+            progressDialog.dismiss();
             if (usuario.getPessoa().getFoto()==null){
                 imgUsuario.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
             }
@@ -163,7 +175,6 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                 Bitmap bmUser = BitmapFactory.decodeByteArray(usuario.getPessoa().getFoto(), 0, usuario.getPessoa().getFoto().length);
                 imgUsuario.setImageBitmap(bmUser);
             }
-            progressDialog.dismiss();
 
         }
     }

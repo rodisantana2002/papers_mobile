@@ -232,7 +232,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="0"
                 android:background="@color/colorPrimary"
-                android:text="Enviar"
+                android:text="Salvar"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"

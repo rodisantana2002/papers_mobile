@@ -123,12 +123,13 @@ public class viewRecuperarSenha extends AppCompatActivity implements View.OnClic
         @Override
         protected String doInBackground(Void... voids) {
             ctrlAutentication ctrlAutentication = new ctrlAutentication(usuario);
+            String msg = "";
             try {
                 return ctrlAutentication.recuperarAcesso();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.printStackTrace();
+                msg = excPassaErro.getMessage();
             }
-            return "";
+            return msg;
 
         }
 

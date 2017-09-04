@@ -153,12 +153,13 @@ public class viewAlterarSenha extends AppCompatActivity implements  View.OnClick
         @Override
         protected String doInBackground(Void... voids) {
             ctrlUsuario ctrlUsuario = new ctrlUsuario(usuario);
+            String msg = "";
             try {
                 return ctrlUsuario.alterarSenha();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.printStackTrace();
+                msg = excPassaErro.getMessage();
             }
-            return "";
+            return msg;
         }
 
         @Override

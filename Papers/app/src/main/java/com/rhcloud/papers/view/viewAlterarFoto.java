@@ -100,8 +100,6 @@ public class viewAlterarFoto extends AppCompatActivity implements View.OnClickLi
         if(view.getId() ==btnSelecionarImg.getId()){
             intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(intent, RESULT_LOAD_IMAGE);
-
-            btnEnviar.setVisibility(View.VISIBLE);
         }
     }
 
@@ -110,6 +108,7 @@ public class viewAlterarFoto extends AppCompatActivity implements View.OnClickLi
         Bitmap bitmap = ((BitmapDrawable) imgFoto.getDrawable()).getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        Bitmap.createScaledBitmap(bitmap, 100, 100, false);
         byte[] byteArray = stream.toByteArray();
         return byteArray;
     }
@@ -129,6 +128,7 @@ public class viewAlterarFoto extends AppCompatActivity implements View.OnClickLi
             });
             return false;
         }
+        btnEnviar.setVisibility(View.VISIBLE);
         return true;
     }
 
@@ -142,12 +142,13 @@ public class viewAlterarFoto extends AppCompatActivity implements View.OnClickLi
         @Override
         protected String doInBackground(Void... voids) {
             ctrlPessoa ctrlPessoa = new ctrlPessoa(usuario.getPessoa());
+            String msg = "";
             try {
                 return ctrlPessoa.atualizar();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.printStackTrace();
+                msg = excPassaErro.getMessage();
             }
-            return "";
+            return msg;
         }
 
         @Override

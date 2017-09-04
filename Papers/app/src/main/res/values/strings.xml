@@ -8,7 +8,6 @@
     <string name="title_activity_principal">Seja Bem-vindo</string>
     <string name="title_activity_recuperar_senha">Recuperar Senha</string>
     <string name="title_activity_view_cadastrar_usuario">Cadastrar Usuário</string>
-    <string name="title_activity_view_destino">Destinos</string>
     <string name="title_activity_view_home">Home</string>
     <string name="title_activity_view_perfil">Perfil</string>
     <string name="title_home">Home</string>
@@ -96,6 +95,7 @@
         <item>Aracaju</item>
         <item>Palmas</item>
     </string-array>
+    <string name="title_activity_view_repositorio">Repositórios</string>
 </resources>
 
 

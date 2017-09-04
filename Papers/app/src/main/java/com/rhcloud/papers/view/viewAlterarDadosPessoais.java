@@ -167,12 +167,13 @@ public class viewAlterarDadosPessoais extends AppCompatActivity implements View.
         @Override
         protected String doInBackground(Void... voids) {
             ctrlPessoa ctrlPessoa = new ctrlPessoa(usuario.getPessoa());
+            String msg = "";
             try {
                 return ctrlPessoa.atualizar();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.printStackTrace();
+                msg = excPassaErro.getMessage();
             }
-            return "";
+            return msg;
         }
 
         @Override

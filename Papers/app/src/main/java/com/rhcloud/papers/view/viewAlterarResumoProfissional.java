@@ -78,6 +78,15 @@ public class viewAlterarResumoProfissional extends AppCompatActivity implements 
             });
             return false;
         }
+        if (txtResumoProfissional.getText().length()>500) {
+            hlpDialog.getAlertDialog(this, "Atenção", "O resumo informado excede o tamanho máximo de 500 caracteres", "Ok", new itfDialogGeneric() {
+                @Override
+                public void onButtonAction(boolean value) throws excPassaErro {
+                    txtResumoProfissional.requestFocus();
+                }
+            });
+            return false;
+        }
         return true;
     }
 
@@ -91,12 +100,13 @@ public class viewAlterarResumoProfissional extends AppCompatActivity implements 
         @Override
         protected String doInBackground(Void... voids) {
             ctrlPessoa ctrlPessoa = new ctrlPessoa(usuario.getPessoa());
+            String msg = "";
             try {
                 return ctrlPessoa.atualizar();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.printStackTrace();
+                msg = excPassaErro.getMessage();
             }
-            return "";
+            return msg;
         }
 
         @Override

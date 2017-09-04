@@ -42,16 +42,11 @@ public class viewPerfil extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_home);
+        //setContentView(R.layout.activity_view_home);
 
         setContentView(R.layout.activity_view_perfil);
         popularListaAcoes(getIntent().getExtras());
         prepararComponenetes();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     private void popularListaAcoes(Bundle bundle) {
