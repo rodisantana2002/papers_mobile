@@ -47,6 +47,13 @@ public class viewRepositorioDetail extends AppCompatActivity implements View.OnC
 
         btnExcluirRepositorio = (ImageButton) findViewById(R.id.btnExcluirRepositorio);
         btnExcluirRepositorio.setOnClickListener(this);
+
+        if (destino.getId()==null){
+            btnExcluirRepositorio.setVisibility(View.GONE);
+        }
+        else{
+            btnExcluirRepositorio.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

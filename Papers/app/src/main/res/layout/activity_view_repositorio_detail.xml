@@ -51,7 +51,7 @@
 
                 <TextView
                     android:id="@+id/titleapp"
-                    android:layout_width="328dp"
+                    android:layout_width="280dp"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:gravity="center_vertical"

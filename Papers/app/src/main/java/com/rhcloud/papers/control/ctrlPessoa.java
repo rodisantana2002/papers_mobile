@@ -3,6 +3,9 @@ package com.rhcloud.papers.control;
 import com.rhcloud.papers.bs.concrets.bsPessoa;
 import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.model.entity.Pessoa;
+import com.rhcloud.papers.model.entity.Usuario;
+
+import java.util.List;
 
 /**
  * Created by rodolfosantana on 31/08/17.
@@ -32,4 +35,9 @@ public class ctrlPessoa {
     public Pessoa obterByID(Integer id) throws excPassaErro {
         return bsPessoa.findByID(id);
     }
+
+    public List <Pessoa> obterAll() throws excPassaErro {
+        return bsPessoa.findAll();
+    }
+
 }

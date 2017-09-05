@@ -24,15 +24,24 @@
             tools:ignore="UseCompoundDrawables">
 
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
             <ImageView
                 android:id="@+id/imgUsuarioPerfil"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:background="@android:color/transparent"
+                android:background="#fafafa"
                 android:contentDescription="@string/logotipo"
+                android:foreground="@drawable/rounded_fg"
                 android:paddingTop="5dp"
-                android:scaleType="fitXY"
+                android:scaleType="center"
                 android:src="@drawable/ic_account_circle_black_48dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
 
             <TextView
                 android:id="@+id/lblUsuarioPerfil"

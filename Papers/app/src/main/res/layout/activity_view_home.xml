@@ -36,6 +36,7 @@
                     android:layout_height="80dp"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/logotipo"
+                    android:foreground="@drawable/rounded_fg"
                     android:scaleType="fitXY" />
 
                 <LinearLayout

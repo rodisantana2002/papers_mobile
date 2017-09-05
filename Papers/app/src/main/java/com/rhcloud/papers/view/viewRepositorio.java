@@ -2,28 +2,20 @@ package com.rhcloud.papers.view;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.webkit.RenderProcessGoneDetail;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlDestino;
-import com.rhcloud.papers.control.ctrlPessoa;
-import com.rhcloud.papers.excecoes.excPassaErro;
-import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
-import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Destino;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.view.adapters.adpRepositorios;
@@ -49,10 +41,10 @@ public class viewRepositorio extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_repositorio);
-        popularListaDestinos(getIntent().getExtras());
+        popularLista(getIntent().getExtras());
     }
 
-    private void popularListaDestinos(Bundle bundle) {
+    private void popularLista(Bundle bundle) {
         lstDestinos = new ArrayList<Destino>();
 
         if (bundle!=null){

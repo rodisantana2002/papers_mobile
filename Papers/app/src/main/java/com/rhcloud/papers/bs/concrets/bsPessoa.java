@@ -18,6 +18,7 @@ import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.generic.hlpConstants;
 import com.rhcloud.papers.helpers.rest.hlpConnectionURL;
 import com.rhcloud.papers.model.entity.Pessoa;
+import com.rhcloud.papers.model.entity.Usuario;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

@@ -71,14 +71,19 @@
             android:name=".view.viewAutor"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".view.viewAutorDetail"
+            android:name=".view.viewAutorEdit"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.viewRepositorio"
             android:label="@string/title_activity_view_repositorio"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".view.viewRepositorioDetail"
+        <activity
+            android:name=".view.viewRepositorioDetail"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.viewAutorDetail"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/title_activity_view_autor_detail"/>
     </application>
 
 </manifest>

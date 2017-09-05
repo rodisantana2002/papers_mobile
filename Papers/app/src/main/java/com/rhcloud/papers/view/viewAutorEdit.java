@@ -18,27 +18,30 @@ import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.helpers.generic.hlpValidaDados;
+import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
 
-public class viewAlterarDadosPessoais extends AppCompatActivity implements View.OnClickListener {
-    private EditText txtPrimeiroNome, txtSegundoNome, txtEmailUsuario, txtDDD, txtFoneCelular, txtInstituicao;
+public class viewAutorEdit extends AppCompatActivity implements View.OnClickListener {
+    private EditText txtPrimeiroNome, txtSegundoNome, txtEmailUsuario, txtInstituicao;
     private AutoCompleteTextView txtPais, txtEstado, txtCidade;
     private Usuario usuario;
+    private Pessoa pessoa;
     private Button btnEnviar;
-    private ImageButton btnVoltar;
+    private ImageButton btnVoltar, btnExcluirAutor;
     private ProgressDialog progressDialog;
     private procDados procDados;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_alterar_dados_pessoais);
-
+        setContentView(R.layout.activity_view_autor_edit);
         prepararComponentes(getIntent().getExtras());
     }
 
     private void prepararComponentes(Bundle bundle) {
-        usuario = (Usuario) bundle.getSerializable("usuario");
+        pessoa = (Pessoa) bundle.getSerializable("autor");
+
         String[] lstPaises = getResources().getStringArray(R.array.listPaises);
         String[] lstEstados = getResources().getStringArray(R.array.listEstados);
         String[] lstCapitais = getResources().getStringArray(R.array.listCapitais);
@@ -47,35 +50,40 @@ public class viewAlterarDadosPessoais extends AppCompatActivity implements View.
         ArrayAdapter adapterEstados = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, lstEstados);
         ArrayAdapter adapterCapitais = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, lstCapitais);
 
-        btnEnviar = (Button) findViewById(R.id.btnEnviarDP);
-        btnVoltar = (ImageButton) findViewById(R.id.btnVoltarDadosPessoais);
+        btnEnviar = (Button) findViewById(R.id.btnEnviarAutor);
+        btnVoltar = (ImageButton) findViewById(R.id.btnVoltarAutorEdit);
+        btnExcluirAutor = (ImageButton) findViewById(R.id.btnExcluirAutor);
 
-        txtPrimeiroNome = (EditText) findViewById(R.id.txtPrimeiroNomeDP);
-        txtSegundoNome = (EditText) findViewById(R.id.txtSegundoNomeDP);
-        txtEmailUsuario = (EditText) findViewById(R.id.txtEmailUsuarioDP);
-        txtDDD = (EditText) findViewById(R.id.txtDDDDP);
-        txtFoneCelular = (EditText) findViewById(R.id.txtFoneCelularDP);
-        txtInstituicao = (EditText) findViewById(R.id.txtInstituicaoDP);
-        txtPais = (AutoCompleteTextView) findViewById(R.id.txtPaisDP);
-        txtEstado = (AutoCompleteTextView) findViewById(R.id.txtEstadoDP);
-        txtCidade = (AutoCompleteTextView) findViewById(R.id.txtCidadeDP);
+        txtPrimeiroNome = (EditText) findViewById(R.id.txtPrimeiroNomeAutor);
+        txtSegundoNome = (EditText) findViewById(R.id.txtSegundoNomeAutor);
+        txtEmailUsuario = (EditText) findViewById(R.id.txtEmailUsuarioAutor);
+        txtInstituicao = (EditText) findViewById(R.id.txtInstituicaoAutor);
+        txtPais = (AutoCompleteTextView) findViewById(R.id.txtPaisAutor);
+        txtEstado = (AutoCompleteTextView) findViewById(R.id.txtEstadoAutor);
+        txtCidade = (AutoCompleteTextView) findViewById(R.id.txtCidadeAutor);
 
         btnEnviar.setOnClickListener(this);
         btnVoltar.setOnClickListener(this);
+        btnExcluirAutor.setOnClickListener(this);
 
-        txtPrimeiroNome.setText(usuario.getPessoa().getPrimeiroNome());
-        txtSegundoNome.setText(usuario.getPessoa().getSegundoNome());
-        txtEmailUsuario.setText(usuario.getPessoa().getEmail());
-        txtDDD.setText(usuario.getPessoa().getDDD());
-        txtFoneCelular.setText(usuario.getPessoa().getFoneCelular());
-        txtInstituicao.setText(usuario.getPessoa().getInstituicao());
-        txtPais.setText(usuario.getPessoa().getPais());
-        txtEstado.setText(usuario.getPessoa().getEstado());
-        txtCidade.setText(usuario.getPessoa().getCidade());
+        txtPrimeiroNome.setText(pessoa.getPrimeiroNome());
+        txtSegundoNome.setText(pessoa.getSegundoNome());
+        txtEmailUsuario.setText(pessoa.getEmail());
+        txtInstituicao.setText(pessoa.getInstituicao());
+        txtPais.setText(pessoa.getPais());
+        txtEstado.setText(pessoa.getEstado());
+        txtCidade.setText(pessoa.getCidade());
 
         txtPais.setAdapter(adapterPais);
         txtEstado.setAdapter(adapterEstados);
         txtCidade.setAdapter(adapterCapitais);
+
+        if (pessoa.getId()==null){
+            btnExcluirAutor.setVisibility(View.GONE);
+        }
+        else{
+            btnExcluirAutor.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -84,30 +92,42 @@ public class viewAlterarDadosPessoais extends AppCompatActivity implements View.
         if (view.getId() == btnEnviar.getId()) {
             if (validarDados()) {
                 atualizarObjeto();
-                procDados = new procDados(usuario);
+                procDados = new procDados(pessoa);
                 procDados.execute();
             }
         }
 
-        if (view.getId() == btnVoltar.getId()) {
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("usuario", usuario);
-            intent = new Intent(viewAlterarDadosPessoais.this, viewPerfil.class);
-            intent.putExtras(bundle);
+        if (view.getId() == btnVoltar.getId()){
+            intent = new Intent(viewAutorEdit.this, viewAutor.class);
             startActivity(intent);
+        }
+
+        if(view.getId() == btnExcluirAutor.getId()){
+            hlpDialog.getConfirmDialog(viewAutorEdit.this, "Atenção", "Confirma a exclusão do Autor?", "Sim", "Não", false, new itfDialogGeneric() {
+                @Override
+                public void onButtonAction(boolean value) throws excPassaErro {
+                    if (value){
+                        ctrlPessoa ctrlPessoa = new ctrlPessoa(pessoa);
+                        ctrlPessoa.remover();
+                        Intent intent = new Intent(viewAutorEdit.this, viewAutor.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        txtPrimeiroNome.requestFocus();
+                    }
+                }
+            });
         }
     }
 
     private void atualizarObjeto() {
-        usuario.getPessoa().setPrimeiroNome(txtPrimeiroNome.getText().toString());
-        usuario.getPessoa().setSegundoNome(txtSegundoNome.getText().toString());
-        usuario.getPessoa().setEmail(txtEmailUsuario.getText().toString());
-        usuario.getPessoa().setDDD(txtDDD.getText().toString());
-        usuario.getPessoa().setFoneCelular(txtFoneCelular.getText().toString());
-        usuario.getPessoa().setInstituicao(txtInstituicao.getText().toString());
-        usuario.getPessoa().setPais(txtPais.getText().toString());
-        usuario.getPessoa().setEstado(txtEstado.getText().toString());
-        usuario.getPessoa().setCidade(txtCidade.getText().toString());
+        pessoa.setPrimeiroNome(txtPrimeiroNome.getText().toString());
+        pessoa.setSegundoNome(txtSegundoNome.getText().toString());
+        pessoa.setEmail(txtEmailUsuario.getText().toString());
+        pessoa.setInstituicao(txtInstituicao.getText().toString());
+        pessoa.setPais(txtPais.getText().toString());
+        pessoa.setEstado(txtEstado.getText().toString());
+        pessoa.setCidade(txtCidade.getText().toString());
     }
 
     private boolean validarDados() {
@@ -156,15 +176,15 @@ public class viewAlterarDadosPessoais extends AppCompatActivity implements View.
     }
 
     private class procDados extends AsyncTask<Void, Void, String> {
-        private Usuario usuario;
+        private Pessoa pessoa;
 
-        public procDados(Usuario usuario) {
-            this.usuario = usuario;
+        public procDados(Pessoa pessoa) {
+            this.pessoa = pessoa;
         }
 
         @Override
         protected String doInBackground(Void... voids) {
-            ctrlPessoa ctrlPessoa = new ctrlPessoa(usuario.getPessoa());
+            ctrlPessoa ctrlPessoa = new ctrlPessoa(pessoa);
             String msg = "";
             try {
                 return ctrlPessoa.atualizar();
@@ -176,24 +196,18 @@ public class viewAlterarDadosPessoais extends AppCompatActivity implements View.
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(viewAlterarDadosPessoais.this, "Aguarde", "Enviando solicitação...");
+            progressDialog = ProgressDialog.show(viewAutorEdit.this, "Aguarde", "Enviando solicitação...");
         }
 
         @Override
         protected void onPostExecute(String result) {
             progressDialog.dismiss();
-            if (result.trim().equals("Autor registrado com sucesso")) {
-                result = "Dados pessoais registrados com sucesso";
-            }
             final String finalResult = result;
-            hlpDialog.getAlertDialog(viewAlterarDadosPessoais.this, "Atenção", result, "Ok", new itfDialogGeneric() {
+            hlpDialog.getAlertDialog(viewAutorEdit.this, "Atenção", result, "Ok", new itfDialogGeneric() {
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
-                    if (finalResult.trim().equals("Dados pessoais registrados com sucesso")) {
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("usuario", usuario);
-                        Intent intent = new Intent(viewAlterarDadosPessoais.this, viewPerfil.class);
-                        intent.putExtras(bundle);
+                    if (finalResult.trim().equals("Autor registrado com sucesso")) {
+                        Intent intent = new Intent(viewAutorEdit.this, viewAutor.class);
                         startActivity(intent);
                     } else {
                         txtPrimeiroNome.requestFocus();
@@ -203,7 +217,3 @@ public class viewAlterarDadosPessoais extends AppCompatActivity implements View.
         }
     }
 }
-
-
-
-

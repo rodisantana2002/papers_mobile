@@ -1,80 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="wrap_content"
     android:background="@android:color/white"
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
-    android:paddingBottom="04dp"
-    android:paddingLeft="03dp"
-    android:paddingRight="03dp"
-    android:paddingTop="04dp">
+    android:paddingBottom="1dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="3dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:visibility="visible">
-
-        <ImageView
-            android:id="@+id/imgFotoAutor"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_camera_alt_black_18dp"
-            android:visibility="visible"
-            tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
-
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="wrap_content" />
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:ignore="UselessParent">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.93"
-            android:orientation="vertical"
-            android:visibility="visible">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#fafafa"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            tools:ignore="ObsoleteLayoutParam">
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="0dp"
-                android:text="Usuario esta concetado"
-                android:textAlignment="viewEnd" />
-
-            <TextView
-                android:id="@+id/txtNomeAutor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:height="40dp"
-                android:gravity="left|center_vertical"
-                android:text="NomeAutor"
-                android:textAlignment="viewStart"
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="16sp"
+            <ImageView
+                android:id="@+id/imgFotoAutor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:foreground="@drawable/rounded_fg"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_camera_alt_black_18dp"
                 android:visibility="visible"
-                tools:ignore="HardcodedText,RtlHardcoded" />
+                tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
 
-            <TextView
-                android:id="@+id/txtInstituicaoAutorLista"
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Instituição"
-                android:textAlignment="viewStart"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="12sp"
-                tools:ignore="HardcodedText" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_weight="0.93"
+                android:orientation="vertical"
+                android:visibility="visible"
+                tools:ignore="InefficientWeight">
 
+                <GridLayout
+                    android:id="@+id/gridAutor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:columnCount="2">
+
+                    <TextView
+                        android:id="@+id/txtNomeAutor"
+                        android:layout_width="280dp"
+                        android:layout_height="wrap_content"
+                        android:height="40dp"
+                        android:gravity="left|center_vertical"
+                        android:text="NomeAutor"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    <ImageView
+                        android:id="@+id/imgSituacao"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="right|center"
+                        android:foreground="@drawable/rounded_fg"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_chevron_right_black_18dp"
+                        android:visibility="visible"
+                        tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
+                </GridLayout>
+
+                <GridLayout
+                    android:id="@+id/gridLocal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:columnCount="2"
+                    android:paddingTop="1dp">
+
+                    <TextView
+                        android:id="@+id/txtInstituicaoAutorLista"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:height="40dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="10sp"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    <TextView
+                        android:id="@+id/txtLocal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:height="40dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="10sp"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded" />
+
+                </GridLayout>
+
+
+            </LinearLayout>
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtSobreAutor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:gravity="left|center_vertical|center_horizontal"
+            android:paddingBottom="1dp"
+            android:paddingTop="1dp"
+            android:text="Sobre o Autor"
+            android:textSize="9sp"
+            tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
 
     </LinearLayout>
 

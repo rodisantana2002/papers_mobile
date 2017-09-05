@@ -28,4 +28,8 @@ public class ctrlUsuario {
     public String alterarSenha() throws excPassaErro {
         return bsUsuario.alterarSenha(usuario);
     }
+
+    public String isUsuario() throws excPassaErro {
+        return bsUsuario.isUsuario(usuario);
+    }
 }

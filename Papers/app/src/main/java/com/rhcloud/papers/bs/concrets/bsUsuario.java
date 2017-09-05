@@ -47,6 +47,10 @@ public class bsUsuario implements itfGeneric<Usuario>{
         return connRest.post(hlpConstants.URL_BASE + hlpConstants.URL_USUARIO + "alterarsenha/", gson.toJson(entity));
     }
 
+    public String isUsuario(Usuario entity) throws excPassaErro{
+        return connRest.post(hlpConstants.URL_BASE + hlpConstants.URL_USUARIO + "isusuario/", gson.toJson(entity));
+    }
+
     //não precisa implementar - questões de segurança
     @Override
     public String update(Usuario entity) throws excPassaErro{return null;}

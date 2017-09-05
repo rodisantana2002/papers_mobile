@@ -60,22 +60,6 @@ public class viewRecuperarSenha extends AppCompatActivity implements View.OnClic
         }
     }
 
-    private boolean checkInternetConenction() {
-        ConnectivityManager check = (ConnectivityManager) viewRecuperarSenha.this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        if (check != null) {
-            NetworkInfo[] info = check.getAllNetworkInfo();
-            if (info != null){
-                for (int i = 0; i < 1; i++) {
-                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
     private boolean validarDados() {
         if (txtEmail.getText().toString().isEmpty()) {
             hlpDialog.getAlertDialog(this, "Atenção", "O Email deve ser informado", "Ok", new itfDialogGeneric() {
@@ -96,18 +80,6 @@ public class viewRecuperarSenha extends AppCompatActivity implements View.OnClic
                 }
             });
             return false;
-        }
-
-        if (!checkInternetConenction()){
-            hlpDialog.getAlertDialog(this, "Atenção", "Sem conexão com a Internet", "Ok", new itfDialogGeneric() {
-
-                @Override
-                public void onButtonAction(boolean value) throws excPassaErro {
-                    txtEmail.requestFocus();
-                }
-            });
-            return false;
-
         }
 
         return true;
