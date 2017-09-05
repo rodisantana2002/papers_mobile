@@ -31,7 +31,8 @@
             android:textColor="@color/cardview_dark_background"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:visibility="visible" />
+            android:visibility="visible"
+            tools:ignore="HardcodedText,RtlHardcoded" />
 
 
         <TextView
@@ -44,7 +45,8 @@
             android:textAlignment="viewStart"
             android:textColor="#8a000000"
             android:textSize="16sp"
-            android:visibility="visible" />
+            android:visibility="visible"
+            tools:ignore="HardcodedText,InefficientWeight,RtlHardcoded" />
 
 
     </LinearLayout>

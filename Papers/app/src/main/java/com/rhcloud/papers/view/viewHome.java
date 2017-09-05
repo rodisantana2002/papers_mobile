@@ -67,6 +67,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                     efetuarLogout();
                     return true;
                 case R.id.navigation_autores:
+                    carregarAutores();
                     return true;
                 case R.id.navigation_servicos:
                     carregarServicos();
@@ -75,6 +76,16 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
             return false;
         }
     };
+
+    private void carregarAutores() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", usuario);
+
+        Intent intent = new Intent(viewHome.this, viewAutor.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 
     private void carregarServicos() {
         Bundle bundle = new Bundle();

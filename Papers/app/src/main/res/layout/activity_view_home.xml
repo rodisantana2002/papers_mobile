@@ -61,7 +61,7 @@
                             android:textColor="@color/colorPrimary"
                             android:textColorHint="@color/cardview_dark_background"
                             android:textSize="20sp"
-                            tools:ignore="HardcodedText" />
+                            tools:ignore="HardcodedText,InefficientWeight,RtlHardcoded,RtlSymmetry" />
 
                         <ImageButton
                             android:id="@+id/btnPerfil"
@@ -70,7 +70,8 @@
                             android:background="@android:color/transparent"
 
                             android:scaleType="centerInside"
-                            android:src="@drawable/ic_chevron_right_black_18dp" />
+                            android:src="@drawable/ic_chevron_right_black_18dp"
+                            tools:ignore="ContentDescription" />
 
                     </LinearLayout>
 
@@ -87,7 +88,7 @@
                         android:textColor="@android:color/darker_gray"
                         android:textColorHint="@color/cardview_dark_background"
                         android:textSize="12sp"
-                        tools:ignore="HardcodedText" />
+                        tools:ignore="HardcodedText,InefficientWeight,RtlHardcoded,RtlSymmetry" />
 
                 </LinearLayout>
 

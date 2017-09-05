@@ -31,7 +31,8 @@
             android:gravity="left"
             android:orientation="horizontal"
             android:padding="03dp"
-            android:weightSum="1">
+            android:weightSum="1"
+            tools:ignore="RtlHardcoded">
 
             <ImageButton
                 android:id="@+id/btnVoltarResumoProfissional"
@@ -39,7 +40,8 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_chevron_left_black_18dp" />
+                android:src="@drawable/ic_chevron_left_black_18dp"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/titleapp"
@@ -53,7 +55,7 @@
                 android:textColor="@android:color/black"
                 android:textColorHint="@color/cardview_dark_background"
                 android:textSize="20sp"
-                tools:ignore="HardcodedText" />
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
         </LinearLayout>
 
@@ -67,7 +69,8 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="10dp"
-            android:weightSum="1">
+            android:weightSum="1"
+            tools:ignore="RtlHardcoded">
 
 
             <android.support.design.widget.TextInputLayout

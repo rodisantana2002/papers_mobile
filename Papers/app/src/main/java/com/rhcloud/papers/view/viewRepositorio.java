@@ -20,7 +20,10 @@ import android.widget.TextView;
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlDestino;
 import com.rhcloud.papers.control.ctrlPessoa;
+import com.rhcloud.papers.excecoes.excPassaErro;
+import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
+import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Destino;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.view.adapters.adpRepositorios;
@@ -69,12 +72,11 @@ public class viewRepositorio extends AppCompatActivity implements View.OnClickLi
         btnFloat.setOnClickListener(viewRepositorio.this);
         btnVoltar = (ImageButton)  findViewById(R.id.btnVoltarHomeRepositorio);
         btnVoltar.setOnClickListener(viewRepositorio.this);
-
     }
 
     @Override
     public void onClick(View view) {
-        if(view.getId()==btnVoltar.getId()){
+        if(view.getId() == btnVoltar.getId()){
             Bundle bundle = new Bundle();
             bundle.putSerializable("usuario", usuario);
 
@@ -83,7 +85,7 @@ public class viewRepositorio extends AppCompatActivity implements View.OnClickLi
             intent.putExtras(bundle);
             startActivity(intent);
         }
-        if(view.getId()== btnFloat.getId()){
+        if(view.getId() == btnFloat.getId()){
             Bundle bundle = new Bundle();
             bundle.putSerializable("destino", new Destino());
             Intent intent = new Intent(viewRepositorio.this, viewRepositorioDetail.class);

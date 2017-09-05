@@ -31,7 +31,8 @@ tools:context="com.rhcloud.papers.view.viewAutorDetail">
         android:gravity="left"
         android:orientation="horizontal"
         android:padding="03dp"
-        android:weightSum="1">
+        android:weightSum="1"
+        tools:ignore="RtlHardcoded">
 
         <ImageButton
             android:id="@+id/btnVoltarAutor"
@@ -39,7 +40,8 @@ tools:context="com.rhcloud.papers.view.viewAutorDetail">
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_chevron_left_black_18dp" />
+            android:src="@drawable/ic_chevron_left_black_18dp"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/titleapp"
@@ -53,7 +55,7 @@ tools:context="com.rhcloud.papers.view.viewAutorDetail">
             android:textColor="@android:color/black"
             android:textColorHint="@color/cardview_dark_background"
             android:textSize="20sp"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
     </LinearLayout>
 
@@ -67,7 +69,8 @@ tools:context="com.rhcloud.papers.view.viewAutorDetail">
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="5dp"
-        android:weightSum="1">
+        android:weightSum="1"
+        tools:ignore="RtlHardcoded">
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -125,39 +128,6 @@ tools:context="com.rhcloud.papers.view.viewAutorDetail">
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/txtDDDAutor"
-                    android:layout_width="35dp"
-                    android:layout_height="wrap_content"
-                    android:hint="ddd"
-                    android:inputType="text"
-                    android:maxLength="3"
-                    android:textColor="?android:attr/colorControlNormal"
-                    android:textSize="16sp"
-                    tools:ignore="HardcodedText,LabelFor" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/txtFoneCelularAutor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="fone celular"
-                    android:inputType="text|phone"
-                    android:maxLength="10"
-                    android:textColor="?android:attr/colorControlNormal"
-                    android:textSize="16sp"
-                    tools:ignore="HardcodedText,LabelFor" />
-
-            </android.support.design.widget.TextInputLayout>
-
         </LinearLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -187,7 +157,8 @@ tools:context="com.rhcloud.papers.view.viewAutorDetail">
                 android:hint="Pais"
                 android:maxLength="50"
                 android:textColor="?android:attr/colorControlNormal"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -201,7 +172,8 @@ tools:context="com.rhcloud.papers.view.viewAutorDetail">
                 android:hint="Estado"
                 android:maxLength="50"
                 android:textColor="?android:attr/colorControlNormal"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -215,7 +187,8 @@ tools:context="com.rhcloud.papers.view.viewAutorDetail">
                 android:hint="Cidade"
                 android:maxLength="50"
                 android:textColor="?android:attr/colorControlNormal"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
 
         <Button

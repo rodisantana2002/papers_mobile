@@ -25,7 +25,8 @@
             android:gravity="left"
             android:orientation="horizontal"
             android:padding="03dp"
-            android:weightSum="1">
+            android:weightSum="1"
+            tools:ignore="RtlHardcoded">
 
             <ImageButton
                 android:id="@+id/btnVoltarHomeRepositorio"
@@ -33,7 +34,8 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_chevron_left_black_18dp" />
+                android:src="@drawable/ic_chevron_left_black_18dp"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/titleapp"
@@ -42,12 +44,12 @@
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp"
-                android:text="Repositórios de Publicação"
+                android:text="Repositórios para Publicação"
                 android:textAlignment="textStart"
                 android:textColor="@android:color/black"
                 android:textColorHint="@color/cardview_dark_background"
                 android:textSize="20sp"
-                tools:ignore="HardcodedText" />
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
         </LinearLayout>
     </android.support.design.widget.AppBarLayout>
@@ -69,6 +71,7 @@
         app:fabSize="normal"
         app:layout_anchor="@+id/include2"
         app:layout_anchorGravity="bottom|right"
-        app:srcCompat="@drawable/ic_add_white_18dp" />
+        app:srcCompat="@drawable/ic_add_white_18dp"
+        tools:ignore="RtlHardcoded,UnusedAttribute" />
 
 </android.support.design.widget.CoordinatorLayout>
