@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#FFE1DEDF"
         android:elevation="0dp"
         android:orientation="vertical"
         android:padding="03dp"
@@ -34,7 +35,7 @@
                     style="@android:style/Widget.DeviceDefault.ImageButton"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:background="@android:color/transparent"
+                    android:background="#FFE1DEDF"
                     android:contentDescription="@string/logotipo"
                     android:foreground="@drawable/rounded_fg"
                     android:scaleType="fitXY" />

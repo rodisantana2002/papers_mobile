@@ -26,7 +26,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:background="#fafafa"
+            android:background="#FFE1DEDF"
             android:elevation="0dp"
             android:gravity="left"
             android:orientation="horizontal"
@@ -41,7 +41,7 @@
 
                 <ImageButton
                     android:id="@+id/btnVoltarAutorDetail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:scaleType="centerInside"
@@ -100,11 +100,10 @@
 
                     <ImageView
                         android:id="@+id/imgAutor"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:background="#fafafa"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginTop="10dp"
                         android:contentDescription="@string/logotipo"
-                        android:foreground="@drawable/rounded_fg"
                         android:paddingTop="0dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/ic_account_circle_black_48dp" />
@@ -113,6 +112,7 @@
                         android:id="@+id/lblAutorName"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_marginTop="5dp"
                         android:layout_weight="3.01"
                         android:background="@android:color/transparent"
                         android:gravity="center_vertical"

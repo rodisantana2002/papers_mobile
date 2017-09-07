@@ -42,8 +42,6 @@ public class viewPerfil extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_view_home);
-
         setContentView(R.layout.activity_view_perfil);
         popularListaAcoes(getIntent().getExtras());
         prepararComponenetes();
@@ -140,7 +138,6 @@ public class viewPerfil extends AppCompatActivity {
         bundle.putSerializable("usuario", usuario);
 
         Intent intent = new Intent(this, viewAlterarFoto.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -160,7 +157,6 @@ public class viewPerfil extends AppCompatActivity {
         bundle.putSerializable("usuario", usuario);
 
         Intent intent = new Intent(this, viewAlterarDadosPessoais.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -170,7 +166,6 @@ public class viewPerfil extends AppCompatActivity {
         bundle.putSerializable("usuario", usuario);
 
         Intent intent = new Intent(this, viewAlterarResumoProfissional.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -180,7 +175,7 @@ public class viewPerfil extends AppCompatActivity {
         bundle.putSerializable("usuario", usuario);
 
         Intent intent = new Intent(this, viewHome.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
         intent.putExtras(bundle);
         startActivity(intent);
     }

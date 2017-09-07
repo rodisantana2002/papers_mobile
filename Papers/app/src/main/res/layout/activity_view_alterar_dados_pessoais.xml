@@ -27,7 +27,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:background="#fafafa"
+            android:background="#FFE1DEDF"
             android:elevation="0dp"
             android:gravity="left"
             android:orientation="horizontal"
@@ -37,7 +37,7 @@
 
             <ImageButton
                 android:id="@+id/btnVoltarDadosPessoais"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:scaleType="centerInside"

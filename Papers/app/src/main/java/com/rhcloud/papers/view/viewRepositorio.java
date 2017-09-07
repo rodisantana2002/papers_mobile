@@ -73,7 +73,6 @@ public class viewRepositorio extends AppCompatActivity implements View.OnClickLi
             bundle.putSerializable("usuario", usuario);
 
             Intent intent = new Intent(this, viewHome.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -81,7 +80,6 @@ public class viewRepositorio extends AppCompatActivity implements View.OnClickLi
             Bundle bundle = new Bundle();
             bundle.putSerializable("destino", new Destino());
             Intent intent = new Intent(viewRepositorio.this, viewRepositorioDetail.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -129,7 +127,6 @@ public class viewRepositorio extends AppCompatActivity implements View.OnClickLi
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("destino", item);
                 Intent intent = new Intent(viewRepositorio.this, viewRepositorioDetail.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

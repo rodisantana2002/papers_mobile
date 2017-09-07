@@ -29,7 +29,7 @@
             tools:ignore="RtlHardcoded">
 
             <ImageButton
-                android:id="@+id/btnVoltarHomeRepositorio"
+                android:id="@+id/btnVoltarHomeDocumento"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
@@ -44,7 +44,7 @@
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp"
-                android:text="Repositórios para Publicação"
+                android:text="Artigos"
                 android:textAlignment="textStart"
                 android:textColor="@android:color/black"
                 android:textColorHint="@color/cardview_dark_background"
@@ -55,12 +55,12 @@
     </android.support.design.widget.AppBarLayout>
 
     <include
-        layout="@layout/content_view_repositorio"
+        layout="@layout/content_view_documento"
         android:visibility="visible"
         android:id="@+id/include2" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnFloatDestino"
+        android:id="@+id/btnFloatDocumento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"

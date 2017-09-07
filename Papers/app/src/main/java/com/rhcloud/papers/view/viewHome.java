@@ -64,7 +64,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                 case R.id.navigation_home:
                     return true;
                 case R.id.navigation_documentos:
-                    efetuarLogout();
+                    carregarDocumentos();
                     return true;
                 case R.id.navigation_autores:
                     carregarAutores();
@@ -82,7 +82,6 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         bundle.putSerializable("usuario", usuario);
 
         Intent intent = new Intent(viewHome.this, viewAutor.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -92,7 +91,15 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         bundle.putSerializable("usuario", usuario);
 
         Intent intent = new Intent(viewHome.this, viewRepositorio.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    private void carregarDocumentos() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", usuario);
+
+        Intent intent = new Intent(viewHome.this, viewDocumento.class);
         intent.putExtras(bundle);
         startActivity(intent);
     }

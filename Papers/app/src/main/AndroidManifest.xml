@@ -82,8 +82,15 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.viewAutorDetail"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/title_activity_view_autor_detail"/>
+            android:label="@string/title_activity_view_autor_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.viewDocumento"
+            android:label="@string/title_activity_view_documento"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.viewDocumentoEdit"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

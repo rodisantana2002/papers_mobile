@@ -27,6 +27,7 @@
             android:id="@+id/imgAcao"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:backgroundTint="@android:color/transparent"
             android:paddingRight="@dimen/fab_margin"
             android:src="@drawable/ic_camera_alt_black_18dp"
             android:visibility="visible"

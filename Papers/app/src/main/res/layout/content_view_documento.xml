@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:theme="@style/AlertDialog.AppCompat"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.rhcloud.papers.view.viewAutor"
-    tools:showIn="@layout/activity_view_autor">
+    tools:context="com.rhcloud.papers.view.viewDocumento"
+    tools:showIn="@layout/activity_view_documento">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
         tools:ignore="UselessParent">
 
         <TextView
-            android:id="@+id/txtNenhumRegistroAutor"
+            android:id="@+id/txtNenhumRegistroDocumento"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/white"
@@ -28,7 +28,7 @@
             android:paddingBottom="5dp"
             android:paddingLeft="8dp"
             android:paddingTop="15dp"
-            android:text="Nenhum Autor registrado no sistema"
+            android:text="Nenhum Artigo registrado para você no sistema"
             android:textAlignment="center"
             android:textColor="@color/cardview_dark_background"
             android:textSize="16sp"
@@ -36,7 +36,7 @@
             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/lstAutores"
+            android:id="@+id/lstDocumentos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/white"

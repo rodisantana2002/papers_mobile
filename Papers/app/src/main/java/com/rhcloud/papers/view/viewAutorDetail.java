@@ -83,7 +83,6 @@ public class viewAutorDetail extends Activity implements View.OnClickListener{
             Bundle bundle = new Bundle();
             bundle.putSerializable("autor", pessoa);
             intent = new Intent(viewAutorDetail.this, viewAutorEdit.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtras(bundle);
             startActivity(intent);
         }
