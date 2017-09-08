@@ -44,7 +44,9 @@ public class viewDocumentoResumo extends AppCompatActivity implements View.OnCli
         usuario = (Usuario) bundle.getSerializable("usuario");
         documento = (Documento) bundle.getSerializable("documento");
 
-        txtResumoArtigo.setText(documento.getResumo().toString());
+        if (documento.getResumo()!=null){
+            txtResumoArtigo.setText(documento.getResumo().toString());
+        }
     }
 
     @Override

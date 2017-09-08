@@ -39,4 +39,8 @@ public class ctrlDocumento {
     public List<Documento> obterAll() throws excPassaErro {
         return bsDocumento.findAll();
     }
+
+    public List<Documento> obterAllByAutor(Integer id) throws excPassaErro {
+        return bsDocumento.findAllByAutor(id);
+    }
 }

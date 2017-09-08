@@ -12,6 +12,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#fafafa"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
         android:paddingBottom="5dp"
@@ -19,9 +22,7 @@
         android:paddingRight="0dp"
         android:paddingTop="0dp"
         android:weightSum="1"
-        tools:ignore="UselessParent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,9 +69,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_marginTop="5dp"
+            android:background="#fafafa"
             android:theme="@style/AppTheme.NoActionBar"
             tools:context="com.rhcloud.papers.view.viewAutorDetail">
 
@@ -91,6 +91,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="0"
                     android:background="@android:color/white"
                     android:gravity="center"
@@ -102,7 +104,7 @@
                         android:id="@+id/lblTitulo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="0dp"
                         android:layout_weight="3.01"
                         android:background="#FFE4E7E9"
                         android:gravity="center_vertical"
@@ -113,117 +115,129 @@
                         android:textStyle="bold"
                         tools:ignore="HardcodedText" />
 
+                    <TextView
+                        android:id="@+id/lblTipo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="3dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:layout_weight="3.01" />
+
+                    <TextView
+                        android:id="@+id/lblResumo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="3.01"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="12sp"
+                        tools:ignore="HardcodedText" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_weight="3.01" />
+
+                    <TextView
+                        android:id="@+id/lblPalavrasChave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="3.01"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="12sp"
+                        tools:ignore="HardcodedText" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp"
+                        android:layout_weight="3.01" />
+
+                    <TextView
+                        android:id="@+id/lblAutoresArtigo"
+                        android:layout_width="match_parent"
+                        android:layout_height="23dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:layout_weight="3.01"
+                        android:background="#fafafa"
+                        android:gravity="left|center_vertical"
+                        android:paddingLeft="4dp"
+                        android:text="Participantes"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="12sp" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/ListaAutores"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="3.01"
+                        android:visibility="visible" />
+
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/lblTipo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:layout_weight="0"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="14sp"
-                    tools:ignore="HardcodedText" />
-
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:layout_weight="0" />
-
-                <TextView
-                    android:id="@+id/lblResumo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="10dp"
                     android:layout_weight="0"
-                    android:background="@android:color/transparent"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="12sp"
-                    tools:ignore="HardcodedText" />
+                    android:background="@android:color/white" />
 
-                <Space
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_weight="0" />
-
-                <TextView
-                    android:id="@+id/lblPalavrasChave"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="0dp"
                     android:layout_weight="0"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="12sp"
-                    tools:ignore="HardcodedText" />
+                    android:background="@android:color/white"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/lblTituloAcoes"
+                        android:layout_width="match_parent"
+                        android:layout_height="23dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="#fafafa"
+                        android:gravity="left|center_vertical"
+                        android:text="Ações"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/ListaAcoes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/lblTituloAcoes"
-                    android:layout_width="match_parent"
-                    android:layout_height="27dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#fafafa"
-                    android:gravity="left|center_vertical"
-                    android:text="Ações"
-                    android:textColor="@color/colorPrimary" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/ListaAcoes"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp">
-
-                </android.support.v7.widget.RecyclerView>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp" />
-
-                <TextView
-                    android:id="@+id/lblAutoresArtigo"
-                    android:layout_width="match_parent"
-                    android:layout_height="27dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#fafafa"
-                    android:gravity="left|center_vertical"
-                    android:text="Participantes"
-                    android:textColor="@color/colorPrimary" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/ListaAutores"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:visibility="visible" />
-
-            </LinearLayout>
-        </ScrollView>
 
     </LinearLayout>
 </RelativeLayout>

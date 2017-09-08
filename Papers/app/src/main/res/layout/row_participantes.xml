@@ -61,15 +61,14 @@
                 <TextView
                     android:id="@+id/txtNomeParticipante"
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
+                    android:layout_height="20dp"
                     android:layout_weight="1"
                     android:height="40dp"
                     android:gravity="left|center_vertical"
                     android:text="NomeAutor"
                     android:textAlignment="viewStart"
                     android:textColor="@color/cardview_dark_background"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
+                    android:textSize="13sp"
                     android:visibility="visible"
                     tools:ignore="HardcodedText,RtlHardcoded" />
 
@@ -81,8 +80,8 @@
                     android:layout_weight="1"
                     android:height="40dp"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="10sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="11sp"
                     android:visibility="visible"
                     tools:ignore="HardcodedText,RtlHardcoded" />
 

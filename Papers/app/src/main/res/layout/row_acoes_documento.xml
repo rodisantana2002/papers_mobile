@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="55dp"
+    android:layout_height="45dp"
     android:background="@android:color/white"
     android:clickable="true"
     android:focusable="true"
@@ -61,7 +61,7 @@
                     android:text="NomeAcao"
                     android:textAlignment="viewStart"
                     android:textColor="@color/cardview_dark_background"
-                    android:textSize="16sp"
+                    android:textSize="13sp"
                     android:visibility="visible"
                     tools:ignore="HardcodedText,RtlHardcoded" />
 
@@ -85,7 +85,7 @@
                 android:text="comentário ação"
                 android:textAlignment="viewStart"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 tools:ignore="HardcodedText" />
 
         </LinearLayout>

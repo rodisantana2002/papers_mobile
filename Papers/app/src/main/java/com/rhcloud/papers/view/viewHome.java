@@ -15,6 +15,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,6 +38,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
     private TextView lblUsuario, lblDtUltAcesso;
     private ImageButton btnPerfil;
     private ImageView imgUsuario;
+    private Button btnSair;
 
     private ProgressDialog progressDialog;
     private procDados procDados;
@@ -48,6 +50,8 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        btnSair = (Button) findViewById(R.id.btnSair);
+        btnSair.setOnClickListener(this);
     }
 
     @Override
@@ -156,6 +160,10 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtras(bundle);
             startActivity(intent);
+        }
+
+        if(view.getId() == btnSair.getId()){
+            efetuarLogout();
         }
     }
 

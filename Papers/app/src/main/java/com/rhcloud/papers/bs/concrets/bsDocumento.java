@@ -91,5 +91,13 @@ public class bsDocumento implements itfGeneric<Documento> {
 
         return lstDocumentos;
     }
+
+    public List<Documento> findAllByAutor(Integer id) throws excPassaErro {
+        List<Documento> lstDocumentos = new ArrayList<Documento>();
+        String response = connRest.get(hlpConstants.URL_BASE + hlpConstants.URL_DOCUMENTO + "obterbyautor/" + String.valueOf(id));
+        lstDocumentos = gson.fromJson(response, new TypeToken<List<Documento>>() {}.getType());
+
+        return lstDocumentos;
+    }
 }
 

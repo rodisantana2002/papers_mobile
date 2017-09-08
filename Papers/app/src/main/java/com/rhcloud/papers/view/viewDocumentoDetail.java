@@ -11,13 +11,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rhcloud.papers.R;
-import com.rhcloud.papers.control.ctrlPessoa;
+import com.rhcloud.papers.control.ctrlDocumentoPessoas;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
 import com.rhcloud.papers.model.entity.Documento;
+import com.rhcloud.papers.model.entity.DocumentosPessoas;
 import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.transitorio.Acao;
@@ -108,6 +108,9 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
                     alterarResumo();
                 }
                 else if(item.getId()==3){
+                    gerenciarParticipantes();
+                }
+                else if(item.getId()==4){
                     criarPublicacao();
                 }
             }
@@ -117,7 +120,6 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(mAdapter);
-
     }
 
     private void alterarArtigo(){
@@ -140,8 +142,19 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
         startActivity(intent);
     }
 
+    private void gerenciarParticipantes() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", usuario);
+        bundle.putSerializable("documento", documento);
+
+        Intent intent = new Intent(this, viewDocumentoPessoas.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
     private void criarPublicacao() {
     }
+
 
     private void popularListaAcoes() {
         lstAcoes = new ArrayList<Acao>();
@@ -163,29 +176,30 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
 
         acao = new Acao();
         acao.setId(3);
+        acao.setNomeAcao("Gerenciar Participações");
+        acao.setComentarioAcao("adicione ou remova os participantes do artigo.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_group_black_24dp));
+        lstAcoes.add(acao);
+
+        acao = new Acao();
+        acao.setId(4);
         acao.setNomeAcao("Registrar Publicação");
         acao.setComentarioAcao("registre e controle os envios de publicação do seu artigo.");
         acao.setImgAcao(getDrawable(R.drawable.ic_send_black_18dp));
         lstAcoes.add(acao);
     }
 
-    private void popularLista() {
+    private void prepararLista() {
         mAdapterParticipantes = new adpDocumentoParticipantes(viewDocumentoDetail.this, lstParticipantes);
         mAdapterParticipantes.setOnItemClickListener(new itfOnItemClickListener<Pessoa>(){
 
             @Override
             public void onItemClick(Pessoa item) {
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("autor", item);
-//                Intent intent = new Intent(viewAutor.this, viewAutorDetail.class);
-//                intent.putExtras(bundle);
-//                startActivity(intent);
             }
         }) ;
 
         recyclerViewParticipantes.setLayoutManager(new LinearLayoutManager(viewDocumentoDetail.this));
         recyclerViewParticipantes.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewParticipantes.addItemDecoration(new dividerItemDecorator(viewDocumentoDetail.this, LinearLayoutManager.VERTICAL));
         recyclerViewParticipantes.setAdapter(mAdapterParticipantes);
         recyclerViewParticipantes.setVisibility(View.VISIBLE);
     }
@@ -205,9 +219,14 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
     private class procDados extends AsyncTask<Void, Void, List<Pessoa>> {
         @Override
         protected List<Pessoa> doInBackground(Void... voids) {
-            ctrlPessoa ctrlPessoa = new ctrlPessoa(new Pessoa());
+            ctrlDocumentoPessoas ctrlDocumentoPessoas  = new ctrlDocumentoPessoas(new DocumentosPessoas());
             try {
-                lstParticipantes = ctrlPessoa.obterAll();
+                List<DocumentosPessoas> documentosPessoases = ctrlDocumentoPessoas.obterAllByDocumento(documento.getId());
+                for (DocumentosPessoas pessoas : documentosPessoases){
+                    lstParticipantes.add(pessoas.getPessoa());
+                }
+                lstParticipantes.add(usuario.getPessoa());
+
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 excPassaErro.getMessage();
                 lstParticipantes = new ArrayList<Pessoa>();
@@ -223,7 +242,7 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
         @Override
         protected void onPostExecute(List<Pessoa> destinos) {
             progressDialog.dismiss();
-            popularLista();
+            prepararLista();
         }
     }
 }

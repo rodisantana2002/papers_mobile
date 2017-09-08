@@ -66,7 +66,6 @@ public class adpDocumentos extends RecyclerView.Adapter<adpDocumentos.RepoHolder
 
         holder.txtTitulo.setOnClickListener(listener);
         holder.txtPalavrasChave.setOnClickListener(listener);
-        holder.imgDocumentoDetail.setOnClickListener(listener);
         holder.txtTipoDocumento.setOnClickListener(listener);
         holder.gridDocumento.setOnClickListener(listener);
     }
@@ -83,7 +82,6 @@ public class adpDocumentos extends RecyclerView.Adapter<adpDocumentos.RepoHolder
             this.txtPalavrasChave = (TextView) itemView.findViewById(R.id.txtPalavrasChave);
             this.txtTipoDocumento = (TextView) itemView.findViewById(R.id.txtTipoDocumento);
             this.gridDocumento = (GridLayout) itemView.findViewById(R.id.gridTitulo);
-            this.imgDocumentoDetail = (ImageView) itemView.findViewById(R.id.imgDetalheArtigo);
         }
     }
 

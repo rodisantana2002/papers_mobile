@@ -75,6 +75,7 @@ public class adpDocumentoParticipantes extends RecyclerView.Adapter<adpDocumento
         };
         holder.txtNomeCompleto.setOnClickListener(listener);
         holder.txtInstituicao.setOnClickListener(listener);
+        holder.imgFoto.setOnClickListener(listener);
     }
 
     public class RepoHolder extends RecyclerView.ViewHolder {

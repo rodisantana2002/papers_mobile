@@ -122,5 +122,10 @@ public class Pessoa implements Serializable {
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
-    }    
+    }
+
+    @Override
+    public String toString() {
+        return primeiroNome + " " + segundoNome;
+    }
 }

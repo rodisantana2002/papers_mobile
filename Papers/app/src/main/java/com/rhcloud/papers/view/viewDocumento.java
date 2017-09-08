@@ -119,7 +119,7 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
         protected List<Documento> doInBackground(Void... voids) {
             ctrlDocumento ctrlDocumento = new ctrlDocumento(new Documento());
             try {
-                lstDocumentos = ctrlDocumento.obterAll();
+                lstDocumentos = ctrlDocumento.obterAllByAutor(usuario.getId());
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 excPassaErro.getMessage();
                 lstDocumentos = new ArrayList<Documento>();
