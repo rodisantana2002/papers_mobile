@@ -67,12 +67,13 @@
 
                         <ImageButton
                             android:id="@+id/btnPerfil"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:background="@android:color/transparent"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="right|center"
 
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_chevron_right_black_18dp"
+                            android:background="@android:color/transparent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_settings_black_24dp"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>

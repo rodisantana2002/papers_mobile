@@ -20,25 +20,22 @@ import com.rhcloud.papers.control.ctrlDocumentoPessoas;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
 import com.rhcloud.papers.model.entity.Documento;
 import com.rhcloud.papers.model.entity.DocumentosPessoas;
-import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
-import com.rhcloud.papers.model.transitorio.Acao;
-import com.rhcloud.papers.view.adapters.adpAcoesDocumento;
-import com.rhcloud.papers.view.adapters.adpDocumentoParticipantes;
+import com.rhcloud.papers.view.adapters.adpParticipantes;
 import com.rhcloud.papers.view.decorator.dividerItemDecorator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class viewDocumentoPessoas extends AppCompatActivity implements View.OnClickListener{
-    private adpDocumentoParticipantes mAdapterParticipantes;
+    private adpParticipantes mAdapterParticipantes;
     private TextView txtNenhumRegistro;
     private Documento documento;
     private Usuario usuario;
     private ImageButton btnVoltar;
     private FloatingActionButton btnNovoParticipante;
     private ProgressDialog progressDialog;
-    private List<Pessoa> lstParticipantes;
+    private List<DocumentosPessoas> lstParticipantes;
 
     private RecyclerView recyclerViewParticipantes;
     private RecyclerView.LayoutManager layoutManagerParticipantes;
@@ -51,7 +48,7 @@ public class viewDocumentoPessoas extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_view_documento_pessoas);
         prepararComponentes(getIntent().getExtras());
 
-        lstParticipantes = new ArrayList<Pessoa>();
+        lstParticipantes = new ArrayList<DocumentosPessoas>();
         procDados = new procDados();
         procDados.execute();
     }
@@ -74,10 +71,19 @@ public class viewDocumentoPessoas extends AppCompatActivity implements View.OnCl
     }
 
     private void prepararLista() {
-        mAdapterParticipantes = new adpDocumentoParticipantes(viewDocumentoPessoas.this, lstParticipantes);
-        mAdapterParticipantes.setOnItemClickListener(new itfOnItemClickListener<Pessoa>(){
+        mAdapterParticipantes = new adpParticipantes(viewDocumentoPessoas.this, lstParticipantes);
+        mAdapterParticipantes.setOnItemClickListener(new itfOnItemClickListener<DocumentosPessoas>(){
             @Override
-            public void onItemClick(Pessoa item) {}}) ;
+            public void onItemClick(DocumentosPessoas item) {
+                Intent intent;
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("usuario", usuario);
+                bundle.putSerializable("documento", documento);
+                bundle.putSerializable("participante", item);
+                intent = new Intent(viewDocumentoPessoas.this, viewDocumentoPessoasEdit.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }}) ;
 
         recyclerViewParticipantes.setLayoutManager(new LinearLayoutManager(viewDocumentoPessoas.this));
         recyclerViewParticipantes.setItemAnimator(new DefaultItemAnimator());
@@ -108,19 +114,15 @@ public class viewDocumentoPessoas extends AppCompatActivity implements View.OnCl
         }
     }
 
-    private class procDados extends AsyncTask<Void, Void, List<Pessoa>> {
+    private class procDados extends AsyncTask<Void, Void, List<DocumentosPessoas>> {
         @Override
-        protected List<Pessoa> doInBackground(Void... voids) {
+        protected List<DocumentosPessoas> doInBackground(Void... voids) {
             ctrlDocumentoPessoas ctrlDocumentoPessoas  = new ctrlDocumentoPessoas(new DocumentosPessoas());
             try {
-                List<DocumentosPessoas> documentosPessoases = ctrlDocumentoPessoas.obterAllByDocumento(documento.getId());
-                for (DocumentosPessoas pessoas : documentosPessoases){
-                    lstParticipantes.add(pessoas.getPessoa());
-                }
-
+                lstParticipantes = ctrlDocumentoPessoas.obterAllByDocumento(documento.getId());
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 excPassaErro.getMessage();
-                lstParticipantes = new ArrayList<Pessoa>();
+                lstParticipantes = new ArrayList<DocumentosPessoas>();
             }
             return lstParticipantes;
         }
@@ -131,7 +133,7 @@ public class viewDocumentoPessoas extends AppCompatActivity implements View.OnCl
         }
 
         @Override
-        protected void onPostExecute(List<Pessoa> destinos) {
+        protected void onPostExecute(List<DocumentosPessoas> destinos) {
             progressDialog.dismiss();
             if (lstParticipantes.isEmpty()){
                 recyclerViewParticipantes.setVisibility(View.GONE);

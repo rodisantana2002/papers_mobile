@@ -123,7 +123,7 @@ public class viewAutorDetail extends AppCompatActivity implements View.OnClickLi
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(viewAutorDetail.this, "Aguarde", "Enviando solicitação...");
+            progressDialog = ProgressDialog.show(viewAutorDetail.this, "Aguarde", "Carregando dados...");
         }
 
         @Override

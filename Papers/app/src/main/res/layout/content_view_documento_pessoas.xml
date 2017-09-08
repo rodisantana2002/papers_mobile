@@ -28,7 +28,7 @@
             android:paddingBottom="5dp"
             android:paddingLeft="8dp"
             android:paddingTop="15dp"
-            android:text="Até o momento não foi regsitardo nenhum outro participante além do Autor"
+            android:text="Até o momento só existe o Autor registrado como Participante neste artigo."
             android:textAlignment="center"
             android:textColor="@color/cardview_dark_background"
             android:textSize="16sp"

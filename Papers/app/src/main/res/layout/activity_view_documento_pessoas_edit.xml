@@ -102,6 +102,18 @@
                     android:layout_weight="1"
                     android:text="Participante"
                     android:textColor="@color/cardview_dark_background"
+                    android:textSize="13sp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/txtNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="txtNome"
+                    android:textColor="@color/cardview_dark_background"
                     android:textSize="16sp"
                     tools:ignore="HardcodedText" />
 

@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="1dp"
             android:background="#fafafa"
             android:theme="@style/AppTheme.NoActionBar"
             tools:context="com.rhcloud.papers.view.viewAutorDetail">
@@ -101,13 +101,25 @@
 
 
                     <TextView
+                        android:id="@+id/lblTipo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fafafa"
+                        android:padding="3dp"
+                        android:textAlignment="textStart"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
                         android:id="@+id/lblTitulo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
-                        android:layout_weight="3.01"
+                        android:layout_weight="0"
                         android:background="#FFE4E7E9"
                         android:gravity="center_vertical"
+                        android:padding="2dp"
                         android:text="Titulo"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimaryDark"
@@ -115,23 +127,9 @@
                         android:textStyle="bold"
                         tools:ignore="HardcodedText" />
 
-                    <TextView
-                        android:id="@+id/lblTipo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="3dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:textAlignment="center"
-                        android:textColor="@color/cardview_dark_background"
-                        android:textSize="14sp"
-                        tools:ignore="HardcodedText" />
-
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="5dp"
+                        android:layout_height="3dp"
                         android:layout_weight="3.01" />
 
                     <TextView
@@ -185,7 +183,7 @@
                         android:paddingLeft="4dp"
                         android:text="Participantes"
                         android:textColor="@color/cardview_dark_background"
-                        android:textSize="12sp" />
+                        android:textSize="13sp" />
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/ListaAutores"

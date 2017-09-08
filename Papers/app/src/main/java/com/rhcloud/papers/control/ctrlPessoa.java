@@ -40,4 +40,7 @@ public class ctrlPessoa {
         return bsPessoa.findAll();
     }
 
+    public List <Pessoa> obterAllById(Integer id) throws excPassaErro {
+        return bsPessoa.findAllById(id);
+    }
 }

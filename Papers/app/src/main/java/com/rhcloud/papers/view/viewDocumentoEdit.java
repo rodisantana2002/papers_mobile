@@ -228,7 +228,7 @@ public class viewDocumentoEdit extends AppCompatActivity implements View.OnClick
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(viewDocumentoEdit.this, "Aguarde", "Enviando carregando dados...");
+            progressDialog = ProgressDialog.show(viewDocumentoEdit.this, "Aguarde", "Carregando dados...");
         }
 
         @Override

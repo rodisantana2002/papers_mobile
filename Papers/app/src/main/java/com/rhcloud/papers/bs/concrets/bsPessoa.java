@@ -96,5 +96,14 @@ public class bsPessoa implements itfGeneric<Pessoa> {
 
         return pessoa;
     }
+
+    public List<Pessoa> findAllById(Integer id) throws excPassaErro{
+        List<Pessoa> lstPessoa = new ArrayList<Pessoa>();
+        String response = connRest.get(hlpConstants.URL_BASE + hlpConstants.URL_PESSOA + "obterbyfilter/" + String.valueOf(id));
+        lstPessoa = gson.fromJson(response, new TypeToken<List<Pessoa>>() {}.getType());
+
+        return lstPessoa;
+    }
+
 }
 

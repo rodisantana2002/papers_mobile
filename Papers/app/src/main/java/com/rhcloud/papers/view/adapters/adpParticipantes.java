@@ -13,18 +13,20 @@ import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
-import com.rhcloud.papers.model.entity.Pessoa;
+import com.rhcloud.papers.model.entity.DocumentosPessoas;
 
 import java.util.List;
 
 /**
- * Created by rodolfosantana on 07/09/17.
+ * Created by rodolfosantana on 08/09/17.
  */
 
-public class adpDocumentoParticipantes extends RecyclerView.Adapter<adpDocumentoParticipantes.RepoHolder>  {
-    private List<Pessoa> lstAutores;
+public class adpParticipantes extends RecyclerView.Adapter<adpParticipantes.RepoHolder>  {
+    private List<DocumentosPessoas> lstAutores;
     private Context context;
     private itfOnItemClickListener onItemClickListener;
+    private GridLayout gridParticipante;
+    private ImageView imgParticipante;
 
 
     public itfOnItemClickListener getOnItemClickListener() {
@@ -35,7 +37,7 @@ public class adpDocumentoParticipantes extends RecyclerView.Adapter<adpDocumento
         this.onItemClickListener = onItemClickListener;
     }
 
-    public adpDocumentoParticipantes(Context context, List<Pessoa> lsAutores) {
+    public adpParticipantes(Context context, List<DocumentosPessoas> lsAutores) {
         this.context = context;
         this.lstAutores = lsAutores;
     }
@@ -49,19 +51,19 @@ public class adpDocumentoParticipantes extends RecyclerView.Adapter<adpDocumento
 
     @Override
     public void onBindViewHolder(RepoHolder holder, int position) {
-        final Pessoa pessoa = lstAutores.get(position);
+        final DocumentosPessoas documentosPessoas = lstAutores.get(position);
 
-        holder.txtNomeCompleto.setText(lstAutores.get(position).getPrimeiroNome() + " " + lstAutores.get(position).getSegundoNome());
+        holder.txtNomeCompleto.setText(lstAutores.get(position).getPessoa().getPrimeiroNome() + " " + lstAutores.get(position).getPessoa().getSegundoNome());
 
-        if(lstAutores.get(position).getInstituicao()!=null){
-            holder.txtInstituicao.setText(lstAutores.get(position).getInstituicao());
+        if(lstAutores.get(position).getPessoa().getInstituicao()!=null){
+            holder.txtInstituicao.setText(lstAutores.get(position).getPessoa().getInstituicao());
         }
 
-        if (lstAutores.get(position).getFoto()==null){
+        if (lstAutores.get(position).getPessoa().getFoto()==null){
             holder.imgFoto.setImageDrawable(context.getDrawable(R.drawable.ic_account_circle_black_48dp));
         }
         else {
-            Bitmap bmUser = BitmapFactory.decodeByteArray(lstAutores.get(position).getFoto(), 0, lstAutores.get(position).getFoto().length);
+            Bitmap bmUser = BitmapFactory.decodeByteArray(lstAutores.get(position).getPessoa().getFoto(), 0, lstAutores.get(position).getPessoa().getFoto().length);
             holder.imgFoto.setImageBitmap(bmUser);
         }
 
@@ -70,7 +72,7 @@ public class adpDocumentoParticipantes extends RecyclerView.Adapter<adpDocumento
             @Override
             public void onClick(View view) {
 
-                onItemClickListener.onItemClick(pessoa);
+                onItemClickListener.onItemClick(documentosPessoas);
             }
         };
         holder.txtNomeCompleto.setOnClickListener(listener);

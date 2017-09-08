@@ -37,6 +37,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="2dp"
                 android:foreground="@drawable/rounded_fg"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_camera_alt_black_18dp"
@@ -113,6 +114,7 @@
                         android:layout_height="20dp"
                         android:layout_gravity="right|center_vertical"
                         android:height="40dp"
+                        android:paddingRight="3dp"
                         android:textAlignment="viewStart"
                         android:textColor="@color/cardview_dark_background"
                         android:textSize="10sp"
@@ -134,10 +136,9 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:gravity="left|center_vertical|center_horizontal"
-            android:paddingBottom="1dp"
-            android:paddingTop="1dp"
+            android:padding="5dp"
             android:text="Sobre o Autor"
-            android:textSize="9sp"
+            android:textSize="10sp"
             tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
 
     </LinearLayout>

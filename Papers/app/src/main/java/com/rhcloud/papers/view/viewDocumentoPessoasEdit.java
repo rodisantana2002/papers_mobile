@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlDocumentoPessoas;
@@ -25,16 +26,18 @@ import com.rhcloud.papers.view.adapters.adpPessoas;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.OnClickListener{
     private Spinner txtParticipante;
+    private TextView txtNome;
     private adpPessoas adpPessoas;
     private Documento documento;
     private Usuario usuario;
     private Pessoa pessoa;
     private DocumentosPessoas documentosPessoas;
     private Button btnEnviar;
-    private ImageButton btnVoltar,  btnExcluir;
+    private ImageButton btnVoltar, btnExcluir;
     private ProgressDialog progressDialog;
     private procDados procDados;
     private pouplarDados pouplarDados;
@@ -43,9 +46,8 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_documento_pessoas_edit);
+
         prepararComponentes(getIntent().getExtras());
-        pouplarDados = new pouplarDados();
-        pouplarDados.execute();
     }
 
     private void prepararComponentes(Bundle bundle) {
@@ -54,6 +56,7 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
         documentosPessoas = (DocumentosPessoas) bundle.getSerializable("participante");
 
         txtParticipante = (Spinner) findViewById(R.id.txtTipo);
+        txtNome = (TextView) findViewById(R.id.txtNome);
 
         btnEnviar = (Button) findViewById(R.id.btnEnviarParticipanteDocumento);
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarDocumentoPessoasEdit);
@@ -63,12 +66,19 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
         btnVoltar.setOnClickListener(this);
         btnExcluir.setOnClickListener(this);
 
-
         if (documentosPessoas.getId() == null) {
+            pouplarDados = new pouplarDados();
+            pouplarDados.execute();
+
             btnExcluir.setVisibility(View.GONE);
+            txtNome.setVisibility(View.GONE);
+            txtParticipante.setVisibility(View.VISIBLE);
         } else {
-            txtParticipante.setSelection(documentosPessoas.getPessoa().getId());
+            txtNome.setVisibility(View.VISIBLE);
+            txtNome.setText(documentosPessoas.getPessoa().getPrimeiroNome() + " " + documentosPessoas.getPessoa().getSegundoNome());
             btnExcluir.setVisibility(View.VISIBLE);
+            btnEnviar.setVisibility(View.GONE);
+            txtParticipante.setVisibility(View.GONE);
         }
     }
 
@@ -93,24 +103,24 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
             startActivity(intent);
         }
 
-//        if (view.getId() == btnExcluirDocumento.getId()) {
-//            hlpDialog.getConfirmDialog(viewDocumentoEdit.this, "Atenção", "Confirma a exclusão do Artigo?", "Sim", "Não", false, new itfDialogGeneric() {
-//                @Override
-//                public void onButtonAction(boolean value) throws excPassaErro {
-//                    if (value) {
-//                        Bundle bundle = new Bundle();
-//                        bundle.putSerializable("usuario", usuario);
-//                        ctrlDocumento ctrlDocumento = new ctrlDocumento(documento);
-//                        ctrlDocumento.remover();
-//                        Intent intent = new Intent(viewDocumentoEdit.this, viewDocumento.class);
-//                        intent.putExtras(bundle);
-//                        startActivity(intent);
-//                    } else {
-//                        txtTitulo.requestFocus();
-//                    }
-//                }
-//            });
-//        }
+        if (view.getId() == btnExcluir.getId()) {
+            hlpDialog.getConfirmDialog(viewDocumentoPessoasEdit.this, "Atenção", "Confirma a exclusão do Participante?", "Sim", "Não", false, new itfDialogGeneric() {
+                @Override
+                public void onButtonAction(boolean value) throws excPassaErro {
+                    if (value) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("usuario", usuario);
+                        bundle.putSerializable("documento", documento);
+
+                        ctrlDocumentoPessoas  ctrlDocumentoPessoas = new ctrlDocumentoPessoas(documentosPessoas);
+                        ctrlDocumentoPessoas.remover();
+                        Intent intent = new Intent(viewDocumentoPessoasEdit.this, viewDocumentoPessoas.class);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
+                }
+            });
+        }
     }
 
     private void atualizarObjeto() {
@@ -167,7 +177,7 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("usuario", usuario);
                         bundle.putSerializable("documento", documento);
-                        Intent intent = new Intent(viewDocumentoPessoasEdit.this, viewDocumento.class);
+                        Intent intent = new Intent(viewDocumentoPessoasEdit.this, viewDocumentoDetail.class);
                         intent.putExtras(bundle);
                         startActivity(intent);
                     } else {
@@ -178,30 +188,25 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
         }
     }
 
-
-
     private class pouplarDados extends AsyncTask<Void, Void, List<Pessoa>> {
         @Override
         protected List<Pessoa> doInBackground(Void... voids) {
             ctrlPessoa ctrlPessoa = new ctrlPessoa(new Pessoa());
-            List<Pessoa> pessoaList = new ArrayList<Pessoa>();
-
             try {
-                return ctrlPessoa.obterAll();
+                return ctrlPessoa.obterAllById(usuario.getPessoa().getId());
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 excPassaErro.printStackTrace();
             }
-            return pessoaList;
-
+            return new ArrayList<Pessoa>();
         }
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(viewDocumentoPessoasEdit.this, "Aguarde", "Enviando carregando dados...");
+            progressDialog = ProgressDialog.show(viewDocumentoPessoasEdit.this, "Aguarde", "Carregando dados...");
         }
 
         @Override
-        protected void onPostExecute(List<Pessoa> result) {
+        protected void onPostExecute(final List<Pessoa> result) {
             progressDialog.dismiss();
 
             adpPessoas = new adpPessoas(viewDocumentoPessoasEdit.this, android.R.layout.simple_spinner_dropdown_item, result);
