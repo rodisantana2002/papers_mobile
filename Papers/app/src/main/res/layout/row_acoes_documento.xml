@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingBottom="04dp"
+    android:paddingLeft="03dp"
+    android:paddingRight="03dp"
+    android:paddingTop="04dp">
+
+    <LinearLayout
+        android:id="@+id/Layout0"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/imgAcaoDocumento"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_camera_alt_black_18dp"
+            android:visibility="visible"
+            tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.93"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <GridLayout
+                android:id="@+id/gridAcao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2">
+
+                <TextView
+                    android:id="@+id/txtNomeAcaoDocumento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="23dp"
+                    android:height="40dp"
+                    android:gravity="left|center_vertical"
+                    android:text="NomeAcao"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="16sp"
+                    android:visibility="visible"
+                    tools:ignore="HardcodedText,RtlHardcoded" />
+
+                <ImageView
+                    android:id="@+id/imgToAcao"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="right|center"
+                    android:foreground="@drawable/rounded_fg"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_chevron_right_black_18dp"
+                    android:visibility="visible"
+                    tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
+            </GridLayout>
+
+            <TextView
+                android:id="@+id/txtComentarioAcaoDocumento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="comentário ação"
+                android:textAlignment="viewStart"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -147,7 +147,6 @@ public class viewPerfil extends AppCompatActivity {
         bundle.putSerializable("usuario", usuario);
 
         Intent intent = new Intent(this, viewAlterarSenha.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtras(bundle);
         startActivity(intent);
     }

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -20,9 +21,10 @@ import com.rhcloud.papers.control.ctrlUsuario;
 import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
 
-public class viewAutorDetail extends Activity implements View.OnClickListener{
+public class viewAutorDetail extends AppCompatActivity implements View.OnClickListener{
     private TextView lblNome, lblEmail, lblInstituicao, lblLocal, lblFone, lblResumoProfissional, lblAviso;
     private Pessoa pessoa;
+    private Usuario usuario;
     private Button btnEditar;
     private ImageButton btnVoltar;
     private ImageView imgAutor;
@@ -42,6 +44,7 @@ public class viewAutorDetail extends Activity implements View.OnClickListener{
 
     private void prepararComponentes(Bundle bundle) {
         pessoa = (Pessoa) bundle.getSerializable("autor");
+        usuario = (Usuario) bundle.getSerializable("usuario");
 
         btnEditar = (Button) findViewById(R.id.btnEditarAutor);
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarAutorDetail);
@@ -82,13 +85,17 @@ public class viewAutorDetail extends Activity implements View.OnClickListener{
         if (view.getId() == btnEditar.getId()) {
             Bundle bundle = new Bundle();
             bundle.putSerializable("autor", pessoa);
+            bundle.putSerializable("usuario", usuario);
             intent = new Intent(viewAutorDetail.this, viewAutorEdit.class);
             intent.putExtras(bundle);
             startActivity(intent);
         }
 
         if (view.getId() == btnVoltar.getId()){
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("usuario", usuario);
             intent = new Intent(viewAutorDetail.this, viewAutor.class);
+            intent.putExtras(bundle);
             startActivity(intent);
         }
     }
@@ -129,7 +136,7 @@ public class viewAutorDetail extends Activity implements View.OnClickListener{
             }
             else {
                 btnEditar.setVisibility(View.GONE);
-                lblAviso.setText("Atenção o Autor é um Usuário do sistema, dessa maneira as alterações não podem ser realizadas por outros usuários do sistema.");
+                lblAviso.setText("Atenção o Autor selecionado já é Usuário do sistema, agora somente ele poderá atualizar os dados do seu Perfil.");
                 lblAviso.setTextColor(Color.RED);
             }
         }

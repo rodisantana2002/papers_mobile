@@ -41,6 +41,7 @@ public class viewAutorEdit extends AppCompatActivity implements View.OnClickList
 
     private void prepararComponentes(Bundle bundle) {
         pessoa = (Pessoa) bundle.getSerializable("autor");
+        usuario = (Usuario) bundle.getSerializable("usuario");
 
         String[] lstPaises = getResources().getStringArray(R.array.listPaises);
         String[] lstEstados = getResources().getStringArray(R.array.listEstados);
@@ -98,7 +99,10 @@ public class viewAutorEdit extends AppCompatActivity implements View.OnClickList
         }
 
         if (view.getId() == btnVoltar.getId()){
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("usuario", usuario);
             intent = new Intent(viewAutorEdit.this, viewAutor.class);
+            intent.putExtras(bundle);
             startActivity(intent);
         }
 
@@ -107,9 +111,12 @@ public class viewAutorEdit extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
                     if (value){
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("usuario", usuario);
                         ctrlPessoa ctrlPessoa = new ctrlPessoa(pessoa);
                         ctrlPessoa.remover();
                         Intent intent = new Intent(viewAutorEdit.this, viewAutor.class);
+                        intent.putExtras(bundle);
                         startActivity(intent);
                     }
                     else{
@@ -207,7 +214,10 @@ public class viewAutorEdit extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
                     if (finalResult.trim().equals("Autor registrado com sucesso")) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("usuario", usuario);
                         Intent intent = new Intent(viewAutorEdit.this, viewAutor.class);
+                        intent.putExtras(bundle);
                         startActivity(intent);
                     } else {
                         txtPrimeiroNome.requestFocus();

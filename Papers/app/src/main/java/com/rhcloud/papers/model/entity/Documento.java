@@ -18,7 +18,12 @@ public class Documento implements Serializable{
     private String resumo;
     private String palavrasChave;
     private TipoDocumento tipoDocumento;
-    private Pessoa pessoa;    
+    private Pessoa pessoa;
+
+    public Documento(){
+        pessoa = new Pessoa();
+        tipoDocumento = new TipoDocumento();
+    }
 
     public Integer getId() {
         return id;

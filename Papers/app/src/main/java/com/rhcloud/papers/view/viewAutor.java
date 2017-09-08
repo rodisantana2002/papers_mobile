@@ -129,7 +129,7 @@ public class viewAutor extends AppCompatActivity implements View.OnClickListener
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(viewAutor.this, "Aguarde", "Carregando configurações...");
+            progressDialog = ProgressDialog.show(viewAutor.this, "Aguarde", "Carregando dados...");
         }
 
         @Override

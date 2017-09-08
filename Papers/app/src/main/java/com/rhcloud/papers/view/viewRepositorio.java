@@ -71,7 +71,6 @@ public class viewRepositorio extends AppCompatActivity implements View.OnClickLi
         if(view.getId() == btnVoltar.getId()){
             Bundle bundle = new Bundle();
             bundle.putSerializable("usuario", usuario);
-
             Intent intent = new Intent(this, viewHome.class);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -79,6 +78,7 @@ public class viewRepositorio extends AppCompatActivity implements View.OnClickLi
         if(view.getId() == btnFloat.getId()){
             Bundle bundle = new Bundle();
             bundle.putSerializable("destino", new Destino());
+            bundle.putSerializable("usuario", usuario);
             Intent intent = new Intent(viewRepositorio.this, viewRepositorioDetail.class);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -101,7 +101,7 @@ public class viewRepositorio extends AppCompatActivity implements View.OnClickLi
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(viewRepositorio.this, "Aguarde", "Carregando configurações...");
+            progressDialog = ProgressDialog.show(viewRepositorio.this, "Aguarde", "Carregando dados...");
         }
 
         @Override
@@ -128,6 +128,7 @@ public class viewRepositorio extends AppCompatActivity implements View.OnClickLi
                 bundle.putSerializable("destino", item);
                 Intent intent = new Intent(viewRepositorio.this, viewRepositorioDetail.class);
                 intent.putExtras(bundle);
+                bundle.putSerializable("usuario", usuario);
                 startActivity(intent);
             }
         }) ;

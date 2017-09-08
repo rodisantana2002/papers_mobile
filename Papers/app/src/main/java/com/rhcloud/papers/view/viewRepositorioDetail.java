@@ -16,10 +16,12 @@ import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Destino;
+import com.rhcloud.papers.model.entity.Usuario;
 
 public class viewRepositorioDetail extends AppCompatActivity implements View.OnClickListener{
     private EditText txtClassificacao, txtDescricao;
     private Destino destino;
+    private Usuario usuario;
     private Button btnEnviar;
     private ImageButton btnVoltar;
     private ProgressDialog progressDialog;
@@ -34,6 +36,9 @@ public class viewRepositorioDetail extends AppCompatActivity implements View.OnC
     }
 
     private void prepararComponentes(Bundle bundle) {
+        destino = (Destino) bundle.getSerializable("destino");
+        usuario = (Usuario) bundle.getSerializable("usuario");
+
         btnEnviar = (Button) findViewById(R.id.btnEnviarRepositorio);
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarHomeRepositorio);
         txtClassificacao = (EditText) findViewById(R.id.txtClassificaoDetail);
@@ -41,7 +46,7 @@ public class viewRepositorioDetail extends AppCompatActivity implements View.OnC
         btnEnviar.setOnClickListener(this);
         btnVoltar.setOnClickListener(this);
 
-        destino = (Destino) bundle.getSerializable("destino");
+
         txtClassificacao.setText(destino.getClassificacao());
         txtDescricao.setText(destino.getDescricao());
 
@@ -68,6 +73,12 @@ public class viewRepositorioDetail extends AppCompatActivity implements View.OnC
         }
 
         if (view.getId() == btnVoltar.getId()){
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("usuario", usuario);
+            intent = new Intent(viewRepositorioDetail.this, viewRepositorio.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+
             intent = new Intent(viewRepositorioDetail.this, viewRepositorio.class);
             startActivity(intent);
         }
@@ -79,8 +90,12 @@ public class viewRepositorioDetail extends AppCompatActivity implements View.OnC
                     if (value){
                         ctrlDestino  ctrlDestino = new ctrlDestino(destino);
                         ctrlDestino.remover();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("usuario", usuario);
                         Intent intent = new Intent(viewRepositorioDetail.this, viewRepositorio.class);
+                        intent.putExtras(bundle);
                         startActivity(intent);
+
                     }
                     else{
                         txtClassificacao.requestFocus();
@@ -154,7 +169,10 @@ public class viewRepositorioDetail extends AppCompatActivity implements View.OnC
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
                     if (result.trim().equals("Repositório registrado com sucesso")){
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("usuario", usuario);
                         Intent intent = new Intent(viewRepositorioDetail.this, viewRepositorio.class);
+                        intent.putExtras(bundle);
                         startActivity(intent);
                     }
                     else{

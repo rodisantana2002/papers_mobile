@@ -30,4 +30,9 @@ public class TipoDocumento implements Serializable{
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    @Override
+    public String toString() {
+        return this.descricao;
+    }
 }

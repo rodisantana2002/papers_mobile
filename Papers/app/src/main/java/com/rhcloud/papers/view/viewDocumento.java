@@ -82,6 +82,7 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
         if(view.getId() == btnFloat.getId()){
             Bundle bundle = new Bundle();
             bundle.putSerializable("documento", new Documento());
+            bundle.putSerializable("usuario", usuario);
             intent = new Intent(viewDocumento.this, viewDocumentoEdit.class);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -96,6 +97,7 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
             public void onItemClick(Documento item) {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("documento", item);
+                bundle.putSerializable("usuario", usuario);
                 Intent intent = new Intent(viewDocumento.this, viewDocumentoDetail.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -127,7 +129,7 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(viewDocumento.this, "Aguarde", "Carregando configurações...");
+            progressDialog = ProgressDialog.show(viewDocumento.this, "Aguarde", "Carregando dados...");
         }
 
         @Override

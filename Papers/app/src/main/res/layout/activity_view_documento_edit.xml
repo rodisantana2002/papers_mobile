@@ -40,7 +40,7 @@
                 android:columnCount="3">
 
                 <ImageButton
-                    android:id="@+id/btnVoltarAutorEdit"
+                    android:id="@+id/btnVoltarDocumentoEdit"
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
@@ -63,7 +63,7 @@
                     tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
                 <ImageButton
-                    android:id="@+id/btnExcluirAutor"
+                    android:id="@+id/btnExcluirDocumento"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
@@ -102,7 +102,8 @@
                     android:layout_weight="1"
                     android:text="Tipo"
                     android:textColor="@color/cardview_dark_background"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
 
                 <Spinner
                     android:id="@+id/txtTipo"
@@ -123,7 +124,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Titulo"
-                    android:inputType="text|textMultiLine"
+                    android:inputType="textAutoCorrect|textMultiLine"
                     android:maxLength="150"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="16sp"
@@ -139,7 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="PalavrasChave"
-                    android:inputType="text|textMultiLine"
+                    android:inputType="textAutoCorrect|textMultiLine"
                     android:maxLength="150"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="16sp"
@@ -150,20 +151,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/txtResumo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Resumo"
-                    android:inputType="text|textMultiLine"
-                    android:maxLength="500"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="16sp"
-                    tools:ignore="HardcodedText,LabelFor" />
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/btnEnviarAutor"
+                android:id="@+id/btnEnviarDocumento"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"

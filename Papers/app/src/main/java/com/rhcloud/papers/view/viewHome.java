@@ -180,7 +180,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
 
         @Override
         protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(viewHome.this, "Aguarde", "Carregando configurações...");
+            progressDialog = ProgressDialog.show(viewHome.this, "Aguarde", "Carregando dados...");
         }
 
         @Override

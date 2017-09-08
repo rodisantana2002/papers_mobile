@@ -63,17 +63,27 @@ public class adpDocumentos extends RecyclerView.Adapter<adpDocumentos.RepoHolder
                 onItemClickListener.onItemClick(documento);
             }
         };
+
         holder.txtTitulo.setOnClickListener(listener);
+        holder.txtPalavrasChave.setOnClickListener(listener);
+        holder.imgDocumentoDetail.setOnClickListener(listener);
+        holder.txtTipoDocumento.setOnClickListener(listener);
+        holder.gridDocumento.setOnClickListener(listener);
     }
 
     public class RepoHolder extends RecyclerView.ViewHolder {
-        public TextView txtTitulo, txtResumo, txtPalavrasChave, txtTipo;
+        public TextView txtTitulo, txtPalavrasChave, txtTipo, txtTipoDocumento;
+        public GridLayout gridDocumento;
+        public ImageView imgDocumentoDetail;
 
         public RepoHolder(View itemView) {
             super(itemView);
             this.txtTipo = (TextView) itemView.findViewById(R.id.txtTipoDocumento);
             this.txtTitulo = (TextView) itemView.findViewById(R.id.txtTitulo);
             this.txtPalavrasChave = (TextView) itemView.findViewById(R.id.txtPalavrasChave);
+            this.txtTipoDocumento = (TextView) itemView.findViewById(R.id.txtTipoDocumento);
+            this.gridDocumento = (GridLayout) itemView.findViewById(R.id.gridTitulo);
+            this.imgDocumentoDetail = (ImageView) itemView.findViewById(R.id.imgDetalheArtigo);
         }
     }
 
