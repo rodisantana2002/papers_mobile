@@ -85,10 +85,6 @@
             android:label="@string/title_activity_view_autor_detail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".view.viewDocumento"
-            android:label="@string/title_activity_view_documento"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".view.viewDocumentoEdit"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -97,13 +93,16 @@
         <activity
             android:name=".view.viewDocumentoResumo"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".view.viewDocumentoPessoas"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".view.viewDocumentoPessoasEdit"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".view.viewDocumentoPessoasEdit"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.viewDocumento"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/title_activity_view_documentos"/>
     </application>
 
 </manifest>

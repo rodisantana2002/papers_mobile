@@ -40,12 +40,13 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="8dp" />
+                android:layout_height="5dp" />
 
             <TextView
                 android:id="@+id/lblUsuarioPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="3.01"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
@@ -60,11 +61,11 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:background="#fafafa"
-            android:paddingBottom="5dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="0dp"
             android:paddingLeft="8dp"
-            android:paddingTop="15dp"
             android:text="Perfil do Usuário"
             android:textColor="@color/cardview_dark_background"
             android:textSize="16sp"

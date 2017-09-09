@@ -187,6 +187,9 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_view_documento">viewDocumento</string>
+    <string name="title_activity_view_documentos">Documentos</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
 
 

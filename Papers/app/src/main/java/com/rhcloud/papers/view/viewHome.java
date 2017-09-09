@@ -7,13 +7,9 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -24,11 +20,7 @@ import com.rhcloud.papers.Principal;
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlAutentication;
 import com.rhcloud.papers.control.ctrlPessoa;
-import com.rhcloud.papers.excecoes.excPassaErro;
-import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpConstants;
-import com.rhcloud.papers.helpers.generic.hlpDialog;
-import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
 
 public class viewHome extends AppCompatActivity implements View.OnClickListener{
@@ -38,7 +30,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
     private TextView lblUsuario, lblDtUltAcesso;
     private ImageButton btnPerfil;
     private ImageView imgUsuario;
-    private Button btnSair;
+    private Button btnSair, btnDocumentos;
 
     private ProgressDialog progressDialog;
     private procDados procDados;
@@ -48,10 +40,11 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_home);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         btnSair = (Button) findViewById(R.id.btnSair);
+        btnDocumentos = (Button) findViewById(R.id.btnDocumentos);
+
         btnSair.setOnClickListener(this);
+        btnDocumentos.setOnClickListener(this);
     }
 
     @Override
@@ -59,27 +52,6 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         prepararControles();
         super.onResume();
     }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    return true;
-                case R.id.navigation_documentos:
-                    carregarDocumentos();
-                    return true;
-                case R.id.navigation_autores:
-                    carregarAutores();
-                    return true;
-                case R.id.navigation_servicos:
-                    carregarServicos();
-                    return true;
-            }
-            return false;
-        }
-    };
 
     private void carregarAutores() {
         Bundle bundle = new Bundle();
@@ -157,13 +129,20 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
             bundle.putSerializable("usuario", usuario);
 
             Intent intent = new Intent(viewHome.this, viewPerfil.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtras(bundle);
             startActivity(intent);
         }
 
         if(view.getId() == btnSair.getId()){
             efetuarLogout();
+        }
+
+        if(view.getId() == btnDocumentos.getId()){
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("usuario", usuario);
+            Intent intent = new Intent(viewHome.this, viewDocumento.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }
     }
 

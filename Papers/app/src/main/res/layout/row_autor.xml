@@ -65,7 +65,7 @@
 
                     <TextView
                         android:id="@+id/txtNomeAutor"
-                        android:layout_width="280dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:height="40dp"
                         android:gravity="left|center_vertical"
@@ -77,16 +77,6 @@
                         android:visibility="visible"
                         tools:ignore="HardcodedText,RtlHardcoded" />
 
-                    <ImageView
-                        android:id="@+id/imgSituacao"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_gravity="right|center"
-                        android:foreground="@drawable/rounded_fg"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/ic_chevron_right_black_18dp"
-                        android:visibility="visible"
-                        tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
                 </GridLayout>
 
                 <GridLayout

@@ -48,33 +48,23 @@
                     android:id="@+id/gridDetalhe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:background="#fafafa">
 
                     <TextView
                         android:id="@+id/txtTipoDocumento"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="15dp"
                         android:layout_gravity="right|center_vertical"
                         android:layout_weight="1"
                         android:height="40dp"
-                        android:background="@android:color/white"
+                        android:background="#fafafa"
                         android:textAlignment="textStart"
                         android:textColor="@color/cardview_dark_background"
                         android:textSize="12sp"
                         android:visibility="visible"
                         tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
 
-                    <ImageView
-                        android:id="@+id/imgDocumentoDetail"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="right|center"
-                        android:layout_weight="1"
-                        android:foreground="@drawable/rounded_fg"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/ic_chevron_right_black_18dp"
-                        android:visibility="visible"
-                        tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
                 </GridLayout>
 
                 <GridLayout

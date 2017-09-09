@@ -50,7 +50,7 @@ public class adpAcoesDocumento extends RecyclerView.Adapter<adpAcoesDocumento.Ac
         final Acao acao = lstAcoes.get(position);
 
         holder.txtNomeAcao.setText(lstAcoes.get(position).getNomeAcao());
-        holder.txtComentarioAcao.setText(lstAcoes.get(position).getComentarioAcao());
+        //holder.txtComentarioAcao.setText(lstAcoes.get(position).getComentarioAcao());
         holder.imgAcao.setImageDrawable(lstAcoes.get(position).getImgAcao());
 
         final View.OnClickListener listener = new View.OnClickListener(){
@@ -62,24 +62,19 @@ public class adpAcoesDocumento extends RecyclerView.Adapter<adpAcoesDocumento.Ac
             }
         };
         holder.txtNomeAcao.setOnClickListener(listener);
-        holder.txtComentarioAcao.setOnClickListener(listener);
         holder.gridAcao.setOnClickListener(listener);
         holder.imgAcao.setOnClickListener(listener);
-        holder.imgToAcao.setOnClickListener(listener);
     }
 
     public class AcoesHolder extends RecyclerView.ViewHolder {
         public TextView txtNomeAcao;
-        public TextView txtComentarioAcao;
-        public ImageView imgAcao, imgToAcao;
+        public ImageView imgAcao;
         public GridLayout gridAcao;
 
         public AcoesHolder(View itemView) {
             super(itemView);
             this.txtNomeAcao = (TextView) itemView.findViewById(R.id.txtNomeAcaoDocumento);
-            this.txtComentarioAcao = (TextView) itemView.findViewById(R.id.txtComentarioAcaoDocumento);
             this.imgAcao = (ImageView) itemView.findViewById(R.id.imgAcaoDocumento);
-            this.imgToAcao = (ImageView) itemView.findViewById(R.id.imgToAcao);
             this.gridAcao = (GridLayout) itemView.findViewById(R.id.gridAcao);
         }
     }

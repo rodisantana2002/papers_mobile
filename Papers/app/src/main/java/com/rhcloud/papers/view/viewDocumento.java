@@ -4,25 +4,26 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.rhcloud.papers.R;
+import com.rhcloud.papers.control.ctrlAutorPerfil;
 import com.rhcloud.papers.control.ctrlDocumento;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
 import com.rhcloud.papers.model.entity.Documento;
-import com.rhcloud.papers.model.entity.TipoDocumento;
 import com.rhcloud.papers.model.entity.Usuario;
+import com.rhcloud.papers.model.transitorio.AutorPerfil;
 import com.rhcloud.papers.view.adapters.adpDocumentos;
-import com.rhcloud.papers.view.adapters.adpTipoDocumento;
 import com.rhcloud.papers.view.decorator.dividerItemDecorator;
 
 import java.util.ArrayList;
@@ -40,11 +41,35 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
     private procDados procDados;
     private TextView txtNenhumRegistro;
     private FloatingActionButton btnFloat;
+    private AutorPerfil autorPerfil;
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_responsavel:
+                    popularLista(autorPerfil.getLstDocumentosRespomsavel());
+                    return true;
+                case R.id.navigation_participante:
+                    popularLista(autorPerfil.getLstDocumentosParticipante());
+                    return true;
+                case R.id.navigation_favorito:
+                    return true;
+            }
+            return false;
+        }
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_documento);
+        setContentView(R.layout.activity_view_documentos);
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         popularLista(getIntent().getExtras());
     }
 
@@ -89,8 +114,8 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void popularLista() {
-        mAdapter = new adpDocumentos(viewDocumento.this, lstDocumentos);
+    private void popularLista(List<Documento> lstDocs) {
+        mAdapter = new adpDocumentos(viewDocumento.this, lstDocs);
         mAdapter.setOnItemClickListener(new itfOnItemClickListener<Documento>(){
 
             @Override
@@ -112,14 +137,14 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
         txtNenhumRegistro.setVisibility(View.GONE);
     }
 
-
     private class procDados extends AsyncTask<Void, Void, List<Documento>> {
 
         @Override
         protected List<Documento> doInBackground(Void... voids) {
-            ctrlDocumento ctrlDocumento = new ctrlDocumento(new Documento());
             try {
-                lstDocumentos = ctrlDocumento.obterAllByAutor(usuario.getId());
+                ctrlAutorPerfil ctrlAutorPerfil = new ctrlAutorPerfil(usuario);
+                autorPerfil = ctrlAutorPerfil.getAutorPerfil();
+                lstDocumentos = autorPerfil.getLstDocumentosRespomsavel();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 excPassaErro.getMessage();
                 lstDocumentos = new ArrayList<Documento>();
@@ -141,10 +166,8 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
                 txtNenhumRegistro.setVisibility(View.VISIBLE);
             }
             else {
-                popularLista();
+                popularLista(lstDocumentos);
             }
         }
     }
 }
-
-

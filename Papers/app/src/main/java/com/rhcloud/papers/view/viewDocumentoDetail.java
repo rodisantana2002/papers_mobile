@@ -116,9 +116,9 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
             }
         });
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL));
+        recyclerView.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.HORIZONTAL));
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -162,28 +162,28 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
         Acao acao = new Acao();
         acao = new Acao();
         acao.setId(1);
-        acao.setNomeAcao("Editar Dados");
+        acao.setNomeAcao("Editar");
         acao.setComentarioAcao("mantenha os dados básicos do seu artigo atualizados.");
         acao.setImgAcao(getDrawable(R.drawable.ic_chrome_reader_mode_black_18dp));
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(2);
-        acao.setNomeAcao("Registrar um Resumo");
+        acao.setNomeAcao("Resumo");
         acao.setComentarioAcao("registre um pequeno resumo para o seus artigo.");
         acao.setImgAcao(getDrawable(R.drawable.ic_reorder_black_18dp));
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(3);
-        acao.setNomeAcao("Gerenciar Participações");
+        acao.setNomeAcao("Participantes");
         acao.setComentarioAcao("adicione ou remova os participantes do artigo.");
         acao.setImgAcao(getDrawable(R.drawable.ic_group_black_24dp));
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(4);
-        acao.setNomeAcao("Registrar Publicação");
+        acao.setNomeAcao("Publicações");
         acao.setComentarioAcao("registre e controle os envios de publicação do seu artigo.");
         acao.setImgAcao(getDrawable(R.drawable.ic_send_black_18dp));
         lstAcoes.add(acao);

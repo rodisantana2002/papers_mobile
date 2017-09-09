@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_responsavel"
+        android:icon="@drawable/ic_person_pin_black_18dp"
+        android:title="Responsável"
+        app:showAsAction="always|withText"/>
+
+    <item
+        android:id="@+id/navigation_participante"
+        android:icon="@drawable/ic_group_black_24dp"
+        android:title="Participante"
+        app:showAsAction="always|withText"/>
+
+    <item
+        android:id="@+id/navigation_favorito"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:title="Favoritos"
+        app:showAsAction="always|withText" />
+
+</menu>

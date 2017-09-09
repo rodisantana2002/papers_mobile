@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme.NoActionBar"
+    tools:context="com.rhcloud.papers.view.viewDocumento">
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:visibility="visible">
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fafafa"
+                android:fitsSystemWindows="true"
+                android:theme="@style/AppTheme.AppBarOverlay"
+                android:visibility="visible"
+                app:elevation="0dp"
+                app:expanded="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="#FFE1DEDF"
+                    android:elevation="0dp"
+                    android:gravity="left"
+                    android:orientation="horizontal"
+                    android:padding="03dp"
+                    android:weightSum="1"
+                    tools:ignore="RtlHardcoded">
+
+                    <ImageButton
+                        android:id="@+id/btnVoltarHomeDocumento"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_chevron_left_black_18dp"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/titleapp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="Artigos"
+                        android:textAlignment="textStart"
+                        android:textColor="@android:color/black"
+                        android:textColorHint="@color/cardview_dark_background"
+                        android:textSize="20sp"
+                        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+                </LinearLayout>
+            </android.support.design.widget.AppBarLayout>
+
+            <include
+                android:id="@+id/include2"
+                layout="@layout/content_view_documento"
+                android:visibility="visible" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnFloatDocumento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginVertical="15dp"
+                android:clickable="true"
+                app:backgroundTint="@color/colorPrimary"
+                app:fabSize="normal"
+                app:layout_anchor="@+id/include2"
+                app:layout_anchorGravity="bottom|end"
+                app:srcCompat="@drawable/ic_add_white_18dp"
+                tools:ignore="RtlHardcoded,UnusedAttribute" />
+
+        </android.support.design.widget.CoordinatorLayout>
+    </FrameLayout>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/navigation_documentos" >
+
+    </android.support.design.widget.BottomNavigationView>
+
+</LinearLayout>

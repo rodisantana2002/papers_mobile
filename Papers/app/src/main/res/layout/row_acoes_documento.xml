@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="45dp"
     android:background="@android:color/white"
     android:clickable="true"
@@ -15,17 +15,17 @@
 
     <LinearLayout
         android:id="@+id/Layout0"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        android:gravity="center_vertical"
+        android:gravity="center_vertical|center_horizontal"
         android:orientation="horizontal"
         android:visibility="visible">
 
         <ImageView
             android:id="@+id/imgAcaoDocumento"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
             android:backgroundTint="@android:color/transparent"
             android:scaleType="fitXY"
@@ -34,12 +34,12 @@
             tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
 
         <Space
-            android:layout_width="8dp"
+            android:layout_width="5dp"
             android:layout_height="match_parent"
             android:layout_weight="0" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0.93"
             android:gravity="center_vertical"
@@ -48,14 +48,14 @@
 
             <GridLayout
                 android:id="@+id/gridAcao"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:columnCount="2">
 
                 <TextView
                     android:id="@+id/txtNomeAcaoDocumento"
                     android:layout_width="wrap_content"
-                    android:layout_height="23dp"
+                    android:layout_height="match_parent"
                     android:height="40dp"
                     android:gravity="left|center_vertical"
                     android:text="NomeAcao"
@@ -65,28 +65,12 @@
                     android:visibility="visible"
                     tools:ignore="HardcodedText,RtlHardcoded" />
 
-                <ImageView
-                    android:id="@+id/imgToAcao"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_gravity="right|center"
-                    android:foreground="@drawable/rounded_fg"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_chevron_right_black_18dp"
-                    android:visibility="visible"
-                    tools:ignore="ContentDescription,RtlHardcoded,RtlSymmetry" />
-            </GridLayout>
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0" />
 
-            <TextView
-                android:id="@+id/txtComentarioAcaoDocumento"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="comentário ação"
-                android:textAlignment="viewStart"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="11sp"
-                tools:ignore="HardcodedText" />
+            </GridLayout>
 
         </LinearLayout>
 
