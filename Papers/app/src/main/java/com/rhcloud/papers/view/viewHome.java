@@ -105,7 +105,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         acao = new Acao();
         acao.setId(6);
         acao.setNomeAcao("Sair do Sistema");
-        acao.setComentarioAcao("encerre o sistema e retorne a tela de logrn.");
+        acao.setComentarioAcao("encerre o sistema e retorne a tela de login.");
         acao.setImgAcao(getDrawable(R.drawable.ic_arrow_forward_black_24dp));
         lstAcoes.add(acao);
 

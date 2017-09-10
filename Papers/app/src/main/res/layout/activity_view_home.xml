@@ -108,43 +108,78 @@
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@android:color/white">
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:background="@android:color/white"
+        tools:ignore="InefficientWeight">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:ignore="UselessLeaf">
+            tools:ignore="UselessLeaf,UselessParent">
 
-            <TextView
-                android:id="@+id/lblMenu"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_gravity="top|center"
-                android:layout_marginBottom="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_weight="0"
-                android:background="#fafafa"
-                android:gravity="center_vertical"
-                android:paddingBottom="0dp"
-                android:paddingLeft="8dp"
-                android:text="Selecione a opção desejada."
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:background="@android:color/white"
-                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/listaAcoesMenu"
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
                 android:layout_weight="0"
-                android:background="@android:color/white" />
+                android:background="@android:color/white"
+                android:columnCount="1"
+                android:rowCount="3"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="top|center"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="0"
+                    android:background="#fafafa"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="0dp"
+                    android:paddingLeft="8dp"
+                    android:text="Selecione a opção desejada."
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:background="@android:color/white"
+                    tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/listaAcoesMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0"
+                    android:background="@android:color/white"
+                    tools:ignore="ObsoleteLayoutParam">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/lblMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="22dp"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="0"
+                    android:background="#fafafa"
+                    android:gravity="center_vertical|center"
+                    android:padding="3dp"
+                    android:paddingBottom="0dp"
+                    android:paddingLeft="0dp"
+                    android:text="||  PAPERS  ||  Desenvolvido by Rodolfo Santana - 2017  || "
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    tools:background="@android:color/white"
+                    tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,SmallSp" />
+            </GridLayout>
+
         </LinearLayout>
 
     </FrameLayout>
