@@ -15,12 +15,18 @@ import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlDocumentoPessoas;
+import com.rhcloud.papers.control.ctrlDocumentoPessoasFavoritos;
+import com.rhcloud.papers.excecoes.excPassaErro;
+import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
+import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Documento;
 import com.rhcloud.papers.model.entity.DocumentosPessoas;
+import com.rhcloud.papers.model.entity.DocumentosPessoasFavoritos;
 import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.transitorio.Acao;
+import com.rhcloud.papers.model.transitorio.AutorPerfil;
 import com.rhcloud.papers.view.adapters.adpAcoesDocumento;
 import com.rhcloud.papers.view.adapters.adpDocumentoParticipantes;
 import com.rhcloud.papers.view.decorator.dividerItemDecorator;
@@ -35,7 +41,7 @@ import java.util.List;
 public class viewDocumentoDetail extends AppCompatActivity implements View.OnClickListener {
     private TextView lblTitulo, lblTipo, lblPalavrasChave, lblResumo;
     private Button btnEditar;
-    private ImageButton btnVoltar;
+    private ImageButton btnVoltar, btnFavorito;
 
     private adpAcoesDocumento mAdapter;
     private adpDocumentoParticipantes mAdapterParticipantes;
@@ -44,6 +50,7 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
     private Documento documento;
     private Pessoa pessoa;
     private Usuario usuario;
+    private AutorPerfil autorPerfil;
 
     private List<Pessoa> lstParticipantes;
     private List<Acao> lstAcoes;
@@ -71,6 +78,7 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
     private void prepararComponentes(Bundle bundle) {
         documento = (Documento) bundle.getSerializable("documento");
         usuario = (Usuario) bundle.getSerializable("usuario");
+        autorPerfil = (AutorPerfil) bundle.getSerializable("autorPerfil");
 
         lblTitulo = (TextView) findViewById(R.id.lblTitulo);
         lblTipo = (TextView) findViewById(R.id.lblTipo);
@@ -93,6 +101,9 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarDocumentoDetail);
         btnVoltar.setOnClickListener(viewDocumentoDetail.this);
 
+        btnFavorito = (ImageButton) findViewById(R.id.btnFavorito);
+        btnFavorito.setOnClickListener(viewDocumentoDetail.this);
+
         recyclerView = (RecyclerView) findViewById(R.id.ListaAcoes);
         recyclerViewParticipantes = (RecyclerView) findViewById(R.id.ListaAutores);
 
@@ -108,18 +119,30 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
                     alterarResumo();
                 }
                 else if(item.getId()==3){
-                    gerenciarParticipantes();
+                    criarPublicacao();
                 }
                 else if(item.getId()==4){
-                    criarPublicacao();
+                    gerenciarParticipantes();
                 }
             }
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.HORIZONTAL));
         recyclerView.setAdapter(mAdapter);
+
+        //verifica se esta na lista dos favoritos
+        for (Documento doc : autorPerfil.getLstDocumentosFavoritos()){
+            if (doc.getId().equals(documento.getId())){
+                btnFavorito.setImageDrawable(getDrawable(R.drawable.ic_favorite_black_24dp));
+                btnFavorito.setTag("yes");
+                return;
+            }
+            else{
+                btnFavorito.setImageDrawable(getDrawable(R.drawable.ic_favorite_border_black_24dp));
+                btnFavorito.setTag("not");
+            }
+        }
     }
 
     private void alterarArtigo(){
@@ -146,6 +169,7 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", usuario);
         bundle.putSerializable("documento", documento);
+        bundle.putSerializable("autorPerfil", autorPerfil);
 
         Intent intent = new Intent(this, viewDocumentoPessoas.class);
         intent.putExtras(bundle);
@@ -169,23 +193,23 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
 
         acao = new Acao();
         acao.setId(2);
-        acao.setNomeAcao("Resumo");
+        acao.setNomeAcao("Resumir");
         acao.setComentarioAcao("registre um pequeno resumo para o seus artigo.");
         acao.setImgAcao(getDrawable(R.drawable.ic_reorder_black_18dp));
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(3);
-        acao.setNomeAcao("Participantes");
-        acao.setComentarioAcao("adicione ou remova os participantes do artigo.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_group_black_24dp));
+        acao.setNomeAcao("Publicar");
+        acao.setComentarioAcao("registre e controle os envios de publicação do seu artigo.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_send_black_18dp));
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(4);
-        acao.setNomeAcao("Publicações");
-        acao.setComentarioAcao("registre e controle os envios de publicação do seu artigo.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_send_black_18dp));
+        acao.setNomeAcao("Compartilhar");
+        acao.setComentarioAcao("adicione ou remova os participantes do artigo.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_group_add_black_24dp));
         lstAcoes.add(acao);
     }
 
@@ -204,6 +228,7 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
         recyclerViewParticipantes.setVisibility(View.VISIBLE);
     }
 
+
     @Override
     public void onClick(View view) {
         Intent intent;
@@ -213,6 +238,20 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
             intent = new Intent(viewDocumentoDetail.this, viewDocumento.class);
             intent.putExtras(bundle);
             startActivity(intent);
+        }
+        if (view.getId() == btnFavorito.getId()){
+            DocumentosPessoasFavoritos documentosPessoasFavoritos = new DocumentosPessoasFavoritos();
+            documentosPessoasFavoritos.setDocumento(documento);
+            documentosPessoasFavoritos.setPessoa(usuario.getPessoa());
+
+            procFavoritos procFavoritos;
+            if (btnFavorito.getTag().equals("yes")){
+                procFavoritos = new procFavoritos(documentosPessoasFavoritos, "yes");
+            }
+            else{
+                procFavoritos = new procFavoritos(documentosPessoasFavoritos, "not");
+            }
+            procFavoritos.execute();
         }
     }
 
@@ -243,6 +282,64 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
         protected void onPostExecute(List<Pessoa> destinos) {
             progressDialog.dismiss();
             prepararLista();
+        }
+    }
+
+
+
+    private class procFavoritos extends AsyncTask<Void, Void, Void> {
+        private DocumentosPessoasFavoritos documentosPessoasFavoritos;
+        private ctrlDocumentoPessoasFavoritos ctrlDocumentoPessoasFavoritos;
+        private String strType = "";
+
+        public procFavoritos(DocumentosPessoasFavoritos documentosPessoasFavoritos, String strType){
+            ctrlDocumentoPessoasFavoritos = new ctrlDocumentoPessoasFavoritos(documentosPessoasFavoritos);
+            this.strType = strType;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                if (strType.equals("yes")){
+                    ctrlDocumentoPessoasFavoritos.remover();
+                }
+                else{
+                    ctrlDocumentoPessoasFavoritos.criar();
+                }
+
+            } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
+                excPassaErro.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(viewDocumentoDetail.this, "Aguarde", "Enviando solicitação...");
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            progressDialog.dismiss();
+            if (strType.equals("yes")){
+                hlpDialog.getAlertDialog(viewDocumentoDetail.this, "Atenção", "Artigo removido dos Favoritos", "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws excPassaErro {
+                        btnFavorito.setImageDrawable(getDrawable(R.drawable.ic_favorite_border_black_24dp));
+                        btnFavorito.setTag("not");
+                    }
+                });
+            }
+            else{
+                hlpDialog.getAlertDialog(viewDocumentoDetail.this, "Atenção", "Artigo adicionado aos Favoritos", "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws excPassaErro {
+                        btnFavorito.setImageDrawable(getDrawable(R.drawable.ic_favorite_black_24dp));
+                        btnFavorito.setTag("yes");
+                    }
+                });
+            }
         }
     }
 }

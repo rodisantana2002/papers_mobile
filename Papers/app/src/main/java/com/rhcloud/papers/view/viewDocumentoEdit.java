@@ -22,6 +22,7 @@ import com.rhcloud.papers.model.entity.Documento;
 import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.TipoDocumento;
 import com.rhcloud.papers.model.entity.Usuario;
+import com.rhcloud.papers.model.transitorio.AutorPerfil;
 import com.rhcloud.papers.view.adapters.adpTipoDocumento;
 
 import java.util.ArrayList;

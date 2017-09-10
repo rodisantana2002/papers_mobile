@@ -134,7 +134,8 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         }
 
         if(view.getId() == btnSair.getId()){
-            efetuarLogout();
+            carregarAutores();
+            //efetuarLogout();
         }
 
         if(view.getId() == btnDocumentos.getId()){

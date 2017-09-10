@@ -22,6 +22,7 @@ import com.rhcloud.papers.model.entity.Documento;
 import com.rhcloud.papers.model.entity.DocumentosPessoas;
 import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
+import com.rhcloud.papers.model.transitorio.AutorPerfil;
 import com.rhcloud.papers.view.adapters.adpPessoas;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
     private adpPessoas adpPessoas;
     private Documento documento;
     private Usuario usuario;
+    private AutorPerfil autorPerfil;
     private Pessoa pessoa;
     private DocumentosPessoas documentosPessoas;
     private Button btnEnviar;
@@ -54,6 +56,8 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
         documento = (Documento) bundle.getSerializable("documento");
         usuario = (Usuario) bundle.getSerializable("usuario");
         documentosPessoas = (DocumentosPessoas) bundle.getSerializable("participante");
+        autorPerfil = (AutorPerfil) bundle.getSerializable("autorPerfil");
+
 
         txtParticipante = (Spinner) findViewById(R.id.txtTipo);
         txtNome = (TextView) findViewById(R.id.txtNome);
@@ -98,6 +102,8 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
             Bundle bundle = new Bundle();
             bundle.putSerializable("usuario", usuario);
             bundle.putSerializable("documento", documento);
+            bundle.putSerializable("autorPerfil", autorPerfil);
+
             intent = new Intent(viewDocumentoPessoasEdit.this, viewDocumentoPessoas.class);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -111,6 +117,7 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("usuario", usuario);
                         bundle.putSerializable("documento", documento);
+                        bundle.putSerializable("autorPerfil", autorPerfil);
 
                         ctrlDocumentoPessoas  ctrlDocumentoPessoas = new ctrlDocumentoPessoas(documentosPessoas);
                         ctrlDocumentoPessoas.remover();
@@ -177,6 +184,7 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("usuario", usuario);
                         bundle.putSerializable("documento", documento);
+                        bundle.putSerializable("autorPerfil", autorPerfil);
                         Intent intent = new Intent(viewDocumentoPessoasEdit.this, viewDocumentoDetail.class);
                         intent.putExtras(bundle);
                         startActivity(intent);

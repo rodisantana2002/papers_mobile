@@ -15,17 +15,15 @@ import java.util.List;
 public class AutorPerfil implements Serializable{
     private Usuario usuario;
     private List<Documento> lstDocumentosParticipante;
-    private List<Documento> lstDocumentosRespomsavel;
+    private List<Documento> lstDocumentosResponsavel;
     private List<Documento> lstDocumentosFavoritos;
     private List<FilaSubmissao> lstResponsavelPublicacao;
     private List<FilaSubmissao> lstParticipantePublicacao;
 
     public AutorPerfil(){
-        lstDocumentosRespomsavel = new ArrayList<Documento>();
+        lstDocumentosResponsavel = new ArrayList<Documento>();
         lstDocumentosParticipante = new ArrayList<Documento>();
         lstDocumentosFavoritos = new ArrayList<Documento>();
-        lstResponsavelPublicacao = new ArrayList<FilaSubmissao>();
-        lstParticipantePublicacao = new ArrayList<FilaSubmissao>();
     }
 
     public Usuario getUsuario() {
@@ -44,12 +42,12 @@ public class AutorPerfil implements Serializable{
         this.lstDocumentosParticipante = lstDocumentosParticipante;
     }
 
-    public List<Documento> getLstDocumentosRespomsavel() {
-        return lstDocumentosRespomsavel;
+    public List<Documento> getLstDocumentosResponsavel() {
+        return lstDocumentosResponsavel;
     }
 
-    public void setLstDocumentosRespomsavel(List<Documento> lstDocumentosRespomsavel) {
-        this.lstDocumentosRespomsavel = lstDocumentosRespomsavel;
+    public void setLstDocumentosResponsavel(List<Documento> lstDocumentosResponsavel) {
+        this.lstDocumentosResponsavel = lstDocumentosResponsavel;
     }
 
     public List<Documento> getLstDocumentosFavoritos() {

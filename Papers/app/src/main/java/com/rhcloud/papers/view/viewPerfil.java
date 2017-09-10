@@ -83,7 +83,7 @@ public class viewPerfil extends AppCompatActivity {
 
         acao = new Acao();
         acao.setId(5);
-        acao.setNomeAcao("Home");
+        acao.setNomeAcao("Início");
         acao.setComentarioAcao("para outras opções retorne a tela inicial.");
         acao.setImgAcao(getDrawable(R.drawable.ic_chevron_left_black_18dp));
         lstAcoes.add(acao);

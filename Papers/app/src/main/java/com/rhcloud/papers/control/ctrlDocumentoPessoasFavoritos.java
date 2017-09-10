@@ -11,11 +11,11 @@ import java.util.List;
  * Created by rodolfosantana on 09/09/17.
  */
 
-public class ctrDocumentoPessoasFavoritos {
+public class ctrlDocumentoPessoasFavoritos {
     private DocumentosPessoasFavoritos documentosPessoasFavoritos;
     private bsDocumentosPessoasFavoritos bsDocumentosPessoasFavoritos;
 
-    public ctrDocumentoPessoasFavoritos(DocumentosPessoasFavoritos documentosPessoasFavoritos){
+    public ctrlDocumentoPessoasFavoritos(DocumentosPessoasFavoritos documentosPessoasFavoritos){
         this.documentosPessoasFavoritos = documentosPessoasFavoritos;
         bsDocumentosPessoasFavoritos = new bsDocumentosPessoasFavoritos();
     }
@@ -25,7 +25,7 @@ public class ctrDocumentoPessoasFavoritos {
     }
 
     public String remover() throws excPassaErro {
-        return bsDocumentosPessoasFavoritos.delete(documentosPessoasFavoritos.getId());
+        return bsDocumentosPessoasFavoritos.delete(documentosPessoasFavoritos.getPessoa().getId(), documentosPessoasFavoritos.getDocumento().getId());
     }
 
     public String atualizar() throws excPassaErro {

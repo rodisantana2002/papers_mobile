@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:background="#fafafa"
+            android:background="@android:color/white"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:visibility="visible"
@@ -53,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_weight="0.93"
+                android:background="@android:color/white"
                 android:orientation="vertical"
                 android:visibility="visible"
                 tools:ignore="InefficientWeight">
@@ -96,7 +97,7 @@
                         android:textColor="@color/cardview_dark_background"
                         android:textSize="10sp"
                         android:visibility="visible"
-                        tools:ignore="HardcodedText,RtlHardcoded" />
+                        tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
 
                     <TextView
                         android:id="@+id/txtLocal"
@@ -109,7 +110,7 @@
                         android:textColor="@color/cardview_dark_background"
                         android:textSize="10sp"
                         android:visibility="visible"
-                        tools:ignore="HardcodedText,RtlHardcoded" />
+                        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SmallSp" />
 
                 </GridLayout>
 

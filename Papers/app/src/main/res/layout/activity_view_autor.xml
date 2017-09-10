@@ -29,30 +29,83 @@
             android:weightSum="1"
             tools:ignore="RtlHardcoded">
 
-            <ImageButton
-                android:id="@+id/btnVoltarHomeAutor"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_chevron_left_black_18dp"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/titleappAutor"
+            <GridLayout
+                android:id="@+id/gridPadrao"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:gravity="center_vertical"
-                android:paddingLeft="5dp"
-                android:text="Autores"
-                android:textAlignment="textStart"
-                android:textColor="@android:color/black"
-                android:textColorHint="@color/cardview_dark_background"
-                android:textSize="20sp"
-                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/btnVoltarHomeAutor"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_chevron_left_black_18dp"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/titleappAutor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="Autores"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/cardview_dark_background"
+                    android:textSize="20sp"
+                    tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+                <ImageButton
+                    android:id="@+id/btnPesquisar"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right|center"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_search_black_24dp"
+                    tools:ignore="ContentDescription" />
+            </GridLayout>
 
         </LinearLayout>
+
+        <GridLayout
+            android:id="@+id/gridPesquisar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:columnCount="2"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/txtPesquisa"
+                android:layout_width="304dp"
+                android:layout_height="40dp"
+                android:layout_gravity="left|center"
+                android:layout_marginLeft="1dp"
+                android:background="@android:color/white"
+                android:hint="Informe um nome para pesquisar"
+                android:imeOptions="actionSearch"
+                android:inputType="textPersonName"
+                android:paddingLeft="4dp"
+                android:singleLine="true"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="14sp" />
+
+            <ImageButton
+                android:id="@+id/btnEncerrarPesquisa"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="right|center"
+                android:layout_marginRight="8dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_close_black_24dp"
+                tools:ignore="ContentDescription" />
+
+        </GridLayout>
     </android.support.design.widget.AppBarLayout>
 
     <include

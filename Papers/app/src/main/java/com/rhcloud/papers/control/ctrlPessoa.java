@@ -43,4 +43,8 @@ public class ctrlPessoa {
     public List <Pessoa> obterAllById(Integer id) throws excPassaErro {
         return bsPessoa.findAllById(id);
     }
+
+    public List <Pessoa> obterAllByNome(String nome) throws excPassaErro {
+        return bsPessoa.findAllByNome(nome);
+    }
 }

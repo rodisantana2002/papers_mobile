@@ -21,6 +21,7 @@ import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
 import com.rhcloud.papers.model.entity.Documento;
 import com.rhcloud.papers.model.entity.DocumentosPessoas;
 import com.rhcloud.papers.model.entity.Usuario;
+import com.rhcloud.papers.model.transitorio.AutorPerfil;
 import com.rhcloud.papers.view.adapters.adpParticipantes;
 import com.rhcloud.papers.view.decorator.dividerItemDecorator;
 
@@ -32,6 +33,7 @@ public class viewDocumentoPessoas extends AppCompatActivity implements View.OnCl
     private TextView txtNenhumRegistro;
     private Documento documento;
     private Usuario usuario;
+    private AutorPerfil autorPerfil;
     private ImageButton btnVoltar;
     private FloatingActionButton btnNovoParticipante;
     private ProgressDialog progressDialog;
@@ -56,6 +58,7 @@ public class viewDocumentoPessoas extends AppCompatActivity implements View.OnCl
     private void prepararComponentes(Bundle bundle) {
         documento = (Documento) bundle.getSerializable("documento");
         usuario = (Usuario) bundle.getSerializable("usuario");
+        autorPerfil = (AutorPerfil) bundle.getSerializable("autorPerfil");
 
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarDocumentoPessoas);
         btnVoltar.setOnClickListener(this);
@@ -80,6 +83,8 @@ public class viewDocumentoPessoas extends AppCompatActivity implements View.OnCl
                 bundle.putSerializable("usuario", usuario);
                 bundle.putSerializable("documento", documento);
                 bundle.putSerializable("participante", item);
+                bundle.putSerializable("autorPerfil", autorPerfil);
+
                 intent = new Intent(viewDocumentoPessoas.this, viewDocumentoPessoasEdit.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -98,6 +103,8 @@ public class viewDocumentoPessoas extends AppCompatActivity implements View.OnCl
             Bundle bundle = new Bundle();
             bundle.putSerializable("usuario", usuario);
             bundle.putSerializable("documento", documento);
+            bundle.putSerializable("autorPerfil", autorPerfil);
+
             intent = new Intent(viewDocumentoPessoas.this, viewDocumentoDetail.class);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -108,6 +115,8 @@ public class viewDocumentoPessoas extends AppCompatActivity implements View.OnCl
             bundle.putSerializable("usuario", usuario);
             bundle.putSerializable("documento", documento);
             bundle.putSerializable("participante", new DocumentosPessoas());
+            bundle.putSerializable("autorPerfil", autorPerfil);
+
             intent = new Intent(viewDocumentoPessoas.this, viewDocumentoPessoasEdit.class);
             intent.putExtras(bundle);
             startActivity(intent);

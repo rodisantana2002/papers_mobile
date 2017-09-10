@@ -1,7 +1,7 @@
 package com.rhcloud.papers.model.transitorio;
 
 import com.rhcloud.papers.model.entity.Documento;
-import com.rhcloud.papers.model.enumeration.TipoAutor;
+import com.rhcloud.papers.model.enumeration.Tipo;
 
 import java.io.Serializable;
 
@@ -10,15 +10,15 @@ import java.io.Serializable;
  */
 
 public class Artigo implements Serializable{
-    private TipoAutor tipoAutor;
+    private Tipo tipo;
     private Documento documento;
 
-    public TipoAutor getTipoAutor() {
-        return tipoAutor;
+    public Tipo getTipo() {
+        return tipo;
     }
 
-    public void setTipoAutor(TipoAutor tipoAutor) {
-        this.tipoAutor = tipoAutor;
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
     }
 
     public Documento getDocumento() {

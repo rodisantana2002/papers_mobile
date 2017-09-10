@@ -65,8 +65,12 @@ public class bsDocumentosPessoasFavoritos implements itfGeneric<DocumentosPessoa
     }
 
     @Override
-    public String delete(Integer id) throws excPassaErro{
-        return connRest.delete(hlpConstants.URL_BASE + hlpConstants.URL_FAVORITOS + id);
+    public String delete(Integer id) throws excPassaErro {
+        return null;
+    }
+
+    public String delete(Integer autorid, Integer docid) throws excPassaErro{
+        return connRest.delete(hlpConstants.URL_BASE + hlpConstants.URL_FAVORITOS + "autor/" + autorid + "/documento/" + docid);
     }
 
     @Override

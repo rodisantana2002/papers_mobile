@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlAutorPerfil;
-import com.rhcloud.papers.control.ctrlDocumento;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
 import com.rhcloud.papers.model.entity.Documento;
 import com.rhcloud.papers.model.entity.Usuario;
@@ -50,12 +49,13 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_responsavel:
-                    popularLista(autorPerfil.getLstDocumentosRespomsavel());
+                    popularLista(autorPerfil.getLstDocumentosResponsavel());
                     return true;
                 case R.id.navigation_participante:
                     popularLista(autorPerfil.getLstDocumentosParticipante());
                     return true;
                 case R.id.navigation_favorito:
+                    popularLista(autorPerfil.getLstDocumentosFavoritos());
                     return true;
             }
             return false;
@@ -76,7 +76,7 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
     private void popularLista(Bundle bundle) {
         lstDocumentos = new ArrayList<Documento>();
 
-        if (bundle!=null){
+        if (bundle != null) {
             usuario = (Usuario) bundle.getSerializable("usuario");
         }
 
@@ -85,18 +85,18 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
         procDados.execute();
     }
 
-    private void prepararComponenetes(){
+    private void prepararComponenetes() {
         recyclerView = (RecyclerView) findViewById(R.id.lstDocumentos);
         txtNenhumRegistro = (TextView) findViewById(R.id.txtNenhumRegistroDocumento);
         btnFloat = (FloatingActionButton) findViewById(R.id.btnFloatDocumento);
         btnFloat.setOnClickListener(viewDocumento.this);
-        btnVoltar = (ImageButton)  findViewById(R.id.btnVoltarHomeDocumento);
+        btnVoltar = (ImageButton) findViewById(R.id.btnVoltarHomeDocumento);
         btnVoltar.setOnClickListener(viewDocumento.this);
     }
 
     public void onClick(View view) {
         Intent intent;
-        if(view.getId() == btnVoltar.getId()){
+        if (view.getId() == btnVoltar.getId()) {
             Bundle bundle = new Bundle();
             bundle.putSerializable("usuario", usuario);
             intent = new Intent(this, viewHome.class);
@@ -104,7 +104,7 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
             startActivity(intent);
         }
 
-        if(view.getId() == btnFloat.getId()){
+        if (view.getId() == btnFloat.getId()) {
             Bundle bundle = new Bundle();
             bundle.putSerializable("documento", new Documento());
             bundle.putSerializable("usuario", usuario);
@@ -115,26 +115,38 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
     }
 
     private void popularLista(List<Documento> lstDocs) {
+
         mAdapter = new adpDocumentos(viewDocumento.this, lstDocs);
-        mAdapter.setOnItemClickListener(new itfOnItemClickListener<Documento>(){
+        mAdapter.setOnItemClickListener(new itfOnItemClickListener<Documento>() {
 
             @Override
             public void onItemClick(Documento item) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("documento", item);
-                bundle.putSerializable("usuario", usuario);
-                Intent intent = new Intent(viewDocumento.this, viewDocumentoDetail.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                try {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("documento", item);
+                    bundle.putSerializable("usuario", usuario);
+                    bundle.putSerializable("autorPerfil", autorPerfil);
+                    Intent intent = new Intent(viewDocumento.this, viewDocumentoDetail.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
-        }) ;
-
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(viewDocumento.this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new dividerItemDecorator(viewDocumento.this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(mAdapter);
-        recyclerView.setVisibility(View.VISIBLE);
-        txtNenhumRegistro.setVisibility(View.GONE);
+
+        if (lstDocs.isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+            txtNenhumRegistro.setVisibility(View.VISIBLE);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+            txtNenhumRegistro.setVisibility(View.GONE);
+        }
+
     }
 
     private class procDados extends AsyncTask<Void, Void, List<Documento>> {
@@ -144,7 +156,7 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
             try {
                 ctrlAutorPerfil ctrlAutorPerfil = new ctrlAutorPerfil(usuario);
                 autorPerfil = ctrlAutorPerfil.getAutorPerfil();
-                lstDocumentos = autorPerfil.getLstDocumentosRespomsavel();
+                lstDocumentos = autorPerfil.getLstDocumentosResponsavel();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 excPassaErro.getMessage();
                 lstDocumentos = new ArrayList<Documento>();
@@ -160,14 +172,7 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
         @Override
         protected void onPostExecute(List<Documento> documentos) {
             progressDialog.dismiss();
-
-            if (documentos.isEmpty()){
-                recyclerView.setVisibility(View.GONE);
-                txtNenhumRegistro.setVisibility(View.VISIBLE);
-            }
-            else {
-                popularLista(lstDocumentos);
-            }
+            popularLista(lstDocumentos);
         }
     }
 }

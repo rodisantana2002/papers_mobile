@@ -99,6 +99,7 @@ public class adpAutores extends RecyclerView.Adapter<adpAutores.RepoHolder>  {
         holder.gridAutor.setOnClickListener(listener);
         holder.gridAutor.setOnClickListener(listener);
         holder.gridLocal.setOnClickListener(listener);
+        holder.txtSobreAutor.setOnClickListener(listener);
     }
 
     public class RepoHolder extends RecyclerView.ViewHolder {
