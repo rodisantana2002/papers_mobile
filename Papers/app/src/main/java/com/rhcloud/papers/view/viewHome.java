@@ -10,6 +10,9 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -20,8 +23,15 @@ import com.rhcloud.papers.Principal;
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlAutentication;
 import com.rhcloud.papers.control.ctrlPessoa;
+import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
 import com.rhcloud.papers.helpers.generic.hlpConstants;
 import com.rhcloud.papers.model.entity.Usuario;
+import com.rhcloud.papers.model.transitorio.Acao;
+import com.rhcloud.papers.view.adapters.adpAcoes;
+import com.rhcloud.papers.view.decorator.dividerItemDecorator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class viewHome extends AppCompatActivity implements View.OnClickListener{
     private ctrlAutentication ctrlAutentication;
@@ -35,22 +45,103 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
     private ProgressDialog progressDialog;
     private procDados procDados;
 
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private List<Acao> lstAcoes;
+    private adpAcoes mAdapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_home);
-
-        btnSair = (Button) findViewById(R.id.btnSair);
-        btnDocumentos = (Button) findViewById(R.id.btnDocumentos);
-
-        btnSair.setOnClickListener(this);
-        btnDocumentos.setOnClickListener(this);
+        popularListaAcoes();
     }
 
     @Override
     protected void onResume() {
         prepararControles();
         super.onResume();
+    }
+
+    private void popularListaAcoes() {
+        lstAcoes = new ArrayList<Acao>();
+
+        Acao acao = new Acao();
+        acao.setId(1);
+        acao.setNomeAcao("Publicações");
+        acao.setComentarioAcao("acompanhe e gerencie as suas publicações.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_send_black_18dp));
+        lstAcoes.add(acao);
+
+        acao = new Acao();
+        acao.setId(2);
+        acao.setNomeAcao("Artigos");
+        acao.setComentarioAcao("crie e atualize seus artigos.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_description_black_24dp));
+        lstAcoes.add(acao);
+
+        acao = new Acao();
+        acao.setId(3);
+        acao.setNomeAcao("Autores");
+        acao.setComentarioAcao("registre novos autores no grupo de autores do sistema.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_group_black_24dp));
+        lstAcoes.add(acao);
+
+        acao = new Acao();
+        acao.setId(4);
+        acao.setNomeAcao("Notificações");
+        acao.setComentarioAcao("visualize e gerencie as notificações recebidas.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_message_black_24dp));
+        lstAcoes.add(acao);
+
+        acao = new Acao();
+        acao.setId(5);
+        acao.setNomeAcao("Repositórios Publicação");
+        acao.setComentarioAcao("mantenha a lista de repositórios de publicações atualizada.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_account_balance_black_24dp));
+        lstAcoes.add(acao);
+
+        acao = new Acao();
+        acao.setId(6);
+        acao.setNomeAcao("Sair do Sistema");
+        acao.setComentarioAcao("encerre o sistema e retorne a tela de logrn.");
+        acao.setImgAcao(getDrawable(R.drawable.ic_arrow_forward_black_24dp));
+        lstAcoes.add(acao);
+
+        prepararLista();
+    }
+
+    private void prepararLista(){
+        recyclerView = (RecyclerView) findViewById(R.id.listaAcoesMenu);
+
+        mAdapter = new adpAcoes(viewHome.this, lstAcoes);
+        mAdapter.setOnItemClickListener(new itfOnItemClickListener<Acao>() {
+            @Override
+            public void onItemClick(Acao item) {
+                if(item.getId()==1){
+                }
+                else  if(item.getId()==2){
+                    carregarDocumentos();
+                }
+                else if(item.getId()==3){
+                    carregarAutores();
+                }
+                else if(item.getId()==4){
+                }
+                else if(item.getId()==5){
+                    carregarServicos();
+                }
+                else if(item.getId()==6){
+                    efetuarLogout();
+                }
+            }
+        });
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL));
+        recyclerView.setAdapter(mAdapter);
     }
 
     private void carregarAutores() {
@@ -132,19 +223,6 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
             intent.putExtras(bundle);
             startActivity(intent);
         }
-
-        if(view.getId() == btnSair.getId()){
-            carregarAutores();
-            //efetuarLogout();
-        }
-
-        if(view.getId() == btnDocumentos.getId()){
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("usuario", usuario);
-            Intent intent = new Intent(viewHome.this, viewDocumento.class);
-            intent.putExtras(bundle);
-            startActivity(intent);
-        }
     }
 
     private class procDados extends AsyncTask<Void, Void, String> {
@@ -185,3 +263,4 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         }
     }
 }
+

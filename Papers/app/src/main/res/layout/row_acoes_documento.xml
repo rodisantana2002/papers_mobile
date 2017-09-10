@@ -50,7 +50,8 @@
                 android:id="@+id/gridAcao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:columnCount="2">
+                android:columnCount="2"
+                tools:ignore="UselessParent">
 
                 <TextView
                     android:id="@+id/txtNomeAcaoDocumento"
@@ -68,7 +69,8 @@
                 <Space
                     android:layout_width="5dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0" />
+                    android:layout_weight="0"
+                    tools:ignore="ObsoleteLayoutParam" />
 
             </GridLayout>
 

@@ -44,7 +44,8 @@
             android:paddingLeft="2dp"
             android:paddingRight="2dp"
             android:paddingTop="0dp"
-            android:visibility="visible">
+            android:visibility="visible"
+            tools:ignore="RtlHardcoded">
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 </RelativeLayout>

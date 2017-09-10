@@ -121,7 +121,7 @@
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="17sp"
-                        tools:ignore="HardcodedText" />
+                        tools:ignore="HardcodedText,NestedWeights" />
 
                     <TextView
                         android:id="@+id/lblInstituicao"
@@ -145,7 +145,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/cardview_dark_background"
                         android:textSize="10sp"
-                        tools:ignore="HardcodedText" />
+                        tools:ignore="HardcodedText,SmallSp" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -164,7 +164,8 @@
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="5dp"
-                        android:layout_weight="0" />
+                        android:layout_weight="0"
+                        tools:ignore="NestedWeights" />
 
                     <TextView
                         android:id="@+id/lblContato"

@@ -91,7 +91,7 @@
                     android:textColor="@android:color/darker_gray"
                     android:textSize="12sp"
                     android:visibility="visible"
-                    tools:ignore="HardcodedText,RtlHardcoded" />
+                    tools:ignore="HardcodedText,NestedWeights,RtlHardcoded" />
 
 
             </LinearLayout>
