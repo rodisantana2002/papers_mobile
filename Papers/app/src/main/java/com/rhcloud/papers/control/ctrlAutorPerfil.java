@@ -5,6 +5,7 @@ import com.rhcloud.papers.model.entity.Documento;
 import com.rhcloud.papers.model.entity.DocumentosPessoas;
 import com.rhcloud.papers.model.entity.DocumentosPessoasFavoritos;
 import com.rhcloud.papers.model.entity.FilaSubmissao;
+import com.rhcloud.papers.model.entity.HistoricoFilaSubmissao;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.transitorio.AutorPerfil;
 
@@ -26,6 +27,7 @@ public class ctrlAutorPerfil {
     public ctrlAutorPerfil(Usuario  usuario) throws excPassaErro {
         autorPerfil = new AutorPerfil();
         ctrlDocumento = new ctrlDocumento(new Documento());
+        ctrlSubmissoes = new ctrlSubmissoes(new FilaSubmissao());
         ctrlDocumentoPessoas = new ctrlDocumentoPessoas(new DocumentosPessoas());
         ctrlDocumentoPessoasFavoritos = new ctrlDocumentoPessoasFavoritos(new DocumentosPessoasFavoritos());
         this.usuario = usuario;
@@ -40,11 +42,18 @@ public class ctrlAutorPerfil {
         return autorPerfil;
     }
 
-    private void popularDocumentosResponsavel() throws excPassaErro {
+    public AutorPerfil getAutorPublicacoes() throws excPassaErro {
+        popularPublicacoesResponsavel();
+        popularPublicacoesParticipante();
+        popularPublicacoesFavoritos();
+        return autorPerfil;
+    }
+
+    public void popularDocumentosResponsavel() throws excPassaErro {
         autorPerfil.setLstDocumentosResponsavel(ctrlDocumento.obterAllByAutor(usuario.getId()));
     }
 
-    private void popularDocumentosParticipante() throws excPassaErro {
+    public void popularDocumentosParticipante() throws excPassaErro {
         List<Documento> lstDocumentos = new ArrayList<Documento>();
         for (DocumentosPessoas docPessoa : ctrlDocumentoPessoas.obterAllByAutor(usuario.getId())){
             docPessoa.getPessoa().setFoto(null);
@@ -53,16 +62,19 @@ public class ctrlAutorPerfil {
         autorPerfil.setLstDocumentosParticipante(lstDocumentos);
     }
 
-    private void popularDocumentosFavoritos() throws excPassaErro {
+    public void popularDocumentosFavoritos() throws excPassaErro {
         List<Documento> lstDocumentos = new ArrayList<Documento>();
         for (DocumentosPessoasFavoritos favorito: ctrlDocumentoPessoasFavoritos.obterAllByAutor(usuario.getId())){
             favorito.getPessoa().setFoto(null);
+            favorito.getDocumento().getPessoa().setFoto(null);
             lstDocumentos.add(favorito.getDocumento());
         }
         autorPerfil.setLstDocumentosFavoritos(lstDocumentos);
     }
 
-    private void popularPublicacoesResponsavel() throws excPassaErro {
+
+    ///Carregas as publicações conforme os tipos de artigo
+    public void popularPublicacoesResponsavel() throws excPassaErro {
         List<FilaSubmissao> lstFilaSubmissaos = new ArrayList<FilaSubmissao>();
         for (Documento documento: autorPerfil.getLstDocumentosResponsavel()){
             documento.getPessoa().setFoto(null);
@@ -71,12 +83,21 @@ public class ctrlAutorPerfil {
         autorPerfil.setLstResponsavelPublicacao(lstFilaSubmissaos);
     }
 
-    private void popularPublicacoesParticipante() throws excPassaErro {
+    public void popularPublicacoesParticipante() throws excPassaErro {
         List<FilaSubmissao> lstFilaSubmissaos = new ArrayList<FilaSubmissao>();
         for (Documento documento : autorPerfil.getLstDocumentosParticipante()){
             documento.getPessoa().setFoto(null);
             lstFilaSubmissaos.addAll(ctrlSubmissoes.obterAllByDocumento(documento.getId()));
         }
-        autorPerfil.setLstResponsavelPublicacao(lstFilaSubmissaos);
+        autorPerfil.setLstParticipantePublicacao(lstFilaSubmissaos);
+    }
+
+    public void popularPublicacoesFavoritos() throws excPassaErro {
+        List<FilaSubmissao> lstFilaSubmissaos = new ArrayList<FilaSubmissao>();
+        for (Documento favorito : autorPerfil.getLstDocumentosFavoritos()){
+            favorito.getPessoa().setFoto(null);
+            lstFilaSubmissaos.addAll(ctrlSubmissoes.obterAllByDocumento(favorito.getId()));
+        }
+        autorPerfil.setLstFavoritosPublicacao(lstFilaSubmissaos);
     }
 }

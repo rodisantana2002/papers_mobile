@@ -17,13 +17,19 @@ public class AutorPerfil implements Serializable{
     private List<Documento> lstDocumentosParticipante;
     private List<Documento> lstDocumentosResponsavel;
     private List<Documento> lstDocumentosFavoritos;
+
     private List<FilaSubmissao> lstResponsavelPublicacao;
     private List<FilaSubmissao> lstParticipantePublicacao;
+    private List<FilaSubmissao> lstFavoritosPublicacao;
 
     public AutorPerfil(){
         lstDocumentosResponsavel = new ArrayList<Documento>();
         lstDocumentosParticipante = new ArrayList<Documento>();
         lstDocumentosFavoritos = new ArrayList<Documento>();
+
+        lstResponsavelPublicacao = new ArrayList<FilaSubmissao>();
+        lstParticipantePublicacao = new ArrayList<FilaSubmissao>();
+        lstFavoritosPublicacao = new ArrayList<FilaSubmissao>();
     }
 
     public Usuario getUsuario() {
@@ -72,5 +78,13 @@ public class AutorPerfil implements Serializable{
 
     public void setLstParticipantePublicacao(List<FilaSubmissao> lstParticipantePublicacao) {
         this.lstParticipantePublicacao = lstParticipantePublicacao;
+    }
+
+    public List<FilaSubmissao> getLstFavoritosPublicacao() {
+        return lstFavoritosPublicacao;
+    }
+
+    public void setLstFavoritosPublicacao(List<FilaSubmissao> lstFavoritosPublicacao) {
+        this.lstFavoritosPublicacao = lstFavoritosPublicacao;
     }
 }

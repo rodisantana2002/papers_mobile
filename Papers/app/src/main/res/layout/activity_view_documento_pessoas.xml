@@ -57,7 +57,7 @@ android:visibility="visible">
 </android.support.design.widget.AppBarLayout>
 
     <include
-        android:id="@+id/include2"
+        android:id="@+id/includepublicacao"
         layout="@layout/content_view_documento_pessoas"
         android:visibility="visible" />
 
@@ -72,7 +72,7 @@ android:visibility="visible">
     android:clickable="true"
     app:backgroundTint="@color/colorPrimary"
     app:fabSize="normal"
-    app:layout_anchor="@+id/include2"
+    app:layout_anchor="@+id/includepublicacao"
     app:layout_anchorGravity="bottom|end"
     app:srcCompat="@drawable/ic_add_white_18dp"
     tools:ignore="RtlHardcoded,UnusedAttribute" />

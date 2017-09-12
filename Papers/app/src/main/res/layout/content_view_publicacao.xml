@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:theme="@style/AlertDialog.AppCompat"
+app:layout_behavior="@string/appbar_scrolling_view_behavior"
+tools:context="com.rhcloud.papers.view.viewPublicacao"
+tools:showIn="@layout/activity_view_publicacao">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:background="@android:color/white"
+    android:elevation="0dp"
+    android:orientation="vertical"
+    tools:ignore="UselessParent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lstPublicacoes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="0dp"
+        android:background="@android:color/white"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:paddingTop="0dp"
+        android:visibility="visible"
+        tools:ignore="RtlHardcoded">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/txtNenhumRegistroPublicacao"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingLeft="8dp"
+        android:paddingTop="15dp"
+        android:text="Nenhum Artigo registrado para a opção selecionada"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="16sp"
+        android:visibility="gone"
+        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+</LinearLayout>
+</RelativeLayout>

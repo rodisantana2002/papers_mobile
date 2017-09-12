@@ -5,6 +5,7 @@ import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
 
+import java.util.Collections;
 import java.util.List;
 
 /**

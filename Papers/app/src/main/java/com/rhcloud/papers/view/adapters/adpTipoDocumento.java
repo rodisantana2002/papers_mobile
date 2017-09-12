@@ -40,8 +40,8 @@ public class adpTipoDocumento extends ArrayAdapter<TipoDocumento> {
         return tipoDocumentoList.get(position);
     }
 
-    public long getItemId(int position){
-        return position;
+    public long getItemId(int id){
+        return id;
     }
 
     @NonNull
@@ -54,4 +54,5 @@ public class adpTipoDocumento extends ArrayAdapter<TipoDocumento> {
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         return super.getDropDownView(position, convertView, parent);
     }
+
 }

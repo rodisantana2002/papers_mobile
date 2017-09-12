@@ -120,6 +120,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onItemClick(Acao item) {
                 if(item.getId()==1){
+                    carregarPublicacoes();
                 }
                 else  if(item.getId()==2){
                     carregarDocumentos();
@@ -128,6 +129,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                     carregarAutores();
                 }
                 else if(item.getId()==4){
+
                 }
                 else if(item.getId()==5){
                     carregarServicos();
@@ -167,6 +169,15 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         bundle.putSerializable("usuario", usuario);
 
         Intent intent = new Intent(viewHome.this, viewDocumento.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    private void carregarPublicacoes(){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", usuario);
+
+        Intent intent = new Intent(viewHome.this, viewPublicacao.class);
         intent.putExtras(bundle);
         startActivity(intent);
     }

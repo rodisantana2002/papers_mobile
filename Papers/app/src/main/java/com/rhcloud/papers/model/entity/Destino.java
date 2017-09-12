@@ -38,5 +38,10 @@ public class Destino implements Serializable{
 
     public void setClassificacao(String classificacao) {
         this.classificacao = classificacao;
-    }   
+    }
+
+    @Override
+    public String toString() {
+        return getDescricao();
+    }
 }

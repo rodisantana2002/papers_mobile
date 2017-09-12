@@ -57,7 +57,7 @@
     <include
         layout="@layout/content_view_repositorio"
         android:visibility="visible"
-        android:id="@+id/include2" />
+        android:id="@+id/includepublicacao" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnFloatDestino"
@@ -70,7 +70,7 @@
         android:clickable="true"
         app:backgroundTint="@color/colorPrimary"
         app:fabSize="normal"
-        app:layout_anchor="@+id/include2"
+        app:layout_anchor="@+id/includepublicacao"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/ic_add_white_18dp"
         tools:ignore="RtlHardcoded,UnusedAttribute" />

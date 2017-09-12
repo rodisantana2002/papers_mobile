@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -58,7 +59,6 @@ public class viewDocumentoEdit extends AppCompatActivity implements View.OnClick
     private void prepararComponentes(Bundle bundle) {
         documento = (Documento) bundle.getSerializable("documento");
         usuario = (Usuario) bundle.getSerializable("usuario");
-
         txtTipo = (Spinner) findViewById(R.id.txtTipo);
         txtTitulo = (EditText) findViewById(R.id.txtTitulo);
         txtPalavrasChave = (EditText) findViewById(R.id.txtPalavrasChave);
@@ -77,7 +77,6 @@ public class viewDocumentoEdit extends AppCompatActivity implements View.OnClick
             btnExcluirDocumento.setVisibility(View.GONE);
         } else {
             txtPalavrasChave.setText(documento.getPalavrasChave());
-            txtTipo.setSelection(documento.getId());
             btnExcluirDocumento.setVisibility(View.VISIBLE);
         }
     }
@@ -238,6 +237,12 @@ public class viewDocumentoEdit extends AppCompatActivity implements View.OnClick
 
             adpTipoDocumento = new adpTipoDocumento(viewDocumentoEdit.this, android.R.layout.simple_spinner_dropdown_item, result);
             txtTipo.setAdapter(adpTipoDocumento);
+            for (int i=0; i<result.size(); i++){
+                if (result.get(i).getId().equals(documento.getTipoDocumento().getId())){
+                    txtTipo.setSelection(i);
+                }
+            }
+            adpTipoDocumento.notifyDataSetChanged();
             txtTipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -249,7 +254,6 @@ public class viewDocumentoEdit extends AppCompatActivity implements View.OnClick
                 }
             });
         }
-
     }
 }
 

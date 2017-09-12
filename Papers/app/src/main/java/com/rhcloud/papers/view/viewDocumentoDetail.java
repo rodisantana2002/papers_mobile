@@ -23,6 +23,7 @@ import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Documento;
 import com.rhcloud.papers.model.entity.DocumentosPessoas;
 import com.rhcloud.papers.model.entity.DocumentosPessoasFavoritos;
+import com.rhcloud.papers.model.entity.FilaSubmissao;
 import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.transitorio.Acao;
@@ -177,6 +178,15 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
     }
 
     private void criarPublicacao() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", usuario);
+        bundle.putSerializable("documento", documento);
+        bundle.putSerializable("autorPerfil", autorPerfil);
+        bundle.putSerializable("publicacao", new FilaSubmissao());
+
+        Intent intent = new Intent(this, viewPublicacaoEdit.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 

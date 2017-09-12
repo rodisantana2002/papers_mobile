@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/containerpublicacao"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
     android:theme="@style/AppTheme.NoActionBar"
-    tools:context="com.rhcloud.papers.view.viewDocumento">
+    tools:context="com.rhcloud.papers.view.viewPublicacao">
 
     <FrameLayout
         android:id="@+id/content"
@@ -45,7 +45,7 @@
                     tools:ignore="RtlHardcoded">
 
                     <ImageButton
-                        android:id="@+id/btnVoltarHomeDocumento"
+                        android:id="@+id/btnVoltarHomePublicacao"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
@@ -60,7 +60,7 @@
                         android:background="@android:color/transparent"
                         android:gravity="center_vertical"
                         android:paddingLeft="5dp"
-                        android:text="Artigos"
+                        android:text="Publicações"
                         android:textAlignment="textStart"
                         android:textColor="@android:color/black"
                         android:textColorHint="@color/cardview_dark_background"
@@ -72,11 +72,11 @@
 
             <include
                 android:id="@+id/includepublicacao"
-                layout="@layout/content_view_documento"
+                layout="@layout/content_view_publicacao"
                 android:visibility="visible" />
 
             <android.support.design.widget.FloatingActionButton
-                android:id="@+id/btnFloatDocumento"
+                android:id="@+id/btnFloatPublicacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -95,12 +95,12 @@
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
+        android:id="@+id/navigation_publicacoes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/navigation_documentos" >
+        app:menu="@menu/navigation_publicacoes">
 
     </android.support.design.widget.BottomNavigationView>
 

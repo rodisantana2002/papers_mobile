@@ -66,8 +66,3 @@ public class bsSubmissoes implements itfGeneric<FilaSubmissao> {
         return lstFilaSubmissaos;
     }
 }
-
-/*
-
-
- */

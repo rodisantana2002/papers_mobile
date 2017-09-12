@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:theme="@style/AppTheme.NoActionBar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="0dp"
+        android:visibility="visible"
+        android:weightSum="1"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            tools:ignore="ObsoleteLayoutParam">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:orientation="vertical"
+                android:visibility="visible"
+                tools:ignore="InefficientWeight">
+
+                <GridLayout
+                    android:id="@+id/gridSituacao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:background="#fafafa"
+                    android:columnCount="2"
+                    android:rowCount="4">
+
+                    <TextView
+                        android:id="@+id/lblSituacao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_weight="1"
+                        android:height="40dp"
+                        android:background="@android:color/transparent"
+                        android:text="Situação"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="10sp"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
+
+                    <TextView
+                        android:id="@+id/lblVersao"
+                        android:layout_width="60dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_weight="1"
+                        android:height="40dp"
+                        android:background="@android:color/transparent"
+                        android:text="Versão "
+                        android:textAlignment="center"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="10sp"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
+
+                    <TextView
+                        android:id="@+id/txtSituacao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_weight="0"
+                        android:height="40dp"
+                        android:background="@android:color/transparent"
+                        android:text="txtSituacao"
+                        android:textAlignment="textStart"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
+
+                    <TextView
+                        android:id="@+id/txtVersao"
+                        android:layout_width="60dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="right|center_vertical|center_horizontal"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_weight="0"
+                        android:height="40dp"
+                        android:background="@android:color/transparent"
+                        android:text="txtVersao"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
+
+                    <TextView
+                        android:id="@+id/lblDataLimite"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="false"
+                        android:layout_alignParentTop="false"
+                        android:layout_gravity="left|center"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="left|center"
+                        android:paddingBottom="0dp"
+                        android:text="Data Limite Envio"
+                        android:textSize="10sp"
+                        tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
+
+                    <TextView
+                        android:id="@+id/lblDataPublicacao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:height="40dp"
+                        android:background="@android:color/transparent"
+                        android:text="Publicado em "
+                        android:textAlignment="center"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="10sp"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
+
+                    <TextView
+                        android:id="@+id/txtDataLimite"
+                        android:layout_width="85dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentStart="false"
+                        android:layout_alignParentTop="false"
+                        android:layout_gravity="left|center"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="0dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="left|center_vertical|center_horizontal"
+                        android:paddingBottom="0dp"
+                        android:textAlignment="center"
+                        android:textSize="11sp"
+                        tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
+
+                    <TextView
+                        android:id="@+id/txtDataPublicacao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_weight="1"
+                        android:height="40dp"
+                        android:background="@android:color/transparent"
+                        android:textAlignment="center"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="11sp"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
+
+                </GridLayout>
+
+                <GridLayout
+                    android:id="@+id/gridTitulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="1">
+
+                    <TextView
+                        android:id="@+id/txtTitulo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:height="40dp"
+                        android:gravity="left|center_vertical"
+                        android:text="txtTitulo"
+                        android:textAlignment="viewStart"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded" />
+
+                </GridLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <GridLayout
+            android:id="@+id/gridSubmissao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:columnCount="1"
+            android:rowCount="2">
+
+            <TextView
+                android:id="@+id/lblDestino"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentTop="false"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:gravity="left|center_vertical|center_horizontal"
+                android:paddingBottom="0dp"
+                android:text="Submetido para"
+                android:textSize="10sp"
+                tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
+
+            <TextView
+                android:id="@+id/txtDestino"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentTop="false"
+                android:layout_gravity="left|center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="4dp"
+                android:gravity="left|center"
+                android:paddingBottom="0dp"
+                android:text="txtDestino"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
+
+        </GridLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+

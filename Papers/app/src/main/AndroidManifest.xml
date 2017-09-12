@@ -101,8 +101,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.viewDocumento"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/title_activity_view_documentos"/>
+            android:label="@string/title_activity_view_documentos"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.viewPublicacao"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.viewPublicacaoEdit"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

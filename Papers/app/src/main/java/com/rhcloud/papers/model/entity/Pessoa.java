@@ -6,6 +6,7 @@
 package com.rhcloud.papers.model.entity;
 
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 
@@ -13,7 +14,7 @@ import java.io.Serializable;
  *
  * @author Rodolfo
  */
-public class Pessoa implements Serializable {
+public class Pessoa implements Serializable{
     private Integer id;
     private String primeiroNome;
     private String segundoNome;
@@ -128,4 +129,5 @@ public class Pessoa implements Serializable {
     public String toString() {
         return primeiroNome + " " + segundoNome;
     }
+
 }
