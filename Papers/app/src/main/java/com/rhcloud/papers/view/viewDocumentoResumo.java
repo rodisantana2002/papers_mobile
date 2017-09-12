@@ -17,6 +17,7 @@ import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Documento;
 import com.rhcloud.papers.model.entity.Usuario;
+import com.rhcloud.papers.model.transitorio.AutorPerfil;
 
 public class viewDocumentoResumo extends AppCompatActivity implements View.OnClickListener {
     private EditText txtResumoArtigo;
@@ -26,6 +27,7 @@ public class viewDocumentoResumo extends AppCompatActivity implements View.OnCli
     private ImageButton btnVoltar;
     private ProgressDialog progressDialog;
     private procDados procDados;
+    private AutorPerfil autorPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class viewDocumentoResumo extends AppCompatActivity implements View.OnCli
 
         usuario = (Usuario) bundle.getSerializable("usuario");
         documento = (Documento) bundle.getSerializable("documento");
+        autorPerfil = (AutorPerfil) bundle.getSerializable("autorPerfil");
 
         if (documento.getResumo()!=null){
             txtResumoArtigo.setText(documento.getResumo().toString());
@@ -63,7 +66,9 @@ public class viewDocumentoResumo extends AppCompatActivity implements View.OnCli
         if (view.getId() == btnVoltar.getId()){
             Bundle bundle = new Bundle();
             bundle.putSerializable("usuario", usuario);
-            intent = new Intent(viewDocumentoResumo.this, viewDocumento.class);
+            bundle.putSerializable("documento", documento);
+            bundle.putSerializable("autorPerfil", autorPerfil);
+            intent = new Intent(viewDocumentoResumo.this, viewDocumentoDetail.class);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -132,7 +137,9 @@ public class viewDocumentoResumo extends AppCompatActivity implements View.OnCli
                     if (finalResult.trim().equals("Resumo registrado com sucesso")){
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("usuario", usuario);
-                        Intent intent = new Intent(viewDocumentoResumo.this, viewDocumento.class);
+                        bundle.putSerializable("documento", documento);
+                        bundle.putSerializable("autorPerfil", autorPerfil);
+                        Intent intent = new Intent(viewDocumentoResumo.this, viewDocumentoDetail.class);
                         intent.putExtras(bundle);
                         startActivity(intent);
                     }

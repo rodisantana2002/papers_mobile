@@ -83,7 +83,6 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
         procDados.execute();
     }
 
-
     private void prepararComponenetes() {
         recyclerView = (RecyclerView) findViewById(R.id.lstPublicacoes);
         txtNenhumRegistro = (TextView) findViewById(R.id.txtNenhumRegistroPublicacao);
@@ -114,7 +113,6 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
     }
 
     private void popularLista(List<FilaSubmissao> filaSubmissaos) {
-
         mAdapter = new adpPublicacoes(viewPublicacao.this, filaSubmissaos);
         mAdapter.setOnItemClickListener(new itfOnItemClickListener<FilaSubmissao>() {
 

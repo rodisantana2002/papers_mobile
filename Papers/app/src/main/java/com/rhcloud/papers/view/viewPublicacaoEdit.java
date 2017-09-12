@@ -66,7 +66,7 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
         documento = (Documento) bundle.getSerializable("documento");
         usuario = (Usuario) bundle.getSerializable("usuario");
         filaSubmissao = (FilaSubmissao) bundle.getSerializable("publicacao");
-        autorPerfil = (AutorPerfil) bundle.getSerializable("autoPerfil");
+        autorPerfil = (AutorPerfil) bundle.getSerializable("autorPerfil");
 
         String[] lstIdiomas = getResources().getStringArray(R.array.listIdiomas);
         ArrayAdapter adapterIdioma = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, lstIdiomas);

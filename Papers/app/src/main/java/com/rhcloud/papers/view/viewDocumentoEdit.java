@@ -39,6 +39,7 @@ public class viewDocumentoEdit extends AppCompatActivity implements View.OnClick
     private adpTipoDocumento adpTipoDocumento;
     private Documento documento;
     private Usuario usuario;
+    private AutorPerfil autorPerfil;
     private TipoDocumento tipoDocumento;
     private Button btnEnviarDocumento;
     private ImageButton btnVoltar, btnExcluirDocumento;
@@ -59,6 +60,8 @@ public class viewDocumentoEdit extends AppCompatActivity implements View.OnClick
     private void prepararComponentes(Bundle bundle) {
         documento = (Documento) bundle.getSerializable("documento");
         usuario = (Usuario) bundle.getSerializable("usuario");
+        autorPerfil = (AutorPerfil) bundle.getSerializable("autorPerfil");
+
         txtTipo = (Spinner) findViewById(R.id.txtTipo);
         txtTitulo = (EditText) findViewById(R.id.txtTitulo);
         txtPalavrasChave = (EditText) findViewById(R.id.txtPalavrasChave);
@@ -95,7 +98,15 @@ public class viewDocumentoEdit extends AppCompatActivity implements View.OnClick
         if (view.getId() == btnVoltar.getId()) {
             Bundle bundle = new Bundle();
             bundle.putSerializable("usuario", usuario);
-            intent = new Intent(viewDocumentoEdit.this, viewDocumento.class);
+            if (documento.getId()==null){
+                intent = new Intent(viewDocumentoEdit.this, viewDocumento.class);
+            }
+            else{
+                bundle.putSerializable("documento", documento);
+                bundle.putSerializable("autorPerfil", autorPerfil);
+                intent = new Intent(viewDocumentoEdit.this, viewDocumentoDetail.class);
+            }
+
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -197,9 +208,17 @@ public class viewDocumentoEdit extends AppCompatActivity implements View.OnClick
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
                     if (finalResult.trim().equals("Artigo registrado com sucesso")) {
+                        Intent intent;
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("usuario", usuario);
-                        Intent intent = new Intent(viewDocumentoEdit.this, viewDocumento.class);
+                        if (documento.getId()==null){
+                            intent = new Intent(viewDocumentoEdit.this, viewDocumento.class);
+                        }
+                        else{
+                            bundle.putSerializable("documento", documento);
+                            bundle.putSerializable("autorPerfil", autorPerfil);
+                            intent = new Intent(viewDocumentoEdit.this, viewDocumentoDetail.class);
+                        }
                         intent.putExtras(bundle);
                         startActivity(intent);
                     } else {

@@ -150,6 +150,7 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", usuario);
         bundle.putSerializable("documento", documento);
+        bundle.putSerializable("autorPerfil", autorPerfil);
 
         Intent intent = new Intent(this, viewDocumentoEdit.class);
         intent.putExtras(bundle);
@@ -160,6 +161,7 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", usuario);
         bundle.putSerializable("documento", documento);
+        bundle.putSerializable("autorPerfil", autorPerfil);
 
         Intent intent = new Intent(this, viewDocumentoResumo.class);
         intent.putExtras(bundle);

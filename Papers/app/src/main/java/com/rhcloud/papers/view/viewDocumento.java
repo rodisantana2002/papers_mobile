@@ -108,6 +108,7 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
             Bundle bundle = new Bundle();
             bundle.putSerializable("documento", new Documento());
             bundle.putSerializable("usuario", usuario);
+            bundle.putSerializable("autoPerfil", autorPerfil);
             intent = new Intent(viewDocumento.this, viewDocumentoEdit.class);
             intent.putExtras(bundle);
             startActivity(intent);
