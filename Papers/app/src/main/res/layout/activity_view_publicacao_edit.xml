@@ -144,16 +144,6 @@ tools:context="com.rhcloud.papers.view.viewPublicacaoEdit">
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/txtObservacao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Observação"
-                android:inputType="textAutoCorrect|textMultiLine"
-                android:maxLength="200"
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="16sp"
-                tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
 
         <Button

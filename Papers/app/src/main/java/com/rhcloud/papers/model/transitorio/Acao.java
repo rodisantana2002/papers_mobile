@@ -2,6 +2,8 @@ package com.rhcloud.papers.model.transitorio;
 
 import android.graphics.drawable.Drawable;
 
+import com.rhcloud.papers.model.enumeration.Situacao;
+
 import java.io.Serializable;
 
 /**
@@ -14,6 +16,7 @@ public class Acao implements Serializable{
     private String comentarioAcao;
     private Drawable imgAcao;
     private Class classeAcao;
+    private Situacao situacao;
 
     public int getId() {
         return id;
@@ -53,5 +56,13 @@ public class Acao implements Serializable{
 
     public void setImgAcao(Drawable imgAcao) {
         this.imgAcao = imgAcao;
+    }
+
+    public Situacao getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(Situacao situacao) {
+        this.situacao = situacao;
     }
 }

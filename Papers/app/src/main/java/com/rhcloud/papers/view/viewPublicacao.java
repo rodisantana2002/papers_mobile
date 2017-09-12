@@ -86,8 +86,6 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
     private void prepararComponenetes() {
         recyclerView = (RecyclerView) findViewById(R.id.lstPublicacoes);
         txtNenhumRegistro = (TextView) findViewById(R.id.txtNenhumRegistroPublicacao);
-        btnFloat = (FloatingActionButton) findViewById(R.id.btnFloatPublicacao);
-        btnFloat.setOnClickListener(viewPublicacao.this);
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarHomePublicacao);
         btnVoltar.setOnClickListener(viewPublicacao.this);
     }
@@ -102,14 +100,6 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
             startActivity(intent);
         }
 
-        if (view.getId() == btnFloat.getId()) {
-//            Bundle bundle = new Bundle();
-//            bundle.putSerializable("documento", new Documento());
-//            bundle.putSerializable("usuario", usuario);
-//            intent = new Intent(viewDocumento.this, viewDocumentoEdit.class);
-//            intent.putExtras(bundle);
-//            startActivity(intent);
-        }
     }
 
     private void popularLista(List<FilaSubmissao> filaSubmissaos) {
@@ -123,9 +113,9 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
                     bundle.putSerializable("publicacao", item);
                     bundle.putSerializable("usuario", usuario);
                     bundle.putSerializable("autorPerfil", autorPerfil);
-                    //Intent intent = new Intent(viewDocumento.this, viewDocumentoDetail.class);
-                    //intent.putExtras(bundle);
-                    //startActivity(intent);
+                    Intent intent = new Intent(viewPublicacao.this, viewPublicacaoDetail.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
@@ -152,6 +142,7 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
             try {
                 ctrlAutorPerfil ctrlAutorPerfil = new ctrlAutorPerfil(usuario);
                 autorPerfil = ctrlAutorPerfil.getAutorPublicacoes();
+
                 lstSubmissoes = autorPerfil.getLstResponsavelPublicacao();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 excPassaErro.getMessage();

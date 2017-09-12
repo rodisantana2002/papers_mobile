@@ -43,4 +43,9 @@ public class ctrlSubmissoes {
     public List<FilaSubmissao> obterAllByDocumento(Integer id) throws excPassaErro {
         return bsSubmissoes.findAllByDocumento(id);
     }
+
+    public String atualizarSituacao() throws excPassaErro {
+        return bsSubmissoes.atualizarSituacao(filaSubmissao);
+    }
+
 }

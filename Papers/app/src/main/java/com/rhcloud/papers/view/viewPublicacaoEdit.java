@@ -73,7 +73,6 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
 
         txtDestino = (Spinner) findViewById(R.id.txtDestinoEdit);
         txtDataLimite = (EditText) findViewById(R.id.txtDataLimiteEdit);
-        txtObservacao = (EditText) findViewById(R.id.txtObservacao);
         txtIdioma = (AutoCompleteTextView) findViewById(R.id.txtIdiomaEdit);
 
 
@@ -88,7 +87,6 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
         }
         txtIdioma.setText(filaSubmissao.getIdioma()!=null?filaSubmissao.getIdioma():"");
         txtDataLimite.setText(filaSubmissao.getDtLimiteSubmissao()!=null?filaSubmissao.getDtLimiteSubmissao():"");
-        txtObservacao.setText(filaSubmissao.getObservacao()!=null?filaSubmissao.getObservacao():"");
         txtIdioma.setAdapter(adapterIdioma);
     }
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
+import com.rhcloud.papers.helpers.rest.hlpMapasValoresEnuns;
 import com.rhcloud.papers.model.entity.FilaSubmissao;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class adpPublicacoes extends RecyclerView.Adapter<adpPublicacoes.RepoHold
     private List<FilaSubmissao> filaSubmissaos;
     private Context context;
     private itfOnItemClickListener onItemClickListener;
-
+    private hlpMapasValoresEnuns mapasValoresEnuns;
 
 
     public itfOnItemClickListener getOnItemClickListener() {
@@ -36,6 +37,7 @@ public class adpPublicacoes extends RecyclerView.Adapter<adpPublicacoes.RepoHold
     public adpPublicacoes(Context context, List<FilaSubmissao> submissaos) {
         this.context = context;
         this.filaSubmissaos = submissaos;
+        mapasValoresEnuns = new hlpMapasValoresEnuns();
     }
 
     @Override
@@ -49,7 +51,7 @@ public class adpPublicacoes extends RecyclerView.Adapter<adpPublicacoes.RepoHold
     public void onBindViewHolder(RepoHolder holder, int position) {
         final FilaSubmissao filaSubmissao = filaSubmissaos.get(position);
 
-        holder.txtSituacao.setText(filaSubmissaos.get(position).getSituacao().toString());
+        holder.txtSituacao.setText(mapasValoresEnuns.getDescricaoSituacao(filaSubmissaos.get(position).getSituacao()));
         holder.txtVersao.setText(filaSubmissaos.get(position).getVersao());
         holder.txtTitulo.setText(filaSubmissaos.get(position).getDocumento().getTitulo());
         holder.txtDestino.setText(filaSubmissaos.get(position).getDestino().getDescricao() + " - " + filaSubmissaos.get(position).getDestino().getClassificacao());

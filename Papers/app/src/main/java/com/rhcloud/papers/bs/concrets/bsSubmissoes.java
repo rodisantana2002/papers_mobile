@@ -35,6 +35,10 @@ public class bsSubmissoes implements itfGeneric<FilaSubmissao> {
         return connRest.post(hlpConstants.URL_BASE + hlpConstants.URL_FILA_SUBMISSAO, gson.toJson(entity));
     }
 
+    public String atualizarSituacao(FilaSubmissao entity) throws excPassaErro{
+        return connRest.post(hlpConstants.URL_BASE + hlpConstants.URL_FILA_SUBMISSAO + "situacao/", gson.toJson(entity));
+    }
+
     @Override
     public String delete(Integer id) throws excPassaErro{
         return connRest.delete(hlpConstants.URL_BASE + hlpConstants.URL_FILA_SUBMISSAO + id);

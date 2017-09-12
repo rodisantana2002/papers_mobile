@@ -75,22 +75,6 @@
                 layout="@layout/content_view_publicacao"
                 android:visibility="visible" />
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/btnFloatPublicacao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginVertical="15dp"
-                android:clickable="true"
-                app:backgroundTint="@color/colorPrimary"
-                app:fabSize="normal"
-                app:layout_anchor="@+id/includepublicacao"
-                app:layout_anchorGravity="bottom|end"
-                app:srcCompat="@drawable/ic_add_white_18dp"
-                tools:ignore="RtlHardcoded,UnusedAttribute" />
-
         </android.support.design.widget.CoordinatorLayout>
     </FrameLayout>
 
