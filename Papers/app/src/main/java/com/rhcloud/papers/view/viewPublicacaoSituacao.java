@@ -165,7 +165,7 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
                         bundle.putSerializable("usuario", usuario);
                         bundle.putSerializable("publicacao", filaSub);
                         bundle.putSerializable("autorPerfil", autorPerfil);
-                        Intent intent = new Intent(viewPublicacaoSituacao.this, viewPublicacao.class);
+                        Intent intent = new Intent(viewPublicacaoSituacao.this, viewPublicacaoDetail.class);
                         intent.putExtras(bundle);
                         startActivity(intent);
                     }

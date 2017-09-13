@@ -28,12 +28,7 @@ public class FilaSubmissao implements Serializable{
     private String dtUltAtualizacao;
     private String horaUltAtualizacao;
     private Pessoa criadoPor;
-    private List<HistoricoFilaSubmissao> historicosFilaSubmissao;
 
-    public FilaSubmissao(){
-        historicosFilaSubmissao = new ArrayList<HistoricoFilaSubmissao>();
-    }
-    
     public Integer getId() {
         return id;
     }
@@ -128,21 +123,5 @@ public class FilaSubmissao implements Serializable{
 
     public void setCriadoPor(Pessoa criadoPor) {
         this.criadoPor = criadoPor;
-    }
-
-    public List<HistoricoFilaSubmissao> getHistoricosFilaSubmissao() {
-        return historicosFilaSubmissao;
-    }
-
-    public void setHistoricosFilaSubmissao(List<HistoricoFilaSubmissao> historicosFilaSubmissao) {
-        this.historicosFilaSubmissao = historicosFilaSubmissao;
-    }
-    
-    public void addHistoricoFilaSubmissao(HistoricoFilaSubmissao historicoFilaSubmissao){
-        this.historicosFilaSubmissao.add(historicoFilaSubmissao);        
-    }
-    
-    public void removeHistoricoFilaSubmissao(HistoricoFilaSubmissao historicoFilaSubmissao){
-        this.historicosFilaSubmissao.remove(historicoFilaSubmissao);
     }
 }

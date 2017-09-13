@@ -142,8 +142,8 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
             try {
                 ctrlAutorPerfil ctrlAutorPerfil = new ctrlAutorPerfil(usuario);
                 autorPerfil = ctrlAutorPerfil.getAutorPublicacoes();
-
                 lstSubmissoes = autorPerfil.getLstResponsavelPublicacao();
+
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 excPassaErro.getMessage();
                 lstSubmissoes = new ArrayList<FilaSubmissao>();

@@ -1,6 +1,8 @@
 package com.rhcloud.papers.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.rhcloud.papers.R;
+import com.rhcloud.papers.control.ctrlHistorico;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
 import com.rhcloud.papers.helpers.rest.hlpMapasValoresEnuns;
 import com.rhcloud.papers.model.entity.FilaSubmissao;
@@ -29,6 +32,7 @@ import com.rhcloud.papers.view.decorator.dividerItemDecorator;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class viewPublicacaoDetail extends AppCompatActivity implements View.OnClickListener{
     private RecyclerView recyclerViewHistorico, recyclerViewAcoes;
@@ -43,7 +47,11 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
     private TextView txtNenhumRegistro;
     public TextView txtTitulo, txtSituacao, txtVersao, txtDestino, txtDataLimiteSubmissao, txtIdiona;
     private ArrayList<Acao> lstAcoes;
+    private ArrayList<HistoricoFilaSubmissao> lstHistorico;
     private hlpMapasValoresEnuns mapasValoresEnuns;
+    private ProgressDialog progressDialog;
+    private procDados procDados;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +76,8 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         btnVoltar.setOnClickListener(viewPublicacaoDetail.this);
 
         popularDadosHeader();
-        popularListaHistorico();
+        procDados = new procDados();
+        procDados.execute();
     }
 
     public void onClick(View view) {
@@ -123,7 +132,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
 
 
     private void popularListaHistorico(){
-        adpHistorico = new adpHistorico(viewPublicacaoDetail.this, filaSubmissao.getHistoricosFilaSubmissao());
+        adpHistorico = new adpHistorico(viewPublicacaoDetail.this, lstHistorico);
         adpHistorico.setOnItemClickListener(new itfOnItemClickListener<HistoricoFilaSubmissao>(){
 
             @Override
@@ -258,4 +267,34 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         recyclerViewAcoes.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL));
         recyclerViewAcoes.setAdapter(mAdapter);
     }
+
+    private class procDados extends AsyncTask<Void, Void, List<HistoricoFilaSubmissao>> {
+
+        @Override
+        protected List<HistoricoFilaSubmissao> doInBackground(Void...voids) {
+            try {
+                HistoricoFilaSubmissao historicoFilaSubmissao = new HistoricoFilaSubmissao();
+                historicoFilaSubmissao.setFilaSubmissao(filaSubmissao);
+                ctrlHistorico ctrlHistorico = new ctrlHistorico(historicoFilaSubmissao);
+                lstHistorico = (ArrayList<HistoricoFilaSubmissao>) ctrlHistorico.obterAllByPublicacao();
+
+            } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
+                excPassaErro.getMessage();
+                lstHistorico = new ArrayList<HistoricoFilaSubmissao>();
+            }
+            return lstHistorico;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(viewPublicacaoDetail.this, "Aguarde", "Carregando dados...");
+        }
+
+        @Override
+        protected void onPostExecute(List<HistoricoFilaSubmissao> historicoFilaSubmissaos) {
+            progressDialog.dismiss();
+            popularListaHistorico();
+        }
+    }
+
 }
