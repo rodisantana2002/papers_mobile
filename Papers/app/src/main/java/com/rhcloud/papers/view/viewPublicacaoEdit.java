@@ -36,7 +36,7 @@ import java.util.List;
 
 public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClickListener {
     private Spinner txtDestino;
-    private EditText txtDataLimite, txtObservacao;
+    private EditText txtDataLimite;
     private AutoCompleteTextView txtIdioma;
     private adpDestinos adpDestino;
     private Documento documento;
@@ -123,7 +123,6 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
         filaSubmissao.setCriadoPor(usuario.getPessoa());
         filaSubmissao.setDtLimiteSubmissao(txtDataLimite.getText().toString());
         filaSubmissao.setIdioma(txtIdioma.getText().toString());
-        filaSubmissao.setObservacao(txtObservacao.getText().toString());
         filaSubmissao.setVersao("1");
         filaSubmissao.setSituacao(Situacao.INICIADO);
     }

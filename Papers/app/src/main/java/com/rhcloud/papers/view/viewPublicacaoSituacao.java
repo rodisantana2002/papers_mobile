@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.rhcloud.papers.R;
+import com.rhcloud.papers.control.ctrlHistorico;
 import com.rhcloud.papers.control.ctrlSubmissoes;
 import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;
@@ -30,6 +31,7 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
     private EditText txtComentario;
     private Usuario usuario;
     private FilaSubmissao filaSubmissao;
+    private HistoricoFilaSubmissao historicoFilaSubmissao;
     private Acao acao;
     private AutorPerfil autorPerfil;
     private Button btnEnviar;
@@ -66,7 +68,7 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
         if (view.getId() == btnEnviar.getId()) {
             if (validarDados()) {
                 atualizarObjeto();
-                procDados = new procDados(filaSubmissao);
+                procDados = new procDados(filaSubmissao, historicoFilaSubmissao);
                 procDados.execute();
             }
         }
@@ -84,7 +86,8 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
     }
 
     private void atualizarObjeto() {
-        HistoricoFilaSubmissao historicoFilaSubmissao = new HistoricoFilaSubmissao();
+        historicoFilaSubmissao = new HistoricoFilaSubmissao();
+
         filaSubmissao.setSituacao(acao.getSituacao());
         if(acao.getSituacao().equals(Situacao.AGUARDANDO_AJUSTES)){
             filaSubmissao.setVersao(String.valueOf(Integer.valueOf(filaSubmissao.getVersao())+1));
@@ -97,7 +100,6 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
                                              mapasValoresEnuns.getDescricaoSituacao(acao.getSituacao()) + " e registrou o comentário: " +
                                              txtComentario.getText().toString());
         historicoFilaSubmissao.setCriadoPor(usuario.getPessoa());
-        filaSubmissao.addHistoricoFilaSubmissao(historicoFilaSubmissao);
     }
 
     private boolean validarDados() {
@@ -123,18 +125,23 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
     }
 
     private class procDados extends AsyncTask<Void, Void, String> {
-        private FilaSubmissao filaSubmissao;
+        private FilaSubmissao filaSub;
+        private HistoricoFilaSubmissao historico;
 
-        public procDados(FilaSubmissao filaSubmissao){
-            this.filaSubmissao = filaSubmissao;
+        public procDados(FilaSubmissao filaSubmissao, HistoricoFilaSubmissao historico){
+            this.filaSub = filaSubmissao;
+            this.historico = historico;
         }
 
         @Override
         protected String doInBackground(Void... voids) {
-            ctrlSubmissoes ctrlSubmissoes = new ctrlSubmissoes(filaSubmissao) ;
+            ctrlSubmissoes ctrlSubmissoes = new ctrlSubmissoes(filaSub) ;
+            ctrlHistorico  ctrlHistorico = new ctrlHistorico(historico);
             String msg = "";
             try {
-                return ctrlSubmissoes.atualizarSituacao();
+                ctrlHistorico.criar();
+                return ctrlSubmissoes.atualizar();
+
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 msg = excPassaErro.getMessage();
             }
@@ -156,7 +163,7 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
                     if (finalResult.trim().equals("Submissão registrada com sucesso")){
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("usuario", usuario);
-                        bundle.putSerializable("publicacao", filaSubmissao);
+                        bundle.putSerializable("publicacao", filaSub);
                         bundle.putSerializable("autorPerfil", autorPerfil);
                         Intent intent = new Intent(viewPublicacaoSituacao.this, viewPublicacao.class);
                         intent.putExtras(bundle);
