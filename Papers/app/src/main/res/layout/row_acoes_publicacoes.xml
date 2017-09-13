@@ -57,7 +57,7 @@
                 android:layout_height="13dp"
                 android:text="comentário ação"
                 android:textAlignment="viewStart"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/cardview_dark_background"
                 android:textSize="11sp"
                 tools:ignore="HardcodedText" />
 

@@ -82,9 +82,6 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
         btnEnviarPublicacao.setOnClickListener(this);
         btnVoltar.setOnClickListener(this);
 
-        if (filaSubmissao.getId()!=null){
-            txtDestino.setSelection(filaSubmissao.getDestino().getId());
-        }
         txtIdioma.setText(filaSubmissao.getIdioma()!=null?filaSubmissao.getIdioma():"");
         txtDataLimite.setText(filaSubmissao.getDtLimiteSubmissao()!=null?filaSubmissao.getDtLimiteSubmissao():"");
         txtIdioma.setAdapter(adapterIdioma);
@@ -104,27 +101,34 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
         if (view.getId() == btnVoltar.getId()) {
             Bundle bundle = new Bundle();
             bundle.putSerializable("usuario", usuario);
-            bundle.putSerializable("documento", documento);
             bundle.putSerializable("autorPerfil", autorPerfil);
 
-            intent = new Intent(viewPublicacaoEdit.this, viewDocumentoDetail.class);
+            if (filaSubmissao.getId()==null){
+                bundle.putSerializable("documento", documento);
+                intent = new Intent(viewPublicacaoEdit.this, viewDocumentoDetail.class);
+            }
+            else{
+                bundle.putSerializable("publicacao", filaSubmissao);
+                intent = new Intent(viewPublicacaoEdit.this, viewPublicacaoDetail.class);
+            }
+
             intent.putExtras(bundle);
             startActivity(intent);
         }
     }
 
     private void atualizarObjeto() {
-        Date date = new Date();
-
         Destino destino = (Destino) txtDestino.getSelectedItem();
+        if(filaSubmissao.getId()==null){
+            filaSubmissao.setDocumento(documento);
+            filaSubmissao.setCriadoPor(usuario.getPessoa());
+            usuario.getPessoa().setFoto(null);
+            filaSubmissao.setSituacao(Situacao.INICIADO);
+            filaSubmissao.setVersao("1");
+        }
         filaSubmissao.setDestino(destino);
-        filaSubmissao.setDocumento(documento);
-        usuario.getPessoa().setFoto(null);
-        filaSubmissao.setCriadoPor(usuario.getPessoa());
         filaSubmissao.setDtLimiteSubmissao(txtDataLimite.getText().toString());
         filaSubmissao.setIdioma(txtIdioma.getText().toString());
-        filaSubmissao.setVersao("1");
-        filaSubmissao.setSituacao(Situacao.INICIADO);
     }
 
     private boolean validarDados() {
@@ -213,6 +217,13 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
 
             adpDestino = new adpDestinos(viewPublicacaoEdit.this, android.R.layout.simple_spinner_dropdown_item, result);
             txtDestino.setAdapter(adpDestino);
+            for (int i=0; i<result.size(); i++){
+                if (result.get(i).getId().equals(filaSubmissao.getDestino().getId())){
+                    txtDestino.setSelection(i);
+                }
+            }
+            adpDestino.notifyDataSetChanged();
+
             txtDestino.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

@@ -37,6 +37,7 @@
 
             <TextView
                 android:id="@+id/txtDataAtualizacao"
+                style="@android:style/Widget.TextView.PopupMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:layout_alignParentStart="false"
@@ -45,7 +46,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="4dp"
-                android:background="#FFF8F8EB"
+                android:background="#FFF7F5F6"
                 android:gravity="left|center"
                 android:paddingBottom="0dp"
                 android:paddingLeft="5dp"
@@ -73,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="15dp"
                 android:orientation="vertical"
                 android:visibility="visible"
                 tools:ignore="InefficientWeight">

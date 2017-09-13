@@ -142,6 +142,7 @@
                         android:gravity="left|center"
                         android:paddingBottom="0dp"
                         android:text="Data Limite Envio"
+                        android:textColor="@color/cardview_dark_background"
                         android:textSize="10sp"
                         tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
 
@@ -178,6 +179,7 @@
                         android:gravity="left|center_vertical|center_horizontal"
                         android:paddingBottom="0dp"
                         android:textAlignment="textStart"
+                        android:textColor="@color/cardview_dark_background"
                         android:textSize="11sp"
                         tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
 
@@ -251,6 +253,7 @@
                 android:gravity="left|center_vertical|center_horizontal"
                 android:paddingBottom="0dp"
                 android:text="Submetido para"
+                android:textColor="@color/cardview_dark_background"
                 android:textSize="10sp"
                 tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
 
@@ -267,6 +270,7 @@
                 android:gravity="left|center"
                 android:paddingBottom="0dp"
                 android:text="txtDestino"
+                android:textColor="@color/cardview_dark_background"
                 android:textSize="11sp"
                 tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
 

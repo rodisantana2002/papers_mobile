@@ -20,6 +20,39 @@
         android:orientation="vertical"
         tools:ignore="UselessParent">
 
+        <TextView
+            android:id="@+id/txtNenhumRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="15dp"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="16sp"
+            android:visibility="gone"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+        <TextView
+            android:id="@+id/txtTituloLista"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_gravity="top|center"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
+            android:background="#fafafa"
+            android:gravity="center_vertical"
+            android:paddingBottom="0dp"
+            android:paddingLeft="8dp"
+            android:text="Histórico de Movimentações"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            tools:background="@android:color/white"
+            tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/lstGeral"
             android:layout_width="match_parent"

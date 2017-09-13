@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rhcloud.papers.R;
@@ -40,12 +41,11 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
     private adpHistorico adpHistorico;
     private adpAcoesPublicacoes mAdapter;
 
-    private ImageButton btnVoltar;
+    private ImageButton btnVoltar, btnEditar;
     private FilaSubmissao filaSubmissao;
     private Usuario usuario;
     private AutorPerfil autorPerfil;
-    private TextView txtNenhumRegistro;
-    public TextView txtTitulo, txtSituacao, txtVersao, txtDestino, txtDataLimiteSubmissao, txtIdiona;
+    private TextView txtTitulo, txtSituacao, txtVersao, txtDestino, txtDataLimiteSubmissao, txtIdiona, txtNenhumRegistro, txtTituloLista;
     private ArrayList<Acao> lstAcoes;
     private ArrayList<HistoricoFilaSubmissao> lstHistorico;
     private hlpMapasValoresEnuns mapasValoresEnuns;
@@ -68,12 +68,17 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         usuario = (Usuario) bundle.getSerializable("usuario");
         autorPerfil = (AutorPerfil) bundle.getSerializable("autorPerfil");
 
+        txtNenhumRegistro = (TextView) findViewById(R.id.txtNenhumRegistro);
+        txtTituloLista = (TextView) findViewById(R.id.txtTituloLista);
         mapasValoresEnuns = new hlpMapasValoresEnuns();
 
         recyclerViewHistorico = (RecyclerView) findViewById(R.id.lstGeral);
 
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarHomePublicacaoDetail);
         btnVoltar.setOnClickListener(viewPublicacaoDetail.this);
+
+        btnEditar = (ImageButton) findViewById(R.id.btnEditarPublica);
+        btnEditar.setOnClickListener(viewPublicacaoDetail.this);
 
         popularDadosHeader();
         procDados = new procDados();
@@ -91,6 +96,15 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
             intent.putExtras(bundle);
             startActivity(intent);
         }
+        if (view.getId() == btnEditar.getId()) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("usuario", usuario);
+            bundle.putSerializable("autorPerfil", autorPerfil);
+            bundle.putSerializable("publicacao", filaSubmissao);
+            intent = new Intent(this, viewPublicacaoEdit.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -101,9 +115,32 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
             switch (item.getItemId()) {
                 case R.id.navigation_publicacao_historico:
                     popularListaHistorico();
+                    if (lstHistorico.isEmpty()){
+                        txtNenhumRegistro.setVisibility(View.VISIBLE);
+                        txtTituloLista.setVisibility(View.GONE);
+                        recyclerViewHistorico.setVisibility(View.GONE);
+                    }
+                    else{
+                        txtNenhumRegistro.setVisibility(View.GONE);
+                        txtTituloLista.setText("Histórico de Movimentações");
+                        txtTituloLista.setVisibility(View.VISIBLE);
+                        recyclerViewHistorico.setVisibility(View.VISIBLE);
+                    }
+
                     return true;
                 case R.id.navigation_publicacao_aocoes:
                     popularListaAcoes();
+                    if (lstAcoes.isEmpty()){
+                        txtNenhumRegistro.setVisibility(View.VISIBLE);
+                        txtTituloLista.setVisibility(View.GONE);
+                        recyclerViewHistorico.setVisibility(View.GONE);
+                    }
+                    else{
+                        txtNenhumRegistro.setVisibility(View.GONE);
+                        txtTituloLista.setText("Selecione a opção desejada");
+                        txtTituloLista.setVisibility(View.VISIBLE);
+                        recyclerViewHistorico.setVisibility(View.VISIBLE);
+                    }
                     return true;
             }
             return false;
@@ -146,6 +183,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         recyclerViewHistorico.setAdapter(adpHistorico);
         recyclerViewHistorico.setVisibility(View.VISIBLE);
     }
+
 
     private void popularListaAcoes() {
         lstAcoes = new ArrayList<Acao>();

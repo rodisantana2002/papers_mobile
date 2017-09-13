@@ -44,29 +44,44 @@
                     android:weightSum="1"
                     tools:ignore="RtlHardcoded">
 
-                    <ImageButton
-                        android:id="@+id/btnVoltarHomePublicacaoDetail"
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_chevron_left_black_18dp"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        android:id="@+id/titleapp"
+                    <GridLayout
+                        android:id="@+id/gridPadrao"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="5dp"
-                        android:text="Publicação"
-                        android:textAlignment="textStart"
-                        android:textColor="@android:color/black"
-                        android:textColorHint="@color/cardview_dark_background"
-                        android:textSize="20sp"
-                        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+                        android:layout_height="match_parent">
 
+                        <ImageButton
+                            android:id="@+id/btnVoltarHomePublicacaoDetail"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_chevron_left_black_18dp"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/titleapp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Publicação"
+                            android:textAlignment="textStart"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@color/cardview_dark_background"
+                            android:textSize="20sp"
+                            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+                        <ImageButton
+                            android:id="@+id/btnEditarPublica"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right|center"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_border_color_black_24dp"
+                            tools:ignore="ContentDescription" />
+                    </GridLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -306,7 +321,7 @@
                             android:gravity="left|center_vertical|center_horizontal"
                             android:paddingBottom="0dp"
                             android:text="Submetido para"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/cardview_dark_background"
                             android:textSize="10sp"
                             tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
 
@@ -323,7 +338,7 @@
                             android:gravity="left|center"
                             android:paddingBottom="0dp"
                             android:text="txtDestino"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/cardview_dark_background"
                             android:textSize="11sp"
                             tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
 
@@ -351,7 +366,7 @@
                             android:gravity="left|center_vertical|center_horizontal"
                             android:paddingBottom="0dp"
                             android:text="Idioma"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/cardview_dark_background"
                             android:textSize="10sp"
                             tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
 
@@ -368,7 +383,7 @@
                             android:gravity="left|center"
                             android:paddingBottom="0dp"
                             android:text="txtIdioma"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/cardview_dark_background"
                             android:textSize="11sp"
                             tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
 

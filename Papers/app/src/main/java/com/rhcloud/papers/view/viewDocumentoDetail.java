@@ -191,7 +191,6 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
         startActivity(intent);
     }
 
-
     private void popularListaAcoes() {
         lstAcoes = new ArrayList<Acao>();
 
