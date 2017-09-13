@@ -15,11 +15,16 @@ import com.rhcloud.papers.control.ctrlSubmissoes;
 import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpDialog;
+import com.rhcloud.papers.helpers.rest.hlpMapasValoresEnuns;
 import com.rhcloud.papers.model.entity.FilaSubmissao;
+import com.rhcloud.papers.model.entity.HistoricoFilaSubmissao;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.enumeration.Situacao;
 import com.rhcloud.papers.model.transitorio.Acao;
 import com.rhcloud.papers.model.transitorio.AutorPerfil;
+
+import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormatter;
 
 public class viewPublicacaoSituacao extends AppCompatActivity implements View.OnClickListener{
     private EditText txtComentario;
@@ -31,6 +36,7 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
     private ImageButton btnVoltar;
     private ProgressDialog progressDialog;
     private procDados procDados;
+    private hlpMapasValoresEnuns mapasValoresEnuns;
 
 
     @Override
@@ -52,6 +58,7 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
         autorPerfil = (AutorPerfil) bundle.getSerializable("autorPerfil");
         filaSubmissao = (FilaSubmissao) bundle.getSerializable("publicacao");
         acao = (Acao) bundle.getSerializable("acao");
+        mapasValoresEnuns = new hlpMapasValoresEnuns();
     }
 
     public void onClick(View view) {
@@ -59,7 +66,7 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
         if (view.getId() == btnEnviar.getId()) {
             if (validarDados()) {
                 atualizarObjeto();
-                procDados = new procDados(usuario);
+                procDados = new procDados(filaSubmissao);
                 procDados.execute();
             }
         }
@@ -77,8 +84,20 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
     }
 
     private void atualizarObjeto() {
+        HistoricoFilaSubmissao historicoFilaSubmissao = new HistoricoFilaSubmissao();
         filaSubmissao.setSituacao(acao.getSituacao());
-        filaSubmissao.setObservacao(txtComentario.getText().toString());
+        if(acao.getSituacao().equals(Situacao.AGUARDANDO_AJUSTES)){
+            filaSubmissao.setVersao(String.valueOf(Integer.valueOf(filaSubmissao.getVersao())+1));
+
+        }
+        historicoFilaSubmissao.setFilaSubmissao(filaSubmissao);
+        historicoFilaSubmissao.setSituacao(acao.getSituacao());
+        historicoFilaSubmissao.setVersao(filaSubmissao.getVersao());
+        historicoFilaSubmissao.setComentario(usuario.getPessoa().getPrimeiroNome() + " alterou a situação da Publicação para " +
+                                             mapasValoresEnuns.getDescricaoSituacao(acao.getSituacao()) + " e registrou o comentário: " +
+                                             txtComentario.getText().toString());
+        historicoFilaSubmissao.setCriadoPor(usuario.getPessoa());
+        filaSubmissao.addHistoricoFilaSubmissao(historicoFilaSubmissao);
     }
 
     private boolean validarDados() {
@@ -103,12 +122,11 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
         return true;
     }
 
-
     private class procDados extends AsyncTask<Void, Void, String> {
-        private Usuario usuario;
+        private FilaSubmissao filaSubmissao;
 
-        public procDados(Usuario usuario){
-            this.usuario = usuario;
+        public procDados(FilaSubmissao filaSubmissao){
+            this.filaSubmissao = filaSubmissao;
         }
 
         @Override
@@ -140,7 +158,7 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
                         bundle.putSerializable("usuario", usuario);
                         bundle.putSerializable("publicacao", filaSubmissao);
                         bundle.putSerializable("autorPerfil", autorPerfil);
-                        Intent intent = new Intent(viewPublicacaoSituacao.this, viewPublicacaoDetail.class);
+                        Intent intent = new Intent(viewPublicacaoSituacao.this, viewPublicacao.class);
                         intent.putExtras(bundle);
                         startActivity(intent);
                     }

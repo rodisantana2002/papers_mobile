@@ -142,7 +142,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         lstAcoes = new ArrayList<Acao>();
 
         Acao acao = new Acao();
-        acao.setId(AcoesPublicacao.ENCAMINHAR_AVALIACAO_ORIENTADOR.ordinal());
+        acao.setId(1);
         acao.setNomeAcao("Encaminhar para Orientador");
         acao.setComentarioAcao("movimenta o artigo para o orientador.");
         acao.setImgAcao(getDrawable(R.drawable.ic_arrow_forward_black_24dp));
@@ -150,7 +150,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         lstAcoes.add(acao);
 
         acao = new Acao();
-        acao.setId(AcoesPublicacao.DEVOLVER_AJUSTES.ordinal());
+        acao.setId(2);
         acao.setNomeAcao("Devolver para Ajsutes");
         acao.setComentarioAcao("retorna o artigo para a realização de ajustes.");
         acao.setImgAcao(getDrawable(R.drawable.ic_thumb_down_black_24dp));
@@ -158,7 +158,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         lstAcoes.add(acao);
 
         acao = new Acao();
-        acao.setId(AcoesPublicacao.LIBERAR_SUBMISSAO.ordinal());
+        acao.setId(3);
         acao.setNomeAcao("Liberar para Submissão");
         acao.setComentarioAcao("libera o artigo para ser encaminhado para publicação.");
         acao.setImgAcao(getDrawable(R.drawable.ic_thumb_up_black_24dp));
@@ -166,7 +166,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         lstAcoes.add(acao);
 
         acao = new Acao();
-        acao.setId(AcoesPublicacao.SUBMETER_PUBLICACAO.ordinal());
+        acao.setId(4);
         acao.setNomeAcao("Submeter para Publicação");
         acao.setComentarioAcao("registra que o artigo já foi encaminhado para a publicação.");
         acao.setImgAcao(getDrawable(R.drawable.ic_send_black_18dp));
@@ -174,7 +174,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         lstAcoes.add(acao);
 
         acao = new Acao();
-        acao.setId(AcoesPublicacao.REGISTRAR_APROVACAO_PUBLICACAO.ordinal());
+        acao.setId(5);
         acao.setNomeAcao("Registrar Aprovação Publicação");
         acao.setComentarioAcao("registra que o artigo foi liberado para a publicação.");
         acao.setImgAcao(getDrawable(R.drawable.ic_spellcheck_black_24dp));
@@ -182,7 +182,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         lstAcoes.add(acao);
 
         acao = new Acao();
-        acao.setId(AcoesPublicacao.REGISTRAR_PUBLICACAO.ordinal());
+        acao.setId(6);
         acao.setNomeAcao("Registrar Publicação");
         acao.setComentarioAcao("registra que o artigo foi publicado.");
         acao.setImgAcao(getDrawable(R.drawable.ic_mood_black_24dp));
@@ -190,7 +190,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         lstAcoes.add(acao);
 
         acao = new Acao();
-        acao.setId(AcoesPublicacao.REJEITAR.ordinal());
+        acao.setId(7);
         acao.setNomeAcao("Rejeitar Publicação");
         acao.setComentarioAcao("registra que o artigo foi rejeitdo para publicação.");
         acao.setImgAcao(getDrawable(R.drawable.ic_mood_bad_black_24dp));
@@ -198,7 +198,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         lstAcoes.add(acao);
 
         acao = new Acao();
-        acao.setId(AcoesPublicacao.CANCELAR.ordinal());
+        acao.setId(8);
         acao.setNomeAcao("Cancelar");
         acao.setComentarioAcao("Encerra a publicação.");
         acao.setImgAcao(getDrawable(R.drawable.ic_close_black_24dp));
@@ -216,17 +216,40 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         mAdapter.setOnItemClickListener(new itfOnItemClickListener<Acao>() {
             @Override
             public void onItemClick(Acao item) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("publicacao", filaSubmissao);
+                bundle.putSerializable("usuario", usuario);
+                bundle.putSerializable("autorPerfil", autorPerfil);
+                Acao acao = new Acao();
                 if(item.getId()==1){
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("publicacao", filaSubmissao);
-                    bundle.putSerializable("usuario", usuario);
-                    bundle.putSerializable("autorPerfil", autorPerfil);
-                    bundle.putSerializable("acao", new Acao());
-                    Intent intent = new Intent(viewPublicacaoDetail.this, viewPublicacaoSituacao.class);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-
+                    acao.setSituacao(Situacao.EM_AVALIACAO_ORIENTADOR);
                 }
+                else if(item.getId()==2){
+                    acao.setSituacao(Situacao.AGUARDANDO_AJUSTES);
+                }
+                else if(item.getId()==3){
+                    acao.setSituacao(Situacao.LIBERADO_ORIENTADOR);
+                }
+                else if(item.getId()==4){
+                    acao.setSituacao(Situacao.SUBMETIDO_PUBLICACAO);
+                }
+                else if(item.getId()==5){
+                    acao.setSituacao(Situacao.APROVADA_PUBLICACAO);
+                }
+                else if(item.getId()==6){
+                    acao.setSituacao(Situacao.PUBLICADO);
+                }
+                else if(item.getId()==7){
+                    acao.setSituacao(Situacao.REJEITADO);
+                }
+                else if(item.getId()==8){
+                    acao.setSituacao(Situacao.CANCELADO);
+                }
+
+                bundle.putSerializable("acao", acao);
+                Intent intent = new Intent(viewPublicacaoDetail.this, viewPublicacaoSituacao.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 
