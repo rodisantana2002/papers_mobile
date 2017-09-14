@@ -84,6 +84,7 @@ tools:context="com.rhcloud.papers.view.viewDocumentoResumo">
                 android:gravity="top|left"
                 android:hint="Informe um breve resumo sobre o artigo"
                 android:inputType="text|textMultiLine"
+                android:maxLength="450"
                 android:textSize="14sp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>

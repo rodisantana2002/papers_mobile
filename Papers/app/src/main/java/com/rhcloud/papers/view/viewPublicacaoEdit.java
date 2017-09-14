@@ -217,12 +217,14 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
 
             adpDestino = new adpDestinos(viewPublicacaoEdit.this, android.R.layout.simple_spinner_dropdown_item, result);
             txtDestino.setAdapter(adpDestino);
-            for (int i=0; i<result.size(); i++){
-                if (result.get(i).getId().equals(filaSubmissao.getDestino().getId())){
-                    txtDestino.setSelection(i);
+            if (filaSubmissao.getId()!=null){
+                for (int i=0; i<result.size(); i++){
+                    if (result.get(i).getId().equals(filaSubmissao.getDestino().getId())){
+                        txtDestino.setSelection(i);
+                    }
                 }
+                adpDestino.notifyDataSetChanged();
             }
-            adpDestino.notifyDataSetChanged();
 
             txtDestino.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override

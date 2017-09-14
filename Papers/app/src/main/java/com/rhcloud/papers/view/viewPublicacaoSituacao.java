@@ -112,8 +112,8 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
             });
             return false;
         }
-        if (txtComentario.getText().length()>500) {
-            hlpDialog.getAlertDialog(this, "Atenção", "O comentário informado excede o tamanho máximo de 500 caracteres", "Ok", new itfDialogGeneric() {
+        if (txtComentario.getText().length()>450) {
+            hlpDialog.getAlertDialog(this, "Atenção", "O comentário informado excede o tamanho máximo de 450 caracteres", "Ok", new itfDialogGeneric() {
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
                     txtComentario.requestFocus();

@@ -88,8 +88,8 @@ public class viewDocumentoResumo extends AppCompatActivity implements View.OnCli
             });
             return false;
         }
-        if (txtResumoArtigo.getText().length()>500) {
-            hlpDialog.getAlertDialog(this, "Atenção", "O resumo informado excede o tamanho máximo de 500 caracteres", "Ok", new itfDialogGeneric() {
+        if (txtResumoArtigo.getText().length()>450) {
+            hlpDialog.getAlertDialog(this, "Atenção", "O resumo informado excede o tamanho máximo de 450 caracteres", "Ok", new itfDialogGeneric() {
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
                     txtResumoArtigo.requestFocus();

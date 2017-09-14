@@ -115,32 +115,9 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
             switch (item.getItemId()) {
                 case R.id.navigation_publicacao_historico:
                     popularListaHistorico();
-                    if (lstHistorico.isEmpty()){
-                        txtNenhumRegistro.setVisibility(View.VISIBLE);
-                        txtTituloLista.setVisibility(View.GONE);
-                        recyclerViewHistorico.setVisibility(View.GONE);
-                    }
-                    else{
-                        txtNenhumRegistro.setVisibility(View.GONE);
-                        txtTituloLista.setText("Histórico de Movimentações");
-                        txtTituloLista.setVisibility(View.VISIBLE);
-                        recyclerViewHistorico.setVisibility(View.VISIBLE);
-                    }
-
                     return true;
                 case R.id.navigation_publicacao_aocoes:
                     popularListaAcoes();
-                    if (lstAcoes.isEmpty()){
-                        txtNenhumRegistro.setVisibility(View.VISIBLE);
-                        txtTituloLista.setVisibility(View.GONE);
-                        recyclerViewHistorico.setVisibility(View.GONE);
-                    }
-                    else{
-                        txtNenhumRegistro.setVisibility(View.GONE);
-                        txtTituloLista.setText("Selecione a opção desejada");
-                        txtTituloLista.setVisibility(View.VISIBLE);
-                        recyclerViewHistorico.setVisibility(View.VISIBLE);
-                    }
                     return true;
             }
             return false;
@@ -181,7 +158,19 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         recyclerViewHistorico.setItemAnimator(new DefaultItemAnimator());
         recyclerViewHistorico.addItemDecoration(new dividerItemDecorator(viewPublicacaoDetail.this, LinearLayoutManager.VERTICAL));
         recyclerViewHistorico.setAdapter(adpHistorico);
-        recyclerViewHistorico.setVisibility(View.VISIBLE);
+
+        if (lstHistorico.isEmpty()){
+            txtNenhumRegistro.setVisibility(View.VISIBLE);
+            txtNenhumRegistro.setText("Nenhum histórico registrado para a Publicação");
+            txtTituloLista.setVisibility(View.GONE);
+            recyclerViewHistorico.setVisibility(View.GONE);
+        }
+        else{
+            txtNenhumRegistro.setVisibility(View.GONE);
+            txtTituloLista.setText("Histórico de Movimentações");
+            txtTituloLista.setVisibility(View.VISIBLE);
+            recyclerViewHistorico.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -198,7 +187,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
 
         acao = new Acao();
         acao.setId(2);
-        acao.setNomeAcao("Devolver para Ajsutes");
+        acao.setNomeAcao("Devolver para Ajustes");
         acao.setComentarioAcao("retorna o artigo para a realização de ajustes.");
         acao.setImgAcao(getDrawable(R.drawable.ic_thumb_down_black_24dp));
         acao.setSituacao(Situacao.AGUARDANDO_AJUSTES);
@@ -304,6 +293,19 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         recyclerViewAcoes.setItemAnimator(new DefaultItemAnimator());
         recyclerViewAcoes.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL));
         recyclerViewAcoes.setAdapter(mAdapter);
+
+        if (lstAcoes.isEmpty()){
+            txtNenhumRegistro.setVisibility(View.VISIBLE);
+            txtNenhumRegistro.setText("A Publicação não permite mais que a sua Situação seja alterada");
+            txtTituloLista.setVisibility(View.GONE);
+            recyclerViewHistorico.setVisibility(View.GONE);
+        }
+        else{
+            txtNenhumRegistro.setVisibility(View.GONE);
+            txtTituloLista.setText("Selecione a opção desejada");
+            txtTituloLista.setVisibility(View.VISIBLE);
+            recyclerViewHistorico.setVisibility(View.VISIBLE);
+        }
     }
 
     private class procDados extends AsyncTask<Void, Void, List<HistoricoFilaSubmissao>> {
