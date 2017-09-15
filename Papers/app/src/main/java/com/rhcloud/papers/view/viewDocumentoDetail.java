@@ -199,28 +199,28 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
         acao.setId(1);
         acao.setNomeAcao("Editar");
         acao.setComentarioAcao("mantenha os dados básicos do seu artigo atualizados.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_chrome_reader_mode_black_18dp));
+        acao.setImgAcao(R.drawable.ic_chrome_reader_mode_black_18dp);
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(2);
         acao.setNomeAcao("Resumir");
         acao.setComentarioAcao("registre um pequeno resumo para o seus artigo.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_reorder_black_18dp));
+        acao.setImgAcao(R.drawable.ic_reorder_black_18dp);
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(3);
         acao.setNomeAcao("Publicar");
         acao.setComentarioAcao("registre e controle os envios de publicação do seu artigo.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_send_black_18dp));
+        acao.setImgAcao(R.drawable.ic_send_black_18dp);
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(4);
         acao.setNomeAcao("Compartilhar");
         acao.setComentarioAcao("adicione ou remova os participantes do artigo.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_group_add_black_24dp));
+        acao.setImgAcao(R.drawable.ic_group_add_black_24dp);
         lstAcoes.add(acao);
     }
 

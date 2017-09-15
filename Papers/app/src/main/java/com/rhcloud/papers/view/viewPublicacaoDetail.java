@@ -1,6 +1,7 @@
 package com.rhcloud.papers.view;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.BottomNavigationView;
@@ -18,7 +19,7 @@ import android.widget.TextView;
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlHistorico;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
-import com.rhcloud.papers.helpers.rest.hlpMapasValoresEnuns;
+import com.rhcloud.papers.helpers.generic.hlpMapasValoresEnuns;
 import com.rhcloud.papers.model.entity.FilaSubmissao;
 import com.rhcloud.papers.model.entity.HistoricoFilaSubmissao;
 import com.rhcloud.papers.model.entity.Usuario;
@@ -30,16 +31,14 @@ import com.rhcloud.papers.view.adapters.adpAcoesPublicacoes;
 import com.rhcloud.papers.view.adapters.adpHistorico;
 import com.rhcloud.papers.view.decorator.dividerItemDecorator;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class viewPublicacaoDetail extends AppCompatActivity implements View.OnClickListener{
-    private RecyclerView recyclerViewHistorico;
-    private RecyclerView recyclerViewAcoes;
+    private RecyclerView recyclerViewHistorico, recyclerViewAcoes;
     private RecyclerView.LayoutManager layoutManager;
     private adpHistorico adpHistorico;
+    private adpAcoesPublicacoes mAdapter;
 
     private ImageButton btnVoltar, btnEditar;
     private FilaSubmissao filaSubmissao;
@@ -72,8 +71,10 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         txtTituloLista = (TextView) findViewById(R.id.txtTituloLista);
         mapasValoresEnuns = new hlpMapasValoresEnuns();
 
-        recyclerViewHistorico = (RecyclerView) findViewById(R.id.lstGeral);
         recyclerViewAcoes = (RecyclerView) findViewById(R.id.lstGeral);
+        recyclerViewAcoes.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL));
+        recyclerViewHistorico = (RecyclerView) findViewById(R.id.lstGeral);
+        recyclerViewHistorico.addItemDecoration(new dividerItemDecorator(viewPublicacaoDetail.this, LinearLayoutManager.VERTICAL));
 
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarHomePublicacaoDetail);
         btnVoltar.setOnClickListener(viewPublicacaoDetail.this);
@@ -115,34 +116,10 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         public boolean onNavigationItemSelected(MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_publicacao_historico:
-                    if (lstHistorico.isEmpty()){
-                        txtNenhumRegistro.setVisibility(View.VISIBLE);
-                        txtNenhumRegistro.setText("Nenhum histórico registrado para a Publicação");
-                        txtTituloLista.setVisibility(View.GONE);
-                        recyclerViewHistorico.setVisibility(View.GONE);
-                    }
-                    else{
-                        txtNenhumRegistro.setVisibility(View.GONE);
-                        txtTituloLista.setText("Histórico de Movimentações");
-                        txtTituloLista.setVisibility(View.VISIBLE);
-                        recyclerViewHistorico.setVisibility(View.VISIBLE);
-                        popularListaHistorico();
-                    }
+                    popularListaHistorico();
                     return true;
                 case R.id.navigation_publicacao_aocoes:
-                    if (lstAcoes.isEmpty()){
-                        txtNenhumRegistro.setVisibility(View.VISIBLE);
-                        txtNenhumRegistro.setText("A Publicação não permite mais que a sua Situação seja alterada");
-                        txtTituloLista.setVisibility(View.GONE);
-                        recyclerViewAcoes.setVisibility(View.GONE);
-                    }
-                    else{
-                        txtNenhumRegistro.setVisibility(View.GONE);
-                        txtTituloLista.setText("Selecione a opção desejada");
-                        txtTituloLista.setVisibility(View.VISIBLE);
-                        recyclerViewAcoes.setVisibility(View.VISIBLE);
-                        popularListaAcoes();
-                    }
+                    popularListaAcoes();
                     return true;
             }
             return false;
@@ -181,82 +158,30 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
 
         recyclerViewHistorico.setLayoutManager(new LinearLayoutManager(viewPublicacaoDetail.this));
         recyclerViewHistorico.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewHistorico.addItemDecoration(new dividerItemDecorator(viewPublicacaoDetail.this, LinearLayoutManager.VERTICAL));
         recyclerViewHistorico.setAdapter(adpHistorico);
+
+        if (lstHistorico.isEmpty()){
+            txtNenhumRegistro.setVisibility(View.VISIBLE);
+            txtNenhumRegistro.setText("Nenhum histórico registrado para a Publicação");
+            txtTituloLista.setVisibility(View.GONE);
+            recyclerViewHistorico.setVisibility(View.GONE);
+        }
+        else{
+            txtNenhumRegistro.setVisibility(View.GONE);
+            txtTituloLista.setText("Histórico de Movimentações");
+            txtTituloLista.setVisibility(View.VISIBLE);
+            recyclerViewHistorico.setVisibility(View.VISIBLE);
+        }
     }
 
+
     private void popularListaAcoes() {
-        lstAcoes = new ArrayList<Acao>();
-        Acao acao = new Acao();
-        acao.setId(1);
-        acao.setNomeAcao("Encaminhar para Orientador");
-        acao.setComentarioAcao("movimenta o artigo para o orientador.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_arrow_forward_black_24dp));
-        acao.setSituacao(Situacao.EM_AVALIACAO_ORIENTADOR);
-        lstAcoes.add(acao);
-
-        acao = new Acao();
-        acao.setId(2);
-        acao.setNomeAcao("Devolver para Ajustes");
-        acao.setComentarioAcao("retorna o artigo para a realização de ajustes.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_thumb_down_black_24dp));
-        acao.setSituacao(Situacao.AGUARDANDO_AJUSTES);
-        lstAcoes.add(acao);
-
-        acao = new Acao();
-        acao.setId(3);
-        acao.setNomeAcao("Liberar para Submissão");
-        acao.setComentarioAcao("libera o artigo para ser encaminhado para publicação.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_thumb_up_black_24dp));
-        acao.setSituacao(Situacao.LIBERADO_ORIENTADOR);
-        lstAcoes.add(acao);
-
-        acao = new Acao();
-        acao.setId(4);
-        acao.setNomeAcao("Submeter para Publicação");
-        acao.setComentarioAcao("registra que o artigo já foi encaminhado para a publicação.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_send_black_18dp));
-        acao.setSituacao(Situacao.SUBMETIDO_PUBLICACAO);
-        lstAcoes.add(acao);
-
-        acao = new Acao();
-        acao.setId(5);
-        acao.setNomeAcao("Registrar Aprovação Publicação");
-        acao.setComentarioAcao("registra que o artigo foi liberado para a publicação.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_spellcheck_black_24dp));
-        acao.setSituacao(Situacao.APROVADA_PUBLICACAO);
-        lstAcoes.add(acao);
-
-        acao = new Acao();
-        acao.setId(6);
-        acao.setNomeAcao("Registrar Publicação");
-        acao.setComentarioAcao("registra que o artigo foi publicado.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_mood_black_24dp));
-        acao.setSituacao(Situacao.PUBLICADO);
-        lstAcoes.add(acao);
-
-        acao = new Acao();
-        acao.setId(7);
-        acao.setNomeAcao("Rejeitar Publicação");
-        acao.setComentarioAcao("registra que o artigo foi rejeitdo para publicação.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_mood_bad_black_24dp));
-        acao.setSituacao(Situacao.REJEITADO);
-        lstAcoes.add(acao);
-
-        acao = new Acao();
-        acao.setId(8);
-        acao.setNomeAcao("Cancelar");
-        acao.setComentarioAcao("Encerra a publicação.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_close_black_24dp));
-        acao.setSituacao(Situacao.CANCELADO);
-        lstAcoes.add(acao);
-
+        lstAcoes = (ArrayList<Acao>) mapasValoresEnuns.getListaAcoesSituacao(filaSubmissao.getSituacao());
         prepararLista();
     }
 
-
     private void prepararLista(){
-        adpAcoesPublicacoes mAdapter = new adpAcoesPublicacoes(viewPublicacaoDetail.this, lstAcoes);
+        mAdapter = new adpAcoesPublicacoes(viewPublicacaoDetail.this, lstAcoes);
         mAdapter.setOnItemClickListener(new itfOnItemClickListener<Acao>() {
             @Override
             public void onItemClick(Acao item) {
@@ -299,8 +224,20 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
 
         recyclerViewAcoes.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewAcoes.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewAcoes.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL));
         recyclerViewAcoes.setAdapter(mAdapter);
+
+        if (lstAcoes.isEmpty()){
+            txtNenhumRegistro.setVisibility(View.VISIBLE);
+            txtNenhumRegistro.setText("A Publicação não permite mais que a sua Situação seja alterada");
+            txtTituloLista.setVisibility(View.GONE);
+            recyclerViewHistorico.setVisibility(View.GONE);
+        }
+        else{
+            txtNenhumRegistro.setVisibility(View.GONE);
+            txtTituloLista.setText("Selecione a opção desejada");
+            txtTituloLista.setVisibility(View.VISIBLE);
+            recyclerViewHistorico.setVisibility(View.VISIBLE);
+        }
     }
 
     private class procDados extends AsyncTask<Void, Void, List<HistoricoFilaSubmissao>> {

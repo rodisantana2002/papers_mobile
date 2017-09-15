@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
-import com.rhcloud.papers.helpers.rest.hlpMapasValoresEnuns;
+import com.rhcloud.papers.helpers.generic.hlpMapasValoresEnuns;
 import com.rhcloud.papers.model.entity.FilaSubmissao;
 
 import java.util.List;

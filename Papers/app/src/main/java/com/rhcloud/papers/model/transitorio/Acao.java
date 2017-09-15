@@ -14,7 +14,7 @@ public class Acao implements Serializable{
     private int id;
     private String nomeAcao;
     private String comentarioAcao;
-    private Drawable imgAcao;
+    private int imgAcao;
     private Class classeAcao;
     private Situacao situacao;
 
@@ -50,11 +50,11 @@ public class Acao implements Serializable{
         this.classeAcao = classeAcao;
     }
 
-    public Drawable getImgAcao() {
+    public int getImgAcao() {
         return imgAcao;
     }
 
-    public void setImgAcao(Drawable imgAcao) {
+    public void setImgAcao(int imgAcao) {
         this.imgAcao = imgAcao;
     }
 

@@ -56,7 +56,7 @@ public class adpAcoes extends RecyclerView.Adapter<adpAcoes.AcoesHolder>  {
 
         holder.txtNomeAcao.setText(lstAcoes.get(position).getNomeAcao());
         holder.txtComentarioAcao.setText(lstAcoes.get(position).getComentarioAcao());
-        holder.imgAcao.setImageDrawable(lstAcoes.get(position).getImgAcao());
+        holder.imgAcao.setImageResource(lstAcoes.get(position).getImgAcao());
 
         final View.OnClickListener listener = new View.OnClickListener(){
 

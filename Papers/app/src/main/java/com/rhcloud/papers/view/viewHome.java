@@ -71,42 +71,42 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         acao.setId(1);
         acao.setNomeAcao("Publicações");
         acao.setComentarioAcao("acompanhe e gerencie as suas publicações.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_send_black_18dp));
+        acao.setImgAcao(R.drawable.ic_send_black_18dp);
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(2);
         acao.setNomeAcao("Artigos");
         acao.setComentarioAcao("crie e atualize seus artigos.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_description_black_24dp));
+        acao.setImgAcao(R.drawable.ic_description_black_24dp);
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(3);
         acao.setNomeAcao("Autores");
         acao.setComentarioAcao("registre novos autores no grupo de autores do sistema.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_group_black_24dp));
+        acao.setImgAcao(R.drawable.ic_group_black_24dp);
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(4);
         acao.setNomeAcao("Notificações");
         acao.setComentarioAcao("visualize e gerencie as notificações recebidas.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_message_black_24dp));
+        acao.setImgAcao(R.drawable.ic_message_black_24dp);
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(5);
         acao.setNomeAcao("Repositórios Publicação");
         acao.setComentarioAcao("mantenha a lista de repositórios de publicações atualizada.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_account_balance_black_24dp));
+        acao.setImgAcao(R.drawable.ic_account_balance_black_24dp);
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(6);
         acao.setNomeAcao("Sair do Sistema");
         acao.setComentarioAcao("encerre o sistema e retorne a tela de login.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_exit_to_app_black_24dp));
+        acao.setImgAcao(R.drawable.ic_exit_to_app_black_24dp);
         lstAcoes.add(acao);
 
         prepararLista();

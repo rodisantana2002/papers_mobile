@@ -87,6 +87,8 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
 
     private void prepararComponenetes() {
         recyclerView = (RecyclerView) findViewById(R.id.lstDocumentos);
+        recyclerView.addItemDecoration(new dividerItemDecorator(viewDocumento.this, LinearLayoutManager.VERTICAL));
+
         txtNenhumRegistro = (TextView) findViewById(R.id.txtNenhumRegistroDocumento);
         btnFloat = (FloatingActionButton) findViewById(R.id.btnFloatDocumento);
         btnFloat.setOnClickListener(viewDocumento.this);
@@ -137,7 +139,6 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(viewDocumento.this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new dividerItemDecorator(viewDocumento.this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(mAdapter);
 
         if (lstDocs.isEmpty()) {

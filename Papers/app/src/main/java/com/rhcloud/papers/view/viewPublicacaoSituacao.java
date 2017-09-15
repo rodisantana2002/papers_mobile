@@ -16,16 +16,13 @@ import com.rhcloud.papers.control.ctrlSubmissoes;
 import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpDialog;
-import com.rhcloud.papers.helpers.rest.hlpMapasValoresEnuns;
+import com.rhcloud.papers.helpers.generic.hlpMapasValoresEnuns;
 import com.rhcloud.papers.model.entity.FilaSubmissao;
 import com.rhcloud.papers.model.entity.HistoricoFilaSubmissao;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.enumeration.Situacao;
 import com.rhcloud.papers.model.transitorio.Acao;
 import com.rhcloud.papers.model.transitorio.AutorPerfil;
-
-import org.joda.time.LocalDateTime;
-import org.joda.time.format.DateTimeFormatter;
 
 public class viewPublicacaoSituacao extends AppCompatActivity implements View.OnClickListener{
     private EditText txtComentario;

@@ -57,35 +57,35 @@ public class viewPerfil extends AppCompatActivity {
         acao.setId(1);
         acao.setNomeAcao("Minha Foto");
         acao.setComentarioAcao("mantenha sua foto do perfil atualizada.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_person_pin_black_18dp));
+        acao.setImgAcao(R.drawable.ic_person_pin_black_18dp);
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(2);
         acao.setNomeAcao("Dados Pessoais");
         acao.setComentarioAcao("mantenha seus dados de contato atualizados em seu perfil.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_chrome_reader_mode_black_18dp));
+        acao.setImgAcao(R.drawable.ic_chrome_reader_mode_black_18dp);
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(3);
         acao.setNomeAcao("Resumo Profissional");
         acao.setComentarioAcao("conte-nos um pouco sobre sua experiência profissional.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_reorder_black_18dp));
+        acao.setImgAcao(R.drawable.ic_reorder_black_18dp);
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(4);
         acao.setNomeAcao("Segurança");
         acao.setComentarioAcao("cuide de sua senha de acesso ao sistema.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_https_black_18dp));
+        acao.setImgAcao(R.drawable.ic_https_black_18dp);
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(5);
         acao.setNomeAcao("Início");
         acao.setComentarioAcao("para outras opções retorne a tela inicial.");
-        acao.setImgAcao(getDrawable(R.drawable.ic_chevron_left_black_18dp));
+        acao.setImgAcao(R.drawable.ic_chevron_left_black_18dp);
         lstAcoes.add(acao);
     }
 
