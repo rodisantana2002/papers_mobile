@@ -36,10 +36,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class viewPublicacaoDetail extends AppCompatActivity implements View.OnClickListener{
-    private RecyclerView recyclerViewHistorico, recyclerViewAcoes;
+    private RecyclerView recyclerViewHistorico;
+    private RecyclerView recyclerViewAcoes;
     private RecyclerView.LayoutManager layoutManager;
     private adpHistorico adpHistorico;
-    private adpAcoesPublicacoes mAdapter;
 
     private ImageButton btnVoltar, btnEditar;
     private FilaSubmissao filaSubmissao;
@@ -73,6 +73,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         mapasValoresEnuns = new hlpMapasValoresEnuns();
 
         recyclerViewHistorico = (RecyclerView) findViewById(R.id.lstGeral);
+        recyclerViewAcoes = (RecyclerView) findViewById(R.id.lstGeral);
 
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarHomePublicacaoDetail);
         btnVoltar.setOnClickListener(viewPublicacaoDetail.this);
@@ -114,10 +115,34 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         public boolean onNavigationItemSelected(MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_publicacao_historico:
-                    popularListaHistorico();
+                    if (lstHistorico.isEmpty()){
+                        txtNenhumRegistro.setVisibility(View.VISIBLE);
+                        txtNenhumRegistro.setText("Nenhum histórico registrado para a Publicação");
+                        txtTituloLista.setVisibility(View.GONE);
+                        recyclerViewHistorico.setVisibility(View.GONE);
+                    }
+                    else{
+                        txtNenhumRegistro.setVisibility(View.GONE);
+                        txtTituloLista.setText("Histórico de Movimentações");
+                        txtTituloLista.setVisibility(View.VISIBLE);
+                        recyclerViewHistorico.setVisibility(View.VISIBLE);
+                        popularListaHistorico();
+                    }
                     return true;
                 case R.id.navigation_publicacao_aocoes:
-                    popularListaAcoes();
+                    if (lstAcoes.isEmpty()){
+                        txtNenhumRegistro.setVisibility(View.VISIBLE);
+                        txtNenhumRegistro.setText("A Publicação não permite mais que a sua Situação seja alterada");
+                        txtTituloLista.setVisibility(View.GONE);
+                        recyclerViewAcoes.setVisibility(View.GONE);
+                    }
+                    else{
+                        txtNenhumRegistro.setVisibility(View.GONE);
+                        txtTituloLista.setText("Selecione a opção desejada");
+                        txtTituloLista.setVisibility(View.VISIBLE);
+                        recyclerViewAcoes.setVisibility(View.VISIBLE);
+                        popularListaAcoes();
+                    }
                     return true;
             }
             return false;
@@ -158,25 +183,10 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         recyclerViewHistorico.setItemAnimator(new DefaultItemAnimator());
         recyclerViewHistorico.addItemDecoration(new dividerItemDecorator(viewPublicacaoDetail.this, LinearLayoutManager.VERTICAL));
         recyclerViewHistorico.setAdapter(adpHistorico);
-
-        if (lstHistorico.isEmpty()){
-            txtNenhumRegistro.setVisibility(View.VISIBLE);
-            txtNenhumRegistro.setText("Nenhum histórico registrado para a Publicação");
-            txtTituloLista.setVisibility(View.GONE);
-            recyclerViewHistorico.setVisibility(View.GONE);
-        }
-        else{
-            txtNenhumRegistro.setVisibility(View.GONE);
-            txtTituloLista.setText("Histórico de Movimentações");
-            txtTituloLista.setVisibility(View.VISIBLE);
-            recyclerViewHistorico.setVisibility(View.VISIBLE);
-        }
     }
-
 
     private void popularListaAcoes() {
         lstAcoes = new ArrayList<Acao>();
-
         Acao acao = new Acao();
         acao.setId(1);
         acao.setNomeAcao("Encaminhar para Orientador");
@@ -246,9 +256,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
 
 
     private void prepararLista(){
-        recyclerViewAcoes = (RecyclerView) findViewById(R.id.lstGeral);
-
-        mAdapter = new adpAcoesPublicacoes(viewPublicacaoDetail.this, lstAcoes);
+        adpAcoesPublicacoes mAdapter = new adpAcoesPublicacoes(viewPublicacaoDetail.this, lstAcoes);
         mAdapter.setOnItemClickListener(new itfOnItemClickListener<Acao>() {
             @Override
             public void onItemClick(Acao item) {
@@ -293,19 +301,6 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         recyclerViewAcoes.setItemAnimator(new DefaultItemAnimator());
         recyclerViewAcoes.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL));
         recyclerViewAcoes.setAdapter(mAdapter);
-
-        if (lstAcoes.isEmpty()){
-            txtNenhumRegistro.setVisibility(View.VISIBLE);
-            txtNenhumRegistro.setText("A Publicação não permite mais que a sua Situação seja alterada");
-            txtTituloLista.setVisibility(View.GONE);
-            recyclerViewHistorico.setVisibility(View.GONE);
-        }
-        else{
-            txtNenhumRegistro.setVisibility(View.GONE);
-            txtTituloLista.setText("Selecione a opção desejada");
-            txtTituloLista.setVisibility(View.VISIBLE);
-            recyclerViewHistorico.setVisibility(View.VISIBLE);
-        }
     }
 
     private class procDados extends AsyncTask<Void, Void, List<HistoricoFilaSubmissao>> {
@@ -333,7 +328,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         @Override
         protected void onPostExecute(List<HistoricoFilaSubmissao> historicoFilaSubmissaos) {
             progressDialog.dismiss();
-            popularListaHistorico();
+            popularListaAcoes();
         }
     }
 
