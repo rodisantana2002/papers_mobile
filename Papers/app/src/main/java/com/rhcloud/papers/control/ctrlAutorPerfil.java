@@ -30,6 +30,7 @@ public class ctrlAutorPerfil {
         ctrlSubmissoes = new ctrlSubmissoes(new FilaSubmissao());
         ctrlDocumentoPessoas = new ctrlDocumentoPessoas(new DocumentosPessoas());
         ctrlDocumentoPessoasFavoritos = new ctrlDocumentoPessoasFavoritos(new DocumentosPessoasFavoritos());
+        this.usuario = usuario;
         autorPerfil.setUsuario(usuario);
         popularDocumentosResponsavel();
         popularDocumentosParticipante();
