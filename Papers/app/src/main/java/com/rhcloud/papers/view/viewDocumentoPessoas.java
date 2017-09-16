@@ -92,7 +92,7 @@ public class viewDocumentoPessoas extends AppCompatActivity implements View.OnCl
 
         recyclerViewParticipantes.setLayoutManager(new LinearLayoutManager(viewDocumentoPessoas.this));
         recyclerViewParticipantes.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewParticipantes.addItemDecoration(new dividerItemDecorator(viewDocumentoPessoas.this, LinearLayoutManager.VERTICAL));
+        recyclerViewParticipantes.addItemDecoration(new dividerItemDecorator(viewDocumentoPessoas.this, LinearLayoutManager.VERTICAL,0));
         recyclerViewParticipantes.setAdapter(mAdapterParticipantes);
         recyclerViewParticipantes.setVisibility(View.VISIBLE);
     }

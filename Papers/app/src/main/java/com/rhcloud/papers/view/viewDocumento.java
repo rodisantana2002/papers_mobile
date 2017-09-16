@@ -87,7 +87,7 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
 
     private void prepararComponenetes() {
         recyclerView = (RecyclerView) findViewById(R.id.lstDocumentos);
-        recyclerView.addItemDecoration(new dividerItemDecorator(viewDocumento.this, LinearLayoutManager.VERTICAL));
+        recyclerView.addItemDecoration(new dividerItemDecorator(viewDocumento.this, LinearLayoutManager.VERTICAL,0));
 
         txtNenhumRegistro = (TextView) findViewById(R.id.txtNenhumRegistroDocumento);
         btnFloat = (FloatingActionButton) findViewById(R.id.btnFloatDocumento);

@@ -123,7 +123,7 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(viewPublicacao.this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new dividerItemDecorator(viewPublicacao.this, LinearLayoutManager.VERTICAL));
+        recyclerView.addItemDecoration(new dividerItemDecorator(viewPublicacao.this, LinearLayoutManager.VERTICAL,0));
         recyclerView.setAdapter(mAdapter);
 
         if (filaSubmissaos.isEmpty()) {

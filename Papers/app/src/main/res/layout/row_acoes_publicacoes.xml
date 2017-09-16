@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="55dp"
     android:background="@android:color/white"
     android:clickable="true"
     android:focusable="true"
@@ -25,8 +25,8 @@
 
         <ImageView
             android:id="@+id/imgAcao"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:paddingRight="@dimen/fab_margin"
             android:src="@drawable/ic_camera_alt_black_18dp"
             android:visibility="visible"
@@ -42,23 +42,24 @@
             <TextView
                 android:id="@+id/txtNomeAcao"
                 android:layout_width="match_parent"
-                android:layout_height="18dp"
+                android:layout_height="25dp"
                 android:gravity="left|center_vertical"
                 android:text="NomeAcao"
                 android:textAlignment="viewStart"
                 android:textColor="@color/cardview_dark_background"
-                android:textSize="14sp"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:visibility="visible"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <TextView
                 android:id="@+id/txtComentarioAcao"
                 android:layout_width="match_parent"
-                android:layout_height="13dp"
+                android:layout_height="18dp"
                 android:text="comentário ação"
                 android:textAlignment="viewStart"
                 android:textColor="@color/cardview_dark_background"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 tools:ignore="HardcodedText" />
 
         </LinearLayout>

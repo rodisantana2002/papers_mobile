@@ -155,7 +155,7 @@ public class viewAutor extends AppCompatActivity implements View.OnClickListener
 
         recyclerView.setLayoutManager(new LinearLayoutManager(viewAutor.this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new dividerItemDecorator(viewAutor.this, LinearLayoutManager.VERTICAL));
+        recyclerView.addItemDecoration(new dividerItemDecorator(viewAutor.this, LinearLayoutManager.VERTICAL,0));
         recyclerView.setAdapter(mAdapter);
         recyclerView.setVisibility(View.VISIBLE);
         txtNenhumRegistro.setVisibility(View.GONE);

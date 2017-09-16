@@ -135,7 +135,7 @@ public class viewRepositorio extends AppCompatActivity implements View.OnClickLi
 
         recyclerView.setLayoutManager(new LinearLayoutManager(viewRepositorio.this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new dividerItemDecorator(viewRepositorio.this, LinearLayoutManager.VERTICAL));
+        recyclerView.addItemDecoration(new dividerItemDecorator(viewRepositorio.this, LinearLayoutManager.VERTICAL,0));
         recyclerView.setAdapter(mAdapter);
         recyclerView.setVisibility(View.VISIBLE);
         txtNenhumRegistro.setVisibility(View.GONE);

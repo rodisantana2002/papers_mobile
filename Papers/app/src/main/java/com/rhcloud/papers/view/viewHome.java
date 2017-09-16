@@ -142,7 +142,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL));
+        recyclerView.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL,120));
         recyclerView.setAdapter(mAdapter);
     }
 

@@ -26,12 +26,14 @@ public class dividerItemDecorator extends RecyclerView.ItemDecoration {
     public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;
     private Drawable mDivider;
     private int mOrientation;
+    private int mMargemLeft;
 
-    public dividerItemDecorator(Context context, int orientation) {
+    public dividerItemDecorator(Context context, int orientation, int margemLeft) {
         final TypedArray a = context.obtainStyledAttributes(ATTRS);
         mDivider = a.getDrawable(0);
         a.recycle();
         setOrientation(orientation);
+        mMargemLeft = margemLeft;
     }
 
     public void setOrientation(int orientation) {
@@ -51,7 +53,7 @@ public class dividerItemDecorator extends RecyclerView.ItemDecoration {
     }
 
     public void drawVertical(Canvas c, RecyclerView parent) {
-        final int left = parent.getPaddingLeft() + 20;
+        final int left = parent.getPaddingLeft() + mMargemLeft;
         final int right = parent.getWidth() - parent.getPaddingRight()-20;
 
         final int childCount = parent.getChildCount();
