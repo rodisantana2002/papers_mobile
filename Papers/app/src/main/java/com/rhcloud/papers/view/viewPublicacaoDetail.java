@@ -72,9 +72,9 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         mapasValoresEnuns = new hlpMapasValoresEnuns();
 
         recyclerViewAcoes = (RecyclerView) findViewById(R.id.lstGeral);
-        recyclerViewAcoes.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL,120));
+        recyclerViewAcoes.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL,100));
         recyclerViewHistorico = (RecyclerView) findViewById(R.id.lstGeral);
-        recyclerViewHistorico.addItemDecoration(new dividerItemDecorator(viewPublicacaoDetail.this, LinearLayoutManager.VERTICAL,20));
+        recyclerViewHistorico.addItemDecoration(new dividerItemDecorator(viewPublicacaoDetail.this, LinearLayoutManager.VERTICAL,100));
 
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarHomePublicacaoDetail);
         btnVoltar.setOnClickListener(viewPublicacaoDetail.this);
