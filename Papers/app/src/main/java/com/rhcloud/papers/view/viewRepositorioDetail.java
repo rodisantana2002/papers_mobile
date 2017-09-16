@@ -89,13 +89,22 @@ public class viewRepositorioDetail extends AppCompatActivity implements View.OnC
                 public void onButtonAction(boolean value) throws excPassaErro {
                     if (value){
                         ctrlDestino  ctrlDestino = new ctrlDestino(destino);
-                        ctrlDestino.remover();
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("usuario", usuario);
-                        Intent intent = new Intent(viewRepositorioDetail.this, viewRepositorio.class);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-
+                        final String msg = ctrlDestino.remover();
+                        hlpDialog.getAlertDialog(viewRepositorioDetail.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                            @Override
+                            public void onButtonAction(boolean value) throws excPassaErro {
+                                if (msg.trim().equals("Repositório removido do sistema com sucesso")){
+                                    Bundle bundle = new Bundle();
+                                    bundle.putSerializable("usuario", usuario);
+                                    Intent intent = new Intent(viewRepositorioDetail.this, viewRepositorio.class);
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);
+                                }
+                                else{
+                                    txtClassificacao.requestFocus();
+                                }
+                            }
+                        });
                     }
                     else{
                         txtClassificacao.requestFocus();

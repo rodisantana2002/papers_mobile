@@ -111,13 +111,24 @@ public class viewAutorEdit extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
                     if (value){
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("usuario", usuario);
                         ctrlPessoa ctrlPessoa = new ctrlPessoa(pessoa);
-                        ctrlPessoa.remover();
-                        Intent intent = new Intent(viewAutorEdit.this, viewAutor.class);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
+                        final String msg = ctrlPessoa.remover();
+
+                        hlpDialog.getAlertDialog(viewAutorEdit.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                            @Override
+                            public void onButtonAction(boolean value) throws excPassaErro {
+                                if (msg.trim().equals("Autor removido do sistema com sucesso")){
+                                    Bundle bundle = new Bundle();
+                                    bundle.putSerializable("usuario", usuario);
+                                    Intent intent = new Intent(viewAutorEdit.this, viewAutor.class);
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);
+                                }
+                                else{
+                                    txtPrimeiroNome.requestFocus();
+                                }
+                            }
+                        });
                     }
                     else{
                         txtPrimeiroNome.requestFocus();

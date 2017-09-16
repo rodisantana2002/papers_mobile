@@ -116,13 +116,23 @@ public class viewDocumentoEdit extends AppCompatActivity implements View.OnClick
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
                     if (value) {
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("usuario", usuario);
                         ctrlDocumento ctrlDocumento = new ctrlDocumento(documento);
-                        ctrlDocumento.remover();
-                        Intent intent = new Intent(viewDocumentoEdit.this, viewDocumento.class);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
+                        final String msg = ctrlDocumento.remover();
+
+                        hlpDialog.getAlertDialog(viewDocumentoEdit.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                            @Override
+                            public void onButtonAction(boolean value) throws excPassaErro {
+                                if (msg.trim().equals("Artigo removido do sistema com sucesso")){
+                                    Bundle bundle = new Bundle();
+                                    bundle.putSerializable("usuario", usuario);
+                                    Intent intent = new Intent(viewDocumentoEdit.this, viewDocumento.class);
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);                               }
+                                else{
+                                    txtTitulo.requestFocus();
+                                }
+                            }
+                        });
                     } else {
                         txtTitulo.requestFocus();
                     }
