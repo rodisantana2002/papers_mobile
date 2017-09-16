@@ -59,13 +59,7 @@ public class adpParticipantes extends RecyclerView.Adapter<adpParticipantes.Repo
             holder.txtInstituicao.setText(lstAutores.get(position).getPessoa().getInstituicao());
         }
 
-        if (lstAutores.get(position).getPessoa().getFoto()==null){
-            holder.imgFoto.setImageDrawable(context.getDrawable(R.drawable.ic_account_circle_black_48dp));
-        }
-        else {
-            Bitmap bmUser = BitmapFactory.decodeByteArray(lstAutores.get(position).getPessoa().getFoto(), 0, lstAutores.get(position).getPessoa().getFoto().length);
-            holder.imgFoto.setImageBitmap(bmUser);
-        }
+        holder.imgFoto.setImageDrawable(context.getDrawable(R.drawable.ic_account_circle_black_48dp));
 
         final View.OnClickListener listener = new View.OnClickListener(){
 

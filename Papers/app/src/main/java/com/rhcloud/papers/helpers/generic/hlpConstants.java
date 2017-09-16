@@ -12,6 +12,7 @@ public class hlpConstants {
 
     public static final String URL_BASE = "http://papers-santana2002.rhcloud.com/services/";
     public static final String URL_PESSOA = "autor/";
+    public static final String URL_PESSOA_FOTO = "foto/";
     public static final String URL_AUTENTICATION = "autentication/";
     public static final String URL_USUARIO = "usuario/";
     public static final String URL_DOCUMENTO = "documento/";

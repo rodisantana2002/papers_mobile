@@ -35,8 +35,7 @@
                 android:background="#FFE1DEDF"
                 android:contentDescription="@string/logotipo"
                 android:paddingTop="5dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_account_circle_black_48dp" />
+                android:scaleType="fitXY" />
 
             <Space
                 android:layout_width="match_parent"

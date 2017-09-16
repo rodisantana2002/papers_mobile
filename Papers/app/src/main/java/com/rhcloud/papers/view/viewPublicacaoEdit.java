@@ -122,7 +122,6 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
         if(filaSubmissao.getId()==null){
             filaSubmissao.setDocumento(documento);
             filaSubmissao.setCriadoPor(usuario.getPessoa());
-            usuario.getPessoa().setFoto(null);
             filaSubmissao.setSituacao(Situacao.INICIADO);
             filaSubmissao.setVersao("1");
         }

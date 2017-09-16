@@ -23,8 +23,10 @@ import com.rhcloud.papers.Principal;
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlAutentication;
 import com.rhcloud.papers.control.ctrlPessoa;
+import com.rhcloud.papers.control.ctrlPessoaFoto;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
 import com.rhcloud.papers.helpers.generic.hlpConstants;
+import com.rhcloud.papers.model.entity.PessoaFoto;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.transitorio.Acao;
 import com.rhcloud.papers.view.adapters.adpAcoes;
@@ -36,6 +38,8 @@ import java.util.List;
 public class viewHome extends AppCompatActivity implements View.OnClickListener{
     private ctrlAutentication ctrlAutentication;
     private Usuario usuario;
+    private PessoaFoto pessoaFoto;
+
     private SharedPreferences sharedPreferences;
     private TextView lblUsuario, lblDtUltAcesso;
     private ImageButton btnPerfil;
@@ -219,7 +223,6 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
 
         btnPerfil.setOnClickListener(this);
 
-        //carregarFoto();
         procDados = new procDados(usuario);
         procDados.execute();
     }
@@ -249,6 +252,8 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
             String msg = "";
             try {
                 usuario.setPessoa(ctrlPessoa.obterByID(usuario.getPessoa().getId()));
+                ctrlPessoaFoto ctrlPessoaFoto = new ctrlPessoaFoto(new PessoaFoto());
+                pessoaFoto = ctrlPessoaFoto.obterByAutorId(usuario.getPessoa().getId());
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 msg = excPassaErro.getMessage();
             }
@@ -263,11 +268,11 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         @Override
         protected void onPostExecute(final String result) {
             progressDialog.dismiss();
-            if (usuario.getPessoa().getFoto()==null){
+            if (pessoaFoto.getFoto()==null){
                 imgUsuario.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
             }
             else {
-                Bitmap bmUser = BitmapFactory.decodeByteArray(usuario.getPessoa().getFoto(), 0, usuario.getPessoa().getFoto().length);
+                Bitmap bmUser = BitmapFactory.decodeByteArray(pessoaFoto.getFoto(), 0, pessoaFoto.getFoto().length);
                 imgUsuario.setImageBitmap(bmUser);
             }
 

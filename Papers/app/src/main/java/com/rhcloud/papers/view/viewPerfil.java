@@ -1,10 +1,12 @@
 package com.rhcloud.papers.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +23,10 @@ import android.widget.Toast;
 
 import com.rhcloud.papers.R;
 
+import com.rhcloud.papers.control.ctrlPessoa;
+import com.rhcloud.papers.control.ctrlPessoaFoto;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
+import com.rhcloud.papers.model.entity.PessoaFoto;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.transitorio.Acao;
 import com.rhcloud.papers.view.adapters.adpAcoes;
@@ -38,6 +43,10 @@ public class viewPerfil extends AppCompatActivity {
     private ImageView imgFoto;
     private TextView lblNomeCompleto;
     private Usuario usuario;
+    private PessoaFoto pessoaFoto;
+
+    private ProgressDialog progressDialog;
+    private procDados procDados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,13 +128,8 @@ public class viewPerfil extends AppCompatActivity {
 
         //carrega cabecalho
         lblNomeCompleto.setText(usuario.getPessoa().getPrimeiroNome() + " " + usuario.getPessoa().getSegundoNome());
-        if (usuario.getPessoa().getFoto()==null){
-            imgFoto.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
-        }
-        else {
-            Bitmap bmUser = BitmapFactory.decodeByteArray(usuario.getPessoa().getFoto(), 0, usuario.getPessoa().getFoto().length);
-            imgFoto.setImageBitmap(bmUser);
-        }
+        procDados = new procDados(usuario);
+        procDados.execute();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -177,5 +181,44 @@ public class viewPerfil extends AppCompatActivity {
 
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+
+    private class procDados extends AsyncTask<Void, Void, String> {
+        private Usuario usuario;
+
+        public procDados(Usuario usuario){
+            this.usuario = usuario;
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            String msg = "";
+            try {
+                ctrlPessoaFoto ctrlPessoaFoto = new ctrlPessoaFoto(new PessoaFoto());
+                pessoaFoto = ctrlPessoaFoto.obterByAutorId(usuario.getPessoa().getId());
+            } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
+                msg = excPassaErro.getMessage();
+            }
+            return msg;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(viewPerfil.this, "Aguarde", "Carregando dados...");
+        }
+
+        @Override
+        protected void onPostExecute(final String result) {
+            progressDialog.dismiss();
+
+            if (pessoaFoto.getFoto()==null){
+                imgFoto.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
+            }
+            else {
+                Bitmap bmUser = BitmapFactory.decodeByteArray(pessoaFoto.getFoto(), 0, pessoaFoto.getFoto().length);
+                imgFoto.setImageBitmap(bmUser);
+            }
+        }
     }
 }

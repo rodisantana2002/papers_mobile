@@ -30,8 +30,6 @@ public class ctrlAutorPerfil {
         ctrlSubmissoes = new ctrlSubmissoes(new FilaSubmissao());
         ctrlDocumentoPessoas = new ctrlDocumentoPessoas(new DocumentosPessoas());
         ctrlDocumentoPessoasFavoritos = new ctrlDocumentoPessoasFavoritos(new DocumentosPessoasFavoritos());
-        this.usuario = usuario;
-        this.usuario.getPessoa().setFoto(null);
         autorPerfil.setUsuario(usuario);
         popularDocumentosResponsavel();
         popularDocumentosParticipante();
@@ -56,7 +54,6 @@ public class ctrlAutorPerfil {
     public void popularDocumentosParticipante() throws excPassaErro {
         List<Documento> lstDocumentos = new ArrayList<Documento>();
         for (DocumentosPessoas docPessoa : ctrlDocumentoPessoas.obterAllByAutor(usuario.getId())){
-            docPessoa.getPessoa().setFoto(null);
             lstDocumentos.add(docPessoa.getDocumento());
         }
         autorPerfil.setLstDocumentosParticipante(lstDocumentos);
@@ -65,19 +62,15 @@ public class ctrlAutorPerfil {
     public void popularDocumentosFavoritos() throws excPassaErro {
         List<Documento> lstDocumentos = new ArrayList<Documento>();
         for (DocumentosPessoasFavoritos favorito: ctrlDocumentoPessoasFavoritos.obterAllByAutor(usuario.getId())){
-            favorito.getPessoa().setFoto(null);
-            favorito.getDocumento().getPessoa().setFoto(null);
             lstDocumentos.add(favorito.getDocumento());
         }
         autorPerfil.setLstDocumentosFavoritos(lstDocumentos);
     }
 
-
     ///Carregas as publicações conforme os tipos de artigo
     public void popularPublicacoesResponsavel() throws excPassaErro {
         List<FilaSubmissao> lstFilaSubmissaos = new ArrayList<FilaSubmissao>();
         for (Documento documento: autorPerfil.getLstDocumentosResponsavel()){
-            documento.getPessoa().setFoto(null);
             lstFilaSubmissaos.addAll(ctrlSubmissoes.obterAllByDocumento(documento.getId()));
         }
         autorPerfil.setLstResponsavelPublicacao(lstFilaSubmissaos);
@@ -86,7 +79,6 @@ public class ctrlAutorPerfil {
     public void popularPublicacoesParticipante() throws excPassaErro {
         List<FilaSubmissao> lstFilaSubmissaos = new ArrayList<FilaSubmissao>();
         for (Documento documento : autorPerfil.getLstDocumentosParticipante()){
-            documento.getPessoa().setFoto(null);
             lstFilaSubmissaos.addAll(ctrlSubmissoes.obterAllByDocumento(documento.getId()));
         }
         autorPerfil.setLstParticipantePublicacao(lstFilaSubmissaos);
@@ -95,7 +87,6 @@ public class ctrlAutorPerfil {
     public void popularPublicacoesFavoritos() throws excPassaErro {
         List<FilaSubmissao> lstFilaSubmissaos = new ArrayList<FilaSubmissao>();
         for (Documento favorito : autorPerfil.getLstDocumentosFavoritos()){
-            favorito.getPessoa().setFoto(null);
             lstFilaSubmissaos.addAll(ctrlSubmissoes.obterAllByDocumento(favorito.getId()));
         }
         autorPerfil.setLstFavoritosPublicacao(lstFilaSubmissaos);

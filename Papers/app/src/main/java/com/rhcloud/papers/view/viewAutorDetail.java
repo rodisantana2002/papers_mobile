@@ -17,8 +17,10 @@ import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlPessoa;
+import com.rhcloud.papers.control.ctrlPessoaFoto;
 import com.rhcloud.papers.control.ctrlUsuario;
 import com.rhcloud.papers.model.entity.Pessoa;
+import com.rhcloud.papers.model.entity.PessoaFoto;
 import com.rhcloud.papers.model.entity.Usuario;
 
 public class viewAutorDetail extends AppCompatActivity implements View.OnClickListener{
@@ -30,6 +32,8 @@ public class viewAutorDetail extends AppCompatActivity implements View.OnClickLi
     private ImageView imgAutor;
     private ProgressDialog progressDialog;
     private procDados procDados;
+    private procDadosFoto procDadosFoto;
+    private PessoaFoto pessoaFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,9 @@ public class viewAutorDetail extends AppCompatActivity implements View.OnClickLi
         prepararComponentes(getIntent().getExtras());
         procDados = new procDados(pessoa);
         procDados.execute();
+
+        procDadosFoto = new procDadosFoto(pessoa);
+        procDadosFoto.execute();
     }
 
 
@@ -61,13 +68,6 @@ public class viewAutorDetail extends AppCompatActivity implements View.OnClickLi
         btnEditar.setOnClickListener(this);
         btnVoltar.setOnClickListener(this);
 
-        if (pessoa.getFoto()==null){
-            imgAutor.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
-        }
-        else {
-            Bitmap bmUser = BitmapFactory.decodeByteArray(pessoa.getFoto(), 0, pessoa.getFoto().length);
-            imgAutor.setImageBitmap(bmUser);
-        }
         lblNome.setText(pessoa.getPrimeiroNome() + " " + pessoa.getSegundoNome());
         lblEmail.setText(pessoa.getEmail());
         lblFone.setText("(" + (pessoa.getDDD()!= null ? pessoa.getDDD() : "") + ") " +
@@ -122,13 +122,10 @@ public class viewAutorDetail extends AppCompatActivity implements View.OnClickLi
         }
 
         @Override
-        protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(viewAutorDetail.this, "Aguarde", "Carregando dados...");
-        }
+        protected void onPreExecute() {}
 
         @Override
         protected void onPostExecute(String result) {
-            progressDialog.dismiss();
             if (result!=null && result.equals("0\n")){
                 btnEditar.setVisibility(View.VISIBLE);
                 lblAviso.setText("Atenção somente os dados básicos do Autor podem ser adicionados/alterados. Caso o Autor venha a se tornar um Usuário do sistema, a edição não será mais permitida.");
@@ -138,6 +135,43 @@ public class viewAutorDetail extends AppCompatActivity implements View.OnClickLi
                 btnEditar.setVisibility(View.GONE);
                 lblAviso.setText("Atenção o Autor selecionado já é Usuário do sistema, agora somente ele poderá atualizar os dados do seu Perfil.");
                 lblAviso.setTextColor(Color.RED);
+            }
+        }
+    }
+
+    private class procDadosFoto extends AsyncTask<Void, Void, String> {
+        private Pessoa pessoa;
+
+        public procDadosFoto(Pessoa pessoa){
+            this.pessoa = pessoa;
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            String msg = "";
+            try {
+                ctrlPessoaFoto ctrlPessoaFoto = new ctrlPessoaFoto(new PessoaFoto());
+                pessoaFoto = ctrlPessoaFoto.obterByAutorId(pessoa.getId());
+            } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
+                msg = excPassaErro.getMessage();
+            }
+            return msg;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(viewAutorDetail.this, "Aguarde", "Carregando dados...");
+        }
+
+        @Override
+        protected void onPostExecute(final String result) {
+            progressDialog.dismiss();
+            if (pessoaFoto.getFoto()==null){
+                imgAutor.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
+            }
+            else {
+                Bitmap bmUser = BitmapFactory.decodeByteArray(pessoaFoto.getFoto(), 0, pessoaFoto.getFoto().length);
+                imgAutor.setImageBitmap(bmUser);
             }
         }
     }

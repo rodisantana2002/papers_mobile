@@ -76,13 +76,7 @@ public class adpAutores extends RecyclerView.Adapter<adpAutores.RepoHolder>  {
             }
         }
 
-        if (lstAutores.get(position).getFoto()==null){
-            holder.imgFoto.setImageDrawable(context.getDrawable(R.drawable.ic_account_circle_black_48dp));
-        }
-        else {
-            Bitmap bmUser = BitmapFactory.decodeByteArray(lstAutores.get(position).getFoto(), 0, lstAutores.get(position).getFoto().length);
-            holder.imgFoto.setImageBitmap(bmUser);
-        }
+        holder.imgFoto.setImageDrawable(context.getDrawable(R.drawable.ic_account_circle_black_48dp));
 
         final View.OnClickListener listener = new View.OnClickListener(){
 

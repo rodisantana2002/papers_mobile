@@ -26,8 +26,7 @@ public class Pessoa implements Serializable{
     private String pais;
     private String estado;
     private String cidade;
-    private byte[] foto;
-        
+
     public Integer getId() {
         return id;
     }
@@ -115,14 +114,6 @@ public class Pessoa implements Serializable{
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
-    }
-
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
     }
 
     @Override

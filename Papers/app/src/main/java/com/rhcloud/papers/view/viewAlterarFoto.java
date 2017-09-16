@@ -18,10 +18,12 @@ import android.widget.ImageView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlPessoa;
+import com.rhcloud.papers.control.ctrlPessoaFoto;
 import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Pessoa;
+import com.rhcloud.papers.model.entity.PessoaFoto;
 import com.rhcloud.papers.model.entity.Usuario;
 
 import java.io.ByteArrayOutputStream;
@@ -35,6 +37,7 @@ public class viewAlterarFoto extends AppCompatActivity implements View.OnClickLi
     private ProgressDialog progressDialog;
     private procDados procDados;
     private Usuario usuario;
+    private PessoaFoto pessoaFoto;
     private static int RESULT_LOAD_IMAGE=1;
 
     @Override
@@ -75,6 +78,9 @@ public class viewAlterarFoto extends AppCompatActivity implements View.OnClickLi
 
         imgFoto = (ImageView) findViewById(R.id.imgFotoUsuario);
         usuario = (Usuario) bundle.getSerializable("usuario");
+        pessoaFoto = new PessoaFoto();
+        pessoaFoto.setPessoa(usuario.getPessoa());
+
         btnEnviar.setVisibility(View.INVISIBLE);
     }
 
@@ -84,7 +90,7 @@ public class viewAlterarFoto extends AppCompatActivity implements View.OnClickLi
         if (view.getId() == btnEnviar.getId()) {
             if (validarDados()) {
                 atualizarObjeto();
-                procDados = new procDados(usuario);
+                procDados = new procDados(pessoaFoto);
                 procDados.execute();
             }
         }
@@ -114,7 +120,7 @@ public class viewAlterarFoto extends AppCompatActivity implements View.OnClickLi
     }
 
     private void atualizarObjeto() {
-         usuario.getPessoa().setFoto(getFoto());
+        pessoaFoto.setFoto(getFoto());
     }
 
     private boolean validarDados() {
@@ -133,18 +139,28 @@ public class viewAlterarFoto extends AppCompatActivity implements View.OnClickLi
     }
 
     private class procDados extends AsyncTask<Void, Void, String> {
-        private Usuario usuario;
+        private PessoaFoto pessoaFoto;
 
-        public procDados(Usuario usuario){
-            this.usuario = usuario;
+        public procDados(PessoaFoto pessoaFoto){
+            this.pessoaFoto = pessoaFoto;
         }
 
         @Override
         protected String doInBackground(Void... voids) {
-            ctrlPessoa ctrlPessoa = new ctrlPessoa(usuario.getPessoa());
             String msg = "";
             try {
-                return ctrlPessoa.atualizar();
+                ctrlPessoaFoto ctrlPessoaFoto = new ctrlPessoaFoto(pessoaFoto);
+                PessoaFoto pessoaF = ctrlPessoaFoto.obterByAutorId(pessoaFoto.getPessoa().getId());
+
+                if (pessoaF.getId()==null){
+                    return ctrlPessoaFoto.criar();
+                }
+                else{
+                    pessoaFoto.setId(pessoaF.getId());
+                    ctrlPessoaFoto = new ctrlPessoaFoto(pessoaFoto);
+                    return ctrlPessoaFoto.atualizar();
+                }
+
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 msg = excPassaErro.getMessage();
             }
