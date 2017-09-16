@@ -46,11 +46,36 @@
                 tools:ignore="InefficientWeight">
 
                 <GridLayout
+                    android:id="@+id/gridTitulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFF3F1F1"
+                    android:columnCount="1">
+
+                    <TextView
+                        android:id="@+id/txtTitulo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:height="40dp"
+                        android:gravity="left|center_vertical"
+                        android:text="txtTitulo"
+                        android:textAlignment="viewStart"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded" />
+
+                </GridLayout>
+
+                <GridLayout
                     android:id="@+id/gridSituacao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:background="#FFF3F1F1"
+                    android:background="#fafafa"
                     android:columnCount="2"
                     android:rowCount="4">
 
@@ -202,31 +227,6 @@
 
                 </GridLayout>
 
-                <GridLayout
-                    android:id="@+id/gridTitulo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#fafafa"
-                    android:columnCount="1">
-
-                    <TextView
-                        android:id="@+id/txtTitulo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:height="40dp"
-                        android:gravity="left|center_vertical"
-                        android:text="txtTitulo"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:visibility="visible"
-                        tools:ignore="HardcodedText,RtlHardcoded" />
-
-                </GridLayout>
-
 
             </LinearLayout>
 
@@ -240,7 +240,8 @@
             android:layout_alignParentTop="true"
             android:background="#fafafa"
             android:columnCount="1"
-            android:rowCount="2">
+            android:rowCount="2"
+            tools:ignore="ObsoleteLayoutParam">
 
             <TextView
                 android:id="@+id/lblDestino"

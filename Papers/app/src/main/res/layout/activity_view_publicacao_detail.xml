@@ -96,11 +96,37 @@
                     android:weightSum="1"
                     tools:ignore="UselessParent">
 
+                    <GridLayout
+                        android:id="@+id/gridTituloPublicacaoDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#FFF3F1F1"
+                        android:columnCount="1">
+
+                        <TextView
+                            android:id="@+id/txtTituloPublicacaoDetail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:height="40dp"
+                            android:gravity="left|center_vertical"
+                            android:text="txtTitulo"
+                            android:textAlignment="viewStart"
+                            android:textColor="@android:color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:visibility="visible"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </GridLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
+                        android:background="#fafafa"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:visibility="visible"
@@ -119,7 +145,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0"
-                                android:background="#FFF3F1F1"
                                 android:columnCount="2"
                                 android:rowCount="4">
 
@@ -267,31 +292,6 @@
                                     android:textSize="11sp"
                                     android:visibility="visible"
                                     tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
-
-                            </GridLayout>
-
-                            <GridLayout
-                                android:id="@+id/gridTituloPublicacaoDetail"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="#fafafa"
-                                android:columnCount="1">
-
-                                <TextView
-                                    android:id="@+id/txtTituloPublicacaoDetail"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:height="40dp"
-                                    android:gravity="left|center_vertical"
-                                    android:text="txtTitulo"
-                                    android:textAlignment="viewStart"
-                                    android:textColor="@color/colorPrimary"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold"
-                                    android:visibility="visible"
-                                    tools:ignore="HardcodedText,RtlHardcoded" />
 
                             </GridLayout>
 

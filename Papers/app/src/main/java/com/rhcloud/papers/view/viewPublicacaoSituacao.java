@@ -20,12 +20,13 @@ import com.rhcloud.papers.helpers.generic.hlpMapasValoresEnuns;
 import com.rhcloud.papers.model.entity.FilaSubmissao;
 import com.rhcloud.papers.model.entity.HistoricoFilaSubmissao;
 import com.rhcloud.papers.model.entity.Usuario;
+import com.rhcloud.papers.model.enumeration.AcoesPublicacao;
 import com.rhcloud.papers.model.enumeration.Situacao;
 import com.rhcloud.papers.model.transitorio.Acao;
 import com.rhcloud.papers.model.transitorio.AutorPerfil;
 
 public class viewPublicacaoSituacao extends AppCompatActivity implements View.OnClickListener{
-    private EditText txtComentario;
+    private EditText txtComentario, txtDtPublicacao;
     private Usuario usuario;
     private FilaSubmissao filaSubmissao;
     private HistoricoFilaSubmissao historicoFilaSubmissao;
@@ -50,6 +51,8 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
         btnEnviar = (Button) findViewById(R.id.btnEnviarHistorico);
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarPublicacaoHistorico);
         txtComentario = (EditText) findViewById(R.id.txtHistorico);
+        txtDtPublicacao = (EditText) findViewById(R.id.txtDataPublicacaoSituacao);
+
         btnEnviar.setOnClickListener(this);
         btnVoltar.setOnClickListener(this);
 
@@ -58,6 +61,12 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
         filaSubmissao = (FilaSubmissao) bundle.getSerializable("publicacao");
         acao = (Acao) bundle.getSerializable("acao");
         mapasValoresEnuns = new hlpMapasValoresEnuns();
+        if(acao.getNomeAcao().equals("Registrar Publicação")){
+            txtDtPublicacao.setVisibility(View.VISIBLE);
+        }
+        else{
+            txtDtPublicacao.setVisibility(View.GONE);
+        }
     }
 
     public void onClick(View view) {
@@ -90,6 +99,9 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
             filaSubmissao.setVersao(String.valueOf(Integer.valueOf(filaSubmissao.getVersao())+1));
 
         }
+        if(acao.getNomeAcao().equals("Registrar Publicação")){
+            filaSubmissao.setDtPublicacao(txtDtPublicacao.getText().toString());
+        }
         historicoFilaSubmissao.setFilaSubmissao(filaSubmissao);
         historicoFilaSubmissao.setSituacao(acao.getSituacao());
         historicoFilaSubmissao.setVersao(filaSubmissao.getVersao());
@@ -100,6 +112,18 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
     }
 
     private boolean validarDados() {
+        if(acao.getNomeAcao().equals("Registrar Publicação")){
+            if (txtDtPublicacao.getText().toString().isEmpty()) {
+                hlpDialog.getAlertDialog(this, "Atenção", "A Data de Publicação deve ser informada", "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws excPassaErro {
+                        txtDtPublicacao.requestFocus();
+                    }
+                });
+                return false;
+            }
+        }
+
         if (txtComentario.getText().toString().isEmpty()) {
             hlpDialog.getAlertDialog(this, "Atenção", "O Comentário deve ser informado", "Ok", new itfDialogGeneric() {
                 @Override

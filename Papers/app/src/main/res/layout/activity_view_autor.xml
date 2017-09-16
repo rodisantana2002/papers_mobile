@@ -32,7 +32,8 @@
             <GridLayout
                 android:id="@+id/gridPadrao"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:ignore="UselessParent">
 
                 <ImageButton
                     android:id="@+id/btnVoltarHomeAutor"
@@ -92,7 +93,8 @@
                 android:singleLine="true"
                 android:textColor="@color/cardview_dark_background"
                 android:textColorHint="@android:color/darker_gray"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                tools:ignore="Deprecated,HardcodedText,RtlHardcoded,RtlSymmetry" />
 
             <ImageButton
                 android:id="@+id/btnEncerrarPesquisa"
@@ -103,7 +105,7 @@
                 android:background="@android:color/transparent"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_close_black_24dp"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
         </GridLayout>
     </android.support.design.widget.AppBarLayout>
@@ -127,6 +129,6 @@
         app:layout_anchor="@+id/includeAutor"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/ic_add_white_18dp"
-        tools:ignore="UnusedAttribute" />
+        tools:ignore="RtlHardcoded,UnusedAttribute" />
 
 </android.support.design.widget.CoordinatorLayout>

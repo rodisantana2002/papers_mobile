@@ -52,11 +52,16 @@ public class adpPublicacoes extends RecyclerView.Adapter<adpPublicacoes.RepoHold
         final FilaSubmissao filaSubmissao = filaSubmissaos.get(position);
 
         holder.txtSituacao.setText(mapasValoresEnuns.getDescricaoSituacao(filaSubmissaos.get(position).getSituacao()));
+        holder.txtSituacao.setTextColor(mapasValoresEnuns.getSituacaoColor(filaSubmissao.getSituacao()));
         holder.txtVersao.setText(filaSubmissaos.get(position).getVersao());
         holder.txtTitulo.setText(filaSubmissaos.get(position).getDocumento().getTitulo());
         holder.txtDestino.setText(filaSubmissaos.get(position).getDestino().getDescricao() + " - " + filaSubmissaos.get(position).getDestino().getClassificacao());
         if (filaSubmissaos.get(position).getDtLimiteSubmissao()!=null){
             holder.txtDataLimiteSubmissao.setText(filaSubmissaos.get(position).getDtLimiteSubmissao());
+        }
+
+        if (filaSubmissaos.get(position).getDtPublicacao()!=null){
+            holder.txtDtPublicacao.setText(filaSubmissaos.get(position).getDtPublicacao());
         }
 
         final View.OnClickListener listener = new View.OnClickListener(){
@@ -69,6 +74,7 @@ public class adpPublicacoes extends RecyclerView.Adapter<adpPublicacoes.RepoHold
 
         holder.txtTitulo.setOnClickListener(listener);
         holder.txtDataLimiteSubmissao.setOnClickListener(listener);
+        holder.txtDtPublicacao.setOnClickListener(listener);
         holder.txtSituacao.setOnClickListener(listener);
         holder.txtVersao.setOnClickListener(listener);
         holder.txtDestino.setOnClickListener(listener);
@@ -79,8 +85,8 @@ public class adpPublicacoes extends RecyclerView.Adapter<adpPublicacoes.RepoHold
     }
 
     public class RepoHolder extends RecyclerView.ViewHolder {
-        public TextView txtTitulo, txtSituacao, txtVersao, txtQualis, txtDestino, txtCriadoPor, txtDataLimiteSubmissao;
-        public GridLayout gridSituacao, gridTitulo, gridSubmissao, gridSubmissaoDetalhe, gridInfo;
+        public TextView txtTitulo, txtSituacao, txtVersao, txtDestino,  txtDataLimiteSubmissao, txtDtPublicacao;
+        public GridLayout gridSituacao, gridTitulo, gridSubmissao;
 
         public RepoHolder(View itemView) {
             super(itemView);
@@ -89,6 +95,7 @@ public class adpPublicacoes extends RecyclerView.Adapter<adpPublicacoes.RepoHold
             this.txtVersao = (TextView) itemView.findViewById(R.id.txtVersao);
             this.txtDestino = (TextView) itemView.findViewById(R.id.txtDestino);
             this.txtDataLimiteSubmissao = (TextView) itemView.findViewById(R.id.txtDataLimite);
+            this.txtDtPublicacao = (TextView) itemView.findViewById(R.id.txtDataPublicacao);
 
             this.gridSituacao = (GridLayout) itemView.findViewById(R.id.gridSituacao);
             this.gridTitulo = (GridLayout) itemView.findViewById(R.id.gridTitulo);

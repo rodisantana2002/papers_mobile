@@ -1,5 +1,8 @@
 package com.rhcloud.papers.helpers.generic;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v7.app.AppCompatActivity;
 
 import com.rhcloud.papers.R;
@@ -18,11 +21,30 @@ import java.util.List;
 public class hlpMapasValoresEnuns {
     private HashMap<Integer, String> lstMapaSituacao;
     private HashMap<Situacao, List<Acao>> lstMapaSituacaoAcoes;
+    private HashMap<Situacao, Integer> lstMapaSituacaoCor;
     private List<Acao> lstIniciado, lstEm_Avaliacao_Orientador, lstAguardandoAjustes, lstLberado_Orientador, lstSubemetido_Publicacao, lstAprovada_Publicacao;
 
     public hlpMapasValoresEnuns(){
         popularMapaSituacao();
         popularMapaSituacaoAcoes();
+        popularMapaSituacaoCor();
+    }
+
+    public Integer getSituacaoColor(Situacao situacao){
+        return lstMapaSituacaoCor.get(situacao);
+    }
+
+    private void popularMapaSituacaoCor() {
+        lstMapaSituacaoCor = new HashMap<Situacao, Integer>();
+        lstMapaSituacaoCor.put(Situacao.INICIADO, Color.BLACK);
+        lstMapaSituacaoCor.put(Situacao.EM_AVALIACAO_ORIENTADOR, Color.rgb(228,120,51));
+        lstMapaSituacaoCor.put(Situacao.AGUARDANDO_AJUSTES, Color.rgb(228,120,51));
+        lstMapaSituacaoCor.put(Situacao.LIBERADO_ORIENTADOR, Color.rgb(228,120,51));
+        lstMapaSituacaoCor.put(Situacao.SUBMETIDO_PUBLICACAO, Color.rgb(228,120,51));
+        lstMapaSituacaoCor.put(Situacao.CANCELADO, Color.DKGRAY);
+        lstMapaSituacaoCor.put(Situacao.REJEITADO, Color.RED);
+        lstMapaSituacaoCor.put(Situacao.APROVADA_PUBLICACAO, Color.rgb(80,200,120));
+        lstMapaSituacaoCor.put(Situacao.PUBLICADO, Color.rgb(80,200,120));
     }
 
     public String getDescricaoSituacao(Situacao situacao){

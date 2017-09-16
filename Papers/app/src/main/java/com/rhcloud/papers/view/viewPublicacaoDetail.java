@@ -44,7 +44,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
     private FilaSubmissao filaSubmissao;
     private Usuario usuario;
     private AutorPerfil autorPerfil;
-    private TextView txtTitulo, txtSituacao, txtVersao, txtDestino, txtDataLimiteSubmissao, txtIdiona, txtNenhumRegistro, txtTituloLista;
+    private TextView txtTitulo, txtSituacao, txtVersao, txtDestino, txtDataLimiteSubmissao, txtIdiona, txtNenhumRegistro, txtTituloLista, txtDtPublicacao;
     private ArrayList<Acao> lstAcoes;
     private ArrayList<HistoricoFilaSubmissao> lstHistorico;
     private hlpMapasValoresEnuns mapasValoresEnuns;
@@ -82,6 +82,11 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         btnEditar = (ImageButton) findViewById(R.id.btnEditarPublica);
         btnEditar.setOnClickListener(viewPublicacaoDetail.this);
 
+        if (filaSubmissao.getSituacao().equals(Situacao.CANCELADO) ||
+            filaSubmissao.getSituacao().equals(Situacao.PUBLICADO) ||
+            filaSubmissao.getSituacao().equals(Situacao.REJEITADO)){
+            btnEditar.setVisibility(View.GONE);
+        }
         popularDadosHeader();
         procDados = new procDados();
         procDados.execute();
@@ -133,13 +138,18 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         txtDestino = (TextView) findViewById(R.id.txtDestinoPublicacaoDetail);
         txtDataLimiteSubmissao = (TextView) findViewById(R.id.txtDataLimitePublicacaoDetail);
         txtIdiona = (TextView) findViewById(R.id.txtIdiomaPublicacaoDetail);
+        txtDtPublicacao =(TextView) findViewById(R.id.txtDataPublicacaoDetail);
 
         txtSituacao.setText(mapasValoresEnuns.getDescricaoSituacao(filaSubmissao.getSituacao()));
+        txtSituacao.setTextColor(mapasValoresEnuns.getSituacaoColor(filaSubmissao.getSituacao()));
         txtVersao.setText(filaSubmissao.getVersao());
         txtTitulo.setText(filaSubmissao.getDocumento().getTitulo());
         txtDestino.setText(filaSubmissao.getDestino().getDescricao() + " - " + filaSubmissao.getDestino().getClassificacao());
         if (filaSubmissao.getDtLimiteSubmissao()!=null){
             txtDataLimiteSubmissao.setText(filaSubmissao.getDtLimiteSubmissao());
+        }
+        if (filaSubmissao.getDtPublicacao()!=null){
+            txtDtPublicacao.setText(filaSubmissao.getDtPublicacao());
         }
         if(filaSubmissao.getIdioma()!=null){
             txtIdiona.setText(filaSubmissao.getIdioma());
@@ -192,27 +202,35 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
                 Acao acao = new Acao();
                 if(item.getId()==1){
                     acao.setSituacao(Situacao.EM_AVALIACAO_ORIENTADOR);
+                    acao.setNomeAcao(item.getNomeAcao());
                 }
                 else if(item.getId()==2){
                     acao.setSituacao(Situacao.AGUARDANDO_AJUSTES);
+                    acao.setNomeAcao(item.getNomeAcao());
                 }
                 else if(item.getId()==3){
                     acao.setSituacao(Situacao.LIBERADO_ORIENTADOR);
+                    acao.setNomeAcao(item.getNomeAcao());
                 }
                 else if(item.getId()==4){
                     acao.setSituacao(Situacao.SUBMETIDO_PUBLICACAO);
+                    acao.setNomeAcao(item.getNomeAcao());
                 }
                 else if(item.getId()==5){
                     acao.setSituacao(Situacao.APROVADA_PUBLICACAO);
+                    acao.setNomeAcao(item.getNomeAcao());
                 }
                 else if(item.getId()==6){
                     acao.setSituacao(Situacao.PUBLICADO);
+                    acao.setNomeAcao(item.getNomeAcao());
                 }
                 else if(item.getId()==7){
                     acao.setSituacao(Situacao.REJEITADO);
+                    acao.setNomeAcao(item.getNomeAcao());
                 }
                 else if(item.getId()==8){
                     acao.setSituacao(Situacao.CANCELADO);
+                    acao.setNomeAcao(item.getNomeAcao());
                 }
 
                 bundle.putSerializable("acao", acao);
