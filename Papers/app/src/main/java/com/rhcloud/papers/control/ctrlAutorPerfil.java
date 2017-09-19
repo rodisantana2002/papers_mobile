@@ -53,12 +53,12 @@ public class ctrlAutorPerfil {
     }
 
     public void popularDocumentosResponsavel() throws excPassaErro {
-        autorPerfil.setLstDocumentosResponsavel(ctrlDocumento.obterAllByAutor(usuario.getId()));
+        autorPerfil.setLstDocumentosResponsavel(ctrlDocumento.obterAllByAutor(usuario.getPessoa().getId()));
     }
 
     public void popularDocumentosParticipante() throws excPassaErro {
         List<Documento> lstDocumentos = new ArrayList<Documento>();
-        for (DocumentosPessoas docPessoa : ctrlDocumentoPessoas.obterAllByAutor(usuario.getId())){
+        for (DocumentosPessoas docPessoa : ctrlDocumentoPessoas.obterAllByAutor(usuario.getPessoa().getId())){
             lstDocumentos.add(docPessoa.getDocumento());
         }
         autorPerfil.setLstDocumentosParticipante(lstDocumentos);
@@ -66,7 +66,7 @@ public class ctrlAutorPerfil {
 
     public void popularDocumentosFavoritos() throws excPassaErro {
         List<Documento> lstDocumentos = new ArrayList<Documento>();
-        for (DocumentosPessoasFavoritos favorito: ctrlDocumentoPessoasFavoritos.obterAllByAutor(usuario.getId())){
+        for (DocumentosPessoasFavoritos favorito: ctrlDocumentoPessoasFavoritos.obterAllByAutor(usuario.getPessoa().getId())){
             lstDocumentos.add(favorito.getDocumento());
         }
         autorPerfil.setLstDocumentosFavoritos(lstDocumentos);
