@@ -39,7 +39,7 @@ public class bsNotificacao implements itfGeneric<Notificacao> {
 
     @Override
     public String update(Notificacao entity) throws excPassaErro {
-        return connRest.put(hlpConstants.URL_BASE + hlpConstants.URL_NOTIFICACAO, gson.toJson(entity));
+        return connRest.post(hlpConstants.URL_BASE + hlpConstants.URL_NOTIFICACAO, gson.toJson(entity));
     }
 
     @Override

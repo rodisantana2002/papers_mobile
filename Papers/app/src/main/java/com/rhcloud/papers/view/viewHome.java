@@ -154,7 +154,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", usuario);
 
-        Intent intent = new Intent(viewHome.this, viewNoticacao.class);
+        Intent intent = new Intent(viewHome.this, viewNotificacao.class);
         intent.putExtras(bundle);
         startActivity(intent);
     }

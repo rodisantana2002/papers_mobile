@@ -57,10 +57,12 @@ public class adpPublicacoes extends RecyclerView.Adapter<adpPublicacoes.RepoHold
         holder.txtTitulo.setText(filaSubmissaos.get(position).getDocumento().getTitulo());
         holder.txtDestino.setText(filaSubmissaos.get(position).getDestino().getDescricao() + " - " + filaSubmissaos.get(position).getDestino().getClassificacao());
         if (filaSubmissaos.get(position).getDtLimiteSubmissao()!=null){
+            holder.lblDtPublicacao.setVisibility(View.VISIBLE);
             holder.txtDataLimiteSubmissao.setText(filaSubmissaos.get(position).getDtLimiteSubmissao());
         }
 
         if (filaSubmissaos.get(position).getDtPublicacao()!=null){
+
             holder.txtDtPublicacao.setText(filaSubmissaos.get(position).getDtPublicacao());
         }
 
@@ -85,7 +87,7 @@ public class adpPublicacoes extends RecyclerView.Adapter<adpPublicacoes.RepoHold
     }
 
     public class RepoHolder extends RecyclerView.ViewHolder {
-        public TextView txtTitulo, txtSituacao, txtVersao, txtDestino,  txtDataLimiteSubmissao, txtDtPublicacao;
+        public TextView txtTitulo, txtSituacao, txtVersao, txtDestino, txtDataLimiteSubmissao, txtDtPublicacao, lblDtPublicacao;
         public GridLayout gridSituacao, gridTitulo, gridSubmissao;
 
         public RepoHolder(View itemView) {
@@ -95,6 +97,7 @@ public class adpPublicacoes extends RecyclerView.Adapter<adpPublicacoes.RepoHold
             this.txtVersao = (TextView) itemView.findViewById(R.id.txtVersao);
             this.txtDestino = (TextView) itemView.findViewById(R.id.txtDestino);
             this.txtDataLimiteSubmissao = (TextView) itemView.findViewById(R.id.txtDataLimite);
+            this.lblDtPublicacao = (TextView) itemView.findViewById(R.id.lblDataPublicacao);
             this.txtDtPublicacao = (TextView) itemView.findViewById(R.id.txtDataPublicacao);
 
             this.gridSituacao = (GridLayout) itemView.findViewById(R.id.gridSituacao);

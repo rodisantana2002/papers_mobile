@@ -8,7 +8,7 @@ android:layout_height="match_parent"
 android:background="@android:color/white"
 android:orientation="vertical"
 android:theme="@style/AppTheme.NoActionBar"
-tools:context="com.rhcloud.papers.view.viewNoticacao">
+tools:context="com.rhcloud.papers.view.viewNotificacao">
 
 <FrameLayout
     android:id="@+id/content"
@@ -79,7 +79,7 @@ tools:context="com.rhcloud.papers.view.viewNoticacao">
 </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
+        android:id="@+id/navigation_notificacoes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

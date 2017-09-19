@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:theme="@style/AppTheme.NoActionBar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="0dp"
+        android:visibility="visible"
+        android:weightSum="1"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            tools:ignore="ObsoleteLayoutParam">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:orientation="vertical"
+                android:visibility="visible"
+                tools:ignore="InefficientWeight">
+
+                <GridLayout
+                    android:id="@+id/gridStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:background="#fafafa"
+                    android:columnCount="2"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:rowCount="2">
+
+                    <TextView
+                        android:id="@+id/lblSituacao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_weight="1"
+                        android:height="40dp"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="2dp"
+                        android:text="Situação"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="10sp"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SmallSp" />
+
+                    <TextView
+                        android:id="@+id/lblVersao"
+                        android:layout_width="60dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_weight="1"
+                        android:height="40dp"
+                        android:background="@android:color/transparent"
+                        android:text="Data Envio"
+                        android:textAlignment="center"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="10sp"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
+
+                    <TextView
+                        android:id="@+id/txtStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:layout_gravity="left|center_vertical"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_weight="0"
+                        android:height="40dp"
+                        android:background="@android:color/transparent"
+                        android:paddingLeft="2dp"
+                        android:text="txtStatus"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SmallSp" />
+
+                    <TextView
+                        android:id="@+id/txtDataEnvio"
+                        android:layout_width="60dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="right|center_vertical|center_horizontal"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_weight="0"
+                        android:height="40dp"
+                        android:background="@android:color/transparent"
+                        android:text="txtDataEnvio"
+                        android:textAlignment="center"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
+
+                </GridLayout>
+
+                <GridLayout
+                    android:id="@+id/gridNotificacao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:columnCount="1">
+
+                    <TextView
+                        android:id="@+id/txtNotificacao"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="left|center_vertical"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:text="txtNotificacao"
+                        android:textAlignment="viewStart"
+                        android:textColor="@android:color/black"
+                        android:textSize="11sp"
+                        android:visibility="visible"
+                        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SmallSp" />
+
+                </GridLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
