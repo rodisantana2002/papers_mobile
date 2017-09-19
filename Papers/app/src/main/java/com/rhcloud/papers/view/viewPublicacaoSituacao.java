@@ -12,24 +12,32 @@ import android.widget.ImageButton;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlHistorico;
+import com.rhcloud.papers.control.ctrlNotificacao;
 import com.rhcloud.papers.control.ctrlSubmissoes;
 import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.helpers.generic.hlpMapasValoresEnuns;
+import com.rhcloud.papers.model.entity.Documento;
 import com.rhcloud.papers.model.entity.FilaSubmissao;
 import com.rhcloud.papers.model.entity.HistoricoFilaSubmissao;
+import com.rhcloud.papers.model.entity.Notificacao;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.enumeration.AcoesPublicacao;
 import com.rhcloud.papers.model.enumeration.Situacao;
+import com.rhcloud.papers.model.enumeration.Status;
 import com.rhcloud.papers.model.transitorio.Acao;
 import com.rhcloud.papers.model.transitorio.AutorPerfil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class viewPublicacaoSituacao extends AppCompatActivity implements View.OnClickListener{
     private EditText txtComentario, txtDtPublicacao;
     private Usuario usuario;
     private FilaSubmissao filaSubmissao;
     private HistoricoFilaSubmissao historicoFilaSubmissao;
+    private Notificacao notificacao;
     private Acao acao;
     private AutorPerfil autorPerfil;
     private Button btnEnviar;
@@ -109,6 +117,11 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
                                              mapasValoresEnuns.getDescricaoSituacao(acao.getSituacao()) + " e registrou o comentário: " +
                                              txtComentario.getText().toString());
         historicoFilaSubmissao.setCriadoPor(usuario.getPessoa());
+
+        notificacao = new Notificacao();
+        notificacao.setDocumento(filaSubmissao.getDocumento());
+        notificacao.setConteudo(historicoFilaSubmissao.getComentario());
+        notificacao.setStatus(Status.PENDENTE);
     }
 
     private boolean validarDados() {
@@ -158,9 +171,11 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
         protected String doInBackground(Void... voids) {
             ctrlSubmissoes ctrlSubmissoes = new ctrlSubmissoes(filaSub) ;
             ctrlHistorico  ctrlHistorico = new ctrlHistorico(historico);
+            ctrlNotificacao ctrlNotificacao = new ctrlNotificacao(notificacao);
             String msg = "";
             try {
                 ctrlHistorico.criar();
+                ctrlNotificacao.criar();
                 return ctrlSubmissoes.atualizar();
 
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {

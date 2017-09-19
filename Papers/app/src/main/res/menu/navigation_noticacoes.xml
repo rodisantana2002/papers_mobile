@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_nao_lidas"
+        android:icon="@drawable/ic_mail_black_24dp"
+        android:title="Não Lidas"
+        app:showAsAction="always|withText"/>
+
+    <item
+        android:id="@+id/navigation_lidas"
+        android:icon="@drawable/ic_drafts_black_24dp"
+        android:title="Lidas"
+        app:showAsAction="always|withText"/>
+
+    <item
+        android:id="@+id/navigation_arquivadas"
+        android:icon="@drawable/ic_archive_black_24dp"
+        android:title="Arquivadas"
+        app:showAsAction="always|withText" />
+
+</menu>

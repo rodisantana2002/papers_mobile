@@ -133,7 +133,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                     carregarAutores();
                 }
                 else if(item.getId()==4){
-
+                    cerregarNotificacoes();
                 }
                 else if(item.getId()==5){
                     carregarServicos();
@@ -148,6 +148,15 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new dividerItemDecorator(this, LinearLayoutManager.VERTICAL,100));
         recyclerView.setAdapter(mAdapter);
+    }
+
+    private void cerregarNotificacoes() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", usuario);
+
+        Intent intent = new Intent(viewHome.this, viewNoticacao.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     private void carregarAutores() {

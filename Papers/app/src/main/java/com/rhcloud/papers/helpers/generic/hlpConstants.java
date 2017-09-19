@@ -22,6 +22,7 @@ public class hlpConstants {
     public static final String URL_FAVORITOS = "favoritos/";
     public static final String URL_HISTORICO = "historico/";
     public static final String URL_FILA_SUBMISSAO = "submissoes/";
+    public static final String URL_NOTIFICACAO = "notificacao/";
 
     public static final String MSG_400 = "A requisição que foi enviada estava malformatada ou incorreta e por isso sua requisição falhou, recomendamentos checar o JSON que está sendo enviado";
     public static final String MSG_404 = "A transação ou recurso desejado não existe em nossos registros";

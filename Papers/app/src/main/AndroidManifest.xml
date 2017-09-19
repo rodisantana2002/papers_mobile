@@ -115,6 +115,8 @@
         <activity
             android:name=".view.viewPublicacaoSituacao"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.viewNoticacao"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
