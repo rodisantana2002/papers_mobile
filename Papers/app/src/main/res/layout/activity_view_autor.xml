@@ -108,6 +108,7 @@
                 tools:ignore="ContentDescription,RtlHardcoded" />
 
         </GridLayout>
+
     </android.support.design.widget.AppBarLayout>
 
     <include

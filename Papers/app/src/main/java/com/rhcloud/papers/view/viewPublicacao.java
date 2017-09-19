@@ -12,12 +12,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlAutorPerfil;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
+import com.rhcloud.papers.helpers.generic.hlpMapasValoresEnuns;
 import com.rhcloud.papers.model.entity.FilaSubmissao;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.transitorio.AutorPerfil;
@@ -27,12 +30,12 @@ import com.rhcloud.papers.view.decorator.dividerItemDecorator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class viewPublicacao extends AppCompatActivity implements View.OnClickListener {
+public class viewPublicacao extends AppCompatActivity implements View.OnClickListener{
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private List<FilaSubmissao> lstSubmissoes;
     private adpPublicacoes mAdapter;
-    private ImageButton btnVoltar;
+    private ImageButton btnVoltar, btnEncerrarPesquisa, btnPesquisar;
     private FilaSubmissao filaSubmissao;
     private Usuario usuario;
     private ProgressDialog progressDialog;
@@ -40,6 +43,9 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
     private TextView txtNenhumRegistro;
     private FloatingActionButton btnFloat;
     private AutorPerfil autorPerfil;
+    private GridLayout gridPesquisar;
+    private hlpMapasValoresEnuns hlpMapasValoresEnuns;
+    private RadioButton btnEmAndamento, btnEncerradas;
 
 
     @Override
@@ -79,27 +85,67 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
             usuario = (Usuario) bundle.getSerializable("usuario");
         }
         prepararComponenetes();
-        procDados = new procDados();
+        procDados = new procDados(true);
         procDados.execute();
     }
 
     private void prepararComponenetes() {
+        hlpMapasValoresEnuns = new hlpMapasValoresEnuns();
         recyclerView = (RecyclerView) findViewById(R.id.lstPublicacoes);
         txtNenhumRegistro = (TextView) findViewById(R.id.txtNenhumRegistroPublicacao);
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarHomePublicacao);
         btnVoltar.setOnClickListener(viewPublicacao.this);
+
+        btnEncerrarPesquisa = (ImageButton) findViewById(R.id.btnEncerrarPesquisaPublicacao);
+        btnEncerrarPesquisa.setOnClickListener(viewPublicacao.this);
+
+        btnPesquisar = (ImageButton) findViewById(R.id.btnPesquisarPublicacacao);
+        btnPesquisar.setOnClickListener(viewPublicacao.this);
+
+        btnEmAndamento = (RadioButton) findViewById(R.id.radEmAndamento);
+        btnEmAndamento.setOnClickListener(viewPublicacao.this);
+        btnEmAndamento.setButtonDrawable(R.drawable.ic_check_box_black_24dp);
+
+        btnEncerradas = (RadioButton) findViewById(R.id.radFinalizadas);
+        btnEncerradas.setOnClickListener(viewPublicacao.this);
+        btnEncerradas.setButtonDrawable(R.drawable.ic_check_box_outline_blank_black_24dp);
+
+        gridPesquisar = (GridLayout) findViewById(R.id.gridPesquisarPublicidade);
     }
 
     public void onClick(View view) {
         Intent intent;
         if (view.getId() == btnVoltar.getId()) {
             Bundle bundle = new Bundle();
-            bundle.putSerializable("usuario", usuario);
             intent = new Intent(this, viewHome.class);
             intent.putExtras(bundle);
             startActivity(intent);
         }
 
+        if (view.getId() == btnPesquisar.getId()){
+            gridPesquisar.setVisibility(View.VISIBLE);
+        }
+
+        if (view.getId() == btnEncerrarPesquisa.getId()){
+            gridPesquisar.setVisibility(View.GONE);
+        }
+
+        if(view.getId() ==btnEmAndamento.getId()){
+            gridPesquisar.setVisibility(View.GONE);
+            btnEmAndamento.setButtonDrawable(R.drawable.ic_check_box_black_24dp);
+            btnEncerradas.setButtonDrawable(R.drawable.ic_check_box_outline_blank_black_24dp);
+            procDados = new procDados(true);
+            procDados.execute();
+
+        }
+
+        if(view.getId() ==btnEncerradas.getId()){
+            gridPesquisar.setVisibility(View.GONE);
+            btnEmAndamento.setButtonDrawable(R.drawable.ic_check_box_outline_blank_black_24dp);
+            btnEncerradas.setButtonDrawable(R.drawable.ic_check_box_black_24dp);
+            procDados = new procDados(false);
+            procDados.execute();
+        }
     }
 
     private void popularLista(List<FilaSubmissao> filaSubmissaos) {
@@ -136,12 +182,18 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
 
     }
     private class procDados extends AsyncTask<Void, Void, List<FilaSubmissao>> {
+        private boolean situacao;
+
+        public procDados(boolean situacao){
+            this.situacao = situacao;
+        }
 
         @Override
         protected List<FilaSubmissao> doInBackground(Void...voids) {
+            ctrlAutorPerfil ctrlAutorPerfil;
             try {
-                ctrlAutorPerfil ctrlAutorPerfil = new ctrlAutorPerfil(usuario);
-                autorPerfil = ctrlAutorPerfil.getAutorPublicacoes();
+                ctrlAutorPerfil = new ctrlAutorPerfil(usuario);
+                autorPerfil = ctrlAutorPerfil.getAutorPublicacoes(situacao);
                 lstSubmissoes = autorPerfil.getLstResponsavelPublicacao();
 
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {

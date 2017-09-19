@@ -44,30 +44,103 @@
                     android:weightSum="1"
                     tools:ignore="RtlHardcoded">
 
-                    <ImageButton
-                        android:id="@+id/btnVoltarHomePublicacao"
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_chevron_left_black_18dp"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        android:id="@+id/titleapp"
+                    <GridLayout
+                        android:id="@+id/gridPadrao"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="5dp"
-                        android:text="Publicações"
-                        android:textAlignment="textStart"
-                        android:textColor="@android:color/black"
-                        android:textColorHint="@color/cardview_dark_background"
-                        android:textSize="20sp"
-                        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+                        tools:ignore="UselessParent">
 
+                        <ImageButton
+                            android:id="@+id/btnVoltarHomePublicacao"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_chevron_left_black_18dp"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/lblPublicacoes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:text="Publicações"
+                            android:textAlignment="textStart"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@color/cardview_dark_background"
+                            android:textSize="20sp"
+                            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+                        <ImageButton
+                            android:id="@+id/btnPesquisarPublicacacao"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right|center"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_search_black_24dp"
+                            tools:ignore="ContentDescription" />
+                    </GridLayout>
                 </LinearLayout>
+
+                <GridLayout
+                    android:id="@+id/gridPesquisarPublicidade"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@android:color/white"
+                    android:columnCount="2"
+                    android:visibility="gone">
+
+                    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="80dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radEmAndamento"
+                            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal|center"
+                            android:layout_marginLeft="0dp"
+                            android:button="@drawable/ic_check_black_24dp"
+                            android:checked="false"
+                            android:gravity="center_vertical|center_horizontal|center"
+                            android:text="Em Andamento"
+                            android:textColor="@color/cardview_dark_background"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/radFinalizadas"
+                            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal|center"
+                            android:layout_marginLeft="15dp"
+                            android:checked="false"
+                            android:gravity="center_vertical|center_horizontal|center"
+                            android:text="Encerradas"
+                            android:textColor="@color/cardview_dark_background"
+                            android:textSize="12sp" />
+                    </RadioGroup>
+
+                    <ImageButton
+                        android:id="@+id/btnEncerrarPesquisaPublicacao"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="right|center"
+                        android:layout_marginRight="8dp"
+                        android:background="@android:color/transparent"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_close_black_24dp"
+                        tools:ignore="ContentDescription,RtlHardcoded" />
+
+                </GridLayout>
+
             </android.support.design.widget.AppBarLayout>
 
             <include
@@ -76,6 +149,7 @@
                 android:visibility="visible" />
 
         </android.support.design.widget.CoordinatorLayout>
+
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView

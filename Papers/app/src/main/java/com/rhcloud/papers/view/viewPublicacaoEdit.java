@@ -156,7 +156,12 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
             ctrlSubmissoes ctrlSubmissoes = new ctrlSubmissoes(filaSubmissao);
             String msg = "";
             try {
-                return ctrlSubmissoes.atualizar();
+                if (filaSubmissao.getId()==null){
+                    return ctrlSubmissoes.criar();
+                }
+                else{
+                    return ctrlSubmissoes.atualizar();
+                }
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 msg = excPassaErro.getMessage();
             }

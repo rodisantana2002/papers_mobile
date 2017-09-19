@@ -83,6 +83,7 @@ tools:context="com.rhcloud.papers.view.viewDocumentoResumo">
                 android:layout_height="wrap_content"
                 android:gravity="top|left"
                 android:hint="Informe um breve resumo sobre o artigo"
+                android:imeOptions="normal"
                 android:inputType="text|textMultiLine"
                 android:maxLength="450"
                 android:textSize="14sp"

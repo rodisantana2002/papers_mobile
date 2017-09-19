@@ -54,5 +54,4 @@ public class adpTipoDocumento extends ArrayAdapter<TipoDocumento> {
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         return super.getDropDownView(position, convertView, parent);
     }
-
 }

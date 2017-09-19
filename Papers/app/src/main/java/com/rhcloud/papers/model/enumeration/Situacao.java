@@ -18,5 +18,20 @@ public enum Situacao {
     CANCELADO,
     REJEITADO,
     APROVADA_PUBLICACAO,
-    PUBLICADO    
+    PUBLICADO;
+
+    public String getDescricao(){
+        switch (this){
+            case INICIADO: return "Em Redação";
+            case EM_AVALIACAO_ORIENTADOR: return "Em Avaliação com Orientador";
+            case AGUARDANDO_AJUSTES: return "Aguardando Ajustes";
+            case LIBERADO_ORIENTADOR: return "Liberado Orientador";
+            case SUBMETIDO_PUBLICACAO: return "Submetido para Publicação";
+            case CANCELADO: return "Cancelado";
+            case REJEITADO: return "Rejeitado";
+            case APROVADA_PUBLICACAO: return "Aprovada Publicação";
+            case PUBLICADO: return "Publicado";
+            default: return "";
+        }
+    }
 }

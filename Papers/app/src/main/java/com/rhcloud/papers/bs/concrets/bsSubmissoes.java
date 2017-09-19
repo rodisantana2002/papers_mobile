@@ -69,4 +69,12 @@ public class bsSubmissoes implements itfGeneric<FilaSubmissao> {
 
         return lstFilaSubmissaos;
     }
+
+    public List<FilaSubmissao> findAllByDocumentoBySituacao(Integer id) throws excPassaErro {
+        List<FilaSubmissao> lstFilaSubmissaos = new ArrayList<FilaSubmissao>();
+        String response = connRest.get(hlpConstants.URL_BASE + hlpConstants.URL_FILA_SUBMISSAO + "documento/" + String.valueOf(id) + "/arquivadas");
+        lstFilaSubmissaos = gson.fromJson(response, new TypeToken<List<FilaSubmissao>>() {}.getType());
+
+        return lstFilaSubmissaos;
+    }
 }
