@@ -270,13 +270,10 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         }
 
         @Override
-        protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(viewHome.this, "Aguarde", "Carregando dados...");
-        }
+        protected void onPreExecute() {}
 
         @Override
         protected void onPostExecute(final String result) {
-            progressDialog.dismiss();
             if (pessoaFoto.getFoto()==null){
                 imgUsuario.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
             }
@@ -284,7 +281,6 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                 Bitmap bmUser = BitmapFactory.decodeByteArray(pessoaFoto.getFoto(), 0, pessoaFoto.getFoto().length);
                 imgUsuario.setImageBitmap(bmUser);
             }
-
         }
     }
 }

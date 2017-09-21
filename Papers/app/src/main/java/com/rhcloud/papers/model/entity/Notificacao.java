@@ -1,5 +1,7 @@
 package com.rhcloud.papers.model.entity;
 
+import android.support.annotation.NonNull;
+
 import com.rhcloud.papers.model.enumeration.Status;
 
 import java.io.Serializable;
@@ -7,7 +9,7 @@ import java.io.Serializable;
 /**
  * Created by rodolfosantana on 19/09/17.
  */
-public class Notificacao implements Serializable{
+public class Notificacao implements Serializable, Comparable<Notificacao>{
     private Integer id;
     private Pessoa pessoa;
     private Documento documento;
@@ -74,5 +76,18 @@ public class Notificacao implements Serializable{
 
     public void setDocumento(Documento documento) {
         this.documento = documento;
+    }
+
+    @Override
+    public String toString(){
+        return this.getDtCriacao() + " " + this.getHoraCriacao();
+    }
+
+    @Override
+    public int compareTo(@NonNull Notificacao notificacao) {
+        if (notificacao!=null){
+            return notificacao.toString().compareTo(this.toString());
+        }
+        return 0;
     }
 }

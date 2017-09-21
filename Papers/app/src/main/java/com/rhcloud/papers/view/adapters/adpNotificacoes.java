@@ -6,11 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
 import com.rhcloud.papers.model.entity.Notificacao;
+import com.rhcloud.papers.model.enumeration.Situacao;
+import com.rhcloud.papers.model.enumeration.Status;
 
 import java.util.List;
 
@@ -49,6 +52,17 @@ public class adpNotificacoes extends RecyclerView.Adapter<adpNotificacoes.RepoHo
         final Notificacao notificacao = notificacoes.get(position);
 
         holder.txtStatus.setText(notificacao.getStatus().getDescricao());
+        if(notificacao.getStatus().equals(Status.PENDENTE)){
+            holder.imgMsg.setImageResource(R.drawable.ic_mail_black_24dp);
+        }
+        else if(notificacao.getStatus().equals(Status.LIDA)){
+            holder.imgMsg.setImageResource(R.drawable.ic_drafts_black_24dp);
+
+        }
+        else if(notificacao.getStatus().equals(Status.ARQUIVADA)){
+            holder.imgMsg.setImageResource(R.drawable.ic_archive_black_24dp);
+        }
+
         holder.txtDataEnvio.setText(notificacao.getDtCriacao() + " " + notificacao.getHoraCriacao());
         if(notificacao.getConteudo().length()>=120){
             holder.txtNotificacao.setText("Novidades sobre o Artigo: " + notificacao.getDocumento().getTitulo() + ":\n" + notificacao.getConteudo().substring(0,119) + "...");
@@ -76,6 +90,7 @@ public class adpNotificacoes extends RecyclerView.Adapter<adpNotificacoes.RepoHo
     public class RepoHolder extends RecyclerView.ViewHolder {
         public TextView txtStatus, txtDataEnvio, txtNotificacao;
         public GridLayout gridStatus, gridNotificacao;
+        public ImageView imgMsg;
 
         public RepoHolder(View itemView) {
             super(itemView);
@@ -85,6 +100,7 @@ public class adpNotificacoes extends RecyclerView.Adapter<adpNotificacoes.RepoHo
 
             this.gridStatus = (GridLayout) itemView.findViewById(R.id.gridStatus);
             this.gridNotificacao = (GridLayout) itemView.findViewById(R.id.gridNotificacao);
+            this.imgMsg = (ImageView) itemView.findViewById(R.id.imgMsg);
         }
     }
 

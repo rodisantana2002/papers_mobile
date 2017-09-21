@@ -3,15 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/navigation_nao_lidas"
+        android:id="@+id/navigation_recebidas"
         android:icon="@drawable/ic_mail_black_24dp"
-        android:title="Não Lidas"
-        app:showAsAction="always|withText"/>
-
-    <item
-        android:id="@+id/navigation_lidas"
-        android:icon="@drawable/ic_drafts_black_24dp"
-        android:title="Lidas"
+        android:title="Recebidas"
         app:showAsAction="always|withText"/>
 
     <item

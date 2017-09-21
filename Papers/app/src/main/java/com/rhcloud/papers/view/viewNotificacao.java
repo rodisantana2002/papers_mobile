@@ -24,6 +24,8 @@ import com.rhcloud.papers.model.enumeration.Status;
 import com.rhcloud.papers.view.adapters.adpNotificacoes;
 import com.rhcloud.papers.view.decorator.dividerItemDecorator;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -54,14 +56,15 @@ public class viewNotificacao extends AppCompatActivity implements View.OnClickLi
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_nao_lidas:
-                    popularLista(lstNotificacoes.get(Status.PENDENTE));
-                    return true;
-                case R.id.navigation_lidas:
-                    popularLista(lstNotificacoes.get(Status.LIDA));
+                case R.id.navigation_recebidas:
+                    List<Notificacao> lstNotificacaoList = new ArrayList<Notificacao>();
+                    lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.LIDA));
+                    lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.PENDENTE));
+                    Collections.reverse(lstNotificacaoList);
+                    prepararLista(lstNotificacaoList);
                     return true;
                 case R.id.navigation_arquivadas:
-                    popularLista(lstNotificacoes.get(Status.ARQUIVADA));
+                    prepararLista(lstNotificacoes.get(Status.ARQUIVADA));
                     return true;
             }
             return false;
@@ -101,7 +104,7 @@ public class viewNotificacao extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private void popularLista(List<Notificacao> notificacaoList) {
+    private void prepararLista(List<Notificacao> notificacaoList) {
         mAdapter = new adpNotificacoes(viewNotificacao.this, notificacaoList);
         mAdapter.setOnItemClickListener(new itfOnItemClickListener<Notificacao>() {
 
@@ -157,8 +160,11 @@ public class viewNotificacao extends AppCompatActivity implements View.OnClickLi
         @Override
         protected void onPostExecute(HashMap<com.rhcloud.papers.model.enumeration.Status, List<Notificacao>> statusListHashMap) {
             progressDialog.dismiss();
-            popularLista(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.PENDENTE));
-
+            List<Notificacao> lstNotificacaoList = new ArrayList<Notificacao>();
+            lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.LIDA));
+            lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.PENDENTE));
+            Collections.reverse(lstNotificacaoList);
+            prepararLista(lstNotificacaoList);
         }
     }
 }
