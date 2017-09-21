@@ -3,6 +3,7 @@ package com.rhcloud.papers.view;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -175,7 +176,7 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
             String msg = "";
             try {
                 ctrlHistorico.criar();
-                ctrlNotificacao.criar();
+                ctrlNotificacao.criar(usuario);
                 return ctrlSubmissoes.atualizar();
 
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {

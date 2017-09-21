@@ -4,6 +4,7 @@ import com.rhcloud.papers.bs.concrets.bsNotificacao;
 import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.model.entity.DocumentosPessoas;
 import com.rhcloud.papers.model.entity.Notificacao;
+import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.enumeration.Status;
 
 import java.util.ArrayList;
@@ -25,20 +26,20 @@ public class ctrlNotificacao {
         ctrlDocumentoPessoas = new ctrlDocumentoPessoas(new DocumentosPessoas());
     }
 
-    public String criar() throws excPassaErro {
+    public String criar(Usuario usuario) throws excPassaErro {
         //vai em busca das pessoas que devem ser notificadas;
         //procura pela lista de partiipanates;
         String msg = "";
         for (DocumentosPessoas documentosPessoas : ctrlDocumentoPessoas.obterAllByDocumento(notificacao.getDocumento().getId())){
             ///naõ envia para o proprio participante quando ele esta gerando historico
-            if (!notificacao.getPessoa().getId().equals(documentosPessoas.getPessoa().getId())){
+            if (!usuario.getPessoa().getId().equals(documentosPessoas.getPessoa().getId())){
                 Notificacao not = notificacao;
                 not.setPessoa(documentosPessoas.getPessoa());
                 msg = bsNotificacao.create(not);
             }
         }
         //valida se o usuario locado é o responsavel senão envia notificação para autor
-        if (!notificacao.getPessoa().getId().equals(notificacao.getDocumento().getPessoa().getId())){
+        if (!usuario.getPessoa().getId().equals(notificacao.getDocumento().getPessoa().getId())){
             Notificacao not = notificacao;
             not.setPessoa(notificacao.getDocumento().getPessoa());
             msg = bsNotificacao.create(not);
