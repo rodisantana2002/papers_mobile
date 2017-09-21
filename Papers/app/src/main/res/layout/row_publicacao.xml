@@ -25,60 +25,38 @@
         android:padding="0dp"
         android:visibility="visible"
         android:weightSum="1"
-        tools:ignore="UselessParent">
+        tools:ignore="UselessParent"
+        android:id="@+id/linearLayout3">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:background="#FFF3F1F1"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:visibility="visible"
-            tools:ignore="ObsoleteLayoutParam">
+            tools:ignore="DisableBaselineAlignment,ObsoleteLayoutParam">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="306dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
+                android:layout_weight="0.35"
                 android:orientation="vertical"
                 android:visibility="visible"
                 tools:ignore="InefficientWeight">
-
-                <GridLayout
-                    android:id="@+id/gridTitulo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#FFF3F1F1"
-                    android:columnCount="1">
-
-                    <TextView
-                        android:id="@+id/txtTitulo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:height="40dp"
-                        android:gravity="left|center_vertical"
-                        android:paddingLeft="2dp"
-                        android:text="txtTitulo"
-                        android:textAlignment="viewStart"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:visibility="visible"
-                        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
-
-                </GridLayout>
 
                 <GridLayout
                     android:id="@+id/gridSituacao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:background="#fafafa"
+                    android:background="#FFF3F1F1"
                     android:columnCount="2"
-                    android:rowCount="4">
+                    android:rowCount="4"
+                    tools:ignore="NestedWeights">
 
                     <TextView
                         android:id="@+id/lblSituacao"
@@ -87,7 +65,7 @@
                         android:layout_gravity="left|center_vertical"
                         android:layout_marginBottom="0dp"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginTop="0dp"
+                        android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:height="40dp"
                         android:background="@android:color/transparent"
@@ -236,6 +214,30 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <GridLayout
+            android:id="@+id/gridTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fafafa"
+            android:columnCount="1">
+
+            <TextView
+                android:id="@+id/txtTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="2dp"
+                android:text="txtTitulo"
+                android:textAlignment="viewStart"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:visibility="visible"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+        </GridLayout>
 
         <GridLayout
             android:id="@+id/gridSubmissao"

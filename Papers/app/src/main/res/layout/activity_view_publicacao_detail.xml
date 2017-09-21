@@ -14,7 +14,8 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        tools:ignore="InefficientWeight">
 
         <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
@@ -47,7 +48,8 @@
                     <GridLayout
                         android:id="@+id/gridPadrao"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        tools:ignore="UselessParent">
 
                         <ImageButton
                             android:id="@+id/btnVoltarHomePublicacaoDetail"
@@ -308,7 +310,8 @@
                         android:layout_alignParentTop="true"
                         android:background="#fafafa"
                         android:columnCount="1"
-                        android:rowCount="2">
+                        android:rowCount="2"
+                        tools:ignore="ObsoleteLayoutParam">
 
                         <TextView
                             android:id="@+id/lblDestinoPublicacaoDetail"
@@ -352,7 +355,8 @@
                         android:layout_alignParentTop="true"
                         android:background="#fafafa"
                         android:columnCount="1"
-                        android:rowCount="2">
+                        android:rowCount="2"
+                        tools:ignore="ObsoleteLayoutParam">
 
                         <TextView
                             android:id="@+id/lblIdioma"

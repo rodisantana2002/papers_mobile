@@ -16,6 +16,7 @@
     android:theme="@style/AppTheme.NoActionBar">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
@@ -23,88 +24,119 @@
         android:orientation="vertical"
         android:padding="0dp"
         android:visibility="visible"
-        android:weightSum="1"
+        android:weightSum="0"
         tools:ignore="UselessParent">
-
-        <GridLayout
-            android:id="@+id/gridHistorico"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:columnCount="1"
-            android:rowCount="2">
-
-            <TextView
-                android:id="@+id/txtDataAtualizacao"
-                style="@android:style/Widget.TextView.PopupMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_alignParentStart="false"
-                android:layout_alignParentTop="false"
-                android:layout_gravity="left|center"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="4dp"
-                android:background="#FFF7F5F6"
-                android:gravity="left|center"
-                android:paddingBottom="0dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:text="txtDataAtualizacao"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
-
-        </GridLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="0dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:visibility="visible"
             tools:ignore="ObsoleteLayoutParam">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginLeft="15dp"
-                android:orientation="vertical"
-                android:visibility="visible"
-                tools:ignore="InefficientWeight">
+            <ImageView
+                android:id="@+id/imgHistorico"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignEnd="@+id/linearLayout2"
+                android:layout_alignTop="@+id/linearLayout2"
+                android:layout_gravity="top|center"
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/ic_arrow_forward_black_24dp"
+                tools:ignore="ContentDescription" />
 
-                <GridLayout
-                    android:id="@+id/gridTitulo"
+            <GridLayout
+                android:id="@+id/gridHistorico"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_weight="0.56"
+                android:columnCount="1"
+                android:rowCount="2"
+                tools:ignore="ObsoleteLayoutParam">
+
+                <TextView
+                    android:id="@+id/txtDataAtualizacao"
+                    style="@android:style/Widget.TextView.PopupMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignParentTop="false"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:background="#fafafa"
+                    android:gravity="left|center"
+                    android:paddingBottom="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="5dp"
+                    android:text="txtDataAtualizacao"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
+
+                <TextView
+                    android:id="@+id/txtSituacaoHistorico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:columnCount="1">
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="5dp"
+                    android:gravity="left|center_vertical"
+                    android:text="txtSituacao"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="13sp"
+                    android:visibility="visible"
+                    tools:ignore="HardcodedText,RtlHardcoded" />
 
-                    <TextView
-                        android:id="@+id/txtComentario"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginLeft="0dp"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    tools:ignore="InefficientWeight,RtlHardcoded">
+
+                    <GridLayout
+                        android:id="@+id/gridTitulo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:gravity="left|center_vertical"
-                        android:text="txtComentario"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/cardview_dark_background"
-                        android:textSize="13sp"
-                        android:visibility="visible"
-                        tools:ignore="HardcodedText,RtlHardcoded" />
+                        android:columnCount="1">
 
-                </GridLayout>
+                        <TextView
+                            android:id="@+id/txtComentario"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="left|center_vertical"
+                            android:text="txtComentario"
+                            android:textAlignment="viewStart"
+                            android:textColor="@color/cardview_dark_background"
+                            android:textSize="13sp"
+                            android:visibility="visible"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
+
+                    </GridLayout>
 
 
-            </LinearLayout>
+                </LinearLayout>
 
+            </GridLayout>
         </LinearLayout>
 
     </LinearLayout>

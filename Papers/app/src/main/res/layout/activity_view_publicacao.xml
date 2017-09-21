@@ -98,7 +98,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="80dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="RtlHardcoded">
 
                         <RadioButton
                             android:id="@+id/radEmAndamento"
@@ -112,7 +113,8 @@
                             android:gravity="center_vertical|center_horizontal|center"
                             android:text="Em Andamento"
                             android:textColor="@color/cardview_dark_background"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
 
                         <RadioButton
                             android:id="@+id/radFinalizadas"
@@ -125,7 +127,8 @@
                             android:gravity="center_vertical|center_horizontal|center"
                             android:text="Encerradas"
                             android:textColor="@color/cardview_dark_background"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            tools:ignore="HardcodedText,RtlHardcoded" />
                     </RadioGroup>
 
                     <ImageButton

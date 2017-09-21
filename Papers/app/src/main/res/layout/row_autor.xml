@@ -132,7 +132,7 @@
             android:paddingStart="52dp"
             android:text="Sobre o Autor"
             android:textSize="13sp"
-            tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />
+            tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,SmallSp" />
 
     </LinearLayout>
 
