@@ -57,12 +57,12 @@ public class adpPublicacoes extends RecyclerView.Adapter<adpPublicacoes.RepoHold
         holder.txtTitulo.setText(filaSubmissaos.get(position).getDocumento().getTitulo());
         holder.txtDestino.setText(filaSubmissaos.get(position).getDestino().getDescricao() + " - " + filaSubmissaos.get(position).getDestino().getClassificacao());
         if (filaSubmissaos.get(position).getDtLimiteSubmissao()!=null){
-            holder.lblDtPublicacao.setVisibility(View.VISIBLE);
             holder.txtDataLimiteSubmissao.setText(filaSubmissaos.get(position).getDtLimiteSubmissao());
         }
 
         if (filaSubmissaos.get(position).getDtPublicacao()!=null){
-
+            holder.lblDtPublicacao.setVisibility(View.VISIBLE);
+            holder.txtDtPublicacao.setVisibility(View.VISIBLE);
             holder.txtDtPublicacao.setText(filaSubmissaos.get(position).getDtPublicacao());
         }
 

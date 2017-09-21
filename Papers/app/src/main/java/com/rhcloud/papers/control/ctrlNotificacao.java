@@ -30,8 +30,17 @@ public class ctrlNotificacao {
         //procura pela lista de partiipanates;
         String msg = "";
         for (DocumentosPessoas documentosPessoas : ctrlDocumentoPessoas.obterAllByDocumento(notificacao.getDocumento().getId())){
+            ///naõ envia para o proprio participante quando ele esta gerando historico
+            if (!notificacao.getPessoa().getId().equals(documentosPessoas.getPessoa().getId())){
+                Notificacao not = notificacao;
+                not.setPessoa(documentosPessoas.getPessoa());
+                msg = bsNotificacao.create(not);
+            }
+        }
+        //valida se o usuario locado é o responsavel senão envia notificação para autor
+        if (!notificacao.getPessoa().getId().equals(notificacao.getDocumento().getPessoa().getId())){
             Notificacao not = notificacao;
-            not.setPessoa(documentosPessoas.getPessoa());
+            not.setPessoa(notificacao.getDocumento().getPessoa());
             msg = bsNotificacao.create(not);
         }
         return msg;

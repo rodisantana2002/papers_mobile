@@ -255,7 +255,7 @@
                                     android:textAlignment="center"
                                     android:textColor="@color/cardview_dark_background"
                                     android:textSize="10sp"
-                                    android:visibility="visible"
+                                    android:visibility="gone"
                                     tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
 
                                 <TextView
@@ -290,7 +290,7 @@
                                     android:textAlignment="center"
                                     android:textColor="@color/cardview_dark_background"
                                     android:textSize="11sp"
-                                    android:visibility="visible"
+                                    android:visibility="gone"
                                     tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
 
                             </GridLayout>

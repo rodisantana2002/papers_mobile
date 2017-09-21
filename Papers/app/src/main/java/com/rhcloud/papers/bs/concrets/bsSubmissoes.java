@@ -9,6 +9,7 @@ import com.rhcloud.papers.helpers.rest.hlpConnectionURL;
 import com.rhcloud.papers.model.entity.FilaSubmissao;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -67,6 +68,7 @@ public class bsSubmissoes implements itfGeneric<FilaSubmissao> {
         String response = connRest.get(hlpConstants.URL_BASE + hlpConstants.URL_FILA_SUBMISSAO + "documento/" + String.valueOf(id) + "/list");
         lstFilaSubmissaos = gson.fromJson(response, new TypeToken<List<FilaSubmissao>>() {}.getType());
 
+        Collections.reverse(lstFilaSubmissaos);
         return lstFilaSubmissaos;
     }
 
@@ -75,6 +77,7 @@ public class bsSubmissoes implements itfGeneric<FilaSubmissao> {
         String response = connRest.get(hlpConstants.URL_BASE + hlpConstants.URL_FILA_SUBMISSAO + "documento/" + String.valueOf(id) + "/arquivadas");
         lstFilaSubmissaos = gson.fromJson(response, new TypeToken<List<FilaSubmissao>>() {}.getType());
 
+        Collections.reverse(lstFilaSubmissaos);
         return lstFilaSubmissaos;
     }
 }

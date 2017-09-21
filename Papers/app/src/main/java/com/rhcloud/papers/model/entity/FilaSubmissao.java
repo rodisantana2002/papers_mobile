@@ -5,6 +5,8 @@
  */
 package com.rhcloud.papers.model.entity;
 
+import android.support.annotation.NonNull;
+
 import com.rhcloud.papers.model.enumeration.Situacao;
 
 import java.io.Serializable;
@@ -15,7 +17,7 @@ import java.util.List;
  *
  * @author Rodolfo
  */
-public class FilaSubmissao implements Serializable{
+public class FilaSubmissao implements Serializable, Comparable<FilaSubmissao>{
     private Integer id;
     private Situacao situacao;
     private String versao;
@@ -123,5 +125,18 @@ public class FilaSubmissao implements Serializable{
 
     public void setCriadoPor(Pessoa criadoPor) {
         this.criadoPor = criadoPor;
+    }
+
+    @Override
+    public String toString(){
+        return this.getSituacao().toString();
+    }
+
+    @Override
+    public int compareTo(@NonNull FilaSubmissao filaSubmissao) {
+        if(filaSubmissao!=null){
+            this.toString().compareTo(filaSubmissao.toString());
+        }
+        return 0;
     }
 }

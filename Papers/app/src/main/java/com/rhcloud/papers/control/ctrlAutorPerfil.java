@@ -11,6 +11,7 @@ import com.rhcloud.papers.model.enumeration.Situacao;
 import com.rhcloud.papers.model.transitorio.AutorPerfil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -83,6 +84,7 @@ public class ctrlAutorPerfil {
                 lstFilaSubmissaos.addAll(ctrlSubmissoes.obterAllByDocumentoBySituacao(documento.getId()));
             }
         }
+        Collections.reverse(lstFilaSubmissaos);
         autorPerfil.setLstResponsavelPublicacao(lstFilaSubmissaos);
     }
 
@@ -96,6 +98,7 @@ public class ctrlAutorPerfil {
                 lstFilaSubmissaos.addAll(ctrlSubmissoes.obterAllByDocumentoBySituacao(documento.getId()));
             }
         }
+        Collections.reverse(lstFilaSubmissaos);
         autorPerfil.setLstParticipantePublicacao(lstFilaSubmissaos);
     }
 
@@ -109,6 +112,7 @@ public class ctrlAutorPerfil {
                 lstFilaSubmissaos.addAll(ctrlSubmissoes.obterAllByDocumentoBySituacao(favorito.getId()));
             }
         }
+        Collections.reverse(lstFilaSubmissaos);
         autorPerfil.setLstFavoritosPublicacao(lstFilaSubmissaos);
     }
 }

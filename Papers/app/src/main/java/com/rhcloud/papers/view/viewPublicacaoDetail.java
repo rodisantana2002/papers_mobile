@@ -44,7 +44,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
     private FilaSubmissao filaSubmissao;
     private Usuario usuario;
     private AutorPerfil autorPerfil;
-    private TextView txtTitulo, txtSituacao, txtVersao, txtDestino, txtDataLimiteSubmissao, txtIdiona, txtNenhumRegistro, txtTituloLista, txtDtPublicacao;
+    private TextView txtTitulo, txtSituacao, txtVersao, txtDestino, txtDataLimiteSubmissao, txtIdiona, txtNenhumRegistro, txtTituloLista, txtDtPublicacao, lblDtPublicacao;
     private ArrayList<Acao> lstAcoes;
     private ArrayList<HistoricoFilaSubmissao> lstHistorico;
     private hlpMapasValoresEnuns mapasValoresEnuns;
@@ -139,6 +139,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         txtDataLimiteSubmissao = (TextView) findViewById(R.id.txtDataLimitePublicacaoDetail);
         txtIdiona = (TextView) findViewById(R.id.txtIdiomaPublicacaoDetail);
         txtDtPublicacao =(TextView) findViewById(R.id.txtDataPublicacaoDetail);
+        lblDtPublicacao =(TextView) findViewById(R.id.lblDataPublicacaoPublicacaoDetail);
 
         txtSituacao.setText(mapasValoresEnuns.getDescricaoSituacao(filaSubmissao.getSituacao()));
         txtSituacao.setTextColor(mapasValoresEnuns.getSituacaoColor(filaSubmissao.getSituacao()));
@@ -149,6 +150,8 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
             txtDataLimiteSubmissao.setText(filaSubmissao.getDtLimiteSubmissao());
         }
         if (filaSubmissao.getDtPublicacao()!=null){
+            lblDtPublicacao.setVisibility(View.VISIBLE);
+            txtDtPublicacao.setVisibility(View.VISIBLE);
             txtDtPublicacao.setText(filaSubmissao.getDtPublicacao());
         }
         if(filaSubmissao.getIdioma()!=null){

@@ -64,7 +64,7 @@
                         android:text="txtTitulo"
                         android:textAlignment="viewStart"
                         android:textColor="@android:color/black"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         android:visibility="visible"
                         tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
@@ -95,7 +95,7 @@
                         android:text="Situação"
                         android:textAlignment="textStart"
                         android:textColor="@color/cardview_dark_background"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:visibility="visible"
                         tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SmallSp" />
 
@@ -113,7 +113,7 @@
                         android:text="Versão "
                         android:textAlignment="center"
                         android:textColor="@color/cardview_dark_background"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:visibility="visible"
                         tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
 
@@ -132,7 +132,7 @@
                         android:text="txtSituacao"
                         android:textAlignment="textStart"
                         android:textColor="@color/cardview_dark_background"
-                        android:textSize="11sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         android:visibility="visible"
                         tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SmallSp" />
@@ -151,28 +151,28 @@
                         android:text="txtVersao"
                         android:textAlignment="center"
                         android:textColor="@color/cardview_dark_background"
-                        android:textSize="11sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         android:visibility="visible"
                         tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
 
                     <TextView
                         android:id="@+id/lblDataLimite"
-                        android:layout_width="85dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="false"
                         android:layout_alignParentTop="false"
                         android:layout_gravity="left|center"
                         android:layout_marginBottom="0dp"
                         android:layout_marginStart="5dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="8dp"
                         android:background="@android:color/transparent"
                         android:gravity="left|center"
                         android:paddingBottom="0dp"
                         android:paddingLeft="2dp"
                         android:text="Data Limite Envio"
                         android:textColor="@color/cardview_dark_background"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,SmallSp" />
 
                     <TextView
@@ -189,8 +189,8 @@
                         android:text="Publicado em "
                         android:textAlignment="center"
                         android:textColor="@color/cardview_dark_background"
-                        android:textSize="10sp"
-                        android:visibility="visible"
+                        android:textSize="12sp"
+                        android:visibility="gone"
                         tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
 
                     <TextView
@@ -210,7 +210,7 @@
                         android:paddingLeft="2dp"
                         android:textAlignment="textStart"
                         android:textColor="@color/cardview_dark_background"
-                        android:textSize="11sp"
+                        android:textSize="14sp"
                         tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,SmallSp" />
 
                     <TextView
@@ -226,8 +226,8 @@
                         android:background="@android:color/transparent"
                         android:textAlignment="center"
                         android:textColor="@color/cardview_dark_background"
-                        android:textSize="11sp"
-                        android:visibility="visible"
+                        android:textSize="14sp"
+                        android:visibility="gone"
                         tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
 
                 </GridLayout>
@@ -256,12 +256,13 @@
                 android:layout_alignParentTop="false"
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:gravity="left|center_vertical|center_horizontal"
                 android:paddingBottom="0dp"
                 android:paddingLeft="2dp"
                 android:text="Submetido para"
                 android:textColor="@color/cardview_dark_background"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,SmallSp" />
 
             <TextView
@@ -274,13 +275,12 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
                 android:gravity="left|center"
                 android:paddingBottom="0dp"
                 android:paddingLeft="2dp"
                 android:text="txtDestino"
                 android:textColor="@color/cardview_dark_background"
-                android:textSize="11sp"
+                android:textSize="14sp"
                 tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,SmallSp" />
 
         </GridLayout>

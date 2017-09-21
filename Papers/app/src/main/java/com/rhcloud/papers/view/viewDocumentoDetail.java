@@ -275,7 +275,7 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
                 for (DocumentosPessoas pessoas : documentosPessoases){
                     lstParticipantes.add(pessoas.getPessoa());
                 }
-                lstParticipantes.add(usuario.getPessoa());
+                lstParticipantes.add(documento.getPessoa());
 
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 excPassaErro.getMessage();
