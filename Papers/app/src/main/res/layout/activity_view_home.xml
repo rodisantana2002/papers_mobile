@@ -104,6 +104,42 @@
 
     </LinearLayout>
 
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fafafa"
+        android:columnCount="2">
+
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="left|center"
+
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_reorder_black_18dp"
+            android:tag="1"
+            tools:ignore="ContentDescription,RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/lblInicio"
+            android:layout_width="308dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|center"
+            android:background="#fafafa"
+            android:gravity="left|center"
+            android:text="Selecione a opção desejada."
+            android:textAlignment="viewStart"
+            android:textColor="@android:color/background_dark"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </GridLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -112,9 +148,11 @@
         tools:ignore="InefficientWeight">
 
         <LinearLayout
+            android:id="@+id/frameAcoes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:visibility="visible"
             tools:ignore="UselessLeaf,UselessParent">
 
             <GridLayout
@@ -123,27 +161,8 @@
                 android:layout_weight="0"
                 android:background="@android:color/white"
                 android:columnCount="1"
-                android:rowCount="3"
+                android:rowCount="2"
                 tools:ignore="UselessParent">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_gravity="top|center"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_weight="0"
-                    android:background="#fafafa"
-                    android:gravity="center_vertical"
-                    android:paddingBottom="0dp"
-                    android:paddingLeft="8dp"
-                    android:text="Selecione a opção desejada."
-                    android:textAlignment="center"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    tools:background="@android:color/white"
-                    tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/listaAcoesMenu"
@@ -175,6 +194,7 @@
                     android:textStyle="bold"
                     tools:background="@android:color/white"
                     tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,SmallSp" />
+
             </GridLayout>
 
         </LinearLayout>

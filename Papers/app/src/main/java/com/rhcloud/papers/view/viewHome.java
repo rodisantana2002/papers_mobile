@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rhcloud.papers.Principal;
@@ -49,15 +50,13 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
     private TextView lblUsuario, lblDtUltAcesso;
     private ImageButton btnPerfil;
     private ImageView imgUsuario;
-    private Button btnSair, btnDocumentos;
 
-    private ProgressDialog progressDialog;
     private procDados procDados;
 
     private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
     private List<Acao> lstAcoes;
     private adpAcoes mAdapter;
+    private LinearLayout frameAcoes;
 
 
     @Override
@@ -236,6 +235,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         lblDtUltAcesso.setText("conectado no sistema desde " + usuario.getDtUltAcesso().substring(0,5) + " às " + usuario.getDtUltAcesso().substring(11,16));
 
         btnPerfil.setOnClickListener(this);
+        frameAcoes = (LinearLayout) findViewById(R.id.frameAcoes);
 
         procDados = new procDados(usuario);
         procDados.execute();
