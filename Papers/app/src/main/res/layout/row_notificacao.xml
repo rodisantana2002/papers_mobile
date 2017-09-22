@@ -69,7 +69,6 @@
                     android:rowCount="2">
 
                     <TextView
-                        android:id="@+id/lblSituacao"
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
                         android:layout_gravity="left|center_vertical"
@@ -88,7 +87,6 @@
                         tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SmallSp" />
 
                     <TextView
-                        android:id="@+id/lblVersao"
                         android:layout_width="60dp"
                         android:layout_height="15dp"
                         android:layout_gravity="right|center_vertical"

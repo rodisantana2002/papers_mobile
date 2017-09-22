@@ -25,8 +25,7 @@
         android:padding="0dp"
         android:visibility="visible"
         android:weightSum="1"
-        tools:ignore="UselessParent"
-        android:id="@+id/linearLayout3">
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,7 +58,6 @@
                     tools:ignore="NestedWeights">
 
                     <TextView
-                        android:id="@+id/lblSituacao"
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
                         android:layout_gravity="left|center_vertical"
@@ -78,7 +76,6 @@
                         tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SmallSp" />
 
                     <TextView
-                        android:id="@+id/lblVersao"
                         android:layout_width="60dp"
                         android:layout_height="15dp"
                         android:layout_gravity="right|center_vertical"
@@ -135,7 +132,6 @@
                         tools:ignore="HardcodedText,RtlHardcoded,SmallSp" />
 
                     <TextView
-                        android:id="@+id/lblDataLimite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="false"
@@ -251,7 +247,6 @@
             tools:ignore="ObsoleteLayoutParam">
 
             <TextView
-                android:id="@+id/lblDestino"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="false"

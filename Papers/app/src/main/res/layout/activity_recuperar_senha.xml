@@ -20,8 +20,7 @@
             app:title="@string/title_activity_recuperar_senha" />
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_recuperar_senha"
-        android:id="@+id/include" />
+    <include layout="@layout/content_recuperar_senha" />
 
 </android.support.design.widget.CoordinatorLayout>
 

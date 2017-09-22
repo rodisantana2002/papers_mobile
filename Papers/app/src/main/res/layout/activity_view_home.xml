@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -106,7 +105,6 @@
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0"
@@ -129,7 +127,6 @@
                 tools:ignore="UselessParent">
 
                 <TextView
-                    android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_gravity="top|center"
@@ -160,7 +157,6 @@
                 </android.support.v7.widget.RecyclerView>
 
                 <TextView
-                    android:id="@+id/lblMenu"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_gravity="bottom|center"

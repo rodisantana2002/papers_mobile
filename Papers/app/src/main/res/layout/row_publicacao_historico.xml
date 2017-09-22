@@ -52,7 +52,6 @@
                 tools:ignore="ContentDescription" />
 
             <GridLayout
-                android:id="@+id/gridHistorico"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"

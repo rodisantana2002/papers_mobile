@@ -29,7 +29,6 @@
             android:weightSum="1">
 
             <TextView
-                android:id="@+id/titleapp"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@android:color/white"
@@ -48,7 +47,6 @@
                 android:layout_height="15dp" />
 
             <ImageView
-                android:id="@+id/imageView"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:scaleType="fitXY"

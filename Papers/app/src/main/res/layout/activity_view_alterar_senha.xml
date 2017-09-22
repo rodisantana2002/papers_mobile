@@ -44,7 +44,6 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/titleapp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
@@ -89,7 +88,6 @@
             </android.support.design.widget.TextInputLayout>
 
             <TextView
-                android:id="@+id/lblDadosAcesso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="20dp"
@@ -101,7 +99,6 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/lblDetalhesSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"

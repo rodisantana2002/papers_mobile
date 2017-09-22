@@ -180,7 +180,7 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
         }
         else{
             txtNenhumRegistro.setVisibility(View.GONE);
-            txtTituloLista.setText("Histórico de Movimentações");
+            txtTituloLista.setText("Histórico de Alterações");
             txtTituloLista.setVisibility(View.VISIBLE);
             recyclerViewHistorico.setVisibility(View.VISIBLE);
         }

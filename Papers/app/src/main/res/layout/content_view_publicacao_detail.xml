@@ -10,7 +10,6 @@
     tools:showIn="@layout/activity_view_publicacao_detail">
 
     <LinearLayout
-        android:id="@+id/grupoLista"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
@@ -46,7 +45,7 @@
             android:gravity="center_vertical|center"
             android:paddingBottom="0dp"
             android:paddingLeft="8dp"
-            android:text="Histórico de Movimentações"
+            android:text="Histórico de Alterações"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:textStyle="bold"

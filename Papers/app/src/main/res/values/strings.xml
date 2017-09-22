@@ -10,9 +10,6 @@
     <string name="title_activity_view_cadastrar_usuario">Cadastrar Usuário</string>
     <string name="title_activity_view_home">Home</string>
     <string name="title_activity_view_perfil">Perfil</string>
-    <string name="title_home">Home</string>
-    <string name="title_documentos">Artigos</string>
-    <string name="title_autores">Autores</string>
 
     <string-array name="listPaises">
         <item>Alemanha</item>
@@ -110,14 +107,8 @@
 
     <string name="title_activity_view_repositorio">Repositórios</string>
     <string name="title_activity_view_autor_detail">Detalhes Autor</string>
-    <string name="title_activity_view_documento">viewDocumento</string>
     <string name="title_activity_view_documentos">Documentos</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
-    <string name="title_activity_view_recuperacao_erro">viewRecuperacaoErro</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
 
 

@@ -30,7 +30,6 @@
             tools:ignore="RtlHardcoded">
 
             <GridLayout
-                android:id="@+id/gridPadrao"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:ignore="UselessParent">
@@ -45,7 +44,6 @@
                     tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:id="@+id/titleappAutor"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
@@ -60,8 +58,8 @@
 
                 <ImageButton
                     android:id="@+id/btnPesquisar"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="right|center"
                     android:background="@android:color/transparent"
                     android:scaleType="centerInside"
