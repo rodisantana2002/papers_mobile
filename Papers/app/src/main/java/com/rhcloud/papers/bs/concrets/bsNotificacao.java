@@ -37,6 +37,13 @@ public class bsNotificacao implements itfGeneric<Notificacao> {
         return notificacaoList;
     }
 
+    public List<Notificacao> obterPendentesByAutor(String id) throws excPassaErro {
+        List<Notificacao> notificacaoList = new ArrayList<Notificacao>();
+        String response = connRest.get(hlpConstants.URL_BASE + hlpConstants.URL_NOTIFICACAO + "obterpendentesbyautor/" + id);
+        notificacaoList = gson.fromJson(response, new TypeToken<List<Notificacao>>() {}.getType());
+        return notificacaoList;
+    }
+
     @Override
     public String update(Notificacao entity) throws excPassaErro {
         return connRest.post(hlpConstants.URL_BASE + hlpConstants.URL_NOTIFICACAO, gson.toJson(entity));

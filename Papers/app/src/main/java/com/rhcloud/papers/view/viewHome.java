@@ -22,10 +22,12 @@ import android.widget.TextView;
 import com.rhcloud.papers.Principal;
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlAutentication;
+import com.rhcloud.papers.control.ctrlNotificacao;
 import com.rhcloud.papers.control.ctrlPessoa;
 import com.rhcloud.papers.control.ctrlPessoaFoto;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
 import com.rhcloud.papers.helpers.generic.hlpConstants;
+import com.rhcloud.papers.model.entity.Notificacao;
 import com.rhcloud.papers.model.entity.PessoaFoto;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.transitorio.Acao;
@@ -263,6 +265,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                 usuario.setPessoa(ctrlPessoa.obterByID(usuario.getPessoa().getId()));
                 ctrlPessoaFoto ctrlPessoaFoto = new ctrlPessoaFoto(new PessoaFoto());
                 pessoaFoto = ctrlPessoaFoto.obterByAutorId(usuario.getPessoa().getId());
+
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 msg = excPassaErro.getMessage();
             }
@@ -281,6 +284,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                 Bitmap bmUser = BitmapFactory.decodeByteArray(pessoaFoto.getFoto(), 0, pessoaFoto.getFoto().length);
                 imgUsuario.setImageBitmap(bmUser);
             }
+
         }
     }
 }

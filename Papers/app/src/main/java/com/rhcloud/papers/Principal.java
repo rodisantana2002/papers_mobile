@@ -137,10 +137,10 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
                 ctrlAutentication ctrlAutentication = new ctrlAutentication(usuario);
                 usuario = (Usuario) ctrlAutentication.efetuarLogin();
                 return usuario;
-
             }
             catch (excPassaErro excPassaErro) {
-                excPassaErro.printStackTrace();}
+                excPassaErro.printStackTrace();
+            }
             return new Usuario();
         }
 
@@ -153,7 +153,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         protected void onPostExecute(Usuario usuario) {
             Intent intent;
 
-            if (usuario.getToken() == null) {
+            if (usuario.getToken().equals(null)) {
                 progressDialog.dismiss();
                 hlpDialog.getAlertDialog(Principal.this, "Atenção", hlpConstants.MSG_401, "Ok", new itfDialogGeneric() {
                     @Override

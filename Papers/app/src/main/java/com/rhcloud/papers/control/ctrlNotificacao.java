@@ -74,4 +74,8 @@ public class ctrlNotificacao {
         listHashMap.put(Status.ARQUIVADA, notificacaoListArquivadas);
         return listHashMap;
     }
+
+    public Integer obterTotalPendentesByAutor(String id) throws excPassaErro {
+        return bsNotificacao.obterPendentesByAutor(id).size();
+    }
 }

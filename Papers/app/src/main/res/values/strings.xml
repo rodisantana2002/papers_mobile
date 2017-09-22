@@ -114,6 +114,10 @@
     <string name="title_activity_view_documentos">Documentos</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="title_activity_view_recuperacao_erro">viewRecuperacaoErro</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
 
 

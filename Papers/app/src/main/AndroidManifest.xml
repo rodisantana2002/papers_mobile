@@ -118,7 +118,8 @@
         <activity
             android:name=".view.viewNotificacao"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".view.viewNotificacaoDetail"
+        <activity
+            android:name=".view.viewNotificacaoDetail"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
