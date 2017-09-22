@@ -19,6 +19,8 @@ import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlPessoa;
 import com.rhcloud.papers.control.ctrlPessoaFoto;
 import com.rhcloud.papers.control.ctrlUsuario;
+import com.rhcloud.papers.helpers.core.itfDialogGeneric;
+import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.PessoaFoto;
 import com.rhcloud.papers.model.entity.Usuario;
@@ -154,6 +156,12 @@ public class viewAutorDetail extends AppCompatActivity implements View.OnClickLi
                 pessoaFoto = ctrlPessoaFoto.obterByAutorId(pessoa.getId());
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewAutorDetail.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
+
             }
             return msg;
         }
@@ -166,7 +174,7 @@ public class viewAutorDetail extends AppCompatActivity implements View.OnClickLi
         @Override
         protected void onPostExecute(final String result) {
             progressDialog.dismiss();
-            if (pessoaFoto.getFoto()==null){
+            if ((pessoaFoto==null) || (pessoaFoto.getFoto()==null)){
                 imgAutor.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
             }
             else {

@@ -249,7 +249,13 @@ public class viewDocumentoEdit extends AppCompatActivity implements View.OnClick
             try {
                 return ctrlTipoDocumento.obterAll();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.printStackTrace();
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewDocumentoEdit.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
+
             }
             return tipoDocumentoList;
 

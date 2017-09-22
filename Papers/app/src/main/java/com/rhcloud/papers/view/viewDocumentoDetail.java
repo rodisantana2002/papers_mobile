@@ -296,8 +296,6 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
         }
     }
 
-
-
     private class procFavoritos extends AsyncTask<Void, Void, Void> {
         private DocumentosPessoasFavoritos documentosPessoasFavoritos;
         private ctrlDocumentoPessoasFavoritos ctrlDocumentoPessoasFavoritos;
@@ -319,7 +317,12 @@ public class viewDocumentoDetail extends AppCompatActivity implements View.OnCli
                 }
 
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.printStackTrace();
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewDocumentoDetail.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
             }
 
             return null;

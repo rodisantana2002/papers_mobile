@@ -21,14 +21,15 @@ import com.rhcloud.papers.helpers.generic.hlpValidaDados;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.view.viewCadastrarUsuario;
 import com.rhcloud.papers.view.viewHome;
+import com.rhcloud.papers.view.viewPerfil;
 import com.rhcloud.papers.view.viewRecuperarSenha;
 
 
-public class Principal extends AppCompatActivity implements View.OnClickListener{
+public class Principal extends AppCompatActivity implements View.OnClickListener {
     private Button btnEsqueciSenha, btnCadastrarNovoUsuario, btnEntrar;
     private EditText txtLogin, txtSenha;
     private Usuario usuario;
-    private procLogin procLogin =null;
+    private procLogin procLogin = null;
     private SharedPreferences sharedPreferences;
     private ProgressDialog progressDialog;
 
@@ -41,9 +42,9 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
 
     @Override
     protected void onResume() {
-        sharedPreferences= getSharedPreferences(hlpConstants.MYPREFERENCES, Context.MODE_PRIVATE);
-        if(sharedPreferences.contains(hlpConstants.PREF_EMAIL) && sharedPreferences.contains(hlpConstants.PREF_SENHA)){
-            Intent intent= new Intent(this, viewHome.class);
+        sharedPreferences = getSharedPreferences(hlpConstants.MYPREFERENCES, Context.MODE_PRIVATE);
+        if (sharedPreferences.contains(hlpConstants.PREF_EMAIL) && sharedPreferences.contains(hlpConstants.PREF_SENHA)) {
+            Intent intent = new Intent(this, viewHome.class);
             startActivity(intent);
         }
         super.onResume();
@@ -124,24 +125,29 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         txtSenha = (EditText) findViewById(R.id.txtSenha);
     }
 
-    public class procLogin extends AsyncTask<String, Void, Usuario>{
+    public class procLogin extends AsyncTask<String, Void, Usuario> {
         private Usuario usuario;
 
-        public procLogin(Usuario usuario){
+        public procLogin(Usuario usuario) {
             this.usuario = usuario;
         }
 
         @Override
         protected Usuario doInBackground(String... params) {
+            final Usuario user = new Usuario();
             try {
                 ctrlAutentication ctrlAutentication = new ctrlAutentication(usuario);
                 usuario = (Usuario) ctrlAutentication.efetuarLogin();
                 return usuario;
+            } catch (excPassaErro excPassaErro) {
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(Principal.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) {
+                    }
+                });
             }
-            catch (excPassaErro excPassaErro) {
-                excPassaErro.printStackTrace();
-            }
-            return new Usuario();
+            return user;
         }
 
         @Override
@@ -153,7 +159,7 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         protected void onPostExecute(Usuario usuario) {
             Intent intent;
 
-            if (usuario.getToken().equals(null)) {
+            if (usuario.getToken() == null) {
                 progressDialog.dismiss();
                 hlpDialog.getAlertDialog(Principal.this, "Atenção", hlpConstants.MSG_401, "Ok", new itfDialogGeneric() {
                     @Override
@@ -161,9 +167,8 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
                         txtLogin.requestFocus();
                     }
                 });
-            }
-            else{
-                Editor editor= sharedPreferences.edit();
+            } else {
+                Editor editor = sharedPreferences.edit();
                 editor.putString(hlpConstants.PREF_ID, String.valueOf(usuario.getId()));
                 editor.putString(hlpConstants.PREF_PRIMEIRO_NAME, usuario.getPessoa().getPrimeiroNome());
                 editor.putString(hlpConstants.PREF_SEGUNDO_NAME, usuario.getPessoa().getSegundoNome());
@@ -176,7 +181,6 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
                 progressDialog.dismiss();
                 intent = new Intent(Principal.this, viewHome.class);
                 startActivity(intent);
-
             }
         }
     }

@@ -23,7 +23,9 @@ import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlPessoa;
+import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
+import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.view.adapters.adpAutores;
@@ -174,7 +176,12 @@ public class viewAutor extends AppCompatActivity implements View.OnClickListener
             try {
                 lstAutores = ctrlPessoa.obterAll();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.getMessage();
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewAutor.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
                 lstAutores = new ArrayList<Pessoa>();
             }
             return lstAutores;
@@ -212,7 +219,12 @@ public class viewAutor extends AppCompatActivity implements View.OnClickListener
             try {
                 lstAutores = ctrlPessoa.obterAllByNome(strNome);
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.getMessage();
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewAutor.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
                 lstAutores = new ArrayList<Pessoa>();
             }
             return lstAutores;

@@ -29,7 +29,7 @@ public class hlpConstants {
     public static final String MSG_401 = "Usuário ou Senha incorretos.";
     public static final String MSG_500 = "Ocorreu um erro interno no sistema do gateway, entre em contato com o suporte do sistema";
     public static final String MSG_503 = "O sistema esta inativo, aguarde alguns minutos e tente novamente acessar o sistema";
-    public static final String MSG_IOE = "No momento você esta sem acesso a Internet, por isso sua solicitação não pode ser processada";
+    public static final String MSG_IOE = "Detectamos que você esta sem acesso a Internet no momento.";
     public static final String MSG_ERRO_JSON = "Erro ao ler JSON";
     public static final String MSG_WAIT = "Processando Solicitação...";
 

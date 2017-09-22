@@ -19,7 +19,7 @@ import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.helpers.generic.hlpValidaDados;
 import com.rhcloud.papers.model.entity.Usuario;
 
-public class viewCadastrarUsuario extends AppCompatActivity implements  View.OnClickListener {
+public class viewCadastrarUsuario extends AppCompatActivity implements View.OnClickListener {
     private EditText txtPrimeiroNome, txtSegundoNome, txtEmailUsuario, txtCrieSenha, txtRepitaSenha;
     private Usuario usuario;
     private Button btnEnviar;
@@ -124,7 +124,7 @@ public class viewCadastrarUsuario extends AppCompatActivity implements  View.OnC
             return false;
         }
 
-        if(!hlpValidaDados.isSenhaForte(txtCrieSenha.getText().toString())){
+        if (!hlpValidaDados.isSenhaForte(txtCrieSenha.getText().toString())) {
             hlpDialog.getAlertDialog(this, "Atenção", "A Senha não atende os requisitos de segurança", "Ok", new itfDialogGeneric() {
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
@@ -145,7 +145,7 @@ public class viewCadastrarUsuario extends AppCompatActivity implements  View.OnC
             return false;
         }
 
-        if(!hlpValidaDados.isSenhaForte(txtRepitaSenha.getText().toString())){
+        if (!hlpValidaDados.isSenhaForte(txtRepitaSenha.getText().toString())) {
             hlpDialog.getAlertDialog(this, "Atenção", "A Senha não atende os requisitos de segurança", "Ok", new itfDialogGeneric() {
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
@@ -155,7 +155,7 @@ public class viewCadastrarUsuario extends AppCompatActivity implements  View.OnC
             return false;
         }
 
-        if(!txtCrieSenha.getText().toString().equals(txtRepitaSenha.getText().toString())){
+        if (!txtCrieSenha.getText().toString().equals(txtRepitaSenha.getText().toString())) {
             hlpDialog.getAlertDialog(this, "Atenção", "As Senhas informadas devem ser identicas", "Ok", new itfDialogGeneric() {
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
@@ -165,20 +165,20 @@ public class viewCadastrarUsuario extends AppCompatActivity implements  View.OnC
             return false;
         }
 
-       return true;
+        return true;
     }
 
-    private class procDados extends AsyncTask<Void, Void, String>{
+    private class procDados extends AsyncTask<Void, Void, String> {
         private Usuario usuario;
 
-        public procDados(Usuario usuario){
+        public procDados(Usuario usuario) {
             this.usuario = usuario;
         }
 
         @Override
         protected String doInBackground(Void... voids) {
             ctrlUsuario ctrlUsuario = new ctrlUsuario(usuario);
-            String msg="";
+            String msg = "";
             try {
                 return ctrlUsuario.criar();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
@@ -195,19 +195,17 @@ public class viewCadastrarUsuario extends AppCompatActivity implements  View.OnC
         @Override
         protected void onPostExecute(final String result) {
             progressDialog.dismiss();
-                hlpDialog.getAlertDialog(viewCadastrarUsuario.this, "Atenção", result, "Ok", new itfDialogGeneric() {
-                    @Override
-                    public void onButtonAction(boolean value) throws excPassaErro {
-                        if (result.trim().equals("Usuário registrado com sucesso")){
-                            Intent intent = new Intent(viewCadastrarUsuario.this, Principal.class);
-                            startActivity(intent);
-                        }
-                        else{
-                            txtPrimeiroNome.requestFocus();
-                        }
+            hlpDialog.getAlertDialog(viewCadastrarUsuario.this, "Atenção", result, "Ok", new itfDialogGeneric() {
+                @Override
+                public void onButtonAction(boolean value) throws excPassaErro {
+                    if (result.trim().equals("Usuário registrado com sucesso")) {
+                        Intent intent = new Intent(viewCadastrarUsuario.this, Principal.class);
+                        startActivity(intent);
+                    } else {
+                        txtPrimeiroNome.requestFocus();
                     }
-                });
-
+                }
+            });
         }
     }
 }

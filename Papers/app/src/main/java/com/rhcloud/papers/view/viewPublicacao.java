@@ -19,7 +19,9 @@ import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlAutorPerfil;
+import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
+import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.helpers.generic.hlpMapasValoresEnuns;
 import com.rhcloud.papers.model.entity.FilaSubmissao;
 import com.rhcloud.papers.model.entity.Usuario;
@@ -197,7 +199,12 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
                 lstSubmissoes = autorPerfil.getLstResponsavelPublicacao();
 
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.getMessage();
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewPublicacao.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
                 lstSubmissoes = new ArrayList<FilaSubmissao>();
             }
             return lstSubmissoes;

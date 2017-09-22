@@ -25,8 +25,11 @@ import com.rhcloud.papers.control.ctrlAutentication;
 import com.rhcloud.papers.control.ctrlNotificacao;
 import com.rhcloud.papers.control.ctrlPessoa;
 import com.rhcloud.papers.control.ctrlPessoaFoto;
+import com.rhcloud.papers.excecoes.excPassaErro;
+import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
 import com.rhcloud.papers.helpers.generic.hlpConstants;
+import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Notificacao;
 import com.rhcloud.papers.model.entity.PessoaFoto;
 import com.rhcloud.papers.model.entity.Usuario;
@@ -266,8 +269,13 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                 ctrlPessoaFoto ctrlPessoaFoto = new ctrlPessoaFoto(new PessoaFoto());
                 pessoaFoto = ctrlPessoaFoto.obterByAutorId(usuario.getPessoa().getId());
 
-            } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
+            } catch (excPassaErro excPassaErro) {
                 msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewHome.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
             }
             return msg;
         }
@@ -277,14 +285,13 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
 
         @Override
         protected void onPostExecute(final String result) {
-            if (pessoaFoto.getFoto()==null){
+            if ((pessoaFoto==null) || (pessoaFoto.getFoto()==null)){
                 imgUsuario.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
             }
             else {
                 Bitmap bmUser = BitmapFactory.decodeByteArray(pessoaFoto.getFoto(), 0, pessoaFoto.getFoto().length);
                 imgUsuario.setImageBitmap(bmUser);
             }
-
         }
     }
 }

@@ -40,7 +40,7 @@ public class viewRecuperarSenha extends AppCompatActivity implements View.OnClic
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         prepararComponentes();
-     }
+    }
 
     private void prepararComponentes() {
         btnEnviar = (Button) findViewById(R.id.btnEnviarSenha);
@@ -88,7 +88,7 @@ public class viewRecuperarSenha extends AppCompatActivity implements View.OnClic
     private class procDados extends AsyncTask<Void, Void, String> {
         private Usuario usuario;
 
-        public procDados(Usuario usuario){
+        public procDados(Usuario usuario) {
             this.usuario = usuario;
         }
 
@@ -116,16 +116,14 @@ public class viewRecuperarSenha extends AppCompatActivity implements View.OnClic
             hlpDialog.getAlertDialog(viewRecuperarSenha.this, "Atenção", result, "Ok", new itfDialogGeneric() {
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
-                    if (result.trim().equals("O email foi enviado com sucesso")){
+                    if (result.trim().equals("O email foi enviado com sucesso")) {
                         Intent intent = new Intent(viewRecuperarSenha.this, Principal.class);
                         startActivity(intent);
-                    }
-                    else{
+                    } else {
                         txtEmail.requestFocus();
                     }
                 }
             });
-
         }
     }
 }

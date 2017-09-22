@@ -20,7 +20,7 @@ import com.rhcloud.papers.helpers.generic.hlpValidaDados;
 import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
 
-public class viewAlterarSenha extends AppCompatActivity implements  View.OnClickListener {
+public class viewAlterarSenha extends AppCompatActivity implements View.OnClickListener {
     private EditText txtSenhaAtual, txtNovaSenha, txtRepitaNovaSenha;
     private Button btnEnviar;
     private ImageButton btnVoltar;
@@ -62,7 +62,7 @@ public class viewAlterarSenha extends AppCompatActivity implements  View.OnClick
             }
         }
 
-        if (view.getId() == btnVoltar.getId()){
+        if (view.getId() == btnVoltar.getId()) {
             Bundle bundle = new Bundle();
             bundle.putSerializable("usuario", usuario);
             intent = new Intent(viewAlterarSenha.this, viewPerfil.class);
@@ -99,7 +99,7 @@ public class viewAlterarSenha extends AppCompatActivity implements  View.OnClick
             return false;
         }
 
-        if(!hlpValidaDados.isSenhaForte(txtNovaSenha.getText().toString())){
+        if (!hlpValidaDados.isSenhaForte(txtNovaSenha.getText().toString())) {
             hlpDialog.getAlertDialog(this, "Atenção", "A Senha não atende os requisitos de segurança", "Ok", new itfDialogGeneric() {
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
@@ -120,7 +120,7 @@ public class viewAlterarSenha extends AppCompatActivity implements  View.OnClick
             return false;
         }
 
-        if(!hlpValidaDados.isSenhaForte(txtRepitaNovaSenha.getText().toString())){
+        if (!hlpValidaDados.isSenhaForte(txtRepitaNovaSenha.getText().toString())) {
             hlpDialog.getAlertDialog(this, "Atenção", "A Senha não atende os requisitos de segurança", "Ok", new itfDialogGeneric() {
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
@@ -130,7 +130,7 @@ public class viewAlterarSenha extends AppCompatActivity implements  View.OnClick
             return false;
         }
 
-        if(!txtNovaSenha.getText().toString().equals(txtRepitaNovaSenha.getText().toString())){
+        if (!txtNovaSenha.getText().toString().equals(txtRepitaNovaSenha.getText().toString())) {
             hlpDialog.getAlertDialog(this, "Atenção", "As Senhas informadas devem ser identicas", "Ok", new itfDialogGeneric() {
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
@@ -146,7 +146,7 @@ public class viewAlterarSenha extends AppCompatActivity implements  View.OnClick
     private class procDados extends AsyncTask<Void, Void, String> {
         private Usuario usuario;
 
-        public procDados(Usuario usuario){
+        public procDados(Usuario usuario) {
             this.usuario = usuario;
         }
 
@@ -170,22 +170,20 @@ public class viewAlterarSenha extends AppCompatActivity implements  View.OnClick
         @Override
         protected void onPostExecute(final String result) {
             progressDialog.dismiss();
-            if (result.trim().equals("Senha alterada com sucesso")) {
-                hlpDialog.getAlertDialog(viewAlterarSenha.this, "Atenção", result, "Ok", new itfDialogGeneric() {
-                    @Override
-                    public void onButtonAction(boolean value) throws excPassaErro {
-                        if (result.trim().equals("Senha alterada com sucesso")) {
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable("usuario", usuario);
-                            Intent intent = new Intent(viewAlterarSenha.this, viewPerfil.class);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
-                        } else {
-                            txtSenhaAtual.requestFocus();
-                        }
+            hlpDialog.getAlertDialog(viewAlterarSenha.this, "Atenção", result, "Ok", new itfDialogGeneric() {
+                @Override
+                public void onButtonAction(boolean value) throws excPassaErro {
+                    if (result.trim().equals("Senha alterada com sucesso")) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("usuario", usuario);
+                        Intent intent = new Intent(viewAlterarSenha.this, viewPerfil.class);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    } else {
+                        txtSenhaAtual.requestFocus();
                     }
-                });
-            }
+                }
+            });
         }
     }
 

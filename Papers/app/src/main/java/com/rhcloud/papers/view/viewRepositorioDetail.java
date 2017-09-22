@@ -18,7 +18,7 @@ import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Destino;
 import com.rhcloud.papers.model.entity.Usuario;
 
-public class viewRepositorioDetail extends AppCompatActivity implements View.OnClickListener{
+public class viewRepositorioDetail extends AppCompatActivity implements View.OnClickListener {
     private EditText txtClassificacao, txtDescricao;
     private Destino destino;
     private Usuario usuario;
@@ -53,10 +53,9 @@ public class viewRepositorioDetail extends AppCompatActivity implements View.OnC
         btnExcluirRepositorio = (ImageButton) findViewById(R.id.btnExcluirRepositorio);
         btnExcluirRepositorio.setOnClickListener(this);
 
-        if (destino.getId()==null){
+        if (destino.getId() == null) {
             btnExcluirRepositorio.setVisibility(View.GONE);
-        }
-        else{
+        } else {
             btnExcluirRepositorio.setVisibility(View.VISIBLE);
         }
     }
@@ -72,7 +71,7 @@ public class viewRepositorioDetail extends AppCompatActivity implements View.OnC
             }
         }
 
-        if (view.getId() == btnVoltar.getId()){
+        if (view.getId() == btnVoltar.getId()) {
             Bundle bundle = new Bundle();
             bundle.putSerializable("usuario", usuario);
             intent = new Intent(viewRepositorioDetail.this, viewRepositorio.class);
@@ -83,30 +82,28 @@ public class viewRepositorioDetail extends AppCompatActivity implements View.OnC
             startActivity(intent);
         }
 
-        if(view.getId() == btnExcluirRepositorio.getId()){
+        if (view.getId() == btnExcluirRepositorio.getId()) {
             hlpDialog.getConfirmDialog(viewRepositorioDetail.this, "Atenção", "Confirma a exclusão do Repositório?", "Sim", "Não", false, new itfDialogGeneric() {
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
-                    if (value){
-                        ctrlDestino  ctrlDestino = new ctrlDestino(destino);
+                    if (value) {
+                        ctrlDestino ctrlDestino = new ctrlDestino(destino);
                         final String msg = ctrlDestino.remover();
                         hlpDialog.getAlertDialog(viewRepositorioDetail.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
                             @Override
                             public void onButtonAction(boolean value) throws excPassaErro {
-                                if (msg.trim().equals("Repositório removido do sistema com sucesso")){
+                                if (msg.trim().equals("Repositório removido do sistema com sucesso")) {
                                     Bundle bundle = new Bundle();
                                     bundle.putSerializable("usuario", usuario);
                                     Intent intent = new Intent(viewRepositorioDetail.this, viewRepositorio.class);
                                     intent.putExtras(bundle);
                                     startActivity(intent);
-                                }
-                                else{
+                                } else {
                                     txtClassificacao.requestFocus();
                                 }
                             }
                         });
-                    }
-                    else{
+                    } else {
                         txtClassificacao.requestFocus();
                     }
                 }
@@ -144,19 +141,18 @@ public class viewRepositorioDetail extends AppCompatActivity implements View.OnC
     private class procDados extends AsyncTask<Void, Void, String> {
         private Destino destino;
 
-        public procDados(Destino destino){
+        public procDados(Destino destino) {
             this.destino = destino;
         }
 
         @Override
         protected String doInBackground(Void... voids) {
-            ctrlDestino  ctrlDestino = new ctrlDestino(destino);
+            ctrlDestino ctrlDestino = new ctrlDestino(destino);
             String msg = "";
             try {
-                if (destino.getId()==null){
+                if (destino.getId() == null) {
                     return ctrlDestino.criar();
-                }
-                else{
+                } else {
                     return ctrlDestino.atualizar();
                 }
 
@@ -177,14 +173,13 @@ public class viewRepositorioDetail extends AppCompatActivity implements View.OnC
             hlpDialog.getAlertDialog(viewRepositorioDetail.this, "Atenção", result, "Ok", new itfDialogGeneric() {
                 @Override
                 public void onButtonAction(boolean value) throws excPassaErro {
-                    if (result.trim().equals("Repositório registrado com sucesso")){
+                    if (result.trim().equals("Repositório registrado com sucesso")) {
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("usuario", usuario);
                         Intent intent = new Intent(viewRepositorioDetail.this, viewRepositorio.class);
                         intent.putExtras(bundle);
                         startActivity(intent);
-                    }
-                    else{
+                    } else {
                         txtClassificacao.requestFocus();
                     }
                 }

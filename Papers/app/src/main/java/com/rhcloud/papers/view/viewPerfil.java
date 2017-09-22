@@ -25,7 +25,9 @@ import com.rhcloud.papers.R;
 
 import com.rhcloud.papers.control.ctrlPessoa;
 import com.rhcloud.papers.control.ctrlPessoaFoto;
+import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
+import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.PessoaFoto;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.transitorio.Acao;
@@ -178,7 +180,6 @@ public class viewPerfil extends AppCompatActivity {
         bundle.putSerializable("usuario", usuario);
 
         Intent intent = new Intent(this, viewHome.class);
-
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -199,6 +200,11 @@ public class viewPerfil extends AppCompatActivity {
                 pessoaFoto = ctrlPessoaFoto.obterByAutorId(usuario.getPessoa().getId());
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewPerfil.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
             }
             return msg;
         }
@@ -212,7 +218,7 @@ public class viewPerfil extends AppCompatActivity {
         protected void onPostExecute(final String result) {
             progressDialog.dismiss();
 
-            if (pessoaFoto.getFoto()==null){
+            if ((pessoaFoto==null)||(pessoaFoto.getFoto()==null)){
                 imgFoto.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
             }
             else {

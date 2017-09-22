@@ -27,7 +27,6 @@ import com.rhcloud.papers.view.adapters.adpPessoas;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.OnClickListener{
     private Spinner txtParticipante;
@@ -203,7 +202,12 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
             try {
                 return ctrlPessoa.obterAllById(usuario.getPessoa().getId());
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.printStackTrace();
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewDocumentoPessoasEdit.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
             }
             return new ArrayList<Pessoa>();
         }

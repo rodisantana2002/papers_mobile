@@ -17,7 +17,9 @@ import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlNotificacao;
+import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
+import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Notificacao;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.enumeration.Status;
@@ -58,13 +60,17 @@ public class viewNotificacao extends AppCompatActivity implements View.OnClickLi
             switch (item.getItemId()) {
                 case R.id.navigation_recebidas:
                     List<Notificacao> lstNotificacaoList = new ArrayList<Notificacao>();
-                    lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.LIDA));
-                    lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.PENDENTE));
-                    Collections.reverse(lstNotificacaoList);
+                    if(lstNotificacoes!=null && !lstNotificacaoList.isEmpty()) {
+                        lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.LIDA));
+                        lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.PENDENTE));
+                        Collections.reverse(lstNotificacaoList);
+                    }
                     prepararLista(lstNotificacaoList);
                     return true;
                 case R.id.navigation_arquivadas:
-                    prepararLista(lstNotificacoes.get(Status.ARQUIVADA));
+                    if(lstNotificacoes!=null && !lstNotificacoes.isEmpty()) {
+                        prepararLista(lstNotificacoes.get(Status.ARQUIVADA));
+                    }
                     return true;
             }
             return false;
@@ -86,7 +92,7 @@ public class viewNotificacao extends AppCompatActivity implements View.OnClickLi
 
     private void prepararComponenetes() {
         recyclerView = (RecyclerView) findViewById(R.id.lstNotificacoes);
-        recyclerView.addItemDecoration(new dividerItemDecorator(viewNotificacao.this, LinearLayoutManager.VERTICAL,0));
+        recyclerView.addItemDecoration(new dividerItemDecorator(viewNotificacao.this, LinearLayoutManager.VERTICAL, 0));
 
         txtNenhumRegistro = (TextView) findViewById(R.id.txtNenhumRegistroNotificacao);
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarHomeNotificacoes);
@@ -147,7 +153,12 @@ public class viewNotificacao extends AppCompatActivity implements View.OnClickLi
                 return lstNotificacoes;
 
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.getMessage();
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewNotificacao.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
             }
             return lstNotificacoes;
         }
@@ -161,9 +172,11 @@ public class viewNotificacao extends AppCompatActivity implements View.OnClickLi
         protected void onPostExecute(HashMap<com.rhcloud.papers.model.enumeration.Status, List<Notificacao>> statusListHashMap) {
             progressDialog.dismiss();
             List<Notificacao> lstNotificacaoList = new ArrayList<Notificacao>();
-            lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.LIDA));
-            lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.PENDENTE));
-            Collections.reverse(lstNotificacaoList);
+            if(lstNotificacoes!=null && !lstNotificacaoList.isEmpty()) {
+                lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.LIDA));
+                lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.PENDENTE));
+                Collections.reverse(lstNotificacaoList);
+            }
             prepararLista(lstNotificacaoList);
         }
     }

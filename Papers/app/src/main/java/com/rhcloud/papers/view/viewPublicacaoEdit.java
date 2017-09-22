@@ -204,7 +204,12 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
             try {
                 return ctrlDestino.obterAll();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.printStackTrace();
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewPublicacaoEdit.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
             }
             return destinoList;
 

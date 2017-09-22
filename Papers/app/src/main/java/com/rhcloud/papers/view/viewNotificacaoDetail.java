@@ -97,7 +97,12 @@ public class viewNotificacaoDetail extends AppCompatActivity implements View.OnC
             try {
                 ctrlNotificacao.atualizar();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.printStackTrace();
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewNotificacaoDetail.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
             }
             return null;
         }
@@ -112,5 +117,4 @@ public class viewNotificacaoDetail extends AppCompatActivity implements View.OnC
             progressDialog.dismiss();
         }
     }
-
 }

@@ -18,7 +18,9 @@ import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlAutorPerfil;
+import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
+import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Documento;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.transitorio.AutorPerfil;
@@ -49,13 +51,28 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_responsavel:
-                    popularLista(autorPerfil.getLstDocumentosResponsavel());
+                    if (autorPerfil==null){
+                        popularLista(new ArrayList<Documento>());
+                    }
+                    else {
+                        popularLista(autorPerfil.getLstDocumentosResponsavel());
+                    }
                     return true;
                 case R.id.navigation_participante:
-                    popularLista(autorPerfil.getLstDocumentosParticipante());
+                    if (autorPerfil==null){
+                        popularLista(new ArrayList<Documento>());
+                    }
+                    else {
+                        popularLista(autorPerfil.getLstDocumentosParticipante());
+                    }
                     return true;
                 case R.id.navigation_favorito:
-                    popularLista(autorPerfil.getLstDocumentosFavoritos());
+                    if (autorPerfil==null){
+                        popularLista(new ArrayList<Documento>());
+                    }
+                    else {
+                        popularLista(autorPerfil.getLstDocumentosFavoritos());
+                    }
                     return true;
             }
             return false;
@@ -160,7 +177,12 @@ public class viewDocumento extends AppCompatActivity implements View.OnClickList
                 autorPerfil = ctrlAutorPerfil.getAutorPerfil();
                 lstDocumentos = autorPerfil.getLstDocumentosResponsavel();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.getMessage();
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewDocumento.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
                 lstDocumentos = new ArrayList<Documento>();
             }
             return lstDocumentos;

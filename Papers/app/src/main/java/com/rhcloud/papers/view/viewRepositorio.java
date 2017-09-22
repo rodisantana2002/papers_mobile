@@ -15,7 +15,9 @@ import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlDestino;
+import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
+import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Destino;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.view.adapters.adpRepositorios;
@@ -93,7 +95,12 @@ public class viewRepositorio extends AppCompatActivity implements View.OnClickLi
             try {
                 lstDestinos = ctrlDestino.obterAll();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.getMessage();
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewRepositorio.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
                 lstDestinos = new ArrayList<Destino>();
             }
             return lstDestinos;

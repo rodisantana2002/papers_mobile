@@ -17,7 +17,9 @@ import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlDocumentoPessoas;
+import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
+import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Documento;
 import com.rhcloud.papers.model.entity.DocumentosPessoas;
 import com.rhcloud.papers.model.entity.Usuario;
@@ -130,7 +132,12 @@ public class viewDocumentoPessoas extends AppCompatActivity implements View.OnCl
             try {
                 lstParticipantes = ctrlDocumentoPessoas.obterAllByDocumento(documento.getId());
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.getMessage();
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewDocumentoPessoas.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
                 lstParticipantes = new ArrayList<DocumentosPessoas>();
             }
             return lstParticipantes;

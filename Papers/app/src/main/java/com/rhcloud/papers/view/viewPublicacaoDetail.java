@@ -18,7 +18,9 @@ import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlHistorico;
+import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.core.itfOnItemClickListener;
+import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.helpers.generic.hlpMapasValoresEnuns;
 import com.rhcloud.papers.model.entity.FilaSubmissao;
 import com.rhcloud.papers.model.entity.HistoricoFilaSubmissao;
@@ -271,7 +273,12 @@ public class viewPublicacaoDetail extends AppCompatActivity implements View.OnCl
                 lstHistorico = (ArrayList<HistoricoFilaSubmissao>) ctrlHistorico.obterAllByPublicacao();
 
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
-                excPassaErro.getMessage();
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewPublicacaoDetail.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    }
+                });
                 lstHistorico = new ArrayList<HistoricoFilaSubmissao>();
             }
             return lstHistorico;
