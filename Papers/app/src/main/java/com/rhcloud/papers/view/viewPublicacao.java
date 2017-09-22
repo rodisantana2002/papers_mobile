@@ -67,13 +67,28 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
         public boolean onNavigationItemSelected(MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_responsavel_publicacao:
-                    popularLista(autorPerfil.getLstResponsavelPublicacao());
+                    if (autorPerfil==null){
+                        popularLista(new ArrayList<FilaSubmissao>());
+                    }
+                    else{
+                        popularLista(autorPerfil.getLstResponsavelPublicacao());
+                    }
                     return true;
                 case R.id.navigation_participante_publicacao:
-                    popularLista(autorPerfil.getLstParticipantePublicacao());
+                    if (autorPerfil==null){
+                        popularLista(new ArrayList<FilaSubmissao>());
+                    }
+                    else {
+                        popularLista(autorPerfil.getLstParticipantePublicacao());
+                    }
                     return true;
                 case R.id.navigation_favorito_publicacao:
-                    popularLista(autorPerfil.getLstFavoritosPublicacao());
+                    if (autorPerfil==null){
+                        popularLista(new ArrayList<FilaSubmissao>());
+                    }
+                    else {
+                        popularLista(autorPerfil.getLstFavoritosPublicacao());
+                    }
                     return true;
             }
             return false;
@@ -132,7 +147,7 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
             gridPesquisar.setVisibility(View.GONE);
         }
 
-        if(view.getId() ==btnEmAndamento.getId()){
+        if(view.getId() == btnEmAndamento.getId()){
             gridPesquisar.setVisibility(View.GONE);
             btnEmAndamento.setButtonDrawable(R.drawable.ic_check_box_black_24dp);
             btnEncerradas.setButtonDrawable(R.drawable.ic_check_box_outline_blank_black_24dp);
@@ -141,7 +156,7 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
 
         }
 
-        if(view.getId() ==btnEncerradas.getId()){
+        if(view.getId() == btnEncerradas.getId()){
             gridPesquisar.setVisibility(View.GONE);
             btnEmAndamento.setButtonDrawable(R.drawable.ic_check_box_outline_blank_black_24dp);
             btnEncerradas.setButtonDrawable(R.drawable.ic_check_box_black_24dp);

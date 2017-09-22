@@ -232,7 +232,7 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         btnPerfil = (ImageButton) findViewById(R.id.btnPerfil);
         imgUsuario = (ImageView) findViewById(R.id.imgUsuario);
 
-        lblUsuario.setText("olá, " + usuario.getPessoa().getPrimeiroNome() );
+        lblUsuario.setText("Olá, " + usuario.getPessoa().getPrimeiroNome());
         lblDtUltAcesso.setText("conectado no sistema desde " + usuario.getDtUltAcesso().substring(0,5) + " às " + usuario.getDtUltAcesso().substring(11,16));
 
         btnPerfil.setOnClickListener(this);
