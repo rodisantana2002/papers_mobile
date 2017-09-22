@@ -1,5 +1,7 @@
 package com.rhcloud.papers.view;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -10,10 +12,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlDestino;
@@ -31,6 +35,7 @@ import com.rhcloud.papers.model.transitorio.AutorPerfil;
 import com.rhcloud.papers.view.adapters.adpDestinos;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -46,11 +51,14 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
     private FilaSubmissao filaSubmissao;
     private HistoricoFilaSubmissao historicoFilaSubmissao;
     private Button btnEnviarPublicacao;
-    private ImageButton btnVoltar;
+    private ImageButton btnVoltar, btnDataLimite;
     private ProgressDialog progressDialog;
     private procDados procDados;
     private pouplarDados pouplarDados;
 
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private int year, month, day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +80,14 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
         ArrayAdapter adapterIdioma = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, lstIdiomas);
 
         txtDestino = (Spinner) findViewById(R.id.txtDestinoEdit);
-        txtDataLimite = (EditText) findViewById(R.id.txtDataLimiteEdit);
         txtIdioma = (AutoCompleteTextView) findViewById(R.id.txtIdiomaEdit);
-
+        txtDataLimite = (EditText) findViewById(R.id.txtDataLimiteEdit);
 
         btnEnviarPublicacao = (Button) findViewById(R.id.btnEnviarPublicacao);
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarPublicacaoEdit);
+
+        btnDataLimite = (ImageButton) findViewById(R.id.btnDataLimite);
+        btnDataLimite.setOnClickListener(this);
 
         btnEnviarPublicacao.setOnClickListener(this);
         btnVoltar.setOnClickListener(this);
@@ -85,6 +95,53 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
         txtIdioma.setText(filaSubmissao.getIdioma()!=null?filaSubmissao.getIdioma():"");
         txtDataLimite.setText(filaSubmissao.getDtLimiteSubmissao()!=null?filaSubmissao.getDtLimiteSubmissao():"");
         txtIdioma.setAdapter(adapterIdioma);
+
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        showDate(year, month+1, day);
+    }
+
+    @SuppressWarnings("deprecation")
+    public void setDate(View view) {
+        showDialog(999);
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if (id == 999) {
+            return new DatePickerDialog(this, myDateListener, year, month, day);
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+                    showDate(arg1, arg2+1, arg3);
+                }
+            };
+
+    private void showDate(int year, int month, int day) {
+        String dia, mes = "";
+        if(day<10){
+            dia = "0" + String.valueOf(day);
+        }
+        else {
+            dia = String.valueOf(day);
+        }
+
+        if(month<10){
+            mes = "0" + String.valueOf(month);
+        }
+        else {
+            mes = String.valueOf(month);
+        }
+
+        String strDataLimite = dia + "/" + mes + "/" + year;
+        txtDataLimite.setText(strDataLimite);
     }
 
     @Override
@@ -114,6 +171,10 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
 
             intent.putExtras(bundle);
             startActivity(intent);
+        }
+
+        if(view.getId() == btnDataLimite.getId()){
+            setDate(view);
         }
     }
 

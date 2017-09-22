@@ -12,8 +12,6 @@ tools:context="com.rhcloud.papers.view.viewPublicacaoEdit">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentTop="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:paddingBottom="5dp"
@@ -21,7 +19,9 @@ tools:context="com.rhcloud.papers.view.viewPublicacaoEdit">
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:weightSum="1"
-    tools:ignore="UselessParent">
+    tools:ignore="UselessParent"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -120,24 +120,50 @@ tools:context="com.rhcloud.papers.view.viewPublicacaoEdit">
 
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Data Limite"
-            tools:ignore="HardcodedText">
+            android:layout_height="match_parent"
+            android:columnCount="3"
+            android:rowCount="1">
 
-            <EditText
-                android:id="@+id/txtDataLimiteEdit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_gravity="left"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_row="0"
+                android:gravity="left"
+                android:hint="Data Limite"
+                tools:ignore="HardcodedText">
+
+                <EditText
+                    android:id="@+id/txtDataLimiteEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ems="0"
+                    android:gravity="left"
+                    android:inputType="date"
+                    android:maxLength="10"
+                    android:singleLine="true"
+                    android:textSize="16sp"
+                    tools:ignore="Deprecated,LabelFor" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/btnDataLimite"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right|center"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="date"
-                android:maxLength="10"
-                android:singleLine="true"
-                android:textSize="16sp"
-                tools:ignore="Deprecated,LabelFor" />
-        </android.support.design.widget.TextInputLayout>
+                android:background="@android:color/white"
+                android:src="@drawable/ic_insert_invitation_black_24dp"
+                tools:ignore="ContentDescription,ObsoleteLayoutParam" />
+
+        </GridLayout>
 
         <Button
             android:id="@+id/btnEnviarPublicacao"

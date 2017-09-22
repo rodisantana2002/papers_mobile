@@ -122,13 +122,14 @@
                     android:id="@+id/txtTitulo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:allowUndo="false"
                     android:hint="Titulo"
                     android:imeOptions="normal"
                     android:inputType="textAutoCorrect|textMultiLine"
                     android:maxLength="150"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="16sp"
-                    tools:ignore="HardcodedText,LabelFor" />
+                    tools:ignore="HardcodedText,LabelFor,UnusedAttribute" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
