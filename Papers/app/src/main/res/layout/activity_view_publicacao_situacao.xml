@@ -103,7 +103,7 @@ tools:context="com.rhcloud.papers.view.viewPublicacaoSituacao">
                 android:hint="Informe um breve comentário para histórico"
                 android:inputType="text|textMultiLine"
                 android:maxLength="450"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
 
         </android.support.design.widget.TextInputLayout>
