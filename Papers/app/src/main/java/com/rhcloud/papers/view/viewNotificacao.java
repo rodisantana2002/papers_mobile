@@ -60,7 +60,7 @@ public class viewNotificacao extends AppCompatActivity implements View.OnClickLi
             switch (item.getItemId()) {
                 case R.id.navigation_recebidas:
                     List<Notificacao> lstNotificacaoList = new ArrayList<Notificacao>();
-                    if(lstNotificacoes!=null && !lstNotificacaoList.isEmpty()) {
+                    if(lstNotificacoes!=null && !lstNotificacoes.isEmpty()) {
                         lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.LIDA));
                         lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.PENDENTE));
                         Collections.reverse(lstNotificacaoList);
@@ -92,7 +92,7 @@ public class viewNotificacao extends AppCompatActivity implements View.OnClickLi
 
     private void prepararComponenetes() {
         recyclerView = (RecyclerView) findViewById(R.id.lstNotificacoes);
-        recyclerView.addItemDecoration(new dividerItemDecorator(viewNotificacao.this, LinearLayoutManager.VERTICAL, 0));
+        recyclerView.addItemDecoration(new dividerItemDecorator(viewNotificacao.this, LinearLayoutManager.VERTICAL, 90));
 
         txtNenhumRegistro = (TextView) findViewById(R.id.txtNenhumRegistroNotificacao);
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarHomeNotificacoes);
@@ -172,7 +172,7 @@ public class viewNotificacao extends AppCompatActivity implements View.OnClickLi
         protected void onPostExecute(HashMap<com.rhcloud.papers.model.enumeration.Status, List<Notificacao>> statusListHashMap) {
             progressDialog.dismiss();
             List<Notificacao> lstNotificacaoList = new ArrayList<Notificacao>();
-            if(lstNotificacoes!=null && !lstNotificacaoList.isEmpty()) {
+            if(lstNotificacoes!=null && !lstNotificacoes.isEmpty()) {
                 lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.LIDA));
                 lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.PENDENTE));
                 Collections.reverse(lstNotificacaoList);

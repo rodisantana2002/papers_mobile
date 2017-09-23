@@ -1,5 +1,7 @@
 package com.rhcloud.papers.view;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -8,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 
 import com.rhcloud.papers.R;
@@ -31,6 +35,7 @@ import com.rhcloud.papers.model.transitorio.Acao;
 import com.rhcloud.papers.model.transitorio.AutorPerfil;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class viewPublicacaoSituacao extends AppCompatActivity implements View.OnClickListener{
@@ -42,10 +47,16 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
     private Acao acao;
     private AutorPerfil autorPerfil;
     private Button btnEnviar;
-    private ImageButton btnVoltar;
+    private ImageButton btnVoltar, btnDataPublicacao;
     private ProgressDialog progressDialog;
     private procDados procDados;
     private hlpMapasValoresEnuns mapasValoresEnuns;
+
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private int year, month, day;
+
+    private GridLayout gridDtPublicacao;
 
 
     @Override
@@ -61,21 +72,30 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarPublicacaoHistorico);
         txtComentario = (EditText) findViewById(R.id.txtHistorico);
         txtDtPublicacao = (EditText) findViewById(R.id.txtDataPublicacaoSituacao);
+        gridDtPublicacao = (GridLayout) findViewById(R.id.gridDtPublicacao);
 
         btnEnviar.setOnClickListener(this);
         btnVoltar.setOnClickListener(this);
+
+        btnDataPublicacao = (ImageButton) findViewById(R.id.btnDataPublicacao);
+        btnDataPublicacao.setOnClickListener(this);
 
         usuario = (Usuario) bundle.getSerializable("usuario");
         autorPerfil = (AutorPerfil) bundle.getSerializable("autorPerfil");
         filaSubmissao = (FilaSubmissao) bundle.getSerializable("publicacao");
         acao = (Acao) bundle.getSerializable("acao");
         mapasValoresEnuns = new hlpMapasValoresEnuns();
+
         if(acao.getNomeAcao().equals("Registrar Publicação")){
-            txtDtPublicacao.setVisibility(View.VISIBLE);
+            gridDtPublicacao.setVisibility(View.VISIBLE);
         }
         else{
-            txtDtPublicacao.setVisibility(View.GONE);
+            gridDtPublicacao.setVisibility(View.GONE);
         }
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
     public void onClick(View view) {
@@ -98,6 +118,50 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
             intent.putExtras(bundle);
             startActivity(intent);
         }
+
+        if(view.getId() == btnDataPublicacao.getId()){
+            setDate(view);
+        }
+    }
+
+    public void setDate(View view) {
+        showDialog(999);
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if (id == 999) {
+            return new DatePickerDialog(this, myDateListener, year, month, day);
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+                    showDate(arg1, arg2+1, arg3);
+                }
+            };
+
+    private void showDate(int year, int month, int day) {
+        String dia, mes = "";
+        if(day<10){
+            dia = "0" + String.valueOf(day);
+        }
+        else {
+            dia = String.valueOf(day);
+        }
+
+        if(month<10){
+            mes = "0" + String.valueOf(month);
+        }
+        else {
+            mes = String.valueOf(month);
+        }
+
+        String strDataLimite = dia + "/" + mes + "/" + year;
+        txtDtPublicacao.setText(strDataLimite);
     }
 
     private void atualizarObjeto() {

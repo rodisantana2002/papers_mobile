@@ -29,17 +29,9 @@ public class hlpConstants {
     public static final String MSG_401 = "Usuário ou Senha incorretos.";
     public static final String MSG_500 = "Ocorreu um erro interno no sistema do gateway, entre em contato com o suporte do sistema";
     public static final String MSG_503 = "O sistema esta inativo, aguarde alguns minutos e tente novamente acessar o sistema";
-    public static final String MSG_IOE = "Detectamos que você esta sem acesso a Internet no momento.";
+    public static final String MSG_IOE = "Você não esta conectado a Internet no momento.";
     public static final String MSG_ERRO_JSON = "Erro ao ler JSON";
-    public static final String MSG_WAIT = "Processando Solicitação...";
-
-    public static final String MSG_NENHUM_USUARIO = "Nenhum Usuário registrado";
-    public static final String MSG_NENHUM_DOCUMENTO = "Nenhum Documento registrado";
-    public static final String MSG_NENHUM_TIPO_DOCUMENTO = "Nenhum Tipo de Documento registrado";
-    public static final String MSG_NENHUM_DESTINO = "Nenhum Destino registrado";
-    public static final String MSG_NENHUM_FAVORITO = "Nenhum Favorito registrado";
-    public static final String MSG_NENHUM_HISTORICO = "Nenhum Histórico registrado";
-    public static final String MSG_NENHUM_SUBMISSAO = "Nenhuma Submissão registrada";
+    public static final String MSG_WAIT = "Processando solicitação...";
 
     public static final String MYPREFERENCES = "MyPrefs";
     public static final String PREF_EMAIL = "emailKey";
@@ -51,11 +43,4 @@ public class hlpConstants {
     public static final String PREF_FOTO= "fotoKey";
     public static final String PREF_ULTACESSO= "ultAcessoKey";
     public static final String PREF_PESSOA_ID= "idPessoaKey";
-
-
-    public static final String MSG_CONFIRMA_OPERACAO = "Confirma a Operação?";
-
-    public static final String BTN_OK = "OK";
-    public static final String BTN_CONFIRMA = "Confirma";
-    public static final String BTN_CANCELA = "Cancela";
 }

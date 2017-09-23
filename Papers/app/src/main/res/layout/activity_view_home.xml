@@ -66,18 +66,6 @@
                             android:textSize="20sp"
                             tools:ignore="HardcodedText,InefficientWeight,RtlHardcoded,RtlSymmetry" />
 
-                        <ImageButton
-                            android:id="@+id/btnPerfil"
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:layout_gravity="right|center"
-
-                            android:layout_marginRight="3dp"
-                            android:background="@android:color/transparent"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/ic_settings_black_24dp"
-                            tools:ignore="ContentDescription,RtlHardcoded" />
-
                     </LinearLayout>
 
                     <TextView
@@ -106,38 +94,41 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:background="#fafafa"
         android:columnCount="2">
 
-        <ImageButton
-            android:id="@+id/btnMenu"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="left|center"
-
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_reorder_black_18dp"
-            android:tag="1"
-            tools:ignore="ContentDescription,RtlHardcoded" />
-
         <TextView
             android:id="@+id/lblInicio"
-            android:layout_width="308dp"
-            android:layout_height="match_parent"
+            android:layout_width="246dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="left|center"
+            android:layout_marginLeft="45dp"
             android:background="#fafafa"
             android:gravity="left|center"
             android:text="Selecione a opção desejada."
             android:textAlignment="viewStart"
             android:textColor="@android:color/background_dark"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,RtlHardcoded" />
+
+        <ImageButton
+            android:id="@+id/btnNotificacoes"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right|center"
+
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_notifications_none_black_24dp"
+            android:tag="1"
+            android:visibility="gone"
+            tools:ignore="ContentDescription,RtlHardcoded" />
     </GridLayout>
 
     <FrameLayout
@@ -168,7 +159,7 @@
                     android:id="@+id/listaAcoesMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginRight="2dp"
                     android:layout_weight="0"
                     android:background="@android:color/white"
@@ -188,7 +179,7 @@
                     android:padding="3dp"
                     android:paddingBottom="0dp"
                     android:paddingLeft="0dp"
-                    android:text="||  PAPERS  ||  Desenvolvido by Rodolfo Santana - 2017  || "
+                    android:text="||  PAPERS  ||  Desenvolvido by Rodolfo Santana - 2017  || IHC  "
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="11sp"
                     android:textStyle="bold"

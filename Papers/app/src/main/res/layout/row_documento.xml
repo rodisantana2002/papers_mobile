@@ -80,6 +80,7 @@
                         android:layout_height="wrap_content"
                         android:height="40dp"
                         android:gravity="left|center_vertical"
+                        android:paddingLeft="0dp"
                         android:text="Titulo"
                         android:textAlignment="viewStart"
                         android:textColor="@color/cardview_dark_background"
@@ -105,6 +106,7 @@
             android:layout_marginTop="3dp"
             android:gravity="left|center_vertical|center_horizontal"
             android:paddingBottom="0dp"
+            android:paddingLeft="5dp"
             android:text="Palavras-Chave"
             android:textSize="14sp"
             tools:ignore="HardcodedText,ObsoleteLayoutParam,RtlHardcoded,SmallSp" />

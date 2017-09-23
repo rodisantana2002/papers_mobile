@@ -14,7 +14,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,15 +47,19 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
 
     private SharedPreferences sharedPreferences;
     private TextView lblUsuario, lblDtUltAcesso;
-    private ImageButton btnPerfil;
+    private ImageButton btnNotificacoes;
     private ImageView imgUsuario;
 
     private procDados procDados;
+    private procLogout procLogout;
+    private ProgressDialog progressDialog;
 
     private RecyclerView recyclerView;
     private List<Acao> lstAcoes;
     private adpAcoes mAdapter;
     private LinearLayout frameAcoes;
+
+    private Integer totalNotificacoesPendentes;
 
 
     @Override
@@ -98,16 +101,16 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
 
         acao = new Acao();
         acao.setId(4);
-        acao.setNomeAcao("Notificações");
-        acao.setComentarioAcao("visualize e gerencie as notificações recebidas.");
-        acao.setImgAcao(R.drawable.ic_message_black_24dp);
+        acao.setNomeAcao("Repositórios Publicação");
+        acao.setComentarioAcao("mantenha a lista de repositórios de publicações atualizada.");
+        acao.setImgAcao(R.drawable.ic_account_balance_black_24dp);
         lstAcoes.add(acao);
 
         acao = new Acao();
         acao.setId(5);
-        acao.setNomeAcao("Repositórios Publicação");
-        acao.setComentarioAcao("mantenha a lista de repositórios de publicações atualizada.");
-        acao.setImgAcao(R.drawable.ic_account_balance_black_24dp);
+        acao.setNomeAcao("Perfil do Usuário");
+        acao.setComentarioAcao("mantenha os dados do seu perfil atualizados.");
+        acao.setImgAcao(R.drawable.ic_settings_black_24dp);
         lstAcoes.add(acao);
 
         acao = new Acao();
@@ -137,10 +140,10 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                     carregarAutores();
                 }
                 else if(item.getId()==4){
-                    cerregarNotificacoes();
+                    carregarServicos();
                 }
                 else if(item.getId()==5){
-                    carregarServicos();
+                    carregarConfiguracoes();
                 }
                 else if(item.getId()==6){
                     efetuarLogout();
@@ -154,7 +157,16 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         recyclerView.setAdapter(mAdapter);
     }
 
-    private void cerregarNotificacoes() {
+    private void carregarConfiguracoes(){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", usuario);
+
+        Intent intent = new Intent(viewHome.this, viewPerfil.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    private void carregarNotificacoes() {
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", usuario);
 
@@ -200,18 +212,8 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
     }
 
     private void efetuarLogout() {
-        ctrlAutentication = new ctrlAutentication(usuario);
-        sharedPreferences = getSharedPreferences(hlpConstants.MYPREFERENCES, Context.MODE_PRIVATE);
-        try {
-            ctrlAutentication.efetuarLogin();
-        } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {}
-
-        Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.commit();
-        finishAffinity();
-        Intent intent = new Intent(this, Principal.class);
-        startActivity(intent);
+        procLogout = new procLogout();
+        procLogout.execute();
     }
 
     private void prepararControles() {
@@ -226,15 +228,16 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         usuario.getPessoa().setSegundoNome(sharedPreferences.getString(hlpConstants.PREF_SEGUNDO_NAME, ""));
         usuario.getPessoa().setId(Integer.valueOf(sharedPreferences.getString(hlpConstants.PREF_PESSOA_ID, "")));
 
+        totalNotificacoesPendentes = 0;
         lblDtUltAcesso = (TextView) findViewById(R.id.lblUltAcesso);
         lblUsuario = (TextView) findViewById(R.id.lblUsuario);
-        btnPerfil = (ImageButton) findViewById(R.id.btnPerfil);
+        btnNotificacoes = (ImageButton) findViewById(R.id.btnNotificacoes);
         imgUsuario = (ImageView) findViewById(R.id.imgUsuario);
 
         lblUsuario.setText("Olá, " + usuario.getPessoa().getPrimeiroNome());
         lblDtUltAcesso.setText("conectado no sistema desde " + usuario.getDtUltAcesso().substring(0,5) + " às " + usuario.getDtUltAcesso().substring(11,16));
 
-        btnPerfil.setOnClickListener(this);
+        btnNotificacoes.setOnClickListener(this);
         frameAcoes = (LinearLayout) findViewById(R.id.frameAcoes);
 
         procDados = new procDados(usuario);
@@ -243,13 +246,8 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == btnPerfil.getId()){
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("usuario", usuario);
-
-            Intent intent = new Intent(viewHome.this, viewPerfil.class);
-            intent.putExtras(bundle);
-            startActivity(intent);
+        if(view.getId() == btnNotificacoes.getId()){
+            carregarNotificacoes();
         }
     }
 
@@ -263,17 +261,20 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
         @Override
         protected String doInBackground(Void... voids) {
             ctrlPessoa ctrlPessoa = new ctrlPessoa(usuario.getPessoa());
+            ctrlNotificacao ctrlNotificacao = new ctrlNotificacao(new Notificacao());
+
             String msg = "";
             try {
                 usuario.setPessoa(ctrlPessoa.obterByID(usuario.getPessoa().getId()));
                 ctrlPessoaFoto ctrlPessoaFoto = new ctrlPessoaFoto(new PessoaFoto());
                 pessoaFoto = ctrlPessoaFoto.obterByAutorId(usuario.getPessoa().getId());
+                totalNotificacoesPendentes = ctrlNotificacao.obterTotalPendentesByAutor(usuario.getPessoa().getId().toString());
 
             } catch (excPassaErro excPassaErro) {
                 msg = excPassaErro.getMessage();
                 hlpDialog.getAlertDialog(viewHome.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
                     @Override
-                    public void onButtonAction(boolean value) throws com.rhcloud.papers.excecoes.excPassaErro {
+                    public void onButtonAction(boolean value) {
                     }
                 });
             }
@@ -292,7 +293,50 @@ public class viewHome extends AppCompatActivity implements View.OnClickListener{
                 Bitmap bmUser = BitmapFactory.decodeByteArray(pessoaFoto.getFoto(), 0, pessoaFoto.getFoto().length);
                 imgUsuario.setImageBitmap(bmUser);
             }
+            if(totalNotificacoesPendentes == 0){
+                btnNotificacoes.setImageResource(R.drawable.ic_notifications_none_black_24dp);
+            }
+            else{
+                btnNotificacoes.setImageResource(R.drawable.ic_notifications_active_black_24dp);
+            }
+            btnNotificacoes.setVisibility(View.VISIBLE);
         }
     }
+
+    private class procLogout extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            ctrlAutentication = new ctrlAutentication(usuario);
+            sharedPreferences = getSharedPreferences(hlpConstants.MYPREFERENCES, Context.MODE_PRIVATE);
+            try {
+                ctrlAutentication.efetuarLogin();
+            } catch (excPassaErro excPassaErro) {
+                String msg = excPassaErro.getMessage();
+                hlpDialog.getAlertDialog(viewHome.this, "Atenção", msg, "Ok", new itfDialogGeneric() {
+                    @Override
+                    public void onButtonAction(boolean value) {
+                    }
+                });
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(viewHome.this, "Aguarde", "Encerrando o sistema...");
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            progressDialog.dismiss();
+            Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.commit();
+            finishAffinity();
+            Intent intent = new Intent(viewHome.this, Principal.class);
+            startActivity(intent);
+        }
+    }
+
 }
 

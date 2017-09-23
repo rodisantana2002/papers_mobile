@@ -57,5 +57,4 @@ public class bsNotificacao implements itfGeneric<Notificacao> {
 
     @Override
     public List<Notificacao> findAll() throws excPassaErro {return null;}
-
 }

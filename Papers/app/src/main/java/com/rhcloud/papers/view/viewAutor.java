@@ -49,7 +49,6 @@ public class viewAutor extends AppCompatActivity implements View.OnClickListener
     private EditText txtPesquisa;
     private GridLayout gridPesquisar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +71,7 @@ public class viewAutor extends AppCompatActivity implements View.OnClickListener
 
     private void prepararComponenetes(){
         recyclerView = (RecyclerView) findViewById(R.id.lstAutores);
+        recyclerView.addItemDecoration(new dividerItemDecorator(viewAutor.this, LinearLayoutManager.VERTICAL, 115));
 
         txtNenhumRegistro = (TextView) findViewById(R.id.txtNenhumRegistroAutor);
         txtPesquisa = (EditText) findViewById(R.id.txtPesquisa);
@@ -157,7 +157,6 @@ public class viewAutor extends AppCompatActivity implements View.OnClickListener
 
         recyclerView.setLayoutManager(new LinearLayoutManager(viewAutor.this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new dividerItemDecorator(viewAutor.this, LinearLayoutManager.VERTICAL,0));
         recyclerView.setAdapter(mAdapter);
         recyclerView.setVisibility(View.VISIBLE);
         txtNenhumRegistro.setVisibility(View.GONE);

@@ -100,10 +100,8 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        showDate(year, month+1, day);
     }
 
-    @SuppressWarnings("deprecation")
     public void setDate(View view) {
         showDialog(999);
     }
