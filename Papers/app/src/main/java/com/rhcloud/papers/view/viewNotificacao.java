@@ -63,7 +63,7 @@ public class viewNotificacao extends AppCompatActivity implements View.OnClickLi
                     if(lstNotificacoes!=null && !lstNotificacoes.isEmpty()) {
                         lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.LIDA));
                         lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.PENDENTE));
-                        Collections.reverse(lstNotificacaoList);
+                        Collections.sort(lstNotificacaoList);
                     }
                     prepararLista(lstNotificacaoList);
                     return true;
@@ -175,8 +175,8 @@ public class viewNotificacao extends AppCompatActivity implements View.OnClickLi
             if(lstNotificacoes!=null && !lstNotificacoes.isEmpty()) {
                 lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.LIDA));
                 lstNotificacaoList.addAll(lstNotificacoes.get(com.rhcloud.papers.model.enumeration.Status.PENDENTE));
-                Collections.reverse(lstNotificacaoList);
             }
+            Collections.sort(lstNotificacaoList);
             prepararLista(lstNotificacaoList);
         }
     }

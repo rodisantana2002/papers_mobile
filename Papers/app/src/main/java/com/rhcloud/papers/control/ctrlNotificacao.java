@@ -47,6 +47,10 @@ public class ctrlNotificacao {
         return msg;
     }
 
+    public String notificarNovoParticipante() throws excPassaErro {
+        return bsNotificacao.create(notificacao);
+    }
+
     public String atualizar() throws excPassaErro {
         return bsNotificacao.update(notificacao);
     }

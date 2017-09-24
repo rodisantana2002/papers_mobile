@@ -14,14 +14,17 @@ import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlDocumentoPessoas;
+import com.rhcloud.papers.control.ctrlNotificacao;
 import com.rhcloud.papers.control.ctrlPessoa;
 import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Documento;
 import com.rhcloud.papers.model.entity.DocumentosPessoas;
+import com.rhcloud.papers.model.entity.Notificacao;
 import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.Usuario;
+import com.rhcloud.papers.model.enumeration.Status;
 import com.rhcloud.papers.model.transitorio.AutorPerfil;
 import com.rhcloud.papers.view.adapters.adpPessoas;
 
@@ -37,6 +40,7 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
     private AutorPerfil autorPerfil;
     private Pessoa pessoa;
     private DocumentosPessoas documentosPessoas;
+    private Notificacao notificacao;
     private Button btnEnviar;
     private ImageButton btnVoltar, btnExcluir;
     private ProgressDialog progressDialog;
@@ -133,6 +137,12 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
         Pessoa pessoa = (Pessoa) txtParticipante.getSelectedItem();
         documentosPessoas.setPessoa(pessoa);
         documentosPessoas.setDocumento(documento);
+
+        notificacao = new Notificacao();
+        notificacao.setDocumento(documento);
+        notificacao.setConteudo(usuario.getPessoa().getPrimeiroNome() + " adicionou você como participante no Artigo");
+        notificacao.setPessoa(pessoa);
+        notificacao.setStatus(Status.PENDENTE);
     }
 
     private boolean validarDados() {
@@ -158,8 +168,11 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
         @Override
         protected String doInBackground(Void... voids) {
             ctrlDocumentoPessoas ctrlDocumentoPessoas = new ctrlDocumentoPessoas(documentosPessoas);
+            ctrlNotificacao ctrlNotificacao = new ctrlNotificacao(notificacao);
             String msg = "";
+
             try {
+                ctrlNotificacao.notificarNovoParticipante();
                 return ctrlDocumentoPessoas.atualizar();
             } catch (com.rhcloud.papers.excecoes.excPassaErro excPassaErro) {
                 msg = excPassaErro.getMessage();

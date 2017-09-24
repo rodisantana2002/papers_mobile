@@ -15,14 +15,17 @@ import android.widget.Spinner;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlDocumento;
+import com.rhcloud.papers.control.ctrlNotificacao;
 import com.rhcloud.papers.control.ctrlTipoDocumento;
 import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;
 import com.rhcloud.papers.helpers.generic.hlpDialog;
 import com.rhcloud.papers.model.entity.Documento;
+import com.rhcloud.papers.model.entity.Notificacao;
 import com.rhcloud.papers.model.entity.Pessoa;
 import com.rhcloud.papers.model.entity.TipoDocumento;
 import com.rhcloud.papers.model.entity.Usuario;
+import com.rhcloud.papers.model.enumeration.Status;
 import com.rhcloud.papers.model.transitorio.AutorPerfil;
 import com.rhcloud.papers.view.adapters.adpTipoDocumento;
 

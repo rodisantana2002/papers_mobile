@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlDestino;
+import com.rhcloud.papers.control.ctrlNotificacao;
 import com.rhcloud.papers.control.ctrlSubmissoes;
 import com.rhcloud.papers.excecoes.excPassaErro;
 import com.rhcloud.papers.helpers.core.itfDialogGeneric;
@@ -29,8 +30,10 @@ import com.rhcloud.papers.model.entity.Destino;
 import com.rhcloud.papers.model.entity.Documento;
 import com.rhcloud.papers.model.entity.FilaSubmissao;
 import com.rhcloud.papers.model.entity.HistoricoFilaSubmissao;
+import com.rhcloud.papers.model.entity.Notificacao;
 import com.rhcloud.papers.model.entity.Usuario;
 import com.rhcloud.papers.model.enumeration.Situacao;
+import com.rhcloud.papers.model.enumeration.Status;
 import com.rhcloud.papers.model.transitorio.AutorPerfil;
 import com.rhcloud.papers.view.adapters.adpDestinos;
 
@@ -49,7 +52,7 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
     private Destino destino;
     private AutorPerfil autorPerfil;
     private FilaSubmissao filaSubmissao;
-    private HistoricoFilaSubmissao historicoFilaSubmissao;
+    private Notificacao notificacao;
     private Button btnEnviarPublicacao;
     private ImageButton btnVoltar, btnDataLimite;
     private ProgressDialog progressDialog;
@@ -187,6 +190,11 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
         filaSubmissao.setDestino(destino);
         filaSubmissao.setDtLimiteSubmissao(txtDataLimite.getText().toString());
         filaSubmissao.setIdioma(txtIdioma.getText().toString());
+
+        notificacao = new Notificacao();
+        notificacao.setDocumento(documento);
+        notificacao.setConteudo(usuario.getPessoa().getPrimeiroNome() + " registrou uma nova solicitação de Publicação para o Artigo.");
+        notificacao.setStatus(Status.PENDENTE);
     }
 
     private boolean validarDados() {
@@ -199,7 +207,6 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
             });
             return false;
         }
-
         return true;
     }
 
@@ -213,9 +220,11 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
         @Override
         protected String doInBackground(Void... voids) {
             ctrlSubmissoes ctrlSubmissoes = new ctrlSubmissoes(filaSubmissao);
+            ctrlNotificacao ctrlNotificacao = new ctrlNotificacao(notificacao);
             String msg = "";
             try {
                 if (filaSubmissao.getId()==null){
+                    ctrlNotificacao.criar(usuario);
                     return ctrlSubmissoes.criar();
                 }
                 else{
@@ -271,7 +280,6 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
                 });
             }
             return destinoList;
-
         }
 
         @Override
@@ -305,7 +313,6 @@ public class viewPublicacaoEdit extends AppCompatActivity implements View.OnClic
                 }
             });
         }
-
     }
 }
 
