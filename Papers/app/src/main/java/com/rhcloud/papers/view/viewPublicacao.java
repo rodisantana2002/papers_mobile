@@ -48,6 +48,7 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
     private GridLayout gridPesquisar;
     private hlpMapasValoresEnuns hlpMapasValoresEnuns;
     private RadioButton btnEmAndamento, btnEncerradas;
+    private BottomNavigationView navigation;
 
 
     @Override
@@ -55,7 +56,7 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_publicacao);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation_publicacoes);
+        navigation = (BottomNavigationView) findViewById(R.id.navigation_publicacoes);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         popularLista(getIntent().getExtras());
     }
@@ -109,6 +110,8 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
     private void prepararComponenetes() {
         hlpMapasValoresEnuns = new hlpMapasValoresEnuns();
         recyclerView = (RecyclerView) findViewById(R.id.lstPublicacoes);
+        recyclerView.addItemDecoration(new dividerItemDecorator(viewPublicacao.this, LinearLayoutManager.VERTICAL,0));
+
         txtNenhumRegistro = (TextView) findViewById(R.id.txtNenhumRegistroPublicacao);
         btnVoltar = (ImageButton) findViewById(R.id.btnVoltarHomePublicacao);
         btnVoltar.setOnClickListener(viewPublicacao.this);
@@ -151,15 +154,16 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
             gridPesquisar.setVisibility(View.GONE);
             btnEmAndamento.setButtonDrawable(R.drawable.ic_check_box_black_24dp);
             btnEncerradas.setButtonDrawable(R.drawable.ic_check_box_outline_blank_black_24dp);
+            navigation.setSelectedItemId(R.id.navigation_responsavel_publicacao);
             procDados = new procDados(true);
             procDados.execute();
-
         }
 
         if(view.getId() == btnEncerradas.getId()){
             gridPesquisar.setVisibility(View.GONE);
             btnEmAndamento.setButtonDrawable(R.drawable.ic_check_box_outline_blank_black_24dp);
             btnEncerradas.setButtonDrawable(R.drawable.ic_check_box_black_24dp);
+            navigation.setSelectedItemId(R.id.navigation_responsavel_publicacao);
             procDados = new procDados(false);
             procDados.execute();
         }
@@ -186,7 +190,6 @@ public class viewPublicacao extends AppCompatActivity implements View.OnClickLis
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(viewPublicacao.this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new dividerItemDecorator(viewPublicacao.this, LinearLayoutManager.VERTICAL,0));
         recyclerView.setAdapter(mAdapter);
 
         if (filaSubmissaos.isEmpty()) {
