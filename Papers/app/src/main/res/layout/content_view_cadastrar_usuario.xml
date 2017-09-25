@@ -45,6 +45,8 @@
                 android:hint="Primeiro Nome"
                 android:inputType="textPersonName"
                 android:maxLength="30"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
@@ -60,6 +62,8 @@
                 android:hint="Segundo Nome"
                 android:inputType="textPersonName"
                 android:maxLength="50"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
@@ -75,6 +79,8 @@
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:maxLength="200"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
@@ -110,6 +116,8 @@
                 android:hint="Crie uma senha"
                 android:inputType="text|textPassword"
                 android:maxLength="30"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
 
@@ -126,6 +134,8 @@
                 android:hint="Repita a senha criada"
                 android:inputType="text|textPassword"
                 android:maxLength="30"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>

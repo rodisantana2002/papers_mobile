@@ -83,6 +83,8 @@
                     android:gravity="top|left"
                     android:hint="Informe um breve resumo profissional"
                     android:inputType="text|textMultiLine"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textColorHint="@color/black_overlay"
                     android:textSize="14sp"
                     tools:ignore="HardcodedText,LabelFor" />
             </android.support.design.widget.TextInputLayout>

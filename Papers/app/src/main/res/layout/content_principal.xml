@@ -37,6 +37,8 @@
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:maxLength="200"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:visibility="visible"
                 tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
@@ -53,6 +55,8 @@
                 android:hint="Senha"
                 android:inputType="textPassword"
                 android:maxLength="30"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
 

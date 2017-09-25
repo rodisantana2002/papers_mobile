@@ -163,7 +163,7 @@
                     android:layout_marginRight="2dp"
                     android:layout_weight="0"
                     android:background="@android:color/white"
-                    tools:ignore="ObsoleteLayoutParam">
+                    tools:ignore="ObsoleteLayoutParam,RtlHardcoded">
 
                 </android.support.v7.widget.RecyclerView>
 
@@ -179,7 +179,7 @@
                     android:padding="3dp"
                     android:paddingBottom="0dp"
                     android:paddingLeft="0dp"
-                    android:text="||  PAPERS  ||  Desenvolvido by Rodolfo Santana - 2017  || IHC  "
+                    android:text="||  PAPERS  ||  Desenvolvido by Rodolfo Santana || IHC-2017  "
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="11sp"
                     android:textStyle="bold"

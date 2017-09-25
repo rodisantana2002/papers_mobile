@@ -55,7 +55,7 @@ public class viewNotificacaoDetail extends AppCompatActivity implements View.OnC
         }
 
         txtNotificacao = (TextView) findViewById(R.id.txtNotificacaoDetail);
-        txtNotificacao.setText("Novidades sobre o Artigo: " + notificacao.getDocumento().getTitulo() + ":\n" + notificacao.getConteudo());
+        txtNotificacao.setText("Novidades sobre o Artigo: " + notificacao.getDocumento().getTitulo() + "\n" + notificacao.getConteudo());
     }
 
     @Override

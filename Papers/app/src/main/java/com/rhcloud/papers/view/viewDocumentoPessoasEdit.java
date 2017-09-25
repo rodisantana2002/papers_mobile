@@ -140,7 +140,7 @@ public class viewDocumentoPessoasEdit extends AppCompatActivity implements View.
 
         notificacao = new Notificacao();
         notificacao.setDocumento(documento);
-        notificacao.setConteudo(usuario.getPessoa().getPrimeiroNome() + " adicionou você como participante no Artigo");
+        notificacao.setConteudo(usuario.getPessoa().getPrimeiroNome() + " adicionou você como participante no Artigo.");
         notificacao.setPessoa(pessoa);
         notificacao.setStatus(Status.PENDENTE);
     }

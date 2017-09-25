@@ -105,7 +105,6 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="0"
-                    android:background="@android:color/white"
                     android:gravity="center"
                     android:orientation="vertical"
                     tools:ignore="UseCompoundDrawables">
@@ -141,16 +140,18 @@
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="3dp"
-                        android:layout_weight="3.01" />
+                        android:layout_weight="3.01"
+                        android:background="@android:color/white" />
 
                     <TextView
                         android:id="@+id/lblResumo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
                         android:layout_weight="3.01"
-                        android:background="@android:color/transparent"
+                        android:background="@android:color/white"
+                        android:paddingBottom="3dp"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:textAlignment="viewStart"
@@ -158,18 +159,15 @@
                         android:textSize="14sp"
                         tools:ignore="HardcodedText" />
 
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:layout_weight="3.01" />
-
                     <TextView
                         android:id="@+id/lblPalavrasChave"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
                         android:layout_weight="3.01"
+                        android:background="@android:color/white"
+                        android:paddingBottom="3dp"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:textAlignment="textStart"
@@ -203,6 +201,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="0"
+                        android:background="@android:color/white"
                         android:visibility="visible" />
 
                 </LinearLayout>

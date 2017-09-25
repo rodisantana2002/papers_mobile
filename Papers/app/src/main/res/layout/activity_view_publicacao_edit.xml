@@ -111,10 +111,12 @@ tools:context="com.rhcloud.papers.view.viewPublicacaoEdit">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Idioma"
                 android:completionThreshold="1"
+                android:hint="Idioma"
                 android:maxLength="100"
                 android:singleLine="true"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:textSize="16sp"
                 tools:ignore="Deprecated,HardcodedText" />
 
@@ -148,6 +150,8 @@ tools:context="com.rhcloud.papers.view.viewPublicacaoEdit">
                     android:inputType="date"
                     android:maxLength="10"
                     android:singleLine="true"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textColorHint="@color/black_overlay"
                     android:textSize="16sp"
                     tools:ignore="Deprecated,LabelFor" />
 

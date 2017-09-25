@@ -85,6 +85,8 @@ tools:context="com.rhcloud.papers.view.viewDocumentoResumo">
                 android:imeOptions="normal"
                 android:inputType="text|textMultiLine"
                 android:maxLength="450"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:textSize="14sp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>

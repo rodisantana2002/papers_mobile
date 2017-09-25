@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.rhcloud.papers.R;
 import com.rhcloud.papers.control.ctrlHistorico;
@@ -40,6 +41,7 @@ import java.util.List;
 
 public class viewPublicacaoSituacao extends AppCompatActivity implements View.OnClickListener{
     private EditText txtComentario, txtDtPublicacao;
+    private TextView txtSituacao;
     private Usuario usuario;
     private FilaSubmissao filaSubmissao;
     private HistoricoFilaSubmissao historicoFilaSubmissao;
@@ -96,6 +98,9 @@ public class viewPublicacaoSituacao extends AppCompatActivity implements View.On
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        txtSituacao = (TextView) findViewById(R.id.txtSituacaoAtual);
+        txtSituacao.setText(acao.getNomeAcao());
     }
 
     public void onClick(View view) {

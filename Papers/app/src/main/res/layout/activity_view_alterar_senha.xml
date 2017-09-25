@@ -83,6 +83,8 @@
                     android:hint="Senha atual"
                     android:inputType="textWebPassword"
                     android:maxLength="30"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textColorHint="@color/black_overlay"
                     android:textSize="16sp"
                     tools:ignore="HardcodedText,LabelFor" />
             </android.support.design.widget.TextInputLayout>
@@ -118,6 +120,8 @@
                     android:hint="Crie uma nova senha"
                     android:inputType="text|textPassword"
                     android:maxLength="30"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textColorHint="@color/black_overlay"
                     android:textSize="16sp"
                     tools:ignore="HardcodedText,LabelFor" />
 
@@ -134,6 +138,8 @@
                     android:hint="Repita a nova senha"
                     android:inputType="text|textPassword"
                     android:maxLength="30"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textColorHint="@color/black_overlay"
                     android:textSize="16sp"
                     tools:ignore="HardcodedText,LabelFor" />
             </android.support.design.widget.TextInputLayout>

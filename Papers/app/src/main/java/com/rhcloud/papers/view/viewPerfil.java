@@ -47,7 +47,6 @@ public class viewPerfil extends AppCompatActivity {
     private Usuario usuario;
     private PessoaFoto pessoaFoto;
 
-    private ProgressDialog progressDialog;
     private procDados procDados;
 
     @Override
@@ -210,14 +209,10 @@ public class viewPerfil extends AppCompatActivity {
         }
 
         @Override
-        protected void onPreExecute() {
-            progressDialog = ProgressDialog.show(viewPerfil.this, "Aguarde", "Carregando dados...");
-        }
+        protected void onPreExecute() {}
 
         @Override
         protected void onPostExecute(final String result) {
-            progressDialog.dismiss();
-
             if ((pessoaFoto==null)||(pessoaFoto.getFoto()==null)){
                 imgFoto.setImageDrawable(getDrawable(R.drawable.ic_account_circle_black_48dp));
             }

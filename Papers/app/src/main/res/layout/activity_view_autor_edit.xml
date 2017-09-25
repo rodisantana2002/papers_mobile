@@ -101,7 +101,8 @@ tools:context="com.rhcloud.papers.view.viewAutorEdit">
                 android:imeOptions="normal"
                 android:inputType="textPersonName"
                 android:maxLength="30"
-                android:textColor="?android:attr/colorControlNormal"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
@@ -118,7 +119,8 @@ tools:context="com.rhcloud.papers.view.viewAutorEdit">
                 android:imeOptions="normal"
                 android:inputType="textPersonName"
                 android:maxLength="50"
-                android:textColor="?android:attr/colorControlNormal"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
@@ -135,7 +137,8 @@ tools:context="com.rhcloud.papers.view.viewAutorEdit">
                 android:imeOptions="normal"
                 android:inputType="textEmailAddress"
                 android:maxLength="200"
-                android:textColor="?android:attr/colorControlNormal"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
@@ -152,7 +155,8 @@ tools:context="com.rhcloud.papers.view.viewAutorEdit">
                 android:imeOptions="normal"
                 android:inputType="text"
                 android:maxLength="50"
-                android:textColor="?android:attr/colorControlNormal"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
@@ -171,7 +175,8 @@ tools:context="com.rhcloud.papers.view.viewAutorEdit">
                 android:isScrollContainer="false"
                 android:maxLength="50"
                 android:singleLine="true"
-                android:textColor="?android:attr/colorControlNormal"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:textSize="16sp"
                 tools:ignore="Deprecated,HardcodedText" />
         </android.support.design.widget.TextInputLayout>
@@ -190,7 +195,8 @@ tools:context="com.rhcloud.papers.view.viewAutorEdit">
                 android:maxLength="50"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="?android:attr/colorControlNormal"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:textSize="16sp"
                 tools:ignore="Deprecated,HardcodedText" />
         </android.support.design.widget.TextInputLayout>
@@ -209,7 +215,8 @@ tools:context="com.rhcloud.papers.view.viewAutorEdit">
                 android:maxLength="50"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="?android:attr/colorControlNormal"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 android:textSize="16sp"
                 tools:ignore="Deprecated,HardcodedText" />
         </android.support.design.widget.TextInputLayout>

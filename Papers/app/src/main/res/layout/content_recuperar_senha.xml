@@ -46,6 +46,8 @@
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:maxLength="200"
+                android:textColor="@color/cardview_dark_background"
+                android:textColorHint="@color/black_overlay"
                 tools:ignore="HardcodedText,LabelFor" />
         </android.support.design.widget.TextInputLayout>
 
