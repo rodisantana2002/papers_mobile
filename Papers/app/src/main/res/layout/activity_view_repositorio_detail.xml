@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Descrição"
                     android:inputType="textPersonName"
-                    android:maxLength="50"
+                    android:maxLength="90"
                     android:textColor="@color/cardview_dark_background"
                     android:textColorHint="@color/black_overlay"
                     android:textSize="16sp"
