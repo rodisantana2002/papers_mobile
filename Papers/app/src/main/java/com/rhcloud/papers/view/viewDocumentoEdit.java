@@ -149,9 +149,11 @@ public class viewDocumentoEdit extends AppCompatActivity implements View.OnClick
         documento.setPalavrasChave(txtPalavrasChave.getText().toString());
         tipoDocumento = (TipoDocumento) txtTipo.getSelectedItem();
         documento.setTipoDocumento(tipoDocumento);
-        Pessoa pessoa = new Pessoa();
-        pessoa.setId(usuario.getPessoa().getId());
-        documento.setPessoa(pessoa);
+        if (documento.getId()==null){
+            Pessoa pessoa = new Pessoa();
+            pessoa.setId(usuario.getPessoa().getId());
+            documento.setPessoa(pessoa);
+        }
     }
 
     private boolean validarDados() {
